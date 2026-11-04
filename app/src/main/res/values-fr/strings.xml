@@ -1,0 +1,822 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  French UI strings (D-040). Same keys and order as values/strings.xml (English source). Wording rules: docs/UI.md section 10.
+  Address the user as "vous"; typographic apostrophe; guillemets; no-break space written as \u00A0 before the colon, semicolon,
+  question mark, exclamation mark and percent sign, and inside guillemets. translatable="false" entries (language names) are only in values/.
+-->
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">VaultSync</string>
+
+    <!-- Général -->
+    <string name="action_cancel">Annuler</string>
+    <string name="action_ok">OK</string>
+    <string name="action_back">Retour</string>
+    <string name="action_close">Fermer</string>
+    <string name="action_dismiss">Compris</string>
+    <string name="action_next">Suivant</string>
+    <string name="action_save">Enregistrer</string>
+    <string name="action_copy">Tout copier</string>
+    <string name="action_share">Partager</string>
+    <string name="action_retry">Réessayer</string>
+    <string name="action_more">Plus d’options</string>
+    <string name="action_view_logs">Voir les journaux</string>
+    <string name="action_sync">Synchroniser</string>
+    <string name="action_sync_now">Synchroniser maintenant</string>
+    <string name="action_go_settings">Ouvrir les paramètres</string>
+    <string name="action_show_technical">Détails techniques</string>
+    <string name="action_hide_technical">Masquer les détails techniques</string>
+    <string name="copied">Copié dans le presse-papiers</string>
+    <string name="duration_seconds">%1$s\u00A0s</string>
+    <string name="duration_minutes">%1$d\u00A0min %2$d\u00A0s</string>
+    <string name="size_bytes">%1$s\u00A0o</string>
+    <string name="size_kb">%1$s\u00A0Ko</string>
+    <string name="size_mb">%1$s\u00A0Mo</string>
+    <string name="size_gb">%1$s\u00A0Go</string>
+    <string name="percent">%1$d\u00A0%%</string>
+
+    <!-- Barre des modifications non enregistrées (paramètres de l’app et du coffre, docs/UI.md §9.1) -->
+    <string name="unsaved_changes">Modifications non enregistrées</string>
+    <string name="unsaved_discard">Abandonner</string>
+    <string name="unsaved_reason_busy">Enregistrement impossible pendant la synchronisation</string>
+    <string name="unsaved_leave_title">Abandonner les modifications non enregistrées\u00A0?</string>
+    <string name="unsaved_leave_discard">Abandonner</string>
+    <string name="unsaved_keep_editing">Continuer à modifier</string>
+
+    <!-- Étapes et progression de la synchronisation -->
+    <string name="stage_preparing">Préparation</string>
+    <string name="stage_precheck">Vérification du coffre</string>
+    <string name="stage_commit">Commit des modifications locales</string>
+    <string name="stage_fetch">Récupération des modifications distantes</string>
+    <string name="stage_merge">Fusion des modifications distantes</string>
+    <string name="stage_conflicts">En attente de la résolution des conflits</string>
+    <string name="stage_push">Envoi vers le dépôt distant</string>
+    <string name="stage_done">Terminé</string>
+    <string name="stage_maintain">Maintenance du dépôt</string>
+    <string name="task_receiving">Réception des données</string>
+    <string name="task_resolving">Traitement des données</string>
+    <string name="task_counting">Comptage des objets</string>
+    <string name="task_compressing">Compression des objets</string>
+    <string name="task_writing">Écriture des données</string>
+    <string name="task_finding_sources">Recherche des données réutilisables</string>
+    <string name="task_sizes">Calcul des tailles</string>
+    <string name="task_indexing">Construction de l’index</string>
+    <string name="task_updating_refs">Mise à jour des branches</string>
+    <string name="task_checkout">Écriture des fichiers</string>
+    <string name="task_verifying">Vérification des fichiers</string>
+    <string name="progress_cancelling">Annulation…</string>
+    <string name="task_opening">Connexion</string>
+    <string name="task_staging">Lecture des fichiers modifiés</string>
+    <string name="meter_downloaded">Reçu\u00A0: %1$s</string>
+    <string name="meter_uploaded">Envoyé\u00A0: %1$s</string>
+    <string name="meter_rate">%1$s/s</string>
+    <string name="meter_elapsed">Temps écoulé\u00A0: %1$s</string>
+    <string name="task_pack_refs">Rangement des références de branches</string>
+    <string name="task_prune">Nettoyage des données compactées</string>
+    <string name="job_syncing">Synchronisation</string>
+    <string name="job_cloning">Clonage</string>
+    <string name="job_initializing">Initialisation</string>
+    <string name="job_adopting">Configuration</string>
+    <string name="job_maintaining">Maintenance</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_sync">Progression de la synchronisation</string>
+    <string name="notification_channel_sync_desc">Affiche la progression pendant la synchronisation et la maintient active en arrière-plan.</string>
+    <string name="notification_channel_done">Synchronisation terminée</string>
+    <string name="notification_channel_done_desc">Affichée quand tous les coffres ont été synchronisés. Silencieuse par défaut.</string>
+    <string name="notification_channel_attention">À vérifier</string>
+    <string name="notification_channel_attention_desc">Vous avertit quand une synchronisation rencontre des conflits ou échoue.</string>
+    <string name="notif_progress_preparing">Préparation de la synchronisation…</string>
+    <string name="notif_progress_title">%1$s «\u00A0%2$s\u00A0»</string>
+    <string name="notif_progress_position">%1$d sur %2$d</string>
+    <string name="notif_progress_queued">En attente\u00A0: %1$s</string>
+    <string name="notif_action_cancel">Annuler ce coffre</string>
+    <string name="notif_action_cancel_all">Tout arrêter</string>
+    <plurals name="notif_summary_all_ok">
+        <item quantity="one">%1$d coffre synchronisé</item>
+        <item quantity="many">%1$d coffres synchronisés</item>
+        <item quantity="other">%1$d coffres synchronisés</item>
+    </plurals>
+    <plurals name="notif_summary_all_problems">
+        <item quantity="one">%1$d coffre à vérifier</item>
+        <item quantity="many">%1$d coffres à vérifier</item>
+        <item quantity="other">%1$d coffres à vérifier</item>
+    </plurals>
+    <plurals name="notif_summary_mixed">
+        <item quantity="one">%1$d synchronisé(s), %2$d à vérifier</item>
+        <item quantity="many">%1$d synchronisé(s), %2$d à vérifier</item>
+        <item quantity="other">%1$d synchronisé(s), %2$d à vérifier</item>
+    </plurals>
+    <plurals name="notif_summary_tasks_all_ok">
+        <item quantity="one">%1$d tâche terminée</item>
+        <item quantity="many">%1$d tâches terminées</item>
+        <item quantity="other">%1$d tâches terminées</item>
+    </plurals>
+    <plurals name="notif_summary_tasks_all_problems">
+        <item quantity="one">%1$d tâche à vérifier</item>
+        <item quantity="many">%1$d tâches à vérifier</item>
+        <item quantity="other">%1$d tâches à vérifier</item>
+    </plurals>
+    <plurals name="notif_summary_tasks_mixed">
+        <item quantity="one">%1$d terminée(s), %2$d à vérifier</item>
+        <item quantity="many">%1$d terminée(s), %2$d à vérifier</item>
+        <item quantity="other">%1$d terminée(s), %2$d à vérifier</item>
+    </plurals>
+    <string name="notif_summary_line">%1$s\u00A0: %2$s</string>
+    <string name="notif_result_added">Ajouté</string>
+    <string name="notif_result_recloned">Cloné à nouveau</string>
+    <string name="notif_result_maintained">Maintenance terminée</string>
+    <string name="notif_result_maintained_freed">Maintenance terminée, %1$s libérés</string>
+    <plurals name="notif_result_conflicts">
+        <item quantity="one">%1$d fichier a des conflits. Ouvrez l’application pour les résoudre.</item>
+        <item quantity="many">%1$d fichiers ont des conflits. Ouvrez l’application pour les résoudre.</item>
+        <item quantity="other">%1$d fichiers ont des conflits. Ouvrez l’application pour les résoudre.</item>
+    </plurals>
+    <string name="notif_result_failed">Échec\u00A0: %1$s</string>
+    <string name="list_separator">", "</string>
+
+    <!-- Accueil -->
+    <string name="home_title">VaultSync</string>
+    <string name="home_settings">Paramètres</string>
+    <string name="home_add_repo">Ajouter un coffre</string>
+    <string name="home_empty_title">Aucun coffre pour l’instant</string>
+    <string name="home_empty_body">Ajoutez un dépôt Git et gardez-le synchronisé avec son dépôt distant.</string>
+    <string name="home_config_error_title">Impossible de lire la configuration</string>
+    <string name="home_config_error_body">Ces fichiers de configuration sont endommagés. Ils ont été mis de côté comme sauvegardes et l’application a démarré avec une configuration vide\u00A0:\n%1$s\nVous pouvez restaurer votre configuration à partir d’un fichier de sauvegarde dans les Paramètres.</string>
+    <string name="home_identity_missing">Le nom et l’e-mail de l’auteur des commits ne sont pas encore définis. Ils sont enregistrés dans chaque commit\u00A0: renseignez-les d’abord dans les Paramètres.</string>
+    <string name="home_go_settings">Ouvrir les paramètres</string>
+    <string name="home_crash_title">L’application s’est fermée de façon inattendue la dernière fois</string>
+    <string name="home_crash_body">Un rapport de plantage a été enregistré. Si cela se reproduit, vous pouvez envoyer ce rapport au développeur.</string>
+    <string name="home_crash_view">Voir le rapport</string>
+    <string name="env_info">VaultSync %1$s · Android %2$s</string>
+
+    <string name="status_synced">À jour</string>
+    <string name="status_conflicts">Conflits</string>
+    <string name="status_syncing">Synchro</string>
+    <string name="status_maintaining">Maintenance</string>
+    <string name="status_cloning">Clonage</string>
+    <string name="status_queued">En attente</string>
+    <string name="status_error">Échec</string>
+    <string name="status_cancelled">Annulé</string>
+    <string name="status_never">Jamais synchro</string>
+    <string name="last_sync_at">Dernière synchro\u00A0: %1$s</string>
+
+    <!-- Autorisation de stockage -->
+    <string name="perm_title">Accès aux fichiers requis</string>
+    <string name="perm_body_legacy">VaultSync doit lire et écrire des fichiers et dossiers dans le stockage du téléphone (y compris les dossiers .git qu’ils contiennent). Veuillez accorder l’autorisation de stockage.</string>
+    <string name="perm_body_all_files">VaultSync doit lire et écrire des fichiers et dossiers dans le stockage du téléphone (y compris les dossiers .git qu’ils contiennent). Veuillez activer «\u00A0Accès à tous les fichiers\u00A0» pour VaultSync dans les paramètres système.</string>
+    <string name="perm_grant">Accorder l’autorisation</string>
+    <string name="perm_open_settings">Ouvrir les paramètres système</string>
+
+    <!-- Assistant d’ajout de coffre -->
+    <string name="add_title">Ajouter un coffre</string>
+    <string name="add_step">Étape %1$d sur %2$d</string>
+    <string name="add_step_mode">Choisir la méthode</string>
+    <string name="add_step_folder">Choisir le dossier</string>
+    <string name="add_step_remote">Dépôt distant et authentification</string>
+    <string name="add_step_identity">Nom et auteur</string>
+    <string name="add_step_confirm">Confirmer</string>
+    <string name="add_step_progress">Exécution</string>
+    <string name="add_start_failed">Impossible d’enregistrer le jeton</string>
+
+    <string name="mode_clone_title">Cloner depuis le dépôt distant</string>
+    <string name="mode_clone_body">Vos notes sont dans le dépôt distant mais pas encore sur ce téléphone. Le dépôt sera téléchargé dans un dossier vide.</string>
+    <string name="mode_init_title">Envoyer un coffre de ce téléphone</string>
+    <string name="mode_init_body">Ce téléphone contient un dossier à synchroniser (sans .git) et le dépôt distant est vide. Un dépôt Git sera créé dans le dossier puis envoyé une première fois.</string>
+    <string name="mode_adopt_title">Utiliser un dépôt Git existant</string>
+    <string name="mode_adopt_body">Le dossier du coffre contient déjà .git (créé par un autre outil, par exemple). Il sera utilisé tel quel, sans modifier son historique.</string>
+
+    <string name="folder_hint_clone">Choisissez ou créez un dossier vide. Le dépôt y sera cloné.</string>
+    <string name="folder_hint_init">Choisissez le dossier à synchroniser (sans .git).</string>
+    <string name="folder_hint_adopt">Choisissez le dossier du dépôt Git existant (il contient .git).</string>
+    <string name="folder_path_label">Chemin</string>
+    <string name="folder_up">Parent</string>
+    <string name="folder_go">Aller</string>
+    <string name="folder_new">Nouveau dossier</string>
+    <string name="folder_new_name">Nom du dossier</string>
+    <string name="folder_badge_vault">Coffre Obsidian</string>
+    <string name="folder_badge_repo">Dépôt Git</string>
+    <string name="folder_empty">(Aucun sous-dossier)</string>
+    <string name="folder_use_this">Utiliser ce dossier</string>
+    <string name="folder_err_not_dir">Ce chemin n’est pas un dossier.</string>
+    <string name="folder_err_not_empty">Le dossier n’est pas vide. Le clonage nécessite un dossier vide.</string>
+    <string name="folder_err_has_git">Ce dossier contient déjà .git. Revenez en arrière et choisissez «\u00A0Utiliser un dépôt Git existant\u00A0».</string>
+    <string name="folder_err_no_git">Ce dossier ne contient pas .git. Revenez en arrière et choisissez une autre méthode.</string>
+    <string name="folder_err_name">Nom non valide.</string>
+    <string name="folder_err_create">Impossible de créer le dossier.</string>
+    <string name="folder_err_exists">Un dossier portant ce nom existe déjà.</string>
+    <string name="folder_warn_no_obsidian">Ce dossier ne contient pas .obsidian, ce n’est peut-être pas un coffre Obsidian.</string>
+
+    <string name="remote_url_label">URL du dépôt distant</string>
+    <string name="remote_url_examples">HTTPS\u00A0: https://github.com/user/repo.git
+SSH\u00A0: git@github.com:user/repo.git</string>
+    <string name="remote_url_adopt_hint">Laissez vide pour utiliser le dépôt distant déjà configuré dans le dépôt (origin).</string>
+    <string name="remote_kind_https">Adresse HTTPS. Authentification par jeton d’accès personnel.</string>
+    <string name="remote_kind_ssh">Adresse SSH. Authentification par clé SSH.</string>
+    <string name="remote_kind_unsupported">Adresse non reconnue. Les adresses https://… et SSH sont prises en charge\u00A0; http:// et les chemins locaux ne le sont pas.</string>
+    <string name="remote_username_label">Nom d’utilisateur</string>
+    <string name="remote_token_label">Jeton d’accès personnel</string>
+    <string name="remote_token_replace_label">Nouveau jeton (laissez vide pour garder l’actuel)</string>
+    <string name="remote_token_hint">Créez-en un sur GitHub dans Settings → Developer settings → Personal access tokens, avec un accès en lecture et en écriture au contenu de ce dépôt. Le jeton est stocké chiffré sur cet appareil.</string>
+    <string name="remote_token_saved_hint">Un jeton est enregistré. Ne remplissez ce champ que pour le remplacer.</string>
+    <string name="remote_token_unreadable_hint">Le jeton enregistré ne peut pas être déchiffré (le magasin de clés du système a changé). Veuillez le saisir à nouveau.</string>
+    <string name="remote_ssh_port_label">Port SSH</string>
+    <string name="remote_ssh_github_443">Utiliser le port 443</string>
+    <string name="remote_ssh_github_22">Utiliser le port 22</string>
+    <string name="remote_branch_label">Branche</string>
+    <string name="remote_test">Tester la connexion</string>
+    <string name="remote_test_ok_empty">Connecté. Le dépôt distant est vide.</string>
+    <string name="remote_test_ok">Connecté. Branches distantes\u00A0: %1$s</string>
+    <string name="remote_test_fail_title">Échec de la connexion\u00A0: %1$s</string>
+    <string name="remote_reason_url">Saisissez une URL de dépôt distant valide</string>
+    <string name="remote_reason_username">Saisissez un nom d’utilisateur</string>
+    <string name="remote_reason_token">Saisissez un jeton d’accès personnel</string>
+    <string name="remote_reason_port">Saisissez un port SSH valide</string>
+    <string name="remote_reason_key">Choisissez une clé SSH utilisable</string>
+
+    <string name="repo_name_label">Nom affiché</string>
+    <string name="identity_title">Auteur</string>
+    <string name="identity_body">Le nom et l’e-mail enregistrés dans chaque commit de ce coffre. Laissez vide pour utiliser les valeurs par défaut des Paramètres.</string>
+    <string name="identity_name_label">Nom</string>
+    <string name="identity_email_label">E-mail</string>
+    <string name="identity_missing">Aucun auteur par défaut n’est défini dans les Paramètres\u00A0: ce champ est obligatoire.</string>
+    <string name="commit_template_label">Modèle de message de commit</string>
+    <string name="commit_template_hint">Variables\u00A0: {{date}} {{hostname}} {{numFiles}} {{files}}</string>
+    <string name="date_format_label">Format de date</string>
+    <string name="date_format_hint">Par exemple, YYYY-MM-DD HH:mm:ss</string>
+
+    <string name="confirm_mode">Méthode</string>
+    <string name="confirm_folder">Dossier</string>
+    <string name="confirm_remote">Dépôt distant</string>
+    <string name="confirm_remote_existing">Utiliser le dépôt distant déjà configuré dans le dépôt (origin)</string>
+    <string name="confirm_branch">Branche</string>
+    <string name="confirm_auth">Authentification</string>
+    <string name="confirm_auth_https">Jeton d’accès personnel (utilisateur %1$s)</string>
+    <string name="confirm_auth_ssh">Clé SSH «\u00A0%1$s\u00A0»</string>
+    <string name="confirm_auth_none">Aucune</string>
+    <string name="confirm_identity">Auteur</string>
+    <string name="confirm_identity_default">Utiliser les valeurs par défaut des Paramètres</string>
+    <string name="confirm_actions_clone">Étapes\u00A0: se connecter au dépôt distant → cloner dans le dossier choisi → écrire les paramètres du dépôt.</string>
+    <string name="confirm_actions_init">Étapes\u00A0: vérifier que le dépôt distant est vide → créer un dépôt Git → écrire le .gitignore recommandé → créer un commit de tous les fichiers → envoyer.</string>
+    <string name="confirm_actions_adopt">Étapes\u00A0: ouvrir le dépôt → vérifier la branche et le dépôt distant → écrire les paramètres du dépôt. L’historique existant n’est pas modifié.</string>
+    <string name="confirm_start">Démarrer</string>
+
+    <string name="progress_running">%1$s…</string>
+    <string name="progress_success">Terminé</string>
+    <string name="progress_cancelled">Annulé</string>
+    <string name="progress_failed">Échec à l’étape «\u00A0%1$s\u00A0»\u00A0: %2$s</string>
+    <string name="progress_back_to_edit">Revenir et modifier</string>
+    <string name="progress_open_repo">Ouvrir le coffre</string>
+    <string name="note_remote_empty">Le dépôt distant est vide. Le contenu local sera envoyé lors de la première synchronisation.</string>
+    <string name="note_gitignore_created">.gitignore créé à partir du modèle recommandé.</string>
+    <string name="note_branch_adjusted">Le dépôt est sur la branche %1$s (et non %2$s comme saisi)\u00A0: c’est donc %1$s qui sera synchronisée.</string>
+    <string name="note_remote_changed">L’URL du dépôt distant a été remplacée par %1$s.</string>
+    <string name="note_unfinished_merge">Ce dépôt a une fusion inachevée qui comporte encore des conflits. Résolvez-les dans les détails du coffre.</string>
+    <string name="note_resolved_merge">Ce dépôt a une fusion dont les conflits sont résolus mais pas encore enregistrés dans un commit. Elle sera terminée lors de la prochaine synchronisation.</string>
+
+    <!-- Clés SSH (paramètres, assistant, paramètres du coffre) -->
+    <string name="settings_ssh">Clés SSH</string>
+    <string name="ssh_list_intro">Les coffres avec une adresse SSH s’authentifient avec ces clés. Chaque coffre peut utiliser une clé différente\u00A0; les nouveaux coffres utilisent la clé par défaut. Les clés privées sont stockées chiffrées sur cet appareil et ne quittent jamais le téléphone.</string>
+    <string name="ssh_list_empty">Aucune clé pour l’instant.</string>
+    <string name="ssh_key_title_default">%1$s (par défaut)</string>
+    <string name="ssh_key_unused">Utilisée par aucun coffre</string>
+    <plurals name="ssh_key_used_by">
+        <item quantity="one">Utilisée par %1$d coffre</item>
+        <item quantity="many">Utilisée par %1$d coffres</item>
+        <item quantity="other">Utilisée par %1$d coffres</item>
+    </plurals>
+    <string name="ssh_key_generate">Générer</string>
+    <string name="ssh_key_import">Importer</string>
+    <string name="ssh_key_copy_public">Copier la clé publique</string>
+    <string name="ssh_key_copy_public_short">Copier clé publique</string>
+    <string name="ssh_key_view_public">Voir les détails</string>
+    <string name="ssh_key_set_default">Définir par défaut</string>
+    <string name="ssh_key_rename">Renommer</string>
+    <string name="ssh_key_delete">Supprimer</string>
+    <string name="ssh_key_delete_title">Supprimer la clé «\u00A0%1$s\u00A0»\u00A0?</string>
+    <string name="ssh_key_delete_unused">Aucun coffre n’utilise cette clé. Après l’avoir supprimée, retirez aussi sa clé publique du dépôt distant (par exemple, SSH keys sur GitHub).</string>
+    <plurals name="ssh_key_delete_used">
+        <item quantity="one">%1$d coffre utilise cette clé\u00A0: %2$s. Après la suppression, ce coffre devra choisir une autre clé avant de pouvoir se synchroniser. Retirez aussi la clé publique du dépôt distant.</item>
+        <item quantity="many">%1$d coffres utilisent cette clé\u00A0: %2$s. Après la suppression, ces coffres devront choisir une autre clé avant de pouvoir se synchroniser. Retirez aussi la clé publique du dépôt distant.</item>
+        <item quantity="other">%1$d coffres utilisent cette clé\u00A0: %2$s. Après la suppression, ces coffres devront choisir une autre clé avant de pouvoir se synchroniser. Retirez aussi la clé publique du dépôt distant.</item>
+    </plurals>
+    <string name="ssh_key_name_label">Nom</string>
+    <string name="ssh_key_name_suggestion">Clé %1$d</string>
+    <string name="ssh_key_name_migrated">Clé par défaut</string>
+    <string name="ssh_key_name_recovered">Clé récupérée</string>
+    <string name="ssh_key_source_generated">Générée le %1$s</string>
+    <string name="ssh_key_source_imported">Importée le %1$s</string>
+    <string name="ssh_key_unreadable">La clé privée ne peut pas être déchiffrée (le magasin de clés du système a changé). Supprimez-la, puis générez ou importez une nouvelle clé.</string>
+    <string name="ssh_key_public_hint">Ajoutez la clé publique ci-dessous à votre compte distant, par exemple sur GitHub dans Settings → SSH and GPG keys → New SSH key.</string>
+    <string name="ssh_key_done_generated">Clé générée. Ajoutez sa clé publique à votre compte distant.</string>
+    <string name="ssh_key_done_imported">Clé importée.</string>
+    <string name="ssh_key_done_deleted">Clé supprimée.</string>
+    <string name="ssh_generate_title">Générer une clé SSH</string>
+    <string name="ssh_generate_body">Génère une nouvelle clé ed25519. Le nom n’est affiché que dans cette application, pour vous aider à distinguer vos clés.</string>
+    <string name="ssh_import_title">Importer une clé privée</string>
+    <string name="ssh_import_key_label">Clé privée</string>
+    <string name="ssh_import_key_hint">Collez le fichier de clé privée en entier (de -----BEGIN … PRIVATE KEY----- à -----END … -----). Les formats OpenSSH, PEM, PKCS#8 et PuTTY sont pris en charge.</string>
+    <string name="ssh_import_passphrase_label">Phrase secrète de la clé (laissez vide s’il n’y en a pas)</string>
+    <string name="ssh_import_action">Importer</string>
+    <string name="ssh_import_err_invalid">Format de clé privée non reconnu. Vérifiez que vous avez collé la clé privée et non la clé publique (.pub), et que les lignes BEGIN / END sont complètes.</string>
+    <string name="ssh_import_err_passphrase_required">Cette clé privée est protégée par une phrase secrète. Veuillez la saisir.</string>
+    <string name="ssh_import_err_wrong_passphrase">Phrase secrète incorrecte.</string>
+    <string name="ssh_import_err_unsupported">Cette clé n’est pas prise en charge\u00A0: %1$s</string>
+    <string name="ssh_picker_title">Clé SSH</string>
+    <string name="ssh_picker_empty">Aucune clé SSH pour l’instant. Générez une nouvelle clé ou importez une clé privée existante.</string>
+    <string name="ssh_picker_choose">Choisissez une clé</string>
+    <string name="ssh_picker_deleted">La clé utilisée par ce coffre a été supprimée. Veuillez en choisir une autre.</string>
+    <string name="ssh_picker_open">Choisir une clé</string>
+    <string name="ssh_picker_new_generate">Générer une nouvelle clé…</string>
+    <string name="ssh_picker_new_import">Importer une clé privée…</string>
+    <string name="ssh_picker_add_public_key">Vérifiez que la clé publique de cette clé a été ajoutée à votre compte distant, puis testez la connexion.</string>
+    <string name="ssh_picker_manage">Gérer les clés</string>
+
+    <!-- Hôtes connus -->
+    <string name="known_hosts_title">Hôtes connus</string>
+    <string name="known_hosts_body">À la première connexion à un hôte, sa clé est enregistrée. Si la clé change ensuite, la connexion est refusée pour vous protéger contre une interception. Si vous êtes sûr que le serveur a changé de clé, «\u00A0oubliez\u00A0» l’hôte et reconnectez-vous. Les clés de GitHub sont intégrées.</string>
+    <string name="known_hosts_empty">Rien d’enregistré pour l’instant.</string>
+    <string name="known_hosts_forget">Oublier</string>
+    <string name="known_hosts_forget_confirm">Oublier la clé d’hôte de «\u00A0%1$s\u00A0»\u00A0? Elle sera enregistrée à nouveau lors de la prochaine connexion.</string>
+
+    <!-- Détails du coffre -->
+    <string name="detail_open_repo_settings">Paramètres du coffre</string>
+    <string name="detail_history">Historique</string>
+    <string name="detail_logs">Journaux</string>
+    <string name="detail_branch_remote">Branche %1$s · Dépôt distant %2$s</string>
+    <string name="detail_auth_https">Authentification\u00A0: jeton d’accès personnel (%1$s)</string>
+    <string name="detail_auth_ssh">Authentification\u00A0: clé SSH «\u00A0%1$s\u00A0»</string>
+    <string name="detail_auth_none">Authentification\u00A0: aucune</string>
+    <string name="detail_local_changes" tools:ignore="PluralsCandidate">Modifications locales non synchronisées\u00A0: %1$d modifié(s) · %2$d ajouté(s) · %3$d supprimé(s)</string>
+    <string name="detail_no_local_changes">Aucune modification locale non synchronisée</string>
+    <string name="detail_path_copy">Copier le chemin</string>
+    <string name="detail_queued_body">D’autres coffres se synchronisent d’abord. Celui-ci démarrera automatiquement quand ce sera son tour.</string>
+    <string name="detail_failed_title">Échec à l’étape «\u00A0%1$s\u00A0»\u00A0: %2$s</string>
+    <string name="detail_last_failed_title">Échec de la dernière synchronisation (%1$s)\u00A0: %2$s</string>
+    <string name="detail_last_result">Dernière synchronisation\u00A0: %1$s</string>
+    <string name="detail_inspect_failed">Impossible de lire l’état du coffre</string>
+    <string name="detail_not_repo">Ce dossier n’est pas un dépôt Git. Il a peut-être été déplacé, ou son .git supprimé.</string>
+    <string name="detail_dir_missing">Le dossier du coffre est introuvable. Il a peut-être été déplacé ou supprimé.</string>
+    <string name="detail_reclone_body">Vous pouvez cloner à nouveau ce coffre depuis son dépôt distant, au même emplacement\u00A0: %1$s\nSon dépôt distant, sa branche, son jeton ou sa clé SSH et ses autres paramètres restent inchangés.</string>
+    <string name="detail_reclone_action">Cloner à nouveau</string>
+    <string name="detail_action_failed">Échec de l’action</string>
+    <plurals name="detail_conflicts_title">
+        <item quantity="one">%1$d fichier a des conflits</item>
+        <item quantity="many">%1$d fichiers ont des conflits</item>
+        <item quantity="other">%1$d fichiers ont des conflits</item>
+    </plurals>
+    <string name="detail_conflicts_body">Ce téléphone et le dépôt distant ont modifié le même contenu. Parcourez les fichiers et choisissez la version à garder (vous pouvez aussi garder les deux ou modifier à la main). Une fois tout résolu, terminez la fusion et envoyez-la.\nVous pouvez aussi abandonner cette fusion\u00A0: vos commits locaux ne sont pas touchés, les modifications distantes restent sur le dépôt distant et seront de nouveau fusionnées lors de la prochaine synchronisation.</string>
+    <string name="detail_open_conflicts">Résoudre les conflits</string>
+    <string name="detail_abort_merge">Abandonner la fusion</string>
+    <string name="detail_abort_confirm">Les fichiers reviendront à votre dernier commit local et les résolutions de conflits déjà faites seront perdues. Les modifications distantes ne sont pas touchées et seront de nouveau fusionnées lors de la prochaine synchronisation.</string>
+    <string name="detail_merge_resolved_title">Tous les conflits sont résolus</string>
+    <string name="detail_merge_resolved_body">La fusion n’est pas encore enregistrée dans un commit. Appuyez sur «\u00A0Terminer la fusion et envoyer\u00A0» pour créer le commit de fusion et le synchroniser avec le dépôt distant.</string>
+    <string name="detail_complete_merge_sync">Terminer la fusion et envoyer</string>
+    <string name="detail_residue_title">À noter</string>
+    <string name="residue_index_lock">Une opération précédente a été interrompue et a laissé un fichier de verrou (index.lock). Il sera supprimé automatiquement lors de la synchronisation.</string>
+    <string name="residue_index_lock_fix">Supprimer maintenant</string>
+    <string name="residue_merge_conflicts">Une fusion inachevée comporte encore des conflits.</string>
+    <string name="residue_merge_resolved">Les conflits sont résolus, mais la fusion n’est pas encore enregistrée dans un commit.</string>
+    <string name="residue_unsupported">Le dépôt est au milieu d’une opération que cette application ne prend pas en charge (par exemple un rebase ou un cherry-pick). Veuillez d’abord la terminer ou l’annuler sur votre ordinateur.</string>
+    <string name="residue_detached">Aucune branche n’est active dans le dépôt (detached HEAD). Veuillez d’abord passer sur une branche depuis votre ordinateur.</string>
+    <string name="residue_missing_remote">Le dépôt n’a pas de dépôt distant (origin). L’URL des paramètres du coffre sera écrite lors de la synchronisation.</string>
+    <string name="residue_unborn">La branche n’a encore aucun commit. Elle sera envoyée lors de la première synchronisation.</string>
+    <string name="detail_auth_problem_title">Authentification incomplète</string>
+    <string name="detail_auth_token_missing">Ce coffre utilise une adresse HTTPS, mais aucun jeton d’accès personnel n’est enregistré\u00A0: la synchronisation échouera.</string>
+    <string name="detail_auth_token_unreadable">Le jeton enregistré ne peut pas être déchiffré (le magasin de clés du système a changé). Veuillez le saisir à nouveau.</string>
+    <string name="detail_auth_key_missing">La clé SSH utilisée par ce coffre a été supprimée. Choisissez une autre clé dans les paramètres du coffre.</string>
+    <string name="detail_auth_key_unreadable">La clé SSH utilisée par ce coffre ne peut pas être déchiffrée (le magasin de clés du système a changé). Générez ou importez une nouvelle clé, puis choisissez-la dans les paramètres du coffre.</string>
+    <string name="detail_auth_key_not_selected">Ce coffre utilise une adresse SSH, mais aucune clé SSH n’est sélectionnée.</string>
+
+    <string name="result_success">Réussite</string>
+    <string name="result_conflicts">Conflits</string>
+    <plurals name="result_conflicts_n">
+        <item quantity="one">%1$d fichier a des conflits</item>
+        <item quantity="many">%1$d fichiers ont des conflits</item>
+        <item quantity="other">%1$d fichiers ont des conflits</item>
+    </plurals>
+    <string name="result_cancelled">Annulé</string>
+    <string name="result_failed_reason">Échec\u00A0: %1$s</string>
+    <plurals name="summary_committed">
+        <item quantity="one">%1$d fichier enregistré dans un commit</item>
+        <item quantity="many">%1$d fichiers enregistrés dans un commit</item>
+        <item quantity="other">%1$d fichiers enregistrés dans un commit</item>
+    </plurals>
+    <string name="summary_no_local_changes">Aucune modification locale</string>
+    <string name="summary_merge_none">Le dépôt distant n’a pas encore cette branche</string>
+    <string name="summary_merge_ff">Modifications distantes récupérées</string>
+    <string name="summary_merge_merged">Modifications distantes fusionnées</string>
+    <string name="summary_merge_up_to_date">Rien de nouveau sur le dépôt distant</string>
+    <string name="summary_push_ok">Envoyé</string>
+    <string name="summary_push_nothing">Rien à envoyer</string>
+    <string name="summary_no_changes">Aucune modification</string>
+    <string name="summary_duration">Durée\u00A0: %1$s</string>
+
+    <!-- Causes d’échec\u00A0: titre (court) et explication (cause probable + action conseillée) -->
+    <string name="fail_auth_token">Jeton non valide ou expiré</string>
+    <string name="fail_auth_token_hint">Le dépôt distant a refusé le jeton d’accès personnel. Vérifiez qu’il n’a pas expiré ni été révoqué et qu’il a un accès en lecture et en écriture au contenu de ce dépôt, puis mettez-le à jour dans les paramètres du coffre.</string>
+    <string name="fail_auth_ssh">Clé SSH refusée</string>
+    <string name="fail_auth_ssh_hint">Le dépôt distant n’a pas accepté cette clé SSH. Vérifiez que sa clé publique a été ajoutée à votre compte distant (par exemple, SSH keys sur GitHub) et que cette clé est sélectionnée dans les paramètres du coffre.</string>
+    <string name="fail_permission">Autorisation refusée</string>
+    <string name="fail_permission_hint">L’authentification a réussi, mais ce compte ou cette clé n’a pas le droit d’écrire (par exemple, une clé de déploiement en lecture seule, un jeton sans accès en écriture ou une branche protégée). Veuillez ajuster les autorisations sur le dépôt distant.</string>
+    <string name="fail_repo_not_found">Dépôt distant introuvable</string>
+    <string name="fail_repo_not_found_hint">Vérifiez que l’URL du dépôt est correcte. Un dépôt privé apparaît aussi comme «\u00A0introuvable\u00A0» quand les identifiants n’y ont pas accès\u00A0: vérifiez donc aussi que le jeton ou la clé appartient à un compte qui y a accès.</string>
+    <string name="fail_host_key">La clé du serveur ne correspond pas à celle enregistrée</string>
+    <string name="fail_host_key_hint">La connexion a été interrompue pour vous protéger contre une interception. Si vous êtes sûr que le serveur a changé de clé (comparez-la avec les empreintes publiées par votre hébergeur), oubliez l’hôte dans «\u00A0Hôtes connus\u00A0» dans les Paramètres, puis réessayez.</string>
+    <string name="fail_network">Impossible de se connecter au serveur</string>
+    <string name="fail_network_hint">Vérifiez votre connexion réseau et que le serveur distant est joignable. Si vous avez besoin d’un proxy pour l’atteindre, activez le proxy sur votre téléphone ou configurez un proxy HTTP dans les Paramètres.</string>
+    <string name="fail_timeout">Délai de connexion dépassé</string>
+    <string name="fail_timeout_hint">Le serveur n’a pas répondu pendant longtemps. Vérifiez que votre réseau ou votre proxy fonctionne, puis réessayez plus tard.</string>
+    <string name="fail_proxy">Impossible de se connecter via le proxy</string>
+    <string name="fail_proxy_hint">Impossible de se connecter au proxy HTTP défini dans les Paramètres, ou le proxy a refusé de transmettre la connexion. Vérifiez que l’hôte et le port du proxy sont corrects, et que l’application de proxy est lancée et accepte les connexions de cet appareil. Si vous n’avez pas besoin de proxy, désactivez-le dans les Paramètres.</string>
+    <string name="fail_check_proxy_hint">Le proxy de l’application est activé\u00A0: vérifiez aussi que l’adresse du proxy fonctionne.</string>
+    <string name="fail_tls">Échec de la connexion sécurisée</string>
+    <string name="fail_tls_hint">Impossible d’établir une connexion sécurisée avec le serveur (échec de la vérification du certificat). Le réseau intercepte peut-être la connexion, ou l’heure de l’appareil est peut-être incorrecte. Vérifiez, puis réessayez.</string>
+    <string name="fail_push_rejected">Le dépôt distant a refusé l’envoi</string>
+    <string name="fail_push_rejected_hint">Le dépôt distant a refusé cet envoi, généralement à cause de règles de protection de branche ou de vérifications côté serveur. Vos commits locaux sont enregistrés et ne seront pas perdus. Consultez les détails techniques, ajustez les paramètres sur le dépôt distant, puis synchronisez à nouveau.</string>
+    <string name="fail_push_race">Le dépôt distant reçoit sans cesse de nouveaux commits</string>
+    <string name="fail_push_race_hint">De nouveaux commits sont apparus sur le dépôt distant pendant l’envoi (votre ordinateur se synchronise peut-être en même temps). Vos commits locaux sont enregistrés\u00A0; synchronisez simplement à nouveau plus tard.</string>
+    <string name="fail_local_files">Des fichiers locaux seraient écrasés</string>
+    <string name="fail_local_files_hint">Des fichiers récemment ajoutés sur le dépôt distant portent les mêmes noms que des fichiers non suivis (ou ignorés par .gitignore) sur ce téléphone. La fusion les écraserait, la synchronisation a donc été arrêtée. Retrouvez les noms de fichiers dans les détails techniques, renommez ou déplacez ces fichiers, puis synchronisez à nouveau.</string>
+    <string name="fail_vault_missing">Dossier du coffre introuvable</string>
+    <string name="fail_vault_missing_hint">Le dossier du coffre a peut-être été déplacé, renommé ou supprimé. Vérifiez où se trouve le dossier\u00A0; si nécessaire, retirez le coffre et ajoutez-le à nouveau.</string>
+    <string name="fail_not_repo">Aucun dépôt Git dans le dossier</string>
+    <string name="fail_not_repo_hint">Le dossier du coffre ne contient pas de dossier .git\u00A0; il a peut-être été supprimé. Retirez le coffre et ajoutez-le à nouveau (vous pouvez le cloner depuis le dépôt distant).</string>
+    <string name="fail_already_repo">Le dossier contient déjà un dépôt Git</string>
+    <string name="fail_already_repo_hint">Ce dossier contient déjà .git. Revenez en arrière et choisissez «\u00A0Utiliser un dépôt Git existant\u00A0».</string>
+    <string name="fail_credential_missing">Jeton ou clé manquant</string>
+    <string name="fail_credential_missing_hint">Ce coffre n’a aucun jeton utilisable enregistré, ou aucune clé SSH sélectionnée (ou la clé sélectionnée a été supprimée). Veuillez l’ajouter dans les paramètres du coffre.</string>
+    <string name="fail_credential_unreadable">Impossible de déchiffrer le jeton ou la clé</string>
+    <string name="fail_credential_unreadable_hint">Le magasin de clés du système a changé\u00A0: le jeton ou la clé privée enregistrés ne peuvent plus être déchiffrés. Saisissez à nouveau le jeton dans les paramètres du coffre, ou générez ou importez une nouvelle clé SSH.</string>
+    <string name="fail_repo_state">L’état du dépôt ne permet pas la synchronisation</string>
+    <string name="fail_repo_state_hint">Le dépôt est au milieu d’une opération comme un rebase ou un cherry-pick, n’a aucune branche active, ou a une autre branche active que celle des paramètres du coffre. Veuillez d’abord régler cela sur votre ordinateur, puis synchronisez.</string>
+    <string name="fail_identity">Auteur non défini</string>
+    <string name="fail_identity_hint">Les commits nécessitent un nom et un e-mail. Définissez l’auteur par défaut dans les Paramètres, ou un auteur pour ce coffre dans les paramètres du coffre.</string>
+    <string name="fail_dir_not_empty">Le dossier n’est pas vide</string>
+    <string name="fail_dir_not_empty_hint">Le clonage nécessite un dossier vide. Créez un nouveau dossier\u00A0; si le dossier contient déjà des notes, utilisez plutôt «\u00A0Envoyer un coffre de ce téléphone\u00A0» ou «\u00A0Utiliser un dépôt Git existant\u00A0».</string>
+    <string name="fail_remote_not_empty">Le dépôt distant n’est pas vide</string>
+    <string name="fail_remote_not_empty_hint">Le dépôt distant contient déjà des données, le coffre ne peut donc pas être envoyé par-dessus. Clonez d’abord le dépôt distant dans un dossier vide, puis déplacez-y les notes de ce téléphone et synchronisez.</string>
+    <string name="fail_branch_not_found">Le dépôt distant n’a pas cette branche</string>
+    <string name="fail_branch_not_found_hint">Revenez en arrière et changez le nom de la branche. Les détails techniques listent les branches du dépôt distant.</string>
+    <string name="fail_remote_missing">Aucune URL de dépôt distant</string>
+    <string name="fail_remote_missing_hint">Aucun dépôt distant (origin) n’est configuré dans le dépôt. Veuillez saisir l’URL du dépôt distant.</string>
+    <string name="fail_vault_empty">Rien à enregistrer dans le coffre</string>
+    <string name="fail_vault_empty_hint">Le dossier choisi ne contient aucun fichier (ou ils sont tous ignorés par .gitignore). Vérifiez que vous avez choisi le bon dossier de coffre.</string>
+    <string name="fail_storage">Impossible de lire ou d’écrire des fichiers sur cet appareil</string>
+    <string name="fail_storage_hint">Le stockage est peut-être plein, ou l’autorisation d’accès aux fichiers a peut-être été désactivée. Vérifiez l’espace de stockage et les autorisations, puis réessayez.</string>
+    <string name="fail_unknown">Erreur inattendue</string>
+    <string name="fail_unknown_hint">La cause n’a pas pu être identifiée. Consultez les détails techniques et le journal de synchronisation. Si vous avez besoin d’aide, vous pouvez exporter les journaux dans les Paramètres et les envoyer au développeur.</string>
+
+    <!-- Paramètres du coffre -->
+    <string name="repo_settings_title">Paramètres du coffre</string>
+    <string name="repo_settings_busy_title">Synchronisation en cours</string>
+    <string name="repo_settings_busy_body">Tant que la synchronisation n’est pas terminée, vous ne pouvez pas enregistrer de modifications, effectuer la maintenance du dépôt ni retirer le coffre de la liste.</string>
+    <string name="repo_settings_general">Général</string>
+    <string name="repo_settings_folder">Dossier\u00A0: %1$s</string>
+    <string name="repo_settings_branch">Branche\u00A0: %1$s</string>
+    <string name="repo_settings_remote">Dépôt distant et authentification</string>
+    <string name="repo_settings_identity">Auteur et message de commit</string>
+    <string name="repo_settings_identity_body">S’applique uniquement à ce coffre. Laissez le nom et l’e-mail vides pour utiliser les valeurs par défaut des Paramètres.</string>
+    <string name="repo_settings_identity_incomplete">Renseignez le nom et l’e-mail, ou laissez les deux vides.</string>
+    <string name="repo_settings_reason_name">Saisissez un nom affiché</string>
+    <string name="repo_settings_saved">Enregistré</string>
+    <string name="repo_settings_save_failed">Impossible d’enregistrer</string>
+    <string name="repo_settings_remove">Retirer de la liste</string>
+    <string name="repo_settings_remove_hint">Retire uniquement l’entrée, le jeton et les journaux de cette application. Le dossier du coffre et son .git ne sont pas supprimés.</string>
+    <string name="repo_settings_remove_title">Retirer «\u00A0%1$s\u00A0»\u00A0?</string>
+    <string name="repo_settings_remove_confirm">Le dossier du coffre et son .git restent sur le téléphone. Vous pourrez l’ajouter à nouveau plus tard avec «\u00A0Utiliser un dépôt Git existant\u00A0».</string>
+
+    <string name="maintenance_title">Maintenance du dépôt</string>
+    <string name="maintenance_body">Regroupe et compresse les fichiers de données éparpillés pour réduire leur nombre et l’espace qu’ils occupent, et accélérer les opérations suivantes. Vos notes et votre historique ne sont pas modifiés.</string>
+    <string name="maintenance_stats">Données du dépôt\u00A0: %1$s · Objets isolés\u00A0: %2$d · Paquets\u00A0: %3$d</string>
+    <string name="maintenance_recommended">Maintenance recommandée.</string>
+    <string name="maintenance_not_needed">Aucune maintenance nécessaire pour le moment.</string>
+    <string name="maintenance_last_done">Dernière maintenance (%1$s)\u00A0: %2$s → %3$s, durée %4$s</string>
+    <string name="maintenance_last_failed">Échec de la dernière maintenance (%1$s)\u00A0: %2$s</string>
+    <string name="maintenance_run">Lancer la maintenance</string>
+
+    <string name="gitignore_title">Règles d’exclusion recommandées</string>
+    <string name="gitignore_complete">.gitignore contient déjà toutes les règles recommandées.</string>
+    <plurals name="gitignore_missing">
+        <item quantity="one">Il manque %1$d règle recommandée dans .gitignore\u00A0:</item>
+        <item quantity="many">Il manque %1$d règles recommandées dans .gitignore\u00A0:</item>
+        <item quantity="other">Il manque %1$d règles recommandées dans .gitignore\u00A0:</item>
+    </plurals>
+    <string name="gitignore_note">Ces règles excluent de la synchronisation les fichiers propres à chaque appareil, comme la disposition de l’espace de travail, les caches et la corbeille. Les fichiers déjà synchronisés continuent de l’être.</string>
+    <string name="gitignore_append">Ajouter les règles recommandées</string>
+    <string name="gitignore_append_confirm">Ajouter les règles recommandées manquantes à la fin du .gitignore du coffre\u00A0? La modification sera enregistrée dans un commit lors de la prochaine synchronisation.</string>
+    <plurals name="gitignore_appended">
+        <item quantity="one">%1$d règle ajoutée. Elle sera enregistrée dans un commit lors de la prochaine synchronisation.</item>
+        <item quantity="many">%1$d règles ajoutées. Elles seront enregistrées dans un commit lors de la prochaine synchronisation.</item>
+        <item quantity="other">%1$d règles ajoutées. Elles seront enregistrées dans un commit lors de la prochaine synchronisation.</item>
+    </plurals>
+
+    <!-- Historique des commits -->
+    <string name="history_title">Historique des commits</string>
+    <string name="history_intro">Commits récents de la branche actuelle. «\u00A0Non envoyé\u00A0» signifie que le dépôt distant n’a pas encore ce commit (à la dernière synchronisation).</string>
+    <string name="history_empty">Aucun commit pour l’instant.</string>
+    <string name="history_load_failed">Impossible de lire l’historique des commits</string>
+    <string name="history_end">Aucun commit plus ancien</string>
+    <string name="history_not_pushed">Non envoyé</string>
+    <string name="history_merge">Fusion</string>
+    <string name="history_no_message">(Aucun message de commit)</string>
+    <string name="commit_title">Commit %1$s</string>
+    <string name="commit_author">%1$s &lt;%2$s&gt; · %3$s</string>
+    <string name="commit_pushed">Envoyé au dépôt distant</string>
+    <string name="commit_not_pushed">Pas encore envoyé au dépôt distant</string>
+    <plurals name="commit_changes">
+        <item quantity="one">%1$d fichier modifié</item>
+        <item quantity="many">%1$d fichiers modifiés</item>
+        <item quantity="other">%1$d fichiers modifiés</item>
+    </plurals>
+    <plurals name="commit_changes_merge">
+        <item quantity="one">%1$d fichier modifié par rapport à la version locale d’avant la fusion</item>
+        <item quantity="many">%1$d fichiers modifiés par rapport à la version locale d’avant la fusion</item>
+        <item quantity="other">%1$d fichiers modifiés par rapport à la version locale d’avant la fusion</item>
+    </plurals>
+    <string name="commit_renamed_from">Renommé depuis\u00A0: %1$s</string>
+    <plurals name="commit_more_changes">
+        <item quantity="one">%1$d autre fichier non listé</item>
+        <item quantity="many">%1$d autres fichiers non listés</item>
+        <item quantity="other">%1$d autres fichiers non listés</item>
+    </plurals>
+    <string name="change_added">Ajouté</string>
+    <string name="change_modified">Modifié</string>
+    <string name="change_deleted">Supprimé</string>
+    <string name="change_renamed">Renommé</string>
+    <string name="change_copied">Copié</string>
+    <string name="commit_copied_from">Copié depuis\u00A0: %1$s</string>
+    <string name="diff_expand">Afficher les modifications</string>
+    <string name="diff_collapse">Masquer les modifications</string>
+    <plurals name="diff_folded">
+        <item quantity="one">⋯ %1$d ligne inchangée, repliée ⋯</item>
+        <item quantity="many">⋯ %1$d lignes inchangées, repliées ⋯</item>
+        <item quantity="other">⋯ %1$d lignes inchangées, repliées ⋯</item>
+    </plurals>
+    <string name="diff_fold">Replier les lignes inchangées</string>
+    <string name="diff_binary">Fichier binaire, contenu non affiché (%1$s)</string>
+    <string name="diff_too_large">Fichier trop volumineux, modifications non affichées (%1$s)</string>
+    <string name="diff_unchanged">Contenu inchangé</string>
+    <string name="diff_unchanged_newline">Contenu inchangé\u00A0; seul le saut de ligne en fin de fichier diffère</string>
+    <string name="diff_newline_at_end">Le saut de ligne en fin de fichier a aussi changé (non signalé ci-dessus)</string>
+    <string name="diff_truncated" tools:ignore="PluralsCandidate">Trop de modifications\u00A0; seules les %1$d premières lignes sont affichées</string>
+    <string name="diff_load_failed">Impossible de lire les modifications\u00A0: %1$s</string>
+
+    <!-- Liste des conflits -->
+    <string name="conflicts_title">Conflits</string>
+    <string name="conflicts_menu">Plus d’options</string>
+    <string name="conflicts_loading">Lecture des conflits…</string>
+    <string name="conflicts_load_failed">Impossible de lire les conflits</string>
+    <plurals name="conflicts_intro">
+        <item quantity="one">%1$d fichier reste à résoudre. Appuyez dessus pour parcourir ses conflits, ou utilisez le menu en haut à droite pour tout résoudre d’un coup.</item>
+        <item quantity="many">%1$d fichiers restent à résoudre. Appuyez sur un fichier pour parcourir ses conflits, ou utilisez le menu en haut à droite pour tout résoudre d’un coup.</item>
+        <item quantity="other">%1$d fichiers restent à résoudre. Appuyez sur un fichier pour parcourir ses conflits, ou utilisez le menu en haut à droite pour tout résoudre d’un coup.</item>
+    </plurals>
+    <string name="conflicts_all_ours">Garder toutes les versions locales</string>
+    <string name="conflicts_all_theirs">Garder toutes les versions distantes</string>
+    <plurals name="conflicts_all_ours_confirm">
+        <item quantity="one">Garder la version locale du fichier restant (%1$d)\u00A0? Ses modifications distantes ne figureront pas dans le résultat (elles restent dans l’historique distant). S’il a été supprimé sur le dépôt distant, la version locale est gardée\u00A0; s’il a été supprimé localement, il reste supprimé.</item>
+        <item quantity="many">Garder les versions locales des %1$d fichiers restants\u00A0? Leurs modifications distantes ne figureront pas dans le résultat (elles restent dans l’historique distant). Les fichiers supprimés sur le dépôt distant gardent leur version locale\u00A0; les fichiers supprimés localement restent supprimés.</item>
+        <item quantity="other">Garder les versions locales des %1$d fichiers restants\u00A0? Leurs modifications distantes ne figureront pas dans le résultat (elles restent dans l’historique distant). Les fichiers supprimés sur le dépôt distant gardent leur version locale\u00A0; les fichiers supprimés localement restent supprimés.</item>
+    </plurals>
+    <plurals name="conflicts_all_theirs_confirm">
+        <item quantity="one">Garder la version distante du fichier restant (%1$d)\u00A0? Ses modifications locales ne figureront pas dans le résultat (elles restent dans votre historique de commits local). S’il a été supprimé localement, il est restauré dans sa version distante\u00A0; s’il a été supprimé sur le dépôt distant, il sera supprimé.</item>
+        <item quantity="many">Garder les versions distantes des %1$d fichiers restants\u00A0? Leurs modifications locales ne figureront pas dans le résultat (elles restent dans votre historique de commits local). Les fichiers supprimés localement sont restaurés dans leur version distante\u00A0; les fichiers supprimés sur le dépôt distant seront supprimés.</item>
+        <item quantity="other">Garder les versions distantes des %1$d fichiers restants\u00A0? Leurs modifications locales ne figureront pas dans le résultat (elles restent dans votre historique de commits local). Les fichiers supprimés localement sont restaurés dans leur version distante\u00A0; les fichiers supprimés sur le dépôt distant seront supprimés.</item>
+    </plurals>
+    <string name="conflicts_all_resolved_hint">Tous les conflits sont résolus, mais la fusion n’est pas encore enregistrée dans un commit.</string>
+    <string name="conflicts_complete_merge">Terminer la fusion et envoyer</string>
+    <string name="conflicts_action_failed">Échec de l’action</string>
+    <string name="conflicts_syncing_hint">Synchronisation en cours. Vous pourrez résoudre les conflits une fois qu’elle sera terminée.</string>
+    <string name="conflicts_none_title">Aucun conflit à résoudre</string>
+    <string name="conflicts_none_body">Ce coffre n’a aucune fusion en cours.</string>
+    <string name="conflicts_kind_both_modified">Modifié des deux côtés</string>
+    <string name="conflicts_kind_both_added">Créé des deux côtés</string>
+    <string name="conflicts_kind_deleted_by_us">Supprimé localement</string>
+    <string name="conflicts_kind_deleted_by_them">Supprimé sur le dépôt distant</string>
+    <string name="conflicts_kind_added_by_us">Existe seulement en local</string>
+    <string name="conflicts_kind_added_by_them">Existe seulement sur le dépôt distant</string>
+    <string name="conflicts_kind_both_deleted">Supprimé des deux côtés</string>
+    <string name="conflicts_kind_binary">Fichier binaire</string>
+    <string name="conflicts_kind_resolved">Résolu</string>
+
+    <!-- Fichier en conflit -->
+    <string name="conflict_ours">Version locale</string>
+    <string name="conflict_theirs">Version distante</string>
+    <string name="conflict_marker_ours">Version locale</string>
+    <string name="conflict_marker_theirs">Version distante</string>
+    <plurals name="conflict_blocks_intro">
+        <item quantity="one">%1$d conflit, affiché à sa place dans le texte et signalé par une barre de couleur à gauche. Choisissez la version à garder.</item>
+        <item quantity="many">%1$d conflits, affichés à leur place dans le texte dans leur ordre d’origine et signalés par des barres de couleur à gauche. Choisissez la version à garder pour chacun.</item>
+        <item quantity="other">%1$d conflits, affichés à leur place dans le texte dans leur ordre d’origine et signalés par des barres de couleur à gauche. Choisissez la version à garder pour chacun.</item>
+    </plurals>
+    <string name="conflict_line_numbers_intro">" Les deux colonnes de numéros à gauche sont les numéros de ligne dans le fichier local et dans le fichier distant."</string>
+    <string name="conflict_block_title">Conflit %1$d / %2$d</string>
+    <string name="conflict_block_editing">Modification du conflit %1$d / %2$d</string>
+    <plurals name="conflict_line_count">
+        <item quantity="one">%1$d ligne</item>
+        <item quantity="many">%1$d lignes</item>
+        <item quantity="other">%1$d lignes</item>
+    </plurals>
+    <string name="conflict_side_empty">(Cette version n’a pas de contenu ici)</string>
+    <plurals name="conflict_side_truncated">
+        <item quantity="one">%1$d ligne de plus non affichée. Vous pouvez la voir dans l’éditeur du fichier entier.</item>
+        <item quantity="many">%1$d lignes de plus non affichées. Vous pouvez les voir dans l’éditeur du fichier entier.</item>
+        <item quantity="other">%1$d lignes de plus non affichées. Vous pouvez les voir dans l’éditeur du fichier entier.</item>
+    </plurals>
+    <string name="conflict_keep_ours">Garder local</string>
+    <string name="conflict_keep_theirs">Garder distant</string>
+    <string name="conflict_keep_both">Les deux</string>
+    <string name="conflict_both_ours_first">Garder les deux, local en premier</string>
+    <string name="conflict_both_theirs_first">Garder les deux, distant en premier</string>
+    <string name="conflict_edit_block">Modifier</string>
+    <string name="conflict_edit_block_label">Texte final pour ce conflit</string>
+    <string name="conflict_use_edited">Utiliser ce texte</string>
+    <string name="conflict_clear_choice">Effacer choix</string>
+    <string name="conflict_edit_again">Modifier encore</string>
+    <string name="conflict_empty_result">(Le résultat de ce conflit est vide)</string>
+    <plurals name="conflict_common_collapsed">
+        <item quantity="one">⋯ %1$d ligne sans conflit, repliée ⋯</item>
+        <item quantity="many">⋯ %1$d lignes sans conflit, repliées ⋯</item>
+        <item quantity="other">⋯ %1$d lignes sans conflit, repliées ⋯</item>
+    </plurals>
+    <string name="conflict_common_collapse">Replier les lignes sans conflit</string>
+    <string name="conflict_choice_undecided">Non choisi</string>
+    <string name="conflict_choice_ours">Local gardé</string>
+    <string name="conflict_choice_theirs">Distant gardé</string>
+    <string name="conflict_choice_both_ours_first">Les deux gardés (local en premier)</string>
+    <string name="conflict_choice_both_theirs_first">Les deux gardés (distant en premier)</string>
+    <string name="conflict_choice_custom">Modifié à la main</string>
+    <string name="conflict_progress" tools:ignore="PluralsCandidate">Résolus\u00A0: %1$d / %2$d</string>
+    <string name="conflict_locate_undecided">Suivant</string>
+    <string name="conflict_preview_edit">Voir et modifier</string>
+    <string name="conflict_mark_resolved">Marquer résolu</string>
+    <string name="conflict_all_blocks_ours">Garder le local partout</string>
+    <string name="conflict_all_blocks_theirs">Garder le distant partout</string>
+    <string name="conflict_reset_choices">Effacer tous les choix</string>
+    <string name="conflict_open_editor">Modifier le fichier entier</string>
+    <string name="conflict_leave_title">Abandonner vos choix\u00A0?</string>
+    <string name="conflict_leave_body">Les choix faits dans ce fichier ne sont pas encore enregistrés. Si vous revenez en arrière maintenant, vous devrez choisir à nouveau la prochaine fois. Pour les enregistrer, appuyez sur «\u00A0Marquer résolu\u00A0» après avoir fait un choix pour chaque conflit.</string>
+    <string name="conflict_leave_discard">Abandonner et revenir</string>
+    <string name="conflict_editor_mode_title">Où commencer la modification\u00A0?</string>
+    <string name="conflict_editor_mode_body">Vous pouvez continuer à partir des choix déjà faits (les conflits sans choix affichent encore des marqueurs de conflit), ou repartir des conflits d’origine, avec des marqueurs à chaque conflit. Vos choix dans la vue par blocs ne changeront pas.</string>
+    <string name="conflict_editor_mode_keep">Inclure mes choix</string>
+    <string name="conflict_editor_mode_original">Repartir des conflits d’origine</string>
+    <string name="view_wrap">Retour à la ligne</string>
+    <string name="view_line_numbers">Numéros de ligne</string>
+    <string name="conflict_missing_title">Ce fichier n’a plus de conflits</string>
+    <string name="conflict_missing_body">Il a peut-être été résolu ailleurs, ou son chemin a changé. Revenez à la liste pour voir l’état le plus récent.</string>
+    <string name="conflict_whole_binary_body">Les fichiers binaires (comme les images et les PDF) ne peuvent pas être fusionnés conflit par conflit. Choisissez la version à garder en entier.</string>
+    <string name="conflict_whole_deleted_by_them_body">Le dépôt distant a supprimé ce fichier, mais il a été modifié localement. Gardez la version locale, ou acceptez la suppression.</string>
+    <string name="conflict_whole_deleted_by_us_body">Ce fichier a été supprimé localement, mais le dépôt distant l’a modifié. Restaurez la version distante, ou laissez-le supprimé.</string>
+    <string name="conflict_whole_both_deleted_body">Les deux côtés ont supprimé ce fichier.</string>
+    <string name="conflict_whole_one_side_body">Un seul côté a ce fichier. Choisissez de le garder ou de le supprimer.</string>
+    <string name="conflict_whole_too_large_body">Le fichier est trop volumineux pour être fusionné conflit par conflit. Choisissez la version à garder en entier.</string>
+    <string name="conflict_side_info">%1$s\u00A0: %2$s · %3$s</string>
+    <string name="conflict_use_ours_file">Garder la version locale</string>
+    <string name="conflict_use_theirs_file">Garder la version distante</string>
+    <string name="conflict_keep_ours_file">Garder la version locale</string>
+    <string name="conflict_keep_theirs_file">Restaurer la version distante</string>
+    <string name="conflict_edit_ours_then_keep">Modifier la version locale, puis la garder</string>
+    <string name="conflict_edit_theirs_then_keep">Modifier la version distante, puis la garder</string>
+    <string name="conflict_cannot_edit_side">Cette version ne peut pas être modifiée comme du texte (fichier binaire ou trop volumineux).</string>
+    <string name="conflict_delete_file">Supprimer le fichier</string>
+    <string name="conflict_delete_title">Supprimer le fichier\u00A0?</string>
+    <string name="conflict_delete_confirm">Résoudre en supprimant «\u00A0%1$s\u00A0». Une fois la fusion terminée et synchronisée, ni ce téléphone ni le dépôt distant n’auront ce fichier (il reste récupérable dans l’historique).</string>
+    <string name="conflict_editor_title">Modifier %1$s</string>
+    <string name="conflict_editor_search">Rechercher</string>
+    <string name="conflict_editor_find_next">Suivant</string>
+    <string name="conflict_editor_not_found">Introuvable</string>
+    <string name="conflict_editor_save">Enregistrer et marquer résolu</string>
+    <plurals name="conflict_editor_markers_warning">
+        <item quantity="one">Attention\u00A0: la ligne %1$s du fichier est un marqueur de conflit généré par l’application. Si vous ne la supprimez pas, elle sera enregistrée et envoyée au dépôt distant dans un commit lors de la synchronisation.</item>
+        <item quantity="many">Attention\u00A0: les lignes %1$s du fichier sont des marqueurs de conflit générés par l’application. Si vous ne les supprimez pas, elles seront enregistrées et envoyées au dépôt distant dans un commit lors de la synchronisation.</item>
+        <item quantity="other">Attention\u00A0: les lignes %1$s du fichier sont des marqueurs de conflit générés par l’application. Si vous ne les supprimez pas, elles seront enregistrées et envoyées au dépôt distant dans un commit lors de la synchronisation.</item>
+    </plurals>
+    <string name="conflict_editor_next_marker">Aller à</string>
+    <string name="conflict_lines_more">%1$s, … (%2$d au total)</string>
+    <string name="conflict_editor_save_markers_title">Il reste des marqueurs de conflit</string>
+    <plurals name="conflict_editor_save_markers_confirm">
+        <item quantity="one">La ligne %1$s est encore un marqueur de conflit généré par l’application. Si vous enregistrez, cette ligne sera écrite dans le fichier et envoyée au dépôt distant dans un commit lors de la synchronisation. Enregistrer quand même\u00A0?</item>
+        <item quantity="many">Les lignes %1$s sont encore des marqueurs de conflit générés par l’application. Si vous enregistrez, ces lignes seront écrites dans le fichier et envoyées au dépôt distant dans un commit lors de la synchronisation. Enregistrer quand même\u00A0?</item>
+        <item quantity="other">Les lignes %1$s sont encore des marqueurs de conflit générés par l’application. Si vous enregistrez, ces lignes seront écrites dans le fichier et envoyées au dépôt distant dans un commit lors de la synchronisation. Enregistrer quand même\u00A0?</item>
+    </plurals>
+    <string name="conflict_editor_save_anyway">Enregistrer quand même</string>
+    <string name="conflict_editor_discard_confirm">Abandonner les modifications faites dans l’éditeur\u00A0?</string>
+    <string name="conflict_editor_discard">Abandonner les modifications</string>
+
+    <!-- Journaux et rapports de plantage -->
+    <string name="logs_title">Journaux</string>
+    <string name="logs_empty">Aucun journal pour l’instant.</string>
+    <string name="log_result_success">Réussite</string>
+    <string name="log_result_conflicts">Conflits</string>
+    <string name="log_result_failed">Échec</string>
+    <string name="log_result_cancelled">Annulé</string>
+    <string name="log_result_unknown">Inachevé</string>
+    <string name="log_op_sync">Synchronisation</string>
+    <string name="log_op_clone">Clonage</string>
+    <string name="log_op_init">Initialisation et envoi</string>
+    <string name="log_op_adopt">Utilisation d’un dépôt existant</string>
+    <string name="log_op_maintain">Maintenance du dépôt</string>
+    <string name="log_op_unknown">Autre opération</string>
+    <string name="log_share_title">Partager le journal</string>
+    <string name="crash_report_title">Rapport de plantage</string>
+
+    <!-- Paramètres -->
+    <string name="settings_title">Paramètres</string>
+    <string name="settings_identity">Auteur par défaut</string>
+    <string name="settings_identity_body">Le nom et l’e-mail enregistrés dans chaque commit. Il est préférable d’utiliser les mêmes que pour Git sur votre ordinateur. Chaque coffre peut aussi avoir les siens dans les paramètres du coffre.</string>
+    <string name="settings_commit">Message de commit</string>
+    <string name="settings_network">Réseau</string>
+    <string name="settings_proxy_enabled">Proxy HTTP</string>
+    <string name="settings_proxy_host">Hôte du proxy</string>
+    <string name="settings_proxy_port">Port du proxy</string>
+    <string name="settings_proxy_hint">Les dépôts distants HTTPS et SSH se connectent tous deux via ce proxy. Sur un téléphone, les applications de proxy écoutent généralement sur un port de 127.0.0.1. Si le proxy lui-même ne répond pas dans les 15 secondes, la connexion échoue.</string>
+    <string name="settings_reason_proxy">Saisissez un hôte et un port de proxy valides</string>
+    <string name="settings_logs">Journaux</string>
+    <string name="settings_log_keep">Journaux conservés par coffre</string>
+    <string name="settings_debug_logs">Journaux détaillés</string>
+    <string name="settings_debug_logs_hint">Écrit aussi dans le journal les informations de débogage de Git et SSH, pour le dépannage.</string>
+    <string name="settings_saved">Enregistré</string>
+    <string name="settings_language">Langue</string>
+    <string name="settings_language_system">Langue du système</string>
+    <string name="settings_language_hint">Avec la langue du système, l’application utilise la première langue de la liste des langues du système qu’elle prend en charge, ou l’anglais si aucune n’est prise en charge.</string>
+    <string name="settings_notifications">Notifications</string>
+    <string name="settings_notifications_on">Notifications activées</string>
+    <string name="settings_notifications_off">Notifications désactivées</string>
+    <string name="settings_notifications_enable">Activer</string>
+    <string name="settings_notifications_manage">Gérer</string>
+    <string name="settings_notifications_body">Les notifications affichent la progression et le résultat des synchronisations. Si elles sont désactivées, la synchronisation fonctionne toujours, mais vous ne verrez pas la progression et ne serez pas averti des conflits et des échecs. Dans les paramètres système, vous pouvez gérer séparément les trois catégories\u00A0: «\u00A0Progression de la synchronisation\u00A0», «\u00A0Synchronisation terminée\u00A0» et «\u00A0À vérifier\u00A0».</string>
+    <string name="settings_backup">Sauvegarde et restauration</string>
+    <string name="settings_backup_body">Exportez la liste des coffres, les paramètres, les clés SSH et les hôtes connus dans un fichier, pour les restaurer sur un nouveau téléphone ou après une réinstallation. Les jetons et les clés privées sont chiffrés avec une phrase secrète de votre choix. La configuration est normalement conservée dans le stockage privé de l’application et survit aux mises à jour.</string>
+    <string name="backup_export">Exporter</string>
+    <string name="backup_import">Restaurer</string>
+    <string name="backup_failed">Échec de la sauvegarde</string>
+    <string name="backup_exported">Configuration exportée et vérifiée</string>
+    <string name="backup_exported_partial">Exportée, mais certains jetons ou clés privées n’ont pas pu être inclus (voir la carte de sauvegarde)</string>
+    <string name="backup_err_verify">Le fichier n’a pas été enregistré correctement\u00A0: ce qui a été relu diffère de ce qui a été écrit. Essayez un autre emplacement.</string>
+    <string name="backup_restore_busy">Restauration impossible pendant la synchronisation d’un coffre</string>
+    <string name="backup_last_export_with_secrets">Dernier export\u00A0: %1$s · avec jetons et clés privées</string>
+    <string name="backup_last_export_without_secrets">Dernier export\u00A0: %1$s · sans jetons ni clés privées</string>
+    <string name="backup_missing_token">jeton de «\u00A0%1$s\u00A0»</string>
+    <string name="backup_missing_key">clé SSH «\u00A0%1$s\u00A0»</string>
+    <string name="backup_last_export_missing">Non inclus, car cet appareil ne peut plus les déchiffrer (saisissez-les ou créez-les à nouveau)\u00A0: %1$s</string>
+    <string name="backup_never_exported">Aucune configuration exportée pour l’instant. Exportez-en une avant de changer de téléphone ou de réinstaller l’application.</string>
+    <string name="backup_export_title">Exporter la configuration</string>
+    <string name="backup_export_body">L’export contient la liste des coffres, les paramètres, la liste des clés SSH et les hôtes connus.</string>
+    <string name="backup_include_secrets">Exporter aussi jetons et clés privées</string>
+    <string name="backup_passphrase">Phrase secrète</string>
+    <string name="backup_passphrase_hint" tools:ignore="PluralsCandidate">Au moins %1$d caractères. Elle sera nécessaire pour la restauration et ne pourra pas être récupérée si vous l’oubliez.</string>
+    <string name="backup_passphrase_confirm">Saisissez à nouveau la phrase secrète</string>
+    <string name="backup_without_secrets_hint">Les jetons et les clés privées ne seront pas exportés. Après la restauration, vous devrez saisir à nouveau les jetons et générer ou importer à nouveau les clés SSH (et ajouter à nouveau leurs clés publiques au dépôt distant).</string>
+    <string name="backup_choose_location">Choisir l’emplacement d’enregistrement</string>
+    <string name="backup_import_title">Restaurer une sauvegarde</string>
+    <string name="backup_import_source">Sauvegardé le %1$s · Appareil %2$s · Version %3$s</string>
+    <plurals name="backup_import_repos">
+        <item quantity="one">%1$d coffre</item>
+        <item quantity="many">%1$d coffres</item>
+        <item quantity="other">%1$d coffres</item>
+    </plurals>
+    <plurals name="backup_import_keys">
+        <item quantity="one">%1$d clé SSH</item>
+        <item quantity="many">%1$d clés SSH</item>
+        <item quantity="other">%1$d clés SSH</item>
+    </plurals>
+    <string name="backup_repo_folder_used">«\u00A0%1$s\u00A0» utilise déjà ce dossier sur cet appareil</string>
+    <string name="backup_repo_folder_missing">Ce dossier n’existe pas sur cet appareil. Après la restauration, vous pourrez le cloner à nouveau depuis la page du coffre.</string>
+    <string name="backup_repo_replaces">Remplace le même coffre sur cet appareil</string>
+    <string name="backup_key_replaces">Remplace la même clé sur cet appareil</string>
+    <string name="backup_import_settings_title">Paramètres</string>
+    <string name="backup_import_settings">Restaurer les paramètres de l’application</string>
+    <string name="backup_import_settings_hint">Auteur par défaut, message de commit, proxy, journaux, langue et options d’affichage. Remplace tous les paramètres de cet appareil.</string>
+    <string name="backup_import_known_hosts">Les hôtes connus de la sauvegarde sont ajoutés s’ils ne sont pas encore sur cet appareil\u00A0; les hôtes déjà approuvés ici restent inchangés.</string>
+    <string name="backup_import_no_secrets">Cette sauvegarde ne contient ni jetons ni clés privées.</string>
+    <string name="backup_import_without_secrets">Ne pas restaurer les jetons et les clés privées</string>
+    <string name="backup_import_action">Restaurer</string>
+    <string name="backup_restored">Restauration terminée. Coffres\u00A0: %1$d · Clés SSH\u00A0: %2$d · Jetons\u00A0: %3$d</string>
+    <string name="backup_restored_secrets_skipped">Les jetons et les clés privées n’ont pas été restaurés. Veuillez les ajouter dans les paramètres du coffre.</string>
+    <plurals name="backup_restored_missing_folders">
+        <item quantity="one">%1$d coffre restauré n’a pas de dossier sur cet appareil. Ouvrez-le pour le cloner à nouveau.</item>
+        <item quantity="many">%1$d coffres restaurés n’ont pas de dossier sur cet appareil. Ouvrez-les pour les cloner à nouveau.</item>
+        <item quantity="other">%1$d coffres restaurés n’ont pas de dossier sur cet appareil. Ouvrez-les pour les cloner à nouveau.</item>
+    </plurals>
+    <string name="backup_err_not_backup">Ce fichier n’est pas une sauvegarde VaultSync.</string>
+    <string name="backup_err_too_new">Cette sauvegarde a été exportée par une version plus récente de VaultSync. Veuillez d’abord mettre à jour l’application.</string>
+    <string name="backup_err_wrong_passphrase">Phrase secrète incorrecte.</string>
+    <string name="backup_err_corrupt">Le fichier de sauvegarde est endommagé et ne peut pas être lu.</string>
+    <string name="settings_diagnostics">Dépannage</string>
+    <string name="settings_diagnostics_body">Regroupe les journaux de synchronisation de tous les coffres et les rapports de plantage dans un seul fichier, pour signaler un problème. Les journaux ne contiennent ni jetons, ni clés privées, ni phrases secrètes.</string>
+    <string name="diagnostics_export">Exporter les journaux</string>
+    <string name="diagnostics_export_failed">Impossible d’exporter les journaux</string>
+    <string name="diagnostics_exported">Journaux enregistrés</string>
+    <plurals name="diagnostics_crash_count">
+        <item quantity="one">%1$d rapport de plantage enregistré</item>
+        <item quantity="many">%1$d rapports de plantage enregistrés</item>
+        <item quantity="other">%1$d rapports de plantage enregistrés</item>
+    </plurals>
+    <string name="diagnostics_view_latest_crash">Voir le dernier</string>
+    <string name="settings_help">Aide</string>
+    <string name="settings_help_background">Pendant la synchronisation, l’application affiche la progression dans la barre de notifications et s’exécute en tant que service de premier plan\u00A0: la synchronisation continue quand vous passez à d’autres applications. Si elle s’arrête quand même après avoir changé d’application, autorisez VaultSync à s’exécuter en arrière-plan dans les paramètres système, ou excluez-la de l’optimisation de la batterie.</string>
+    <string name="settings_help_vault_location">Les coffres Obsidian se trouvent généralement dans Stockage interne/Documents/&lt;nom du coffre&gt;. Vous trouverez l’emplacement exact dans Obsidian sous «\u00A0Gérer les coffres\u00A0».</string>
+    <string name="settings_about">À propos</string>
+    <string name="settings_about_body">VaultSync %1$s · JGit %2$s · Android %3$s</string>
+</resources>

@@ -1,0 +1,800 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  界面文案：英文（D-030）。也是所有没有单独翻译的语言的兜底；简体中文在 values-zh-rCN/strings.xml，两份的 key 一一对应。
+  原则见 docs/UI.md §10：面向 Obsidian 用户而不是 Git 用户；错误提示写清"哪一步、什么原因、怎么办"；不出现任何手机品牌或机型。
+  英文写法：句首大写（sentence case）；按钮用动词短语；撇号写成 \'；引号用 “ ”（ASCII 双引号会被 aapt 吞掉）；省略号用 …。
+  带数量的文案是 plurals（one / other）。translatable="false" 的条目（语言名称）只在这里出现。
+-->
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">VaultSync</string>
+
+    <!-- 通用 -->
+    <string name="action_cancel">Cancel</string>
+    <string name="action_ok">OK</string>
+    <string name="action_back">Back</string>
+    <string name="action_close">Close</string>
+    <string name="action_dismiss">Got it</string>
+    <string name="action_next">Next</string>
+    <string name="action_save">Save</string>
+    <string name="action_copy">Copy all</string>
+    <string name="action_share">Share</string>
+    <string name="action_retry">Retry</string>
+    <string name="action_more">More options</string>
+    <string name="action_view_logs">View logs</string>
+    <string name="action_sync">Sync</string>
+    <string name="action_sync_now">Sync now</string>
+    <string name="action_go_settings">Go to settings</string>
+    <string name="action_show_technical">Technical details</string>
+    <string name="action_hide_technical">Hide technical details</string>
+    <string name="copied">Copied to clipboard</string>
+    <string name="duration_seconds">%1$s s</string>
+    <string name="duration_minutes">%1$d min %2$d s</string>
+    <string name="size_bytes">%1$s B</string>
+    <string name="size_kb">%1$s KB</string>
+    <string name="size_mb">%1$s MB</string>
+    <string name="size_gb">%1$s GB</string>
+    <string name="percent">%1$d%%</string>
+
+    <!-- 未保存修改栏（软件设置页与库设置页共用，docs/UI.md §9.1） -->
+    <string name="unsaved_changes">Unsaved changes</string>
+    <string name="unsaved_discard">Discard</string>
+    <string name="unsaved_reason_busy">Can\'t save while syncing</string>
+    <string name="unsaved_leave_title">Discard unsaved changes?</string>
+    <string name="unsaved_leave_discard">Discard</string>
+    <string name="unsaved_keep_editing">Keep editing</string>
+
+    <!-- 同步阶段与进度 -->
+    <string name="stage_preparing">Preparing</string>
+    <string name="stage_precheck">Checking vault</string>
+    <string name="stage_commit">Committing local changes</string>
+    <string name="stage_fetch">Fetching remote changes</string>
+    <string name="stage_merge">Merging remote changes</string>
+    <string name="stage_conflicts">Waiting for conflicts to be resolved</string>
+    <string name="stage_push">Pushing to remote</string>
+    <string name="stage_done">Done</string>
+    <string name="stage_maintain">Maintaining repository</string>
+    <string name="task_receiving">Receiving data</string>
+    <string name="task_resolving">Processing data</string>
+    <string name="task_counting">Counting objects</string>
+    <string name="task_compressing">Compressing objects</string>
+    <string name="task_writing">Writing data</string>
+    <string name="task_finding_sources">Finding reusable data</string>
+    <string name="task_sizes">Calculating sizes</string>
+    <string name="task_indexing">Building index</string>
+    <string name="task_updating_refs">Updating branches</string>
+    <string name="task_checkout">Writing files</string>
+    <string name="task_verifying">Verifying files</string>
+    <string name="progress_cancelling">Cancelling…</string>
+    <string name="task_opening">Connecting</string>
+    <string name="task_staging">Reading changed files</string>
+    <string name="meter_downloaded">Downloaded %1$s</string>
+    <string name="meter_uploaded">Uploaded %1$s</string>
+    <string name="meter_rate">%1$s/s</string>
+    <string name="meter_elapsed">Elapsed %1$s</string>
+    <string name="task_pack_refs">Tidying branch records</string>
+    <string name="task_prune">Cleaning up packed data</string>
+    <string name="job_syncing">Syncing</string>
+    <string name="job_cloning">Cloning</string>
+    <string name="job_initializing">Initializing</string>
+    <string name="job_adopting">Setting up</string>
+    <string name="job_maintaining">Maintaining</string>
+
+    <!-- 通知 -->
+    <string name="notification_channel_sync">Sync progress</string>
+    <string name="notification_channel_sync_desc">Shows progress while syncing and keeps the sync running in the background.</string>
+    <string name="notification_channel_done">Sync complete</string>
+    <string name="notification_channel_done_desc">Shown when all vaults synced successfully. Silent by default.</string>
+    <string name="notification_channel_attention">Needs attention</string>
+    <string name="notification_channel_attention_desc">Alerts you when a sync has conflicts or fails.</string>
+    <string name="notif_progress_preparing">Preparing to sync…</string>
+    <string name="notif_progress_title">%1$s “%2$s”</string>
+    <string name="notif_progress_position">%1$d of %2$d</string>
+    <string name="notif_progress_queued">Queued: %1$s</string>
+    <string name="notif_action_cancel">Cancel this vault</string>
+    <string name="notif_action_cancel_all">Stop all</string>
+    <plurals name="notif_summary_all_ok">
+        <item quantity="one">%1$d vault synced</item>
+        <item quantity="other">%1$d vaults synced</item>
+    </plurals>
+    <plurals name="notif_summary_all_problems">
+        <item quantity="one">%1$d vault needs attention</item>
+        <item quantity="other">%1$d vaults need attention</item>
+    </plurals>
+    <plurals name="notif_summary_mixed">
+        <item quantity="one">%1$d synced, %2$d needs attention</item>
+        <item quantity="other">%1$d synced, %2$d need attention</item>
+    </plurals>
+    <plurals name="notif_summary_tasks_all_ok">
+        <item quantity="one">%1$d task done</item>
+        <item quantity="other">%1$d tasks done</item>
+    </plurals>
+    <plurals name="notif_summary_tasks_all_problems">
+        <item quantity="one">%1$d task needs attention</item>
+        <item quantity="other">%1$d tasks need attention</item>
+    </plurals>
+    <plurals name="notif_summary_tasks_mixed">
+        <item quantity="one">%1$d done, %2$d needs attention</item>
+        <item quantity="other">%1$d done, %2$d need attention</item>
+    </plurals>
+    <string name="notif_summary_line">%1$s: %2$s</string>
+    <string name="notif_result_added">Added</string>
+    <string name="notif_result_recloned">Cloned again</string>
+    <string name="notif_result_maintained">Maintenance done</string>
+    <string name="notif_result_maintained_freed">Maintenance done, freed %1$s</string>
+    <plurals name="notif_result_conflicts">
+        <item quantity="one">%1$d file has conflicts. Open the app to resolve them.</item>
+        <item quantity="other">%1$d files have conflicts. Open the app to resolve them.</item>
+    </plurals>
+    <string name="notif_result_failed">Failed: %1$s</string>
+    <string name="list_separator">", "</string>
+
+    <!-- 首页 -->
+    <string name="home_title">VaultSync</string>
+    <string name="home_settings">Settings</string>
+    <string name="home_add_repo">Add vault</string>
+    <string name="home_empty_title">No vaults yet</string>
+    <string name="home_empty_body">Add a Git repository and keep it in sync with its remote.</string>
+    <string name="home_config_error_title">Couldn\'t read the configuration</string>
+    <string name="home_config_error_body">These configuration files are damaged. They were set aside as backups and the app started with an empty configuration:\n%1$s\nYou can restore your configuration from a backup file in Settings.</string>
+    <string name="home_identity_missing">The commit author name and email aren\'t set yet. They are recorded in every commit, so please fill them in under Settings first.</string>
+    <string name="home_go_settings">Go to settings</string>
+    <string name="home_crash_title">The app closed unexpectedly last time</string>
+    <string name="home_crash_body">A crash report was saved. If this keeps happening, you can send the report to the developer.</string>
+    <string name="home_crash_view">View report</string>
+    <string name="env_info">VaultSync %1$s · Android %2$s</string>
+
+    <string name="status_synced">Synced</string>
+    <string name="status_conflicts">Conflicts</string>
+    <string name="status_syncing">Syncing</string>
+    <string name="status_maintaining">Maintaining</string>
+    <string name="status_cloning">Cloning</string>
+    <string name="status_queued">Queued</string>
+    <string name="status_error">Sync failed</string>
+    <string name="status_cancelled">Cancelled</string>
+    <string name="status_never">Never synced</string>
+    <string name="last_sync_at">Last sync: %1$s</string>
+
+    <!-- 存储权限 -->
+    <string name="perm_title">File access needed</string>
+    <string name="perm_body_legacy">VaultSync needs to read and write files and folders in phone storage (including the .git folders inside them). Please grant storage permission.</string>
+    <string name="perm_body_all_files">VaultSync needs to read and write files and folders in phone storage (including the .git folders inside them). Please turn on “All files access” for VaultSync in system settings.</string>
+    <string name="perm_grant">Grant permission</string>
+    <string name="perm_open_settings">Open system settings</string>
+
+    <!-- 添加库向导 -->
+    <string name="add_title">Add vault</string>
+    <string name="add_step">Step %1$d of %2$d</string>
+    <string name="add_step_mode">Choose method</string>
+    <string name="add_step_folder">Choose folder</string>
+    <string name="add_step_remote">Remote and authentication</string>
+    <string name="add_step_identity">Name and author</string>
+    <string name="add_step_confirm">Confirm</string>
+    <string name="add_step_progress">Run</string>
+    <string name="add_start_failed">Couldn\'t save the token</string>
+
+    <string name="mode_clone_title">Clone from remote</string>
+    <string name="mode_clone_body">Your notes are in the remote repository but not on this phone yet. The repository will be downloaded into an empty folder.</string>
+    <string name="mode_init_title">Upload a vault from this phone</string>
+    <string name="mode_init_body">There is a folder to sync on this phone (without .git) and the remote is an empty repository. A Git repository will be created in the folder and pushed for the first time.</string>
+    <string name="mode_adopt_title">Use an existing Git repository</string>
+    <string name="mode_adopt_body">The vault folder already contains .git (for example, created by another tool). It will be used as is, without changing its history.</string>
+
+    <string name="folder_hint_clone">Choose or create an empty folder. The repository will be cloned into it.</string>
+    <string name="folder_hint_init">Choose the folder to sync (without .git).</string>
+    <string name="folder_hint_adopt">Choose the existing Git repository folder (it contains .git).</string>
+    <string name="folder_path_label">Path</string>
+    <string name="folder_up">Up</string>
+    <string name="folder_go">Go</string>
+    <string name="folder_new">New folder</string>
+    <string name="folder_new_name">Folder name</string>
+    <string name="folder_badge_vault">Obsidian vault</string>
+    <string name="folder_badge_repo">Git repository</string>
+    <string name="folder_empty">(No subfolders)</string>
+    <string name="folder_use_this">Use this folder</string>
+    <string name="folder_err_not_dir">This path isn\'t a folder.</string>
+    <string name="folder_err_not_empty">The folder isn\'t empty. Cloning needs an empty folder.</string>
+    <string name="folder_err_has_git">This folder already contains .git. Go back and choose “Use an existing Git repository”.</string>
+    <string name="folder_err_no_git">This folder doesn\'t contain .git. Go back and choose another method.</string>
+    <string name="folder_err_name">Invalid name.</string>
+    <string name="folder_err_create">Couldn\'t create the folder.</string>
+    <string name="folder_err_exists">A folder with this name already exists.</string>
+    <string name="folder_warn_no_obsidian">This folder has no .obsidian, so it may not be an Obsidian vault.</string>
+
+    <string name="remote_url_label">Remote repository URL</string>
+    <string name="remote_url_examples">HTTPS: https://github.com/user/repo.git
+SSH: git@github.com:user/repo.git</string>
+    <string name="remote_url_adopt_hint">Leave empty to use the remote already configured in the repository (origin).</string>
+    <string name="remote_kind_https">HTTPS address. Authenticates with a personal access token.</string>
+    <string name="remote_kind_ssh">SSH address. Authenticates with an SSH key.</string>
+    <string name="remote_kind_unsupported">Unrecognized address. Supports https://… and SSH addresses; http:// and local paths aren\'t supported.</string>
+    <string name="remote_username_label">Username</string>
+    <string name="remote_token_label">Personal access token</string>
+    <string name="remote_token_replace_label">New token (leave empty to keep the current one)</string>
+    <string name="remote_token_hint">Create one on GitHub under Settings → Developer settings → Personal access tokens, with read and write access to this repository\'s contents. The token is stored encrypted on this device.</string>
+    <string name="remote_token_saved_hint">A token is saved. Only fill this in to replace it.</string>
+    <string name="remote_token_unreadable_hint">The saved token can\'t be decrypted (the system keystore changed). Please enter it again.</string>
+    <string name="remote_ssh_port_label">SSH port</string>
+    <string name="remote_ssh_github_443">Use port 443</string>
+    <string name="remote_ssh_github_22">Use port 22</string>
+    <string name="remote_branch_label">Branch</string>
+    <string name="remote_test">Test connection</string>
+    <string name="remote_test_ok_empty">Connected. The remote is an empty repository.</string>
+    <string name="remote_test_ok">Connected. Remote branches: %1$s</string>
+    <string name="remote_test_fail_title">Connection failed: %1$s</string>
+    <string name="remote_reason_url">Enter a valid remote repository URL</string>
+    <string name="remote_reason_username">Enter a username</string>
+    <string name="remote_reason_token">Enter a personal access token</string>
+    <string name="remote_reason_port">Enter a valid SSH port</string>
+    <string name="remote_reason_key">Choose a usable SSH key</string>
+
+    <string name="repo_name_label">Display name</string>
+    <string name="identity_title">Author</string>
+    <string name="identity_body">The name and email recorded in every commit of this vault. Leave empty to use the defaults from Settings.</string>
+    <string name="identity_name_label">Name</string>
+    <string name="identity_email_label">Email</string>
+    <string name="identity_missing">No default author is set in Settings, so this must be filled in.</string>
+    <string name="commit_template_label">Commit message template</string>
+    <string name="commit_template_hint">Placeholders: {{date}} {{hostname}} {{numFiles}} {{files}}</string>
+    <string name="date_format_label">Date format</string>
+    <string name="date_format_hint">For example, YYYY-MM-DD HH:mm:ss</string>
+
+    <string name="confirm_mode">Method</string>
+    <string name="confirm_folder">Folder</string>
+    <string name="confirm_remote">Remote</string>
+    <string name="confirm_remote_existing">Use the remote already configured in the repository (origin)</string>
+    <string name="confirm_branch">Branch</string>
+    <string name="confirm_auth">Authentication</string>
+    <string name="confirm_auth_https">Personal access token (username %1$s)</string>
+    <string name="confirm_auth_ssh">SSH key “%1$s”</string>
+    <string name="confirm_auth_none">None</string>
+    <string name="confirm_identity">Author</string>
+    <string name="confirm_identity_default">Use the defaults from Settings</string>
+    <string name="confirm_actions_clone">Steps: connect to the remote → clone into the selected folder → write the repository settings.</string>
+    <string name="confirm_actions_init">Steps: make sure the remote is empty → create a Git repository → write the recommended .gitignore → commit all files → push.</string>
+    <string name="confirm_actions_adopt">Steps: open the repository → check the branch and remote → write the repository settings. Existing history is not changed.</string>
+    <string name="confirm_start">Start</string>
+
+    <string name="progress_running">%1$s…</string>
+    <string name="progress_success">Done</string>
+    <string name="progress_cancelled">Cancelled</string>
+    <string name="progress_failed">%1$s failed: %2$s</string>
+    <string name="progress_back_to_edit">Go back and edit</string>
+    <string name="progress_open_repo">Open vault</string>
+    <string name="note_remote_empty">The remote is an empty repository. Local content will be pushed on the first sync.</string>
+    <string name="note_gitignore_created">Created .gitignore from the recommended template.</string>
+    <string name="note_branch_adjusted">The repository is on branch %1$s (not %2$s as entered), so %1$s will be synced.</string>
+    <string name="note_remote_changed">The remote URL was changed to %1$s.</string>
+    <string name="note_unfinished_merge">This repository has an unfinished merge that still has conflicts. Resolve them in the vault details.</string>
+    <string name="note_resolved_merge">This repository has a merge whose conflicts are resolved but not yet committed. It will be completed on the next sync.</string>
+
+    <!-- SSH 密钥（设置页、向导、仓库设置共用） -->
+    <string name="settings_ssh">SSH keys</string>
+    <string name="ssh_list_intro">Vaults with SSH addresses authenticate with these keys. Each vault can use a different key; new vaults use the default key. Private keys are stored encrypted on this device and never leave the phone.</string>
+    <string name="ssh_list_empty">No keys yet.</string>
+    <string name="ssh_key_title_default">%1$s (default)</string>
+    <string name="ssh_key_unused">Not used by any vault</string>
+    <plurals name="ssh_key_used_by">
+        <item quantity="one">Used by %1$d vault</item>
+        <item quantity="other">Used by %1$d vaults</item>
+    </plurals>
+    <string name="ssh_key_generate">Generate key</string>
+    <string name="ssh_key_import">Import key</string>
+    <string name="ssh_key_copy_public">Copy public key</string>
+    <string name="ssh_key_copy_public_short">Copy public key</string>
+    <string name="ssh_key_view_public">View details</string>
+    <string name="ssh_key_set_default">Set as default</string>
+    <string name="ssh_key_rename">Rename</string>
+    <string name="ssh_key_delete">Delete</string>
+    <string name="ssh_key_delete_title">Delete key “%1$s”?</string>
+    <string name="ssh_key_delete_unused">No vault uses this key. After deleting it, also remove its public key from the remote (for example, SSH keys on GitHub).</string>
+    <plurals name="ssh_key_delete_used">
+        <item quantity="one">%1$d vault uses this key: %2$s. After deleting it, that vault has to choose another key before it can sync. Also remove the public key from the remote.</item>
+        <item quantity="other">%1$d vaults use this key: %2$s. After deleting it, these vaults have to choose another key before they can sync. Also remove the public key from the remote.</item>
+    </plurals>
+    <string name="ssh_key_name_label">Name</string>
+    <string name="ssh_key_name_suggestion">Key %1$d</string>
+    <string name="ssh_key_name_migrated">Default key</string>
+    <string name="ssh_key_name_recovered">Recovered key</string>
+    <string name="ssh_key_source_generated">Generated %1$s</string>
+    <string name="ssh_key_source_imported">Imported %1$s</string>
+    <string name="ssh_key_unreadable">The private key can\'t be decrypted (the system keystore changed). Delete it, then generate or import a key again.</string>
+    <string name="ssh_key_public_hint">Add the public key below to your remote account, for example on GitHub under Settings → SSH and GPG keys → New SSH key.</string>
+    <string name="ssh_key_done_generated">Key generated. Add its public key to your remote account.</string>
+    <string name="ssh_key_done_imported">Key imported.</string>
+    <string name="ssh_key_done_deleted">Key deleted.</string>
+    <string name="ssh_generate_title">Generate SSH key</string>
+    <string name="ssh_generate_body">Generates a new ed25519 key. The name is only shown in this app, to help you tell keys apart.</string>
+    <string name="ssh_import_title">Import private key</string>
+    <string name="ssh_import_key_label">Private key</string>
+    <string name="ssh_import_key_hint">Paste the whole private key file (from -----BEGIN … PRIVATE KEY----- to -----END … -----). OpenSSH, PEM, PKCS#8 and PuTTY formats are supported.</string>
+    <string name="ssh_import_passphrase_label">Key passphrase (leave empty if none)</string>
+    <string name="ssh_import_action">Import</string>
+    <string name="ssh_import_err_invalid">Unrecognized private key format. Make sure you pasted the private key rather than the public key (.pub), and that the BEGIN / END lines are complete.</string>
+    <string name="ssh_import_err_passphrase_required">This private key is protected by a passphrase. Please enter it.</string>
+    <string name="ssh_import_err_wrong_passphrase">Wrong passphrase.</string>
+    <string name="ssh_import_err_unsupported">This key isn\'t supported: %1$s</string>
+    <string name="ssh_picker_title">SSH key</string>
+    <string name="ssh_picker_empty">No SSH keys yet. Generate a new key or import an existing private key.</string>
+    <string name="ssh_picker_choose">Choose a key</string>
+    <string name="ssh_picker_deleted">The key this vault used was deleted. Please choose another one.</string>
+    <string name="ssh_picker_open">Choose key</string>
+    <string name="ssh_picker_new_generate">Generate new key…</string>
+    <string name="ssh_picker_new_import">Import private key…</string>
+    <string name="ssh_picker_add_public_key">Make sure this key\'s public key has been added to your remote account, then test the connection.</string>
+    <string name="ssh_picker_manage">Manage keys</string>
+
+    <!-- 已知主机 -->
+    <string name="known_hosts_title">Known hosts</string>
+    <string name="known_hosts_body">The first time you connect to a host, its key is recorded. If the key changes later, the connection is refused to protect against interception. If you\'re sure the server changed its key, “forget” the host and connect again. GitHub\'s keys are built in.</string>
+    <string name="known_hosts_empty">Nothing recorded yet.</string>
+    <string name="known_hosts_forget">Forget</string>
+    <string name="known_hosts_forget_confirm">Forget the host key of “%1$s”? It will be recorded again on the next connection.</string>
+
+    <!-- 库详情 -->
+    <string name="detail_open_repo_settings">Vault settings</string>
+    <string name="detail_history">Commit history</string>
+    <string name="detail_logs">Sync logs</string>
+    <string name="detail_branch_remote">Branch %1$s · Remote %2$s</string>
+    <string name="detail_auth_https">Authentication: personal access token (%1$s)</string>
+    <string name="detail_auth_ssh">Authentication: SSH key “%1$s”</string>
+    <string name="detail_auth_none">Authentication: none</string>
+    <string name="detail_local_changes" tools:ignore="PluralsCandidate">Unsynced local changes: %1$d modified · %2$d added · %3$d deleted</string>
+    <string name="detail_no_local_changes">No unsynced local changes</string>
+    <string name="detail_path_copy">Copy path</string>
+    <string name="detail_queued_body">Other vaults are syncing first. This one will start automatically when its turn comes.</string>
+    <string name="detail_failed_title">%1$s failed: %2$s</string>
+    <string name="detail_last_failed_title">Last sync failed (%1$s): %2$s</string>
+    <string name="detail_last_result">Last sync: %1$s</string>
+    <string name="detail_inspect_failed">Couldn\'t read the vault status</string>
+    <string name="detail_not_repo">This folder isn\'t a Git repository. It may have been moved, or its .git deleted.</string>
+    <string name="detail_dir_missing">The vault folder can\'t be found. It may have been moved or deleted.</string>
+    <string name="detail_reclone_body">You can clone this vault from its remote again, into the same location: %1$s\nIts remote, branch, token or SSH key and other settings stay as they are.</string>
+    <string name="detail_reclone_action">Clone again</string>
+    <string name="detail_action_failed">Action failed</string>
+    <plurals name="detail_conflicts_title">
+        <item quantity="one">%1$d file has conflicts</item>
+        <item quantity="other">%1$d files have conflicts</item>
+    </plurals>
+    <string name="detail_conflicts_body">This phone and the remote changed the same content. Go through the files and choose which version to keep (you can also keep both or edit by hand). When everything is resolved, complete the merge and push.\nYou can also abort this merge: your local commits are not affected, the remote changes stay on the remote, and they will be merged again on the next sync.</string>
+    <string name="detail_open_conflicts">Resolve conflicts</string>
+    <string name="detail_abort_merge">Abort merge</string>
+    <string name="detail_abort_confirm">Files will go back to your last local commit, and the conflict resolutions you made will be lost. The remote changes are not affected and will be merged again on the next sync.</string>
+    <string name="detail_merge_resolved_title">All conflicts resolved</string>
+    <string name="detail_merge_resolved_body">The merge isn\'t committed yet. Tap “Complete merge and push” to create the merge commit and sync it to the remote.</string>
+    <string name="detail_complete_merge_sync">Complete merge and push</string>
+    <string name="detail_residue_title">Please note</string>
+    <string name="residue_index_lock">A previous operation was interrupted and left a lock file (index.lock). It will be removed automatically when you sync.</string>
+    <string name="residue_index_lock_fix">Remove now</string>
+    <string name="residue_merge_conflicts">There is an unfinished merge that still has conflicts.</string>
+    <string name="residue_merge_resolved">The conflicts are resolved, but the merge isn\'t committed yet.</string>
+    <string name="residue_unsupported">The repository is in the middle of an operation this app doesn\'t support (such as a rebase or cherry-pick). Please finish or abort it on your computer first.</string>
+    <string name="residue_detached">The repository has no branch checked out (detached HEAD). Please switch to a branch on your computer first.</string>
+    <string name="residue_missing_remote">The repository has no remote (origin). The URL from the vault settings will be written when you sync.</string>
+    <string name="residue_unborn">The branch has no commits yet. It will be pushed on the first sync.</string>
+    <string name="detail_auth_problem_title">Authentication incomplete</string>
+    <string name="detail_auth_token_missing">This vault uses an HTTPS address, but no personal access token is saved, so syncing will fail.</string>
+    <string name="detail_auth_token_unreadable">The saved token can\'t be decrypted (the system keystore changed). Please enter it again.</string>
+    <string name="detail_auth_key_missing">The SSH key this vault used was deleted. Choose another key in the vault settings.</string>
+    <string name="detail_auth_key_unreadable">The SSH key this vault uses can\'t be decrypted (the system keystore changed). Generate or import a key again, then choose it in the vault settings.</string>
+    <string name="detail_auth_key_not_selected">This vault uses an SSH address, but no SSH key is selected.</string>
+
+    <string name="result_success">Success</string>
+    <string name="result_conflicts">Conflicts</string>
+    <plurals name="result_conflicts_n">
+        <item quantity="one">%1$d file has conflicts</item>
+        <item quantity="other">%1$d files have conflicts</item>
+    </plurals>
+    <string name="result_cancelled">Cancelled</string>
+    <string name="result_failed_reason">Failed: %1$s</string>
+    <plurals name="summary_committed">
+        <item quantity="one">Committed %1$d file</item>
+        <item quantity="other">Committed %1$d files</item>
+    </plurals>
+    <string name="summary_no_local_changes">No local changes</string>
+    <string name="summary_merge_none">The remote doesn\'t have this branch yet</string>
+    <string name="summary_merge_ff">Pulled remote changes</string>
+    <string name="summary_merge_merged">Merged remote changes</string>
+    <string name="summary_merge_up_to_date">Nothing new on the remote</string>
+    <string name="summary_push_ok">Pushed</string>
+    <string name="summary_push_nothing">Nothing to push</string>
+    <string name="summary_no_changes">No changes</string>
+    <string name="summary_duration">Took %1$s</string>
+
+    <!-- 失败原因：标题（短）与说明（可能原因 + 建议操作） -->
+    <string name="fail_auth_token">Invalid or expired token</string>
+    <string name="fail_auth_token_hint">The remote rejected the personal access token. Make sure it hasn\'t expired or been revoked and that it has read and write access to this repository\'s contents, then update it in the vault settings.</string>
+    <string name="fail_auth_ssh">SSH key not accepted</string>
+    <string name="fail_auth_ssh_hint">The remote didn\'t accept this SSH key. Make sure its public key has been added to your remote account (for example, SSH keys on GitHub) and that this key is selected in the vault settings.</string>
+    <string name="fail_permission">Permission denied</string>
+    <string name="fail_permission_hint">Authentication succeeded, but this account or key isn\'t allowed to write (for example, a read-only deploy key, a token without write access, or a protected branch). Please adjust the permissions on the remote.</string>
+    <string name="fail_repo_not_found">Remote repository not found</string>
+    <string name="fail_repo_not_found_hint">Check that the repository URL is correct. A private repository also shows up as “not found” when the credentials can\'t access it, so also make sure the token or key belongs to an account that has access.</string>
+    <string name="fail_host_key">Server key doesn\'t match the record</string>
+    <string name="fail_host_key_hint">The connection was stopped to protect against interception. If you\'re sure the server changed its key (compare it with the fingerprints published by your hosting service), forget the host under “Known hosts” in Settings and try again.</string>
+    <string name="fail_network">Can\'t connect to the server</string>
+    <string name="fail_network_hint">Check your network connection and make sure the remote server is reachable. If you need a proxy to reach it, turn on the proxy on your phone or set up an HTTP proxy in Settings.</string>
+    <string name="fail_timeout">Connection timed out</string>
+    <string name="fail_timeout_hint">The server didn\'t respond for a long time. Check that your network or proxy works, then try again later.</string>
+    <string name="fail_proxy">Can\'t connect through the proxy</string>
+    <string name="fail_proxy_hint">Couldn\'t connect to the HTTP proxy set in Settings, or the proxy refused to forward the connection. Make sure the proxy host and port are correct and that the proxy app is running and accepts connections from this device. If you don\'t need a proxy, turn it off in Settings.</string>
+    <string name="fail_check_proxy_hint">The in-app proxy is on, so also make sure the proxy address works.</string>
+    <string name="fail_tls">Secure connection failed</string>
+    <string name="fail_tls_hint">Couldn\'t establish a secure connection with the server (certificate check failed). The network may be intercepting the connection, or the device time may be wrong. Please check and try again.</string>
+    <string name="fail_push_rejected">The remote rejected the push</string>
+    <string name="fail_push_rejected_hint">The remote refused to accept this push, usually because of branch protection rules or server-side checks. Your local commits are saved and won\'t be lost. Check the technical details, adjust the settings on the remote, then sync again.</string>
+    <string name="fail_push_race">The remote keeps getting new commits</string>
+    <string name="fail_push_race_hint">New commits kept appearing on the remote while pushing (your computer may be syncing at the same time). Your local commits are saved; just sync again later.</string>
+    <string name="fail_local_files">Local files would be overwritten</string>
+    <string name="fail_local_files_hint">Files newly added on the remote have the same names as untracked (or .gitignore-ignored) files on this phone. Merging would overwrite them, so the sync stopped. Find the file names in the technical details, rename or move those files, then sync again.</string>
+    <string name="fail_vault_missing">Vault folder not found</string>
+    <string name="fail_vault_missing_hint">The vault folder may have been moved, renamed or deleted. Check where the folder is; if needed, remove the vault and add it again.</string>
+    <string name="fail_not_repo">No Git repository in the folder</string>
+    <string name="fail_not_repo_hint">There is no .git folder in the vault folder; it may have been deleted. Remove the vault and add it again (you can clone it from the remote).</string>
+    <string name="fail_already_repo">The folder already has a Git repository</string>
+    <string name="fail_already_repo_hint">This folder already contains .git. Go back and choose “Use an existing Git repository”.</string>
+    <string name="fail_credential_missing">Token or key missing</string>
+    <string name="fail_credential_missing_hint">This vault has no usable token saved, or no SSH key selected (or the selected key was deleted). Please add it in the vault settings.</string>
+    <string name="fail_credential_unreadable">Token or key can\'t be decrypted</string>
+    <string name="fail_credential_unreadable_hint">The system keystore changed, so the saved token or private key can no longer be decrypted. Enter the token again in the vault settings, or generate or import an SSH key again.</string>
+    <string name="fail_repo_state">Repository state doesn\'t allow syncing</string>
+    <string name="fail_repo_state_hint">The repository is in the middle of an operation such as a rebase or cherry-pick, has no branch checked out, or has a different branch checked out than the vault settings. Please sort it out on your computer first, then sync.</string>
+    <string name="fail_identity">Author not set</string>
+    <string name="fail_identity_hint">Commits need a name and email. Set the default author in Settings, or set one for this vault in the vault settings.</string>
+    <string name="fail_dir_not_empty">The folder isn\'t empty</string>
+    <string name="fail_dir_not_empty_hint">Cloning needs an empty folder. Create a new folder; if the folder already has notes, use “Upload a vault from this phone” or “Use an existing Git repository” instead.</string>
+    <string name="fail_remote_not_empty">The remote repository isn\'t empty</string>
+    <string name="fail_remote_not_empty_hint">The remote already has content, so the vault can\'t be uploaded over it. Clone the remote into an empty folder first, then move the notes from this phone into it and sync.</string>
+    <string name="fail_branch_not_found">The remote doesn\'t have this branch</string>
+    <string name="fail_branch_not_found_hint">Go back and change the branch name. The technical details list the branches on the remote.</string>
+    <string name="fail_remote_missing">No remote URL</string>
+    <string name="fail_remote_missing_hint">The repository has no remote (origin) configured. Please enter the remote repository URL.</string>
+    <string name="fail_vault_empty">Nothing to commit in the vault</string>
+    <string name="fail_vault_empty_hint">The selected folder has no files (or they are all ignored by .gitignore). Make sure you selected the right vault folder.</string>
+    <string name="fail_storage">Can\'t read or write files on this device</string>
+    <string name="fail_storage_hint">Storage may be full, or file access permission may have been turned off. Check the storage space and permissions, then try again.</string>
+    <string name="fail_unknown">Unexpected error</string>
+    <string name="fail_unknown_hint">The cause couldn\'t be identified. Check the technical details and the sync log. If you need help, you can export the logs in Settings and send them to the developer.</string>
+
+    <!-- 库设置 -->
+    <string name="repo_settings_title">Vault settings</string>
+    <string name="repo_settings_busy_title">Syncing</string>
+    <string name="repo_settings_busy_body">Until the sync finishes, you can\'t save changes, maintain the repository or remove the vault from the list.</string>
+    <string name="repo_settings_general">General</string>
+    <string name="repo_settings_folder">Folder: %1$s</string>
+    <string name="repo_settings_branch">Branch: %1$s</string>
+    <string name="repo_settings_remote">Remote and authentication</string>
+    <string name="repo_settings_identity">Author and commit message</string>
+    <string name="repo_settings_identity_body">Applies to this vault only. Leave the name and email empty to use the defaults from Settings.</string>
+    <string name="repo_settings_identity_incomplete">Fill in both the name and email, or leave both empty.</string>
+    <string name="repo_settings_reason_name">Enter a display name</string>
+    <string name="repo_settings_saved">Saved</string>
+    <string name="repo_settings_save_failed">Couldn\'t save</string>
+    <string name="repo_settings_remove">Remove from list</string>
+    <string name="repo_settings_remove_hint">Only removes this app\'s record, token and logs. The vault folder and its .git are not deleted.</string>
+    <string name="repo_settings_remove_title">Remove “%1$s”?</string>
+    <string name="repo_settings_remove_confirm">The vault folder and its .git stay on the phone. You can add it again later with “Use an existing Git repository”.</string>
+
+    <string name="maintenance_title">Repository maintenance</string>
+    <string name="maintenance_body">Packs and compresses scattered data files to reduce the number of files and the space they take, and to speed up later operations. Your notes and history are not changed.</string>
+    <string name="maintenance_stats">Repository data: %1$s · Loose objects: %2$d · Packs: %3$d</string>
+    <string name="maintenance_recommended">Maintenance recommended.</string>
+    <string name="maintenance_not_needed">No maintenance needed right now.</string>
+    <string name="maintenance_last_done">Last maintenance (%1$s): %2$s → %3$s, took %4$s</string>
+    <string name="maintenance_last_failed">Last maintenance (%1$s) failed: %2$s</string>
+    <string name="maintenance_run">Start maintenance</string>
+
+    <string name="gitignore_title">Recommended ignore rules</string>
+    <string name="gitignore_complete">.gitignore already contains all recommended rules.</string>
+    <plurals name="gitignore_missing">
+        <item quantity="one">.gitignore is missing %1$d recommended rule:</item>
+        <item quantity="other">.gitignore is missing %1$d recommended rules:</item>
+    </plurals>
+    <string name="gitignore_note">These rules keep device-specific files such as the workspace layout, caches and trash out of sync. Files that are already synced keep being synced.</string>
+    <string name="gitignore_append">Add recommended rules</string>
+    <string name="gitignore_append_confirm">Append the missing recommended rules to the end of the vault\'s .gitignore? The change will be committed on the next sync.</string>
+    <plurals name="gitignore_appended">
+        <item quantity="one">Added %1$d rule. It will be committed on the next sync.</item>
+        <item quantity="other">Added %1$d rules. They will be committed on the next sync.</item>
+    </plurals>
+
+    <!-- 提交历史 -->
+    <string name="history_title">Commit history</string>
+    <string name="history_intro">Recent commits on the current branch. “Not pushed” means the remote doesn\'t have the commit yet (as of the last sync).</string>
+    <string name="history_empty">No commits yet.</string>
+    <string name="history_load_failed">Couldn\'t read the commit history</string>
+    <string name="history_end">No earlier commits</string>
+    <string name="history_not_pushed">Not pushed</string>
+    <string name="history_merge">Merge</string>
+    <string name="history_no_message">(No commit message)</string>
+    <string name="commit_title">Commit %1$s</string>
+    <string name="commit_author">%1$s &lt;%2$s&gt; · %3$s</string>
+    <string name="commit_pushed">Pushed to the remote</string>
+    <string name="commit_not_pushed">Not pushed to the remote yet</string>
+    <plurals name="commit_changes">
+        <item quantity="one">%1$d file changed</item>
+        <item quantity="other">%1$d files changed</item>
+    </plurals>
+    <plurals name="commit_changes_merge">
+        <item quantity="one">%1$d file changed compared with the local version before the merge</item>
+        <item quantity="other">%1$d files changed compared with the local version before the merge</item>
+    </plurals>
+    <string name="commit_renamed_from">Renamed from: %1$s</string>
+    <plurals name="commit_more_changes">
+        <item quantity="one">%1$d more file not listed</item>
+        <item quantity="other">%1$d more files not listed</item>
+    </plurals>
+    <string name="change_added">Added</string>
+    <string name="change_modified">Modified</string>
+    <string name="change_deleted">Deleted</string>
+    <string name="change_renamed">Renamed</string>
+    <string name="change_copied">Copied</string>
+    <string name="commit_copied_from">Copied from: %1$s</string>
+    <string name="diff_expand">Show changes</string>
+    <string name="diff_collapse">Hide changes</string>
+    <plurals name="diff_folded">
+        <item quantity="one">⋯ %1$d unchanged line, folded ⋯</item>
+        <item quantity="other">⋯ %1$d unchanged lines, folded ⋯</item>
+    </plurals>
+    <string name="diff_fold">Fold unchanged lines</string>
+    <string name="diff_binary">Binary file, content not shown (%1$s)</string>
+    <string name="diff_too_large">File too large, changes not shown (%1$s)</string>
+    <string name="diff_unchanged">Content unchanged</string>
+    <string name="diff_unchanged_newline">Content unchanged; only the newline at the end of the file differs</string>
+    <string name="diff_newline_at_end">The newline at the end of the file also changed (not marked above)</string>
+    <string name="diff_truncated" tools:ignore="PluralsCandidate">Too many changes; only the first %1$d lines are shown</string>
+    <string name="diff_load_failed">Couldn\'t read the changes: %1$s</string>
+
+    <!-- 冲突列表 -->
+    <string name="conflicts_title">Conflicts</string>
+    <string name="conflicts_menu">More options</string>
+    <string name="conflicts_loading">Reading conflicts…</string>
+    <string name="conflicts_load_failed">Couldn\'t read the conflicts</string>
+    <plurals name="conflicts_intro">
+        <item quantity="one">%1$d file still needs resolving. Tap it to go through its conflicts, or use the menu at the top right to resolve in bulk.</item>
+        <item quantity="other">%1$d files still need resolving. Tap a file to go through its conflicts, or use the menu at the top right to resolve in bulk.</item>
+    </plurals>
+    <string name="conflicts_all_ours">Keep all local versions</string>
+    <string name="conflicts_all_theirs">Keep all remote versions</string>
+    <plurals name="conflicts_all_ours_confirm">
+        <item quantity="one">Keep the local version of the remaining %1$d file? The remote changes to it won\'t be in the result (they stay in the remote history). If the remote deleted it, the local version is kept; if it was deleted locally, it stays deleted.</item>
+        <item quantity="other">Keep the local versions of the remaining %1$d files? The remote changes to these files won\'t be in the result (they stay in the remote history). Files deleted on the remote keep their local versions; files deleted locally stay deleted.</item>
+    </plurals>
+    <plurals name="conflicts_all_theirs_confirm">
+        <item quantity="one">Keep the remote version of the remaining %1$d file? The local changes to it won\'t be in the result (they stay in your local commit history). If it was deleted locally, it is restored to the remote version; if the remote deleted it, it will be deleted.</item>
+        <item quantity="other">Keep the remote versions of the remaining %1$d files? The local changes to these files won\'t be in the result (they stay in your local commit history). Files deleted locally are restored to their remote versions; files deleted on the remote will be deleted.</item>
+    </plurals>
+    <string name="conflicts_all_resolved_hint">All conflicts are resolved, but the merge isn\'t committed yet.</string>
+    <string name="conflicts_complete_merge">Complete merge and push</string>
+    <string name="conflicts_action_failed">Action failed</string>
+    <string name="conflicts_syncing_hint">Syncing. You can resolve conflicts after it finishes.</string>
+    <string name="conflicts_none_title">No conflicts to resolve</string>
+    <string name="conflicts_none_body">This vault has no merge in progress.</string>
+    <string name="conflicts_kind_both_modified">Changed on both sides</string>
+    <string name="conflicts_kind_both_added">Created on both sides</string>
+    <string name="conflicts_kind_deleted_by_us">Deleted locally</string>
+    <string name="conflicts_kind_deleted_by_them">Deleted on the remote</string>
+    <string name="conflicts_kind_added_by_us">Only exists locally</string>
+    <string name="conflicts_kind_added_by_them">Only exists on the remote</string>
+    <string name="conflicts_kind_both_deleted">Deleted on both sides</string>
+    <string name="conflicts_kind_binary">Binary file</string>
+    <string name="conflicts_kind_resolved">Resolved</string>
+
+    <!-- 冲突文件 -->
+    <string name="conflict_ours">Local version</string>
+    <string name="conflict_theirs">Remote version</string>
+    <string name="conflict_marker_ours">Local version</string>
+    <string name="conflict_marker_theirs">Remote version</string>
+    <plurals name="conflict_blocks_intro">
+        <item quantity="one">%1$d conflict, shown in place in the text and marked by a colored bar on the left. Choose which version to keep.</item>
+        <item quantity="other">%1$d conflicts, shown in place in the text in their original order and marked by colored bars on the left. Choose which version to keep for each one.</item>
+    </plurals>
+    <string name="conflict_line_numbers_intro">" The two columns of line numbers on the left are line numbers in the local and remote files."</string>
+    <string name="conflict_block_title">Conflict %1$d / %2$d</string>
+    <string name="conflict_block_editing">Editing conflict %1$d / %2$d</string>
+    <plurals name="conflict_line_count">
+        <item quantity="one">%1$d line</item>
+        <item quantity="other">%1$d lines</item>
+    </plurals>
+    <string name="conflict_side_empty">(This version has no content here)</string>
+    <plurals name="conflict_side_truncated">
+        <item quantity="one">%1$d more line not shown. You can see it in the whole-file editor.</item>
+        <item quantity="other">%1$d more lines not shown. You can see them in the whole-file editor.</item>
+    </plurals>
+    <string name="conflict_keep_ours">Keep local</string>
+    <string name="conflict_keep_theirs">Keep remote</string>
+    <string name="conflict_keep_both">Keep both</string>
+    <string name="conflict_both_ours_first">Keep both, local first</string>
+    <string name="conflict_both_theirs_first">Keep both, remote first</string>
+    <string name="conflict_edit_block">Edit by hand</string>
+    <string name="conflict_edit_block_label">Final text for this conflict</string>
+    <string name="conflict_use_edited">Use edited text</string>
+    <string name="conflict_clear_choice">Clear choice</string>
+    <string name="conflict_edit_again">Edit again</string>
+    <string name="conflict_empty_result">(The result for this conflict is empty)</string>
+    <plurals name="conflict_common_collapsed">
+        <item quantity="one">⋯ %1$d line without conflicts, folded ⋯</item>
+        <item quantity="other">⋯ %1$d lines without conflicts, folded ⋯</item>
+    </plurals>
+    <string name="conflict_common_collapse">Fold lines without conflicts</string>
+    <string name="conflict_choice_undecided">Not chosen</string>
+    <string name="conflict_choice_ours">Kept local</string>
+    <string name="conflict_choice_theirs">Kept remote</string>
+    <string name="conflict_choice_both_ours_first">Kept both (local first)</string>
+    <string name="conflict_choice_both_theirs_first">Kept both (remote first)</string>
+    <string name="conflict_choice_custom">Edited by hand</string>
+    <string name="conflict_progress" tools:ignore="PluralsCandidate">%1$d / %2$d resolved</string>
+    <string name="conflict_locate_undecided">Next</string>
+    <string name="conflict_preview_edit">Preview &amp; edit</string>
+    <string name="conflict_mark_resolved">Mark resolved</string>
+    <string name="conflict_all_blocks_ours">Keep all local</string>
+    <string name="conflict_all_blocks_theirs">Keep all remote</string>
+    <string name="conflict_reset_choices">Clear all choices</string>
+    <string name="conflict_open_editor">Edit whole file</string>
+    <string name="conflict_leave_title">Discard your choices?</string>
+    <string name="conflict_leave_body">The choices in this file aren\'t saved yet. If you go back now, you\'ll have to choose again next time. To save them, tap “Mark resolved” after choosing for every conflict.</string>
+    <string name="conflict_leave_discard">Discard and go back</string>
+    <string name="conflict_editor_mode_title">Where should editing start?</string>
+    <string name="conflict_editor_mode_body">You can continue from the choices you\'ve made (conflicts you haven\'t chosen for still show conflict markers), or start from the original conflicts, with markers at every conflict. Your choices in the block view won\'t change.</string>
+    <string name="conflict_editor_mode_keep">Include my choices</string>
+    <string name="conflict_editor_mode_original">Start from the original conflicts</string>
+    <string name="view_wrap">Wrap lines</string>
+    <string name="view_line_numbers">Show line numbers</string>
+    <string name="conflict_missing_title">This file no longer has conflicts</string>
+    <string name="conflict_missing_body">It may have been resolved elsewhere, or its path changed. Go back to the list to see the latest status.</string>
+    <string name="conflict_whole_binary_body">Binary files (such as images and PDFs) can\'t be merged conflict by conflict. Choose which version to keep as a whole.</string>
+    <string name="conflict_whole_deleted_by_them_body">The remote deleted this file, but it was changed locally. Keep the local version, or accept the deletion.</string>
+    <string name="conflict_whole_deleted_by_us_body">This file was deleted locally, but the remote changed it. Restore the remote version, or keep it deleted.</string>
+    <string name="conflict_whole_both_deleted_body">Both sides deleted this file.</string>
+    <string name="conflict_whole_one_side_body">Only one side has this file. Choose whether to keep or delete it.</string>
+    <string name="conflict_whole_too_large_body">The file is too large to merge conflict by conflict. Choose which version to keep as a whole.</string>
+    <string name="conflict_side_info">%1$s: %2$s · %3$s</string>
+    <string name="conflict_use_ours_file">Keep local version</string>
+    <string name="conflict_use_theirs_file">Keep remote version</string>
+    <string name="conflict_keep_ours_file">Keep local version</string>
+    <string name="conflict_keep_theirs_file">Restore remote version</string>
+    <string name="conflict_edit_ours_then_keep">Edit local version, then keep</string>
+    <string name="conflict_edit_theirs_then_keep">Edit remote version, then keep</string>
+    <string name="conflict_cannot_edit_side">This version can\'t be edited as text (binary file or too large).</string>
+    <string name="conflict_delete_file">Delete file</string>
+    <string name="conflict_delete_title">Delete file?</string>
+    <string name="conflict_delete_confirm">Resolve by deleting “%1$s”. After the merge is completed and synced, neither this phone nor the remote will have this file (it can still be recovered from the history).</string>
+    <string name="conflict_editor_title">Edit %1$s</string>
+    <string name="conflict_editor_search">Find</string>
+    <string name="conflict_editor_find_next">Next</string>
+    <string name="conflict_editor_not_found">Not found</string>
+    <string name="conflict_editor_save">Save and mark resolved</string>
+    <plurals name="conflict_editor_markers_warning">
+        <item quantity="one">Note: line %1$s of the file is a conflict marker generated by the app. If you don\'t delete it, it will be saved and committed to the remote when you sync.</item>
+        <item quantity="other">Note: lines %1$s of the file are conflict markers generated by the app. If you don\'t delete them, they will be saved and committed to the remote when you sync.</item>
+    </plurals>
+    <string name="conflict_editor_next_marker">Go to</string>
+    <string name="conflict_lines_more">%1$s, … (%2$d in total)</string>
+    <string name="conflict_editor_save_markers_title">Conflict markers remain</string>
+    <plurals name="conflict_editor_save_markers_confirm">
+        <item quantity="one">Line %1$s is still a conflict marker generated by the app. If you save, this line will be written to the file and committed to the remote when you sync. Save anyway?</item>
+        <item quantity="other">Lines %1$s are still conflict markers generated by the app. If you save, these lines will be written to the file and committed to the remote when you sync. Save anyway?</item>
+    </plurals>
+    <string name="conflict_editor_save_anyway">Save anyway</string>
+    <string name="conflict_editor_discard_confirm">Discard the changes you made in the editor?</string>
+    <string name="conflict_editor_discard">Discard changes</string>
+
+    <!-- 日志与崩溃报告 -->
+    <string name="logs_title">Sync logs</string>
+    <string name="logs_empty">No logs yet.</string>
+    <string name="log_result_success">Success</string>
+    <string name="log_result_conflicts">Conflicts</string>
+    <string name="log_result_failed">Failed</string>
+    <string name="log_result_cancelled">Cancelled</string>
+    <string name="log_result_unknown">Unfinished</string>
+    <string name="log_op_sync">Sync</string>
+    <string name="log_op_clone">Clone</string>
+    <string name="log_op_init">Initialize and upload</string>
+    <string name="log_op_adopt">Use existing repository</string>
+    <string name="log_op_maintain">Repository maintenance</string>
+    <string name="log_op_unknown">Other operation</string>
+    <string name="log_share_title">Share log</string>
+    <string name="crash_report_title">Crash report</string>
+
+    <!-- 设置 -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_identity">Default author</string>
+    <string name="settings_identity_body">The name and email recorded in every commit. It\'s best to use the same ones as Git on your computer. Each vault can also have its own in the vault settings.</string>
+    <string name="settings_commit">Commit message</string>
+    <string name="settings_network">Network</string>
+    <string name="settings_proxy_enabled">Use HTTP proxy</string>
+    <string name="settings_proxy_host">Proxy host</string>
+    <string name="settings_proxy_port">Proxy port</string>
+    <string name="settings_proxy_hint">Both HTTPS and SSH remotes connect through this proxy. Proxy apps on phones usually listen on a port of 127.0.0.1. If the proxy itself doesn\'t respond within 15 seconds, the connection fails.</string>
+    <string name="settings_reason_proxy">Enter a valid proxy host and port</string>
+    <string name="settings_logs">Logs</string>
+    <string name="settings_log_keep">Logs kept per vault</string>
+    <string name="settings_debug_logs">Detailed logs</string>
+    <string name="settings_debug_logs_hint">Also write Git and SSH debug information to the log, for troubleshooting.</string>
+    <string name="settings_saved">Saved</string>
+    <string name="settings_language">Language</string>
+    <string name="settings_language_system">Follow system</string>
+    <string name="settings_language_hint">When following the system, the app uses the first language in the system\'s language list that it supports, and English if none of them is supported.</string>
+    <string name="language_zh_cn" translatable="false">简体中文</string>
+    <string name="language_en" translatable="false">English</string>
+    <string name="language_zh_tw" translatable="false">繁體中文</string>
+    <string name="language_ja" translatable="false">日本語</string>
+    <string name="language_de" translatable="false">Deutsch</string>
+    <string name="language_es" translatable="false">Español</string>
+    <string name="language_fr" translatable="false">Français</string>
+    <string name="language_ru" translatable="false">Русский</string>
+    <string name="settings_notifications">Notifications</string>
+    <string name="settings_notifications_on">Notifications are on</string>
+    <string name="settings_notifications_off">Notifications are off</string>
+    <string name="settings_notifications_enable">Turn on</string>
+    <string name="settings_notifications_manage">Manage</string>
+    <string name="settings_notifications_body">Notifications show sync progress and results. With them off, syncing still works, but you won\'t see the progress or get alerts about conflicts and failures. In system settings you can manage the three kinds separately: “Sync progress”, “Sync complete” and “Needs attention”.</string>
+    <string name="settings_backup">Backup and restore</string>
+    <string name="settings_backup_body">Export the vault list, settings, SSH keys and known hosts to a file, to restore them on a new phone or after reinstalling. Tokens and private keys are encrypted with a passphrase you choose. The configuration is normally kept in the app\'s private storage and survives app updates.</string>
+    <string name="backup_export">Export</string>
+    <string name="backup_import">Restore</string>
+    <string name="backup_failed">Backup failed</string>
+    <string name="backup_exported">Configuration exported and checked</string>
+    <string name="backup_exported_partial">Exported, but some tokens or private keys couldn\'t be included (see the backup card)</string>
+    <string name="backup_err_verify">The file wasn\'t saved correctly: what was read back differs from what was written. Try another location.</string>
+    <string name="backup_restore_busy">Can\'t restore while a vault is syncing</string>
+    <string name="backup_last_export_with_secrets">Last exported: %1$s · with tokens and private keys</string>
+    <string name="backup_last_export_without_secrets">Last exported: %1$s · without tokens and private keys</string>
+    <string name="backup_missing_token">token of “%1$s”</string>
+    <string name="backup_missing_key">SSH key “%1$s”</string>
+    <string name="backup_last_export_missing">Not included because this device can no longer decrypt them (enter or create them again): %1$s</string>
+    <string name="backup_never_exported">No configuration exported yet. Export one before switching phones or reinstalling.</string>
+    <string name="backup_export_title">Export configuration</string>
+    <string name="backup_export_body">The export contains the vault list, settings, the list of SSH keys and the known hosts.</string>
+    <string name="backup_include_secrets">Also export tokens and private keys</string>
+    <string name="backup_passphrase">Passphrase</string>
+    <string name="backup_passphrase_hint" tools:ignore="PluralsCandidate">At least %1$d characters. You\'ll need it to restore, and it can\'t be recovered if you forget it.</string>
+    <string name="backup_passphrase_confirm">Enter the passphrase again</string>
+    <string name="backup_without_secrets_hint">Tokens and private keys won\'t be exported. After restoring, you\'ll need to enter the tokens again and generate or import SSH keys again (and add their public keys to the remote again).</string>
+    <string name="backup_choose_location">Choose where to save</string>
+    <string name="backup_import_title">Restore from backup</string>
+    <string name="backup_import_source">Backed up %1$s · Device %2$s · Version %3$s</string>
+    <plurals name="backup_import_repos">
+        <item quantity="one">%1$d vault</item>
+        <item quantity="other">%1$d vaults</item>
+    </plurals>
+    <plurals name="backup_import_keys">
+        <item quantity="one">%1$d SSH key</item>
+        <item quantity="other">%1$d SSH keys</item>
+    </plurals>
+    <string name="backup_repo_folder_used">“%1$s” on this device already uses this folder</string>
+    <string name="backup_repo_folder_missing">This folder doesn\'t exist on this device. After restoring, you can clone it again from the vault\'s page.</string>
+    <string name="backup_repo_replaces">Replaces the same vault on this device</string>
+    <string name="backup_key_replaces">Replaces the same key on this device</string>
+    <string name="backup_import_settings_title">Settings</string>
+    <string name="backup_import_settings">Restore app settings</string>
+    <string name="backup_import_settings_hint">Default author, commit message, proxy, logs, language and display options. Replaces all settings on this device.</string>
+    <string name="backup_import_known_hosts">Known hosts in the backup are added if this device doesn\'t have them yet; hosts already trusted here stay as they are.</string>
+    <string name="backup_import_no_secrets">This backup doesn\'t contain tokens or private keys.</string>
+    <string name="backup_import_without_secrets">Don\'t restore tokens and private keys</string>
+    <string name="backup_import_action">Restore</string>
+    <string name="backup_restored">Restored. Vaults: %1$d · SSH keys: %2$d · Tokens: %3$d</string>
+    <string name="backup_restored_secrets_skipped">Tokens and private keys weren\'t restored. Please add them in the vault settings.</string>
+    <plurals name="backup_restored_missing_folders">
+        <item quantity="one">%1$d restored vault has no folder on this device. Open it to clone it again.</item>
+        <item quantity="other">%1$d restored vaults have no folder on this device. Open them to clone them again.</item>
+    </plurals>
+    <string name="backup_err_not_backup">This isn\'t a VaultSync backup file.</string>
+    <string name="backup_err_too_new">This backup was exported by a newer version of VaultSync. Please update the app first.</string>
+    <string name="backup_err_wrong_passphrase">Wrong passphrase.</string>
+    <string name="backup_err_corrupt">The backup file is damaged and can\'t be read.</string>
+    <string name="settings_diagnostics">Troubleshooting</string>
+    <string name="settings_diagnostics_body">Packs the sync logs of all vaults and the crash reports into one file, so you can report a problem. The logs don\'t contain tokens, private keys or passphrases.</string>
+    <string name="diagnostics_export">Export logs</string>
+    <string name="diagnostics_export_failed">Couldn\'t export the logs</string>
+    <string name="diagnostics_exported">Logs saved</string>
+    <plurals name="diagnostics_crash_count">
+        <item quantity="one">%1$d crash report saved</item>
+        <item quantity="other">%1$d crash reports saved</item>
+    </plurals>
+    <string name="diagnostics_view_latest_crash">View latest</string>
+    <string name="settings_help">Help</string>
+    <string name="settings_help_background">While syncing, the app shows the progress in the notification bar and runs as a foreground service, so the sync continues when you switch to other apps. If the sync still stops after you switch away, allow VaultSync to run in the background in system settings, or exclude it from battery optimization.</string>
+    <string name="settings_help_vault_location">Obsidian vaults are usually in Internal storage/Documents/&lt;vault name&gt;. You can find the exact location in Obsidian under “Manage vaults”.</string>
+    <string name="settings_about">About</string>
+    <string name="settings_about_body">VaultSync %1$s · JGit %2$s · Android %3$s</string>
+</resources>

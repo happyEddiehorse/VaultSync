@@ -1,0 +1,761 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  UI strings: Japanese (D-040). Translated from values/strings.xml (English), checked against values-zh-rCN; keys match one to one.
+  Principles: docs/UI.md §10. Polite です/ます in sentences, short forms on buttons and titles; full-width punctuation 、。「」：（）.
+  Terms: vault = 保管庫 (Obsidian), repository = リポジトリ, remote = リモート, conflict = 競合. Plurals: only "other".
+  translatable="false" entries (language names) exist only in values/.
+-->
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">VaultSync</string>
+
+    <!-- Common -->
+    <string name="action_cancel">キャンセル</string>
+    <string name="action_ok">OK</string>
+    <string name="action_back">戻る</string>
+    <string name="action_close">閉じる</string>
+    <string name="action_dismiss">了解</string>
+    <string name="action_next">次へ</string>
+    <string name="action_save">保存</string>
+    <string name="action_copy">すべてコピー</string>
+    <string name="action_share">共有</string>
+    <string name="action_retry">再試行</string>
+    <string name="action_more">その他の操作</string>
+    <string name="action_view_logs">ログを表示</string>
+    <string name="action_sync">同期</string>
+    <string name="action_sync_now">今すぐ同期</string>
+    <string name="action_go_settings">設定を開く</string>
+    <string name="action_show_technical">技術情報</string>
+    <string name="action_hide_technical">技術情報を隠す</string>
+    <string name="copied">クリップボードにコピーしました</string>
+    <string name="duration_seconds">%1$s 秒</string>
+    <string name="duration_minutes">%1$d 分 %2$d 秒</string>
+    <string name="size_bytes">%1$s B</string>
+    <string name="size_kb">%1$s KB</string>
+    <string name="size_mb">%1$s MB</string>
+    <string name="size_gb">%1$s GB</string>
+    <string name="percent">%1$d%%</string>
+
+    <!-- Unsaved changes bar (app settings and vault settings, docs/UI.md §9.1) -->
+    <string name="unsaved_changes">未保存の変更があります</string>
+    <string name="unsaved_discard">破棄</string>
+    <string name="unsaved_reason_busy">同期中は保存できません</string>
+    <string name="unsaved_leave_title">未保存の変更を破棄しますか？</string>
+    <string name="unsaved_leave_discard">破棄</string>
+    <string name="unsaved_keep_editing">編集を続ける</string>
+
+    <!-- Sync stages and progress -->
+    <string name="stage_preparing">準備中</string>
+    <string name="stage_precheck">保管庫の確認</string>
+    <string name="stage_commit">ローカルの変更のコミット</string>
+    <string name="stage_fetch">リモートの変更の取得</string>
+    <string name="stage_merge">リモートの変更のマージ</string>
+    <string name="stage_conflicts">競合の解決待ち</string>
+    <string name="stage_push">リモートへのプッシュ</string>
+    <string name="stage_done">完了</string>
+    <string name="stage_maintain">リポジトリの整理</string>
+    <string name="task_receiving">データの受信</string>
+    <string name="task_resolving">データの処理</string>
+    <string name="task_counting">オブジェクトの集計</string>
+    <string name="task_compressing">オブジェクトの圧縮</string>
+    <string name="task_writing">データの書き込み</string>
+    <string name="task_finding_sources">再利用できるデータの検索</string>
+    <string name="task_sizes">サイズの計算</string>
+    <string name="task_indexing">インデックスの作成</string>
+    <string name="task_updating_refs">ブランチの更新</string>
+    <string name="task_checkout">ファイルの書き出し</string>
+    <string name="task_verifying">ファイルの検証</string>
+    <string name="progress_cancelling">キャンセルしています…</string>
+    <string name="task_opening">接続中</string>
+    <string name="task_staging">変更されたファイルの読み込み</string>
+    <string name="meter_downloaded">ダウンロード %1$s</string>
+    <string name="meter_uploaded">アップロード %1$s</string>
+    <string name="meter_rate">%1$s/秒</string>
+    <string name="meter_elapsed">経過 %1$s</string>
+    <string name="task_pack_refs">ブランチの記録の整理</string>
+    <string name="task_prune">パック済みデータの整理</string>
+    <string name="job_syncing">同期中</string>
+    <string name="job_cloning">クローン中</string>
+    <string name="job_initializing">初期化中</string>
+    <string name="job_adopting">セットアップ中</string>
+    <string name="job_maintaining">整理中</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_sync">同期の進行状況</string>
+    <string name="notification_channel_sync_desc">同期中に進行状況を表示し、バックグラウンドでも同期を続けます。</string>
+    <string name="notification_channel_done">同期完了</string>
+    <string name="notification_channel_done_desc">すべての保管庫の同期に成功したときに表示します。既定ではサイレントです。</string>
+    <string name="notification_channel_attention">要対応</string>
+    <string name="notification_channel_attention_desc">同期で競合が発生したときや失敗したときにお知らせします。</string>
+    <string name="notif_progress_preparing">同期の準備中…</string>
+    <string name="notif_progress_title">%1$s「%2$s」</string>
+    <string name="notif_progress_position">%2$d 件中 %1$d 件目</string>
+    <string name="notif_progress_queued">待機中：%1$s</string>
+    <string name="notif_action_cancel">この保管庫をキャンセル</string>
+    <string name="notif_action_cancel_all">すべて停止</string>
+    <plurals name="notif_summary_all_ok">
+        <item quantity="other">%1$d 個の保管庫を同期しました</item>
+    </plurals>
+    <plurals name="notif_summary_all_problems">
+        <item quantity="other">%1$d 個の保管庫が要対応です</item>
+    </plurals>
+    <plurals name="notif_summary_mixed">
+        <item quantity="other">%1$d 個を同期、%2$d 個が要対応</item>
+    </plurals>
+    <plurals name="notif_summary_tasks_all_ok">
+        <item quantity="other">%1$d 件の処理が完了しました</item>
+    </plurals>
+    <plurals name="notif_summary_tasks_all_problems">
+        <item quantity="other">%1$d 件の処理が要対応です</item>
+    </plurals>
+    <plurals name="notif_summary_tasks_mixed">
+        <item quantity="other">%1$d 件が完了、%2$d 件が要対応</item>
+    </plurals>
+    <string name="notif_summary_line">%1$s：%2$s</string>
+    <string name="notif_result_added">追加しました</string>
+    <string name="notif_result_recloned">再度クローンしました</string>
+    <string name="notif_result_maintained">整理が完了しました</string>
+    <string name="notif_result_maintained_freed">整理が完了しました（%1$s を解放）</string>
+    <plurals name="notif_result_conflicts">
+        <item quantity="other">%1$d 個のファイルに競合があります。アプリを開いて解決してください。</item>
+    </plurals>
+    <string name="notif_result_failed">失敗：%1$s</string>
+    <string name="list_separator">、</string>
+
+    <!-- Home -->
+    <string name="home_title">VaultSync</string>
+    <string name="home_settings">設定</string>
+    <string name="home_add_repo">保管庫を追加</string>
+    <string name="home_empty_title">保管庫はまだありません</string>
+    <string name="home_empty_body">Git リポジトリを追加して、リモートと同期しましょう。</string>
+    <string name="home_config_error_title">設定を読み込めませんでした</string>
+    <string name="home_config_error_body">次の設定ファイルが壊れていました。バックアップとして別名で保存し、空の設定でアプリを起動しました：\n%1$s\n設定画面でバックアップファイルから設定を復元できます。</string>
+    <string name="home_identity_missing">コミットの作成者の名前とメールアドレスがまだ設定されていません。すべてのコミットに記録されるため、先に設定画面で入力してください。</string>
+    <string name="home_go_settings">設定を開く</string>
+    <string name="home_crash_title">前回、アプリが予期せず終了しました</string>
+    <string name="home_crash_body">クラッシュレポートを保存しました。問題が繰り返し起きる場合は、レポートを開発者に送ることができます。</string>
+    <string name="home_crash_view">レポートを表示</string>
+    <string name="env_info">VaultSync %1$s · Android %2$s</string>
+
+    <string name="status_synced">同期済み</string>
+    <string name="status_conflicts">競合あり</string>
+    <string name="status_syncing">同期中</string>
+    <string name="status_maintaining">整理中</string>
+    <string name="status_cloning">クローン中</string>
+    <string name="status_queued">待機中</string>
+    <string name="status_error">同期失敗</string>
+    <string name="status_cancelled">キャンセル済み</string>
+    <string name="status_never">未同期</string>
+    <string name="last_sync_at">前回の同期：%1$s</string>
+
+    <!-- Storage permission -->
+    <string name="perm_title">ファイルへのアクセスが必要です</string>
+    <string name="perm_body_legacy">VaultSync は端末のストレージにあるファイルやフォルダー（その中の .git フォルダーを含む）を読み書きする必要があります。ストレージへのアクセスを許可してください。</string>
+    <string name="perm_body_all_files">VaultSync は端末のストレージにあるファイルやフォルダー（その中の .git フォルダーを含む）を読み書きする必要があります。システム設定で VaultSync の「すべてのファイルへのアクセス」をオンにしてください。</string>
+    <string name="perm_grant">許可する</string>
+    <string name="perm_open_settings">システム設定を開く</string>
+
+    <!-- Add vault wizard -->
+    <string name="add_title">保管庫を追加</string>
+    <string name="add_step">ステップ %1$d / %2$d</string>
+    <string name="add_step_mode">方法の選択</string>
+    <string name="add_step_folder">フォルダーの選択</string>
+    <string name="add_step_remote">リモートと認証</string>
+    <string name="add_step_identity">名前と作成者</string>
+    <string name="add_step_confirm">確認</string>
+    <string name="add_step_progress">実行</string>
+    <string name="add_start_failed">トークンを保存できませんでした</string>
+
+    <string name="mode_clone_title">リモートからクローン</string>
+    <string name="mode_clone_body">ノートはリモートのリポジトリにあり、この端末にはまだありません。リポジトリを空のフォルダーにダウンロードします。</string>
+    <string name="mode_init_title">この端末の保管庫をアップロード</string>
+    <string name="mode_init_body">この端末に同期したいフォルダー（.git なし）があり、リモートは空のリポジトリです。フォルダー内に Git リポジトリを作成し、最初のプッシュを行います。</string>
+    <string name="mode_adopt_title">既存の Git リポジトリを使う</string>
+    <string name="mode_adopt_body">保管庫のフォルダーにすでに .git があります（例：別のツールで作成したもの）。履歴は変更せず、そのまま使います。</string>
+
+    <string name="folder_hint_clone">空のフォルダーを選ぶか作成してください。リポジトリはそこにクローンされます。</string>
+    <string name="folder_hint_init">同期するフォルダー（.git なし）を選んでください。</string>
+    <string name="folder_hint_adopt">既存の Git リポジトリのフォルダー（.git を含む）を選んでください。</string>
+    <string name="folder_path_label">パス</string>
+    <string name="folder_up">上へ</string>
+    <string name="folder_go">移動</string>
+    <string name="folder_new">新しいフォルダー</string>
+    <string name="folder_new_name">フォルダー名</string>
+    <string name="folder_badge_vault">Obsidian 保管庫</string>
+    <string name="folder_badge_repo">Git リポジトリ</string>
+    <string name="folder_empty">（サブフォルダーはありません）</string>
+    <string name="folder_use_this">このフォルダーを使う</string>
+    <string name="folder_err_not_dir">このパスはフォルダーではありません。</string>
+    <string name="folder_err_not_empty">フォルダーが空ではありません。クローンには空のフォルダーが必要です。</string>
+    <string name="folder_err_has_git">このフォルダーにはすでに .git があります。戻って「既存の Git リポジトリを使う」を選んでください。</string>
+    <string name="folder_err_no_git">このフォルダーには .git がありません。戻って別の方法を選んでください。</string>
+    <string name="folder_err_name">名前が無効です。</string>
+    <string name="folder_err_create">フォルダーを作成できませんでした。</string>
+    <string name="folder_err_exists">同じ名前のフォルダーがすでにあります。</string>
+    <string name="folder_warn_no_obsidian">このフォルダーには .obsidian がないため、Obsidian の保管庫ではない可能性があります。</string>
+
+    <string name="remote_url_label">リモートリポジトリの URL</string>
+    <string name="remote_url_examples">HTTPS：https://github.com/user/repo.git
+SSH：git@github.com:user/repo.git</string>
+    <string name="remote_url_adopt_hint">空欄のままにすると、リポジトリに設定済みのリモート（origin）を使います。</string>
+    <string name="remote_kind_https">HTTPS のアドレスです。個人用アクセストークンで認証します。</string>
+    <string name="remote_kind_ssh">SSH のアドレスです。SSH キーで認証します。</string>
+    <string name="remote_kind_unsupported">認識できないアドレスです。https://… と SSH のアドレスに対応しています。http:// とローカルパスには対応していません。</string>
+    <string name="remote_username_label">ユーザー名</string>
+    <string name="remote_token_label">個人用アクセストークン</string>
+    <string name="remote_token_replace_label">新しいトークン（空欄なら現在のまま）</string>
+    <string name="remote_token_hint">GitHub の Settings → Developer settings → Personal access tokens で作成し、このリポジトリの内容への読み取りと書き込みの権限を付けてください。トークンはこの端末に暗号化して保存されます。</string>
+    <string name="remote_token_saved_hint">トークンは保存済みです。置き換えるときだけ入力してください。</string>
+    <string name="remote_token_unreadable_hint">保存したトークンを復号できません（システムのキーストアが変わりました）。もう一度入力してください。</string>
+    <string name="remote_ssh_port_label">SSH ポート</string>
+    <string name="remote_ssh_github_443">ポート 443 を使う</string>
+    <string name="remote_ssh_github_22">ポート 22 を使う</string>
+    <string name="remote_branch_label">ブランチ</string>
+    <string name="remote_test">接続をテスト</string>
+    <string name="remote_test_ok_empty">接続しました。リモートは空のリポジトリです。</string>
+    <string name="remote_test_ok">接続しました。リモートのブランチ：%1$s</string>
+    <string name="remote_test_fail_title">接続に失敗しました：%1$s</string>
+    <string name="remote_reason_url">有効なリモートリポジトリの URL を入力してください</string>
+    <string name="remote_reason_username">ユーザー名を入力してください</string>
+    <string name="remote_reason_token">個人用アクセストークンを入力してください</string>
+    <string name="remote_reason_port">有効な SSH ポートを入力してください</string>
+    <string name="remote_reason_key">使用できる SSH キーを選んでください</string>
+
+    <string name="repo_name_label">表示名</string>
+    <string name="identity_title">作成者</string>
+    <string name="identity_body">この保管庫のすべてのコミットに記録される名前とメールアドレスです。空欄のままにすると、設定画面の既定値を使います。</string>
+    <string name="identity_name_label">名前</string>
+    <string name="identity_email_label">メールアドレス</string>
+    <string name="identity_missing">設定画面で既定の作成者が設定されていないため、ここは入力が必要です。</string>
+    <string name="commit_template_label">コミットメッセージのテンプレート</string>
+    <string name="commit_template_hint">使えるプレースホルダー：{{date}} {{hostname}} {{numFiles}} {{files}}</string>
+    <string name="date_format_label">日付の形式</string>
+    <string name="date_format_hint">例：YYYY-MM-DD HH:mm:ss</string>
+
+    <string name="confirm_mode">方法</string>
+    <string name="confirm_folder">フォルダー</string>
+    <string name="confirm_remote">リモート</string>
+    <string name="confirm_remote_existing">リポジトリに設定済みのリモート（origin）を使う</string>
+    <string name="confirm_branch">ブランチ</string>
+    <string name="confirm_auth">認証</string>
+    <string name="confirm_auth_https">個人用アクセストークン（ユーザー名 %1$s）</string>
+    <string name="confirm_auth_ssh">SSH キー「%1$s」</string>
+    <string name="confirm_auth_none">なし</string>
+    <string name="confirm_identity">作成者</string>
+    <string name="confirm_identity_default">設定画面の既定値を使う</string>
+    <string name="confirm_actions_clone">手順：リモートに接続 → 選んだフォルダーにクローン → リポジトリの設定を書き込み。</string>
+    <string name="confirm_actions_init">手順：リモートが空であることを確認 → Git リポジトリを作成 → 推奨の .gitignore を書き込み → すべてのファイルをコミット → プッシュ。</string>
+    <string name="confirm_actions_adopt">手順：リポジトリを開く → ブランチとリモートを確認 → リポジトリの設定を書き込み。既存の履歴は変更しません。</string>
+    <string name="confirm_start">開始</string>
+
+    <string name="progress_running">%1$s…</string>
+    <string name="progress_success">完了</string>
+    <string name="progress_cancelled">キャンセルしました</string>
+    <string name="progress_failed">%1$sに失敗しました：%2$s</string>
+    <string name="progress_back_to_edit">戻って修正</string>
+    <string name="progress_open_repo">保管庫を開く</string>
+    <string name="note_remote_empty">リモートは空のリポジトリです。最初の同期でローカルの内容がプッシュされます。</string>
+    <string name="note_gitignore_created">推奨テンプレートから .gitignore を作成しました。</string>
+    <string name="note_branch_adjusted">リポジトリのブランチは %1$s です（入力された %2$s ではありません）。%1$s を同期します。</string>
+    <string name="note_remote_changed">リモートの URL を %1$s に変更しました。</string>
+    <string name="note_unfinished_merge">このリポジトリには、競合が残ったままの未完了のマージがあります。保管庫の詳細画面で解決してください。</string>
+    <string name="note_resolved_merge">このリポジトリには、競合は解決済みでまだコミットされていないマージがあります。次の同期で完了します。</string>
+
+    <!-- SSH keys (settings, wizard and vault settings) -->
+    <string name="settings_ssh">SSH キー</string>
+    <string name="ssh_list_intro">SSH のアドレスを使う保管庫は、ここにあるキーで認証します。保管庫ごとに別のキーを使えます。新しい保管庫には既定のキーが使われます。秘密鍵はこの端末に暗号化して保存され、端末の外に出ることはありません。</string>
+    <string name="ssh_list_empty">キーはまだありません。</string>
+    <string name="ssh_key_title_default">%1$s（既定）</string>
+    <string name="ssh_key_unused">どの保管庫にも使われていません</string>
+    <plurals name="ssh_key_used_by">
+        <item quantity="other">%1$d 個の保管庫で使用中</item>
+    </plurals>
+    <string name="ssh_key_generate">キーを生成</string>
+    <string name="ssh_key_import">インポート</string>
+    <string name="ssh_key_copy_public">公開鍵をコピー</string>
+    <string name="ssh_key_copy_public_short">公開鍵をコピー</string>
+    <string name="ssh_key_view_public">詳細を表示</string>
+    <string name="ssh_key_set_default">既定に設定</string>
+    <string name="ssh_key_rename">名前を変更</string>
+    <string name="ssh_key_delete">削除</string>
+    <string name="ssh_key_delete_title">キー「%1$s」を削除しますか？</string>
+    <string name="ssh_key_delete_unused">このキーを使っている保管庫はありません。削除したら、リモート側（例：GitHub の SSH keys）からも公開鍵を削除してください。</string>
+    <plurals name="ssh_key_delete_used">
+        <item quantity="other">%1$d 個の保管庫がこのキーを使っています：%2$s。削除すると、これらの保管庫は別のキーを選ぶまで同期できません。リモート側からも公開鍵を削除してください。</item>
+    </plurals>
+    <string name="ssh_key_name_label">名前</string>
+    <string name="ssh_key_name_suggestion">キー %1$d</string>
+    <string name="ssh_key_name_migrated">既定のキー</string>
+    <string name="ssh_key_name_recovered">復旧したキー</string>
+    <string name="ssh_key_source_generated">%1$s に生成</string>
+    <string name="ssh_key_source_imported">%1$s にインポート</string>
+    <string name="ssh_key_unreadable">秘密鍵を復号できません（システムのキーストアが変わりました）。削除してから、もう一度キーを生成するかインポートしてください。</string>
+    <string name="ssh_key_public_hint">下の公開鍵をリモートのアカウントに追加してください。GitHub の場合は Settings → SSH and GPG keys → New SSH key です。</string>
+    <string name="ssh_key_done_generated">キーを生成しました。公開鍵をリモートのアカウントに追加してください。</string>
+    <string name="ssh_key_done_imported">キーをインポートしました。</string>
+    <string name="ssh_key_done_deleted">キーを削除しました。</string>
+    <string name="ssh_generate_title">SSH キーを生成</string>
+    <string name="ssh_generate_body">新しい ed25519 キーを生成します。名前はこのアプリ内でキーを見分けるためだけに表示されます。</string>
+    <string name="ssh_import_title">秘密鍵をインポート</string>
+    <string name="ssh_import_key_label">秘密鍵</string>
+    <string name="ssh_import_key_hint">秘密鍵ファイルの内容をすべて貼り付けてください（-----BEGIN … PRIVATE KEY----- から -----END … ----- まで）。OpenSSH、PEM、PKCS#8、PuTTY の形式に対応しています。</string>
+    <string name="ssh_import_passphrase_label">キーのパスフレーズ（なければ空欄）</string>
+    <string name="ssh_import_action">インポート</string>
+    <string name="ssh_import_err_invalid">秘密鍵の形式を認識できません。公開鍵（.pub）ではなく秘密鍵を貼り付けたこと、BEGIN / END の行が欠けていないことを確認してください。</string>
+    <string name="ssh_import_err_passphrase_required">この秘密鍵はパスフレーズで保護されています。パスフレーズを入力してください。</string>
+    <string name="ssh_import_err_wrong_passphrase">パスフレーズが正しくありません。</string>
+    <string name="ssh_import_err_unsupported">このキーには対応していません：%1$s</string>
+    <string name="ssh_picker_title">SSH キー</string>
+    <string name="ssh_picker_empty">SSH キーはまだありません。新しいキーを生成するか、既存の秘密鍵をインポートしてください。</string>
+    <string name="ssh_picker_choose">キーを選んでください</string>
+    <string name="ssh_picker_deleted">この保管庫で使っていたキーは削除されました。別のキーを選んでください。</string>
+    <string name="ssh_picker_open">キーを選択</string>
+    <string name="ssh_picker_new_generate">新しいキーを生成…</string>
+    <string name="ssh_picker_new_import">秘密鍵をインポート…</string>
+    <string name="ssh_picker_add_public_key">このキーの公開鍵がリモートのアカウントに追加されていることを確認してから、接続をテストしてください。</string>
+    <string name="ssh_picker_manage">キーを管理</string>
+
+    <!-- Known hosts -->
+    <string name="known_hosts_title">既知のホスト</string>
+    <string name="known_hosts_body">ホストに初めて接続したときに、そのホストのキーを記録します。後でキーが変わった場合は、通信の傍受を防ぐために接続を拒否します。サーバーがキーを変更したことが確かな場合は、そのホストを「削除」してから接続し直してください。GitHub のキーは組み込み済みです。</string>
+    <string name="known_hosts_empty">記録はまだありません。</string>
+    <string name="known_hosts_forget">削除</string>
+    <string name="known_hosts_forget_confirm">「%1$s」のホストキーを削除しますか？次に接続したときに再び記録されます。</string>
+
+    <!-- Vault details -->
+    <string name="detail_open_repo_settings">保管庫の設定</string>
+    <string name="detail_history">コミット履歴</string>
+    <string name="detail_logs">同期ログ</string>
+    <string name="detail_branch_remote">ブランチ %1$s · リモート %2$s</string>
+    <string name="detail_auth_https">認証：個人用アクセストークン（%1$s）</string>
+    <string name="detail_auth_ssh">認証：SSH キー「%1$s」</string>
+    <string name="detail_auth_none">認証：なし</string>
+    <string name="detail_local_changes" tools:ignore="PluralsCandidate">未同期のローカルの変更：変更 %1$d · 追加 %2$d · 削除 %3$d</string>
+    <string name="detail_no_local_changes">未同期のローカルの変更はありません</string>
+    <string name="detail_path_copy">パスをコピー</string>
+    <string name="detail_queued_body">ほかの保管庫を先に同期しています。順番が来たら自動的に開始します。</string>
+    <string name="detail_failed_title">%1$sに失敗しました：%2$s</string>
+    <string name="detail_last_failed_title">前回の同期に失敗しました（%1$s）：%2$s</string>
+    <string name="detail_last_result">前回の同期：%1$s</string>
+    <string name="detail_inspect_failed">保管庫の状態を読み込めませんでした</string>
+    <string name="detail_not_repo">このフォルダーは Git リポジトリではありません。移動されたか、.git が削除された可能性があります。</string>
+    <string name="detail_dir_missing">保管庫のフォルダーが見つかりません。移動または削除された可能性があります。</string>
+    <string name="detail_reclone_body">この保管庫をリモートから同じ場所にもう一度クローンできます：%1$s\nリモート、ブランチ、トークンまたは SSH キーなどの設定はそのまま引き継がれます。</string>
+    <string name="detail_reclone_action">再度クローン</string>
+    <string name="detail_action_failed">操作に失敗しました</string>
+    <plurals name="detail_conflicts_title">
+        <item quantity="other">%1$d 個のファイルに競合があります</item>
+    </plurals>
+    <string name="detail_conflicts_body">この端末とリモートで同じ内容が変更されました。ファイルごとに、どちらのバージョンを残すか選んでください（両方を残すことや、手動で編集することもできます）。すべて解決したら、マージを完了してプッシュします。\nこのマージを中止することもできます。その場合もローカルのコミットには影響せず、リモートの変更はリモートに残り、次の同期で再びマージされます。</string>
+    <string name="detail_open_conflicts">競合を解決</string>
+    <string name="detail_abort_merge">マージを中止</string>
+    <string name="detail_abort_confirm">ファイルはローカルの最後のコミットの状態に戻り、行った競合の解決は失われます。リモートの変更には影響せず、次の同期で再びマージされます。</string>
+    <string name="detail_merge_resolved_title">すべての競合を解決しました</string>
+    <string name="detail_merge_resolved_body">マージはまだコミットされていません。「マージを完了してプッシュ」をタップすると、マージコミットを作成してリモートに同期します。</string>
+    <string name="detail_complete_merge_sync">マージを完了してプッシュ</string>
+    <string name="detail_residue_title">ご注意ください</string>
+    <string name="residue_index_lock">前回の操作が中断され、ロックファイル（index.lock）が残っています。同期するときに自動的に削除されます。</string>
+    <string name="residue_index_lock_fix">今すぐ削除</string>
+    <string name="residue_merge_conflicts">競合が残ったままの未完了のマージがあります。</string>
+    <string name="residue_merge_resolved">競合は解決済みですが、マージはまだコミットされていません。</string>
+    <string name="residue_unsupported">リポジトリは、このアプリが対応していない操作（rebase や cherry-pick など）の途中です。先にパソコンでその操作を完了するか中止してください。</string>
+    <string name="residue_detached">リポジトリでどのブランチもチェックアウトされていません（detached HEAD）。先にパソコンでブランチに切り替えてください。</string>
+    <string name="residue_missing_remote">リポジトリにリモート（origin）がありません。同期するときに、保管庫の設定にある URL が書き込まれます。</string>
+    <string name="residue_unborn">ブランチにはまだコミットがありません。最初の同期でプッシュされます。</string>
+    <string name="detail_auth_problem_title">認証情報が不足しています</string>
+    <string name="detail_auth_token_missing">この保管庫は HTTPS のアドレスを使っていますが、個人用アクセストークンが保存されていないため、同期は失敗します。</string>
+    <string name="detail_auth_token_unreadable">保存したトークンを復号できません（システムのキーストアが変わりました）。もう一度入力してください。</string>
+    <string name="detail_auth_key_missing">この保管庫で使っていた SSH キーは削除されました。保管庫の設定で別のキーを選んでください。</string>
+    <string name="detail_auth_key_unreadable">この保管庫で使っている SSH キーを復号できません（システムのキーストアが変わりました）。もう一度キーを生成するかインポートしてから、保管庫の設定で選んでください。</string>
+    <string name="detail_auth_key_not_selected">この保管庫は SSH のアドレスを使っていますが、SSH キーが選ばれていません。</string>
+
+    <string name="result_success">成功</string>
+    <string name="result_conflicts">競合あり</string>
+    <plurals name="result_conflicts_n">
+        <item quantity="other">%1$d 個のファイルに競合があります</item>
+    </plurals>
+    <string name="result_cancelled">キャンセルしました</string>
+    <string name="result_failed_reason">失敗：%1$s</string>
+    <plurals name="summary_committed">
+        <item quantity="other">%1$d 個のファイルをコミットしました</item>
+    </plurals>
+    <string name="summary_no_local_changes">ローカルの変更はありません</string>
+    <string name="summary_merge_none">リモートにはまだこのブランチがありません</string>
+    <string name="summary_merge_ff">リモートの変更を取り込みました</string>
+    <string name="summary_merge_merged">リモートの変更をマージしました</string>
+    <string name="summary_merge_up_to_date">リモートに新しい変更はありません</string>
+    <string name="summary_push_ok">プッシュしました</string>
+    <string name="summary_push_nothing">プッシュするものはありません</string>
+    <string name="summary_no_changes">変更なし</string>
+    <string name="summary_duration">所要時間 %1$s</string>
+
+    <!-- Failure reasons: title (short) and explanation (likely cause + what to do) -->
+    <string name="fail_auth_token">トークンが無効か期限切れです</string>
+    <string name="fail_auth_token_hint">リモートが個人用アクセストークンを拒否しました。トークンの有効期限が切れていないこと、取り消されていないこと、このリポジトリの内容への読み取りと書き込みの権限があることを確認してから、保管庫の設定でトークンを更新してください。</string>
+    <string name="fail_auth_ssh">SSH キーが受け付けられません</string>
+    <string name="fail_auth_ssh_hint">リモートがこの SSH キーを受け付けませんでした。公開鍵がリモートのアカウント（例：GitHub の SSH keys）に追加されていること、保管庫の設定でこのキーが選ばれていることを確認してください。</string>
+    <string name="fail_permission">権限がありません</string>
+    <string name="fail_permission_hint">認証には成功しましたが、このアカウントまたはキーには書き込みの権限がありません（例：読み取り専用のデプロイキー、書き込み権限のないトークン、保護されたブランチ）。リモート側で権限を調整してください。</string>
+    <string name="fail_repo_not_found">リモートリポジトリが見つかりません</string>
+    <string name="fail_repo_not_found_hint">リポジトリの URL が正しいか確認してください。プライベートリポジトリは、認証情報でアクセスできない場合も「見つからない」と表示されます。トークンやキーがアクセス権のあるアカウントのものであることも確認してください。</string>
+    <string name="fail_host_key">サーバーのキーが記録と一致しません</string>
+    <string name="fail_host_key_hint">通信の傍受を防ぐため、接続を中止しました。サーバーがキーを変更したことが確かな場合は（ホスティングサービスが公開しているフィンガープリントと比べてください）、設定画面の「既知のホスト」でそのホストを削除してから、もう一度お試しください。</string>
+    <string name="fail_network">サーバーに接続できません</string>
+    <string name="fail_network_hint">ネットワーク接続を確認し、リモートのサーバーにアクセスできることを確かめてください。接続にプロキシが必要な場合は、端末のプロキシをオンにするか、設定画面で HTTP プロキシを設定してください。</string>
+    <string name="fail_timeout">接続がタイムアウトしました</string>
+    <string name="fail_timeout_hint">サーバーから長い間応答がありませんでした。ネットワークやプロキシが正常に動いているか確認し、しばらくしてからもう一度お試しください。</string>
+    <string name="fail_proxy">プロキシ経由で接続できません</string>
+    <string name="fail_proxy_hint">設定画面の HTTP プロキシに接続できなかったか、プロキシが接続の転送を拒否しました。プロキシのホストとポートが正しいこと、プロキシアプリが起動していてこの端末からの接続を受け付けていることを確認してください。プロキシが不要な場合は、設定画面でオフにしてください。</string>
+    <string name="fail_check_proxy_hint">アプリ内のプロキシがオンになっているため、プロキシのアドレスが使えることも確認してください。</string>
+    <string name="fail_tls">安全な接続に失敗しました</string>
+    <string name="fail_tls_hint">サーバーと安全な接続を確立できませんでした（証明書の確認に失敗）。ネットワークが通信を傍受しているか、端末の時刻がずれている可能性があります。確認してから、もう一度お試しください。</string>
+    <string name="fail_push_rejected">リモートがプッシュを拒否しました</string>
+    <string name="fail_push_rejected_hint">リモートがこのプッシュの受け入れを拒否しました。多くの場合、ブランチの保護ルールやサーバー側のチェックが原因です。ローカルのコミットは保存されており、失われることはありません。技術情報を確認し、リモート側の設定を調整してから、もう一度同期してください。</string>
+    <string name="fail_push_race">リモートに新しいコミットが追加され続けています</string>
+    <string name="fail_push_race_hint">プッシュ中に、リモートに新しいコミットが何度も追加されました（パソコンが同時に同期している可能性があります）。ローカルのコミットは保存されています。しばらくしてからもう一度同期してください。</string>
+    <string name="fail_local_files">ローカルのファイルが上書きされます</string>
+    <string name="fail_local_files_hint">リモートで新しく追加されたファイルが、この端末の追跡されていない（または .gitignore で無視されている）ファイルと同じ名前です。マージするとそれらが上書きされるため、同期を中止しました。技術情報でファイル名を確認し、それらのファイルの名前を変えるか移動してから、もう一度同期してください。</string>
+    <string name="fail_vault_missing">保管庫のフォルダーが見つかりません</string>
+    <string name="fail_vault_missing_hint">保管庫のフォルダーが移動、名前の変更、または削除された可能性があります。フォルダーの場所を確認し、必要なら保管庫を一覧から削除して追加し直してください。</string>
+    <string name="fail_not_repo">フォルダーに Git リポジトリがありません</string>
+    <string name="fail_not_repo_hint">保管庫のフォルダーに .git フォルダーがありません。削除された可能性があります。保管庫を一覧から削除して、追加し直してください（リモートからクローンできます）。</string>
+    <string name="fail_already_repo">フォルダーにはすでに Git リポジトリがあります</string>
+    <string name="fail_already_repo_hint">このフォルダーにはすでに .git があります。戻って「既存の Git リポジトリを使う」を選んでください。</string>
+    <string name="fail_credential_missing">トークンまたはキーがありません</string>
+    <string name="fail_credential_missing_hint">この保管庫には使用できるトークンが保存されていないか、SSH キーが選ばれていません（または選んだキーが削除されました）。保管庫の設定で追加してください。</string>
+    <string name="fail_credential_unreadable">トークンまたはキーを復号できません</string>
+    <string name="fail_credential_unreadable_hint">システムのキーストアが変わったため、保存したトークンや秘密鍵を復号できなくなりました。保管庫の設定でトークンを入力し直すか、SSH キーをもう一度生成またはインポートしてください。</string>
+    <string name="fail_repo_state">リポジトリの状態により同期できません</string>
+    <string name="fail_repo_state_hint">リポジトリが rebase や cherry-pick などの操作の途中であるか、どのブランチもチェックアウトされていないか、保管庫の設定とは別のブランチがチェックアウトされています。先にパソコンで解消してから同期してください。</string>
+    <string name="fail_identity">作成者が設定されていません</string>
+    <string name="fail_identity_hint">コミットには名前とメールアドレスが必要です。設定画面で既定の作成者を設定するか、保管庫の設定でこの保管庫用の作成者を設定してください。</string>
+    <string name="fail_dir_not_empty">フォルダーが空ではありません</string>
+    <string name="fail_dir_not_empty_hint">クローンには空のフォルダーが必要です。新しいフォルダーを作成してください。フォルダーにすでにノートがある場合は、代わりに「この端末の保管庫をアップロード」か「既存の Git リポジトリを使う」を選んでください。</string>
+    <string name="fail_remote_not_empty">リモートリポジトリが空ではありません</string>
+    <string name="fail_remote_not_empty_hint">リモートにはすでに内容があるため、その上に保管庫をアップロードすることはできません。先にリモートを空のフォルダーにクローンし、この端末のノートをそこに移してから同期してください。</string>
+    <string name="fail_branch_not_found">リモートにこのブランチがありません</string>
+    <string name="fail_branch_not_found_hint">戻ってブランチ名を変更してください。リモートにあるブランチは技術情報に一覧表示されています。</string>
+    <string name="fail_remote_missing">リモートの URL がありません</string>
+    <string name="fail_remote_missing_hint">リポジトリにリモート（origin）が設定されていません。リモートリポジトリの URL を入力してください。</string>
+    <string name="fail_vault_empty">保管庫にコミットするものがありません</string>
+    <string name="fail_vault_empty_hint">選んだフォルダーにファイルがありません（またはすべて .gitignore で無視されています）。正しい保管庫のフォルダーを選んだか確認してください。</string>
+    <string name="fail_storage">この端末のファイルを読み書きできません</string>
+    <string name="fail_storage_hint">ストレージの空き容量が不足しているか、ファイルへのアクセス権限がオフになっている可能性があります。空き容量と権限を確認してから、もう一度お試しください。</string>
+    <string name="fail_unknown">予期しないエラー</string>
+    <string name="fail_unknown_hint">原因を特定できませんでした。技術情報と同期ログを確認してください。サポートが必要な場合は、設定画面でログをエクスポートして開発者に送ることができます。</string>
+
+    <!-- Vault settings -->
+    <string name="repo_settings_title">保管庫の設定</string>
+    <string name="repo_settings_busy_title">同期中</string>
+    <string name="repo_settings_busy_body">同期が終わるまで、変更の保存、リポジトリの整理、一覧からの保管庫の削除はできません。</string>
+    <string name="repo_settings_general">基本情報</string>
+    <string name="repo_settings_folder">フォルダー：%1$s</string>
+    <string name="repo_settings_branch">ブランチ：%1$s</string>
+    <string name="repo_settings_remote">リモートと認証</string>
+    <string name="repo_settings_identity">作成者とコミットメッセージ</string>
+    <string name="repo_settings_identity_body">この保管庫にだけ適用されます。名前とメールアドレスを空欄にすると、設定画面の既定値を使います。</string>
+    <string name="repo_settings_identity_incomplete">名前とメールアドレスは両方入力するか、両方空欄にしてください。</string>
+    <string name="repo_settings_reason_name">表示名を入力してください</string>
+    <string name="repo_settings_saved">保存しました</string>
+    <string name="repo_settings_save_failed">保存できませんでした</string>
+    <string name="repo_settings_remove">一覧から削除</string>
+    <string name="repo_settings_remove_hint">このアプリ内の記録、トークン、ログだけを削除します。保管庫のフォルダーとその中の .git は削除されません。</string>
+    <string name="repo_settings_remove_title">「%1$s」を一覧から削除しますか？</string>
+    <string name="repo_settings_remove_confirm">保管庫のフォルダーとその中の .git は端末に残ります。後で「既存の Git リポジトリを使う」で追加し直せます。</string>
+
+    <string name="maintenance_title">リポジトリの整理</string>
+    <string name="maintenance_body">散らばったデータファイルをまとめて圧縮し、ファイル数と使用容量を減らして、以降の操作を速くします。ノートと履歴は変更されません。</string>
+    <string name="maintenance_stats">リポジトリのデータ：%1$s · 個別オブジェクト：%2$d · パック：%3$d</string>
+    <string name="maintenance_recommended">整理をおすすめします。</string>
+    <string name="maintenance_not_needed">今は整理の必要はありません。</string>
+    <string name="maintenance_last_done">前回の整理（%1$s）：%2$s → %3$s、所要時間 %4$s</string>
+    <string name="maintenance_last_failed">前回の整理（%1$s）に失敗しました：%2$s</string>
+    <string name="maintenance_run">整理を開始</string>
+
+    <string name="gitignore_title">推奨の除外ルール</string>
+    <string name="gitignore_complete">.gitignore には推奨ルールがすべて含まれています。</string>
+    <plurals name="gitignore_missing">
+        <item quantity="other">.gitignore に推奨ルールが %1$d 件不足しています：</item>
+    </plurals>
+    <string name="gitignore_note">これらのルールにより、ワークスペースのレイアウト、キャッシュ、ゴミ箱など端末ごとのファイルを同期の対象外にします。すでに同期されているファイルは引き続き同期されます。</string>
+    <string name="gitignore_append">推奨ルールを追加</string>
+    <string name="gitignore_append_confirm">不足している推奨ルールを保管庫の .gitignore の末尾に追加しますか？変更は次の同期でコミットされます。</string>
+    <plurals name="gitignore_appended">
+        <item quantity="other">%1$d 件のルールを追加しました。次の同期でコミットされます。</item>
+    </plurals>
+
+    <!-- Commit history -->
+    <string name="history_title">コミット履歴</string>
+    <string name="history_intro">現在のブランチの最近のコミットです。「未プッシュ」は、リモートにまだそのコミットがないことを示します（前回の同期の時点）。</string>
+    <string name="history_empty">コミットはまだありません。</string>
+    <string name="history_load_failed">コミット履歴を読み込めませんでした</string>
+    <string name="history_end">これより前のコミットはありません</string>
+    <string name="history_not_pushed">未プッシュ</string>
+    <string name="history_merge">マージ</string>
+    <string name="history_no_message">（コミットメッセージなし）</string>
+    <string name="commit_title">コミット %1$s</string>
+    <string name="commit_author">%1$s &lt;%2$s&gt; · %3$s</string>
+    <string name="commit_pushed">リモートにプッシュ済み</string>
+    <string name="commit_not_pushed">まだリモートにプッシュされていません</string>
+    <plurals name="commit_changes">
+        <item quantity="other">%1$d 個のファイルを変更</item>
+    </plurals>
+    <plurals name="commit_changes_merge">
+        <item quantity="other">マージ前のローカル版と比べて %1$d 個のファイルを変更</item>
+    </plurals>
+    <string name="commit_renamed_from">変更前の名前：%1$s</string>
+    <plurals name="commit_more_changes">
+        <item quantity="other">ほかに %1$d 個のファイル（一覧には非表示）</item>
+    </plurals>
+    <string name="change_added">追加</string>
+    <string name="change_modified">変更</string>
+    <string name="change_deleted">削除</string>
+    <string name="change_renamed">名前変更</string>
+    <string name="change_copied">コピー</string>
+    <string name="commit_copied_from">コピー元：%1$s</string>
+    <string name="diff_expand">変更を表示</string>
+    <string name="diff_collapse">変更を隠す</string>
+    <plurals name="diff_folded">
+        <item quantity="other">⋯ 変更のない %1$d 行を折りたたみ ⋯</item>
+    </plurals>
+    <string name="diff_fold">変更のない行を折りたたむ</string>
+    <string name="diff_binary">バイナリファイルのため内容は表示しません（%1$s）</string>
+    <string name="diff_too_large">ファイルが大きすぎるため変更は表示しません（%1$s）</string>
+    <string name="diff_unchanged">内容に変更はありません</string>
+    <string name="diff_unchanged_newline">内容に変更はありません。ファイル末尾の改行だけが異なります</string>
+    <string name="diff_newline_at_end">ファイル末尾の改行も変更されています（上には表示されていません）</string>
+    <string name="diff_truncated" tools:ignore="PluralsCandidate">変更が多すぎるため、最初の %1$d 行だけを表示しています</string>
+    <string name="diff_load_failed">変更を読み込めませんでした：%1$s</string>
+
+    <!-- Conflict list -->
+    <string name="conflicts_title">競合</string>
+    <string name="conflicts_menu">その他の操作</string>
+    <string name="conflicts_loading">競合を読み込んでいます…</string>
+    <string name="conflicts_load_failed">競合を読み込めませんでした</string>
+    <plurals name="conflicts_intro">
+        <item quantity="other">未解決のファイルが %1$d 個あります。ファイルをタップして競合を一つずつ確認するか、右上のメニューからまとめて解決してください。</item>
+    </plurals>
+    <string name="conflicts_all_ours">すべてローカル版を採用</string>
+    <string name="conflicts_all_theirs">すべてリモート版を採用</string>
+    <plurals name="conflicts_all_ours_confirm">
+        <item quantity="other">残りの %1$d 個のファイルをすべてローカル版にしますか？これらのファイルに対するリモートの変更は結果に含まれません（リモートの履歴には残ります）。リモートで削除されたファイルはローカル版が残り、ローカルで削除されたファイルは削除されたままになります。</item>
+    </plurals>
+    <plurals name="conflicts_all_theirs_confirm">
+        <item quantity="other">残りの %1$d 個のファイルをすべてリモート版にしますか？これらのファイルに対するローカルの変更は結果に含まれません（ローカルのコミット履歴には残ります）。ローカルで削除されたファイルはリモート版に復元され、リモートで削除されたファイルは削除されます。</item>
+    </plurals>
+    <string name="conflicts_all_resolved_hint">すべての競合を解決しましたが、マージはまだコミットされていません。</string>
+    <string name="conflicts_complete_merge">マージを完了してプッシュ</string>
+    <string name="conflicts_action_failed">操作に失敗しました</string>
+    <string name="conflicts_syncing_hint">同期中です。終わってから競合を解決できます。</string>
+    <string name="conflicts_none_title">解決が必要な競合はありません</string>
+    <string name="conflicts_none_body">この保管庫には進行中のマージはありません。</string>
+    <string name="conflicts_kind_both_modified">両方で変更</string>
+    <string name="conflicts_kind_both_added">両方で作成</string>
+    <string name="conflicts_kind_deleted_by_us">ローカルで削除</string>
+    <string name="conflicts_kind_deleted_by_them">リモートで削除</string>
+    <string name="conflicts_kind_added_by_us">ローカルにのみ存在</string>
+    <string name="conflicts_kind_added_by_them">リモートにのみ存在</string>
+    <string name="conflicts_kind_both_deleted">両方で削除</string>
+    <string name="conflicts_kind_binary">バイナリファイル</string>
+    <string name="conflicts_kind_resolved">解決済み</string>
+
+    <!-- Conflict file -->
+    <string name="conflict_ours">ローカル版</string>
+    <string name="conflict_theirs">リモート版</string>
+    <string name="conflict_marker_ours">ローカル版</string>
+    <string name="conflict_marker_theirs">リモート版</string>
+    <plurals name="conflict_blocks_intro">
+        <item quantity="other">競合が %1$d か所あります。本文中の元の位置に元の順序で表示し、左側の色付きバーで示しています。それぞれ、どちらのバージョンを残すか選んでください。</item>
+    </plurals>
+    <string name="conflict_line_numbers_intro">左側の 2 列の行番号は、それぞれローカルのファイルとリモートのファイルでの行番号です。</string>
+    <string name="conflict_block_title">競合 %1$d / %2$d</string>
+    <string name="conflict_block_editing">競合 %1$d / %2$d を編集中</string>
+    <plurals name="conflict_line_count">
+        <item quantity="other">%1$d 行</item>
+    </plurals>
+    <string name="conflict_side_empty">（このバージョンではここに内容がありません）</string>
+    <plurals name="conflict_side_truncated">
+        <item quantity="other">ほかに %1$d 行が表示されていません。ファイル全体のエディターで確認できます。</item>
+    </plurals>
+    <string name="conflict_keep_ours">ローカル採用</string>
+    <string name="conflict_keep_theirs">リモート採用</string>
+    <string name="conflict_keep_both">両方を採用</string>
+    <string name="conflict_both_ours_first">両方を採用（ローカルが先）</string>
+    <string name="conflict_both_theirs_first">両方を採用（リモートが先）</string>
+    <string name="conflict_edit_block">手動で編集</string>
+    <string name="conflict_edit_block_label">この競合の最終的なテキスト</string>
+    <string name="conflict_use_edited">編集結果を使う</string>
+    <string name="conflict_clear_choice">選択を解除</string>
+    <string name="conflict_edit_again">再編集</string>
+    <string name="conflict_empty_result">（この競合の結果は空です）</string>
+    <plurals name="conflict_common_collapsed">
+        <item quantity="other">⋯ 競合のない %1$d 行を折りたたみ ⋯</item>
+    </plurals>
+    <string name="conflict_common_collapse">競合のない行を折りたたむ</string>
+    <string name="conflict_choice_undecided">未選択</string>
+    <string name="conflict_choice_ours">ローカルを採用</string>
+    <string name="conflict_choice_theirs">リモートを採用</string>
+    <string name="conflict_choice_both_ours_first">両方を採用（ローカルが先）</string>
+    <string name="conflict_choice_both_theirs_first">両方を採用（リモートが先）</string>
+    <string name="conflict_choice_custom">手動で編集済み</string>
+    <string name="conflict_progress" tools:ignore="PluralsCandidate">%1$d / %2$d 件解決済み</string>
+    <string name="conflict_locate_undecided">次へ</string>
+    <string name="conflict_preview_edit">確認と編集</string>
+    <string name="conflict_mark_resolved">解決済みにする</string>
+    <string name="conflict_all_blocks_ours">すべてローカルを採用</string>
+    <string name="conflict_all_blocks_theirs">すべてリモートを採用</string>
+    <string name="conflict_reset_choices">すべての選択を解除</string>
+    <string name="conflict_open_editor">ファイル全体を編集</string>
+    <string name="conflict_leave_title">選択内容を破棄しますか？</string>
+    <string name="conflict_leave_body">このファイルでの選択はまだ保存されていません。今戻ると、次回また選び直す必要があります。保存するには、すべての競合を選んでから「解決済みにする」をタップしてください。</string>
+    <string name="conflict_leave_discard">破棄して戻る</string>
+    <string name="conflict_editor_mode_title">どこから編集を始めますか？</string>
+    <string name="conflict_editor_mode_body">これまでの選択を反映した状態から続けることも（まだ選んでいない競合には競合マーカーが残ります）、元の競合の状態から始めることもできます（すべての競合にマーカーが付きます）。ブロック表示での選択は変わりません。</string>
+    <string name="conflict_editor_mode_keep">選択を反映する</string>
+    <string name="conflict_editor_mode_original">元の競合から始める</string>
+    <string name="view_wrap">折り返す</string>
+    <string name="view_line_numbers">行番号を表示</string>
+    <string name="conflict_missing_title">このファイルにはもう競合がありません</string>
+    <string name="conflict_missing_body">別の場所で解決されたか、パスが変わった可能性があります。一覧に戻って最新の状態を確認してください。</string>
+    <string name="conflict_whole_binary_body">バイナリファイル（画像や PDF など）は競合ごとにマージできません。ファイル全体としてどちらのバージョンを残すか選んでください。</string>
+    <string name="conflict_whole_deleted_by_them_body">リモートではこのファイルが削除されましたが、ローカルでは変更されています。ローカル版を残すか、削除を受け入れてください。</string>
+    <string name="conflict_whole_deleted_by_us_body">ローカルではこのファイルが削除されましたが、リモートでは変更されています。リモート版を復元するか、削除したままにしてください。</string>
+    <string name="conflict_whole_both_deleted_body">両方でこのファイルが削除されました。</string>
+    <string name="conflict_whole_one_side_body">このファイルは片方にしかありません。残すか削除するかを選んでください。</string>
+    <string name="conflict_whole_too_large_body">ファイルが大きすぎるため、競合ごとにマージできません。ファイル全体としてどちらのバージョンを残すか選んでください。</string>
+    <string name="conflict_side_info">%1$s：%2$s · %3$s</string>
+    <string name="conflict_use_ours_file">ローカル版を採用</string>
+    <string name="conflict_use_theirs_file">リモート版を採用</string>
+    <string name="conflict_keep_ours_file">ローカル版を残す</string>
+    <string name="conflict_keep_theirs_file">リモート版を復元</string>
+    <string name="conflict_edit_ours_then_keep">ローカル版を編集して採用</string>
+    <string name="conflict_edit_theirs_then_keep">リモート版を編集して採用</string>
+    <string name="conflict_cannot_edit_side">このバージョンはテキストとして編集できません（バイナリファイルまたは大きすぎるファイル）。</string>
+    <string name="conflict_delete_file">ファイルを削除</string>
+    <string name="conflict_delete_title">ファイルを削除しますか？</string>
+    <string name="conflict_delete_confirm">「%1$s」を削除して解決します。マージを完了して同期すると、この端末にもリモートにもこのファイルはなくなります（履歴からは復元できます）。</string>
+    <string name="conflict_editor_title">%1$s を編集</string>
+    <string name="conflict_editor_search">検索</string>
+    <string name="conflict_editor_find_next">次へ</string>
+    <string name="conflict_editor_not_found">見つかりません</string>
+    <string name="conflict_editor_save">保存して解決済みにする</string>
+    <plurals name="conflict_editor_markers_warning">
+        <item quantity="other">注意：ファイルに、アプリが生成した競合マーカーがあります（行：%1$s）。削除しないと、そのまま保存され、同期するときにリモートにコミットされます。</item>
+    </plurals>
+    <string name="conflict_editor_next_marker">移動</string>
+    <string name="conflict_lines_more">%1$s など、全 %2$d 行</string>
+    <string name="conflict_editor_save_markers_title">競合マーカーが残っています</string>
+    <plurals name="conflict_editor_save_markers_confirm">
+        <item quantity="other">アプリが生成した競合マーカーがまだ残っています（行：%1$s）。保存すると、これらの行がファイルに書き込まれ、同期するときにリモートにコミットされます。このまま保存しますか？</item>
+    </plurals>
+    <string name="conflict_editor_save_anyway">このまま保存</string>
+    <string name="conflict_editor_discard_confirm">エディターで行った変更を破棄しますか？</string>
+    <string name="conflict_editor_discard">変更を破棄</string>
+
+    <!-- Logs and crash reports -->
+    <string name="logs_title">同期ログ</string>
+    <string name="logs_empty">ログはまだありません。</string>
+    <string name="log_result_success">成功</string>
+    <string name="log_result_conflicts">競合あり</string>
+    <string name="log_result_failed">失敗</string>
+    <string name="log_result_cancelled">キャンセル済み</string>
+    <string name="log_result_unknown">未完了</string>
+    <string name="log_op_sync">同期</string>
+    <string name="log_op_clone">クローン</string>
+    <string name="log_op_init">初期化してアップロード</string>
+    <string name="log_op_adopt">既存のリポジトリを使用</string>
+    <string name="log_op_maintain">リポジトリの整理</string>
+    <string name="log_op_unknown">その他の操作</string>
+    <string name="log_share_title">ログを共有</string>
+    <string name="crash_report_title">クラッシュレポート</string>
+
+    <!-- Settings -->
+    <string name="settings_title">設定</string>
+    <string name="settings_identity">既定の作成者</string>
+    <string name="settings_identity_body">すべてのコミットに記録される名前とメールアドレスです。パソコンの Git と同じものを使うことをおすすめします。保管庫ごとに、保管庫の設定で別の作成者を指定することもできます。</string>
+    <string name="settings_commit">コミットメッセージ</string>
+    <string name="settings_network">ネットワーク</string>
+    <string name="settings_proxy_enabled">HTTP プロキシ</string>
+    <string name="settings_proxy_host">プロキシのホスト</string>
+    <string name="settings_proxy_port">プロキシのポート</string>
+    <string name="settings_proxy_hint">HTTPS と SSH のどちらのリモートも、このプロキシ経由で接続します。スマートフォンのプロキシアプリは通常 127.0.0.1 のいずれかのポートで待ち受けています。プロキシ自体が 15 秒以内に応答しない場合、接続は失敗します。</string>
+    <string name="settings_reason_proxy">有効なプロキシのホストとポートを入力してください</string>
+    <string name="settings_logs">ログ</string>
+    <string name="settings_log_keep">保管庫ごとに残すログの数</string>
+    <string name="settings_debug_logs">詳細ログ</string>
+    <string name="settings_debug_logs_hint">トラブルシューティングのため、Git と SSH のデバッグ情報もログに書き込みます。</string>
+    <string name="settings_saved">保存しました</string>
+    <string name="settings_language">言語</string>
+    <string name="settings_language_system">システムに従う</string>
+    <string name="settings_language_hint">システムに従う場合、システムの言語リストのうちこのアプリが対応している最初の言語を使います。どれにも対応していない場合は英語で表示します。</string>
+    <string name="settings_notifications">通知</string>
+    <string name="settings_notifications_on">通知はオンです</string>
+    <string name="settings_notifications_off">通知はオフです</string>
+    <string name="settings_notifications_enable">オンにする</string>
+    <string name="settings_notifications_manage">管理</string>
+    <string name="settings_notifications_body">通知には同期の進行状況と結果が表示されます。オフにしても同期は動作しますが、進行状況は表示されず、競合や失敗のお知らせも届きません。システム設定では「同期の進行状況」「同期完了」「要対応」の 3 種類を個別に管理できます。</string>
+    <string name="settings_backup">バックアップと復元</string>
+    <string name="settings_backup_body">保管庫の一覧、設定、SSH キー、既知のホストをファイルにエクスポートし、新しい端末や再インストール後に復元できます。トークンと秘密鍵は、自分で決めたパスフレーズで暗号化されます。設定は通常、アプリ専用のストレージに保存され、アプリを更新しても残ります。</string>
+    <string name="backup_export">エクスポート</string>
+    <string name="backup_import">復元</string>
+    <string name="backup_failed">バックアップに失敗しました</string>
+    <string name="backup_exported">設定をエクスポートし、内容を確認しました</string>
+    <string name="backup_exported_partial">エクスポートしましたが、一部のトークンまたは秘密鍵を含められませんでした（バックアップのカードを参照）</string>
+    <string name="backup_err_verify">ファイルが正しく保存されませんでした。読み戻した内容が書き込んだ内容と異なります。別の場所をお試しください。</string>
+    <string name="backup_restore_busy">保管庫の同期中は復元できません</string>
+    <string name="backup_last_export_with_secrets">前回のエクスポート：%1$s · トークンと秘密鍵を含む</string>
+    <string name="backup_last_export_without_secrets">前回のエクスポート：%1$s · トークンと秘密鍵を含まない</string>
+    <string name="backup_missing_token">「%1$s」のトークン</string>
+    <string name="backup_missing_key">SSH キー「%1$s」</string>
+    <string name="backup_last_export_missing">この端末で復号できなくなったため含まれていません（入力し直すか作成し直してください）：%1$s</string>
+    <string name="backup_never_exported">設定はまだエクスポートされていません。機種変更や再インストールの前にエクスポートしてください。</string>
+    <string name="backup_export_title">設定をエクスポート</string>
+    <string name="backup_export_body">エクスポートには、保管庫の一覧、設定、SSH キーの一覧、既知のホストが含まれます。</string>
+    <string name="backup_include_secrets">トークンと秘密鍵も含める</string>
+    <string name="backup_passphrase">パスフレーズ</string>
+    <string name="backup_passphrase_hint" tools:ignore="PluralsCandidate">%1$d 文字以上。復元に必要です。忘れると取り戻せません。</string>
+    <string name="backup_passphrase_confirm">パスフレーズをもう一度入力</string>
+    <string name="backup_without_secrets_hint">トークンと秘密鍵はエクスポートされません。復元後、トークンを入力し直し、SSH キーをもう一度生成またはインポートする必要があります（公開鍵もリモートに追加し直してください）。</string>
+    <string name="backup_choose_location">保存先を選択</string>
+    <string name="backup_import_title">バックアップから復元</string>
+    <string name="backup_import_source">バックアップ日時 %1$s · 端末 %2$s · バージョン %3$s</string>
+    <plurals name="backup_import_repos">
+        <item quantity="other">保管庫 %1$d 個</item>
+    </plurals>
+    <plurals name="backup_import_keys">
+        <item quantity="other">SSH キー %1$d 個</item>
+    </plurals>
+    <string name="backup_repo_folder_used">この端末の「%1$s」がすでにこのフォルダーを使っています</string>
+    <string name="backup_repo_folder_missing">このフォルダーはこの端末にありません。復元後、保管庫の画面からもう一度クローンできます。</string>
+    <string name="backup_repo_replaces">この端末の同じ保管庫を置き換えます</string>
+    <string name="backup_key_replaces">この端末の同じキーを置き換えます</string>
+    <string name="backup_import_settings_title">アプリの設定</string>
+    <string name="backup_import_settings">アプリの設定を復元</string>
+    <string name="backup_import_settings_hint">既定の作成者、コミットメッセージ、プロキシ、ログ、言語、表示オプション。この端末の設定はすべて置き換えられます。</string>
+    <string name="backup_import_known_hosts">バックアップ内の既知のホストは、この端末にまだない場合に追加されます。この端末ですでに信頼しているホストはそのままです。</string>
+    <string name="backup_import_no_secrets">このバックアップにはトークンと秘密鍵が含まれていません。</string>
+    <string name="backup_import_without_secrets">トークンと秘密鍵を復元しない</string>
+    <string name="backup_import_action">復元</string>
+    <string name="backup_restored">復元しました。保管庫：%1$d · SSH キー：%2$d · トークン：%3$d</string>
+    <string name="backup_restored_secrets_skipped">トークンと秘密鍵は復元されていません。保管庫の設定で追加してください。</string>
+    <plurals name="backup_restored_missing_folders">
+        <item quantity="other">復元した保管庫のうち %1$d 個は、この端末にフォルダーがありません。保管庫を開いてもう一度クローンしてください。</item>
+    </plurals>
+    <string name="backup_err_not_backup">VaultSync のバックアップファイルではありません。</string>
+    <string name="backup_err_too_new">このバックアップは新しいバージョンの VaultSync でエクスポートされました。先にアプリを更新してください。</string>
+    <string name="backup_err_wrong_passphrase">パスフレーズが正しくありません。</string>
+    <string name="backup_err_corrupt">バックアップファイルが壊れているため、読み込めません。</string>
+    <string name="settings_diagnostics">トラブルシューティング</string>
+    <string name="settings_diagnostics_body">すべての保管庫の同期ログとクラッシュレポートを 1 つのファイルにまとめ、問題の報告に使えるようにします。ログにはトークン、秘密鍵、パスフレーズは含まれません。</string>
+    <string name="diagnostics_export">ログをエクスポート</string>
+    <string name="diagnostics_export_failed">ログをエクスポートできませんでした</string>
+    <string name="diagnostics_exported">ログを保存しました</string>
+    <plurals name="diagnostics_crash_count">
+        <item quantity="other">クラッシュレポートが %1$d 件保存されています</item>
+    </plurals>
+    <string name="diagnostics_view_latest_crash">最新のレポートを表示</string>
+    <string name="settings_help">ヘルプ</string>
+    <string name="settings_help_background">同期中、アプリは通知領域に進行状況を表示し、フォアグラウンドサービスとして動作するため、ほかのアプリに切り替えても同期は続きます。それでも切り替えた後に同期が止まる場合は、システム設定で VaultSync のバックグラウンド実行を許可するか、電池の最適化の対象から外してください。</string>
+    <string name="settings_help_vault_location">Obsidian の保管庫は通常、内部ストレージ/Documents/&lt;保管庫名&gt; にあります。正確な場所は Obsidian の「保管庫を管理」で確認できます。</string>
+    <string name="settings_about">アプリについて</string>
+    <string name="settings_about_body">VaultSync %1$s · JGit %2$s · Android %3$s</string>
+</resources>

@@ -1,0 +1,824 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  UI strings: Spanish (neutral, for Spain and Latin America; D-040). Keys match values/strings.xml one to one.
+  Principles in docs/UI.md §10. Address the user with "tú"; sentence case; quotes “ ”; ellipsis …; no ASCII apostrophes needed.
+  Glossary: vault = bóveda, repository = repositorio, remote = remoto, commit = commit, push = enviar, merge = fusionar / fusión,
+  token = token de acceso personal, passphrase = frase de contraseña, backup = copia de seguridad, restore = restaurar.
+  Plurals: one / other. translatable="false" entries (language names) live only in values/.
+-->
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">VaultSync</string>
+
+    <!-- General -->
+    <string name="action_cancel">Cancelar</string>
+    <string name="action_ok">Aceptar</string>
+    <string name="action_back">Atrás</string>
+    <string name="action_close">Cerrar</string>
+    <string name="action_dismiss">Entendido</string>
+    <string name="action_next">Siguiente</string>
+    <string name="action_save">Guardar</string>
+    <string name="action_copy">Copiar todo</string>
+    <string name="action_share">Compartir</string>
+    <string name="action_retry">Reintentar</string>
+    <string name="action_more">Más opciones</string>
+    <string name="action_view_logs">Ver registros</string>
+    <string name="action_sync">Sincronizar</string>
+    <string name="action_sync_now">Sincronizar ahora</string>
+    <string name="action_go_settings">Ir a Ajustes</string>
+    <string name="action_show_technical">Detalles técnicos</string>
+    <string name="action_hide_technical">Ocultar detalles técnicos</string>
+    <string name="copied">Copiado al portapapeles</string>
+    <string name="duration_seconds">%1$s\u00A0s</string>
+    <string name="duration_minutes">%1$d\u00A0min %2$d\u00A0s</string>
+    <string name="size_bytes">%1$s\u00A0B</string>
+    <string name="size_kb">%1$s\u00A0KB</string>
+    <string name="size_mb">%1$s\u00A0MB</string>
+    <string name="size_gb">%1$s\u00A0GB</string>
+    <string name="percent">%1$d\u00A0%%</string>
+
+    <!-- Unsaved changes bar (app settings and vault settings, docs/UI.md §9.1) -->
+    <string name="unsaved_changes">Cambios sin guardar</string>
+    <string name="unsaved_discard">Descartar</string>
+    <string name="unsaved_reason_busy">No se puede guardar durante la sincronización</string>
+    <string name="unsaved_leave_title">¿Descartar los cambios sin guardar?</string>
+    <string name="unsaved_leave_discard">Descartar</string>
+    <string name="unsaved_keep_editing">Seguir editando</string>
+
+    <!-- Sync stages and progress -->
+    <string name="stage_preparing">Preparando</string>
+    <string name="stage_precheck">Comprobando la bóveda</string>
+    <string name="stage_commit">Haciendo commit de los cambios locales</string>
+    <string name="stage_fetch">Obteniendo los cambios remotos</string>
+    <string name="stage_merge">Fusionando los cambios remotos</string>
+    <string name="stage_conflicts">Esperando a que se resuelvan los conflictos</string>
+    <string name="stage_push">Enviando al remoto</string>
+    <string name="stage_done">Listo</string>
+    <string name="stage_maintain">Manteniendo el repositorio</string>
+    <string name="task_receiving">Recibiendo datos</string>
+    <string name="task_resolving">Procesando datos</string>
+    <string name="task_counting">Contando objetos</string>
+    <string name="task_compressing">Comprimiendo objetos</string>
+    <string name="task_writing">Escribiendo datos</string>
+    <string name="task_finding_sources">Buscando datos reutilizables</string>
+    <string name="task_sizes">Calculando tamaños</string>
+    <string name="task_indexing">Creando el índice</string>
+    <string name="task_updating_refs">Actualizando ramas</string>
+    <string name="task_checkout">Escribiendo archivos</string>
+    <string name="task_verifying">Verificando archivos</string>
+    <string name="progress_cancelling">Cancelando…</string>
+    <string name="task_opening">Conectando</string>
+    <string name="task_staging">Leyendo los archivos modificados</string>
+    <string name="meter_downloaded">Descargado: %1$s</string>
+    <string name="meter_uploaded">Subido: %1$s</string>
+    <string name="meter_rate">%1$s/s</string>
+    <string name="meter_elapsed">Tiempo: %1$s</string>
+    <string name="task_pack_refs">Ordenando los registros de ramas</string>
+    <string name="task_prune">Limpiando datos empaquetados</string>
+    <string name="job_syncing">Sincronizando</string>
+    <string name="job_cloning">Clonando</string>
+    <string name="job_initializing">Inicializando</string>
+    <string name="job_adopting">Configurando</string>
+    <string name="job_maintaining">Manteniendo</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_sync">Progreso de sincronización</string>
+    <string name="notification_channel_sync_desc">Muestra el progreso durante la sincronización y la mantiene en marcha en segundo plano.</string>
+    <string name="notification_channel_done">Sincronización completada</string>
+    <string name="notification_channel_done_desc">Aparece cuando todas las bóvedas se sincronizaron correctamente. Sin sonido de forma predeterminada.</string>
+    <string name="notification_channel_attention">Requiere atención</string>
+    <string name="notification_channel_attention_desc">Te avisa cuando una sincronización tiene conflictos o falla.</string>
+    <string name="notif_progress_preparing">Preparando la sincronización…</string>
+    <string name="notif_progress_title">%1$s “%2$s”</string>
+    <string name="notif_progress_position">%1$d de %2$d</string>
+    <string name="notif_progress_queued">En cola: %1$s</string>
+    <string name="notif_action_cancel">Cancelar esta bóveda</string>
+    <string name="notif_action_cancel_all">Detener todo</string>
+    <plurals name="notif_summary_all_ok">
+        <item quantity="one">%1$d bóveda sincronizada</item>
+        <item quantity="many">%1$d bóvedas sincronizadas</item>
+        <item quantity="other">%1$d bóvedas sincronizadas</item>
+    </plurals>
+    <plurals name="notif_summary_all_problems">
+        <item quantity="one">%1$d bóveda requiere atención</item>
+        <item quantity="many">%1$d bóvedas requieren atención</item>
+        <item quantity="other">%1$d bóvedas requieren atención</item>
+    </plurals>
+    <plurals name="notif_summary_mixed">
+        <item quantity="one">%1$d al día, %2$d requiere atención</item>
+        <item quantity="many">%1$d al día, %2$d requieren atención</item>
+        <item quantity="other">%1$d al día, %2$d requieren atención</item>
+    </plurals>
+    <plurals name="notif_summary_tasks_all_ok">
+        <item quantity="one">%1$d tarea completada</item>
+        <item quantity="many">%1$d tareas completadas</item>
+        <item quantity="other">%1$d tareas completadas</item>
+    </plurals>
+    <plurals name="notif_summary_tasks_all_problems">
+        <item quantity="one">%1$d tarea requiere atención</item>
+        <item quantity="many">%1$d tareas requieren atención</item>
+        <item quantity="other">%1$d tareas requieren atención</item>
+    </plurals>
+    <plurals name="notif_summary_tasks_mixed">
+        <item quantity="one">%1$d con éxito, %2$d requiere atención</item>
+        <item quantity="many">%1$d con éxito, %2$d requieren atención</item>
+        <item quantity="other">%1$d con éxito, %2$d requieren atención</item>
+    </plurals>
+    <string name="notif_summary_line">%1$s: %2$s</string>
+    <string name="notif_result_added">Añadida</string>
+    <string name="notif_result_recloned">Clonada de nuevo</string>
+    <string name="notif_result_maintained">Mantenimiento hecho</string>
+    <string name="notif_result_maintained_freed">Mantenimiento hecho, se liberaron %1$s</string>
+    <plurals name="notif_result_conflicts">
+        <item quantity="one">%1$d archivo tiene conflictos. Abre la app para resolverlos.</item>
+        <item quantity="many">%1$d archivos tienen conflictos. Abre la app para resolverlos.</item>
+        <item quantity="other">%1$d archivos tienen conflictos. Abre la app para resolverlos.</item>
+    </plurals>
+    <string name="notif_result_failed">Error: %1$s</string>
+    <string name="list_separator">", "</string>
+
+    <!-- Home -->
+    <string name="home_title">VaultSync</string>
+    <string name="home_settings">Ajustes</string>
+    <string name="home_add_repo">Añadir bóveda</string>
+    <string name="home_empty_title">Aún no hay bóvedas</string>
+    <string name="home_empty_body">Añade un repositorio Git y mantenlo sincronizado con su remoto.</string>
+    <string name="home_config_error_title">No se pudo leer la configuración</string>
+    <string name="home_config_error_body">Estos archivos de configuración están dañados. Se guardaron aparte como copia y la app se inició con una configuración vacía:\n%1$s\nPuedes restaurar la configuración desde un archivo de copia de seguridad en Ajustes.</string>
+    <string name="home_identity_missing">Aún no has indicado el nombre y el correo del autor de los commits. Se guardan en cada commit, así que rellénalos primero en Ajustes.</string>
+    <string name="home_go_settings">Ir a Ajustes</string>
+    <string name="home_crash_title">La app se cerró de forma inesperada la última vez</string>
+    <string name="home_crash_body">Se guardó un informe de error. Si vuelve a pasar, puedes enviar el informe al desarrollador.</string>
+    <string name="home_crash_view">Ver informe</string>
+    <string name="env_info">VaultSync %1$s · Android %2$s</string>
+
+    <string name="status_synced">Al día</string>
+    <string name="status_conflicts">Conflictos</string>
+    <string name="status_syncing">Sincronizando</string>
+    <string name="status_maintaining">Mantenimiento</string>
+    <string name="status_cloning">Clonando</string>
+    <string name="status_queued">En cola</string>
+    <string name="status_error">Falló</string>
+    <string name="status_cancelled">Cancelada</string>
+    <string name="status_never">Sin sincronizar</string>
+    <string name="last_sync_at">Última sincronización: %1$s</string>
+
+    <!-- Storage permission -->
+    <string name="perm_title">Se necesita acceso a archivos</string>
+    <string name="perm_body_legacy">VaultSync necesita leer y escribir archivos y carpetas en el almacenamiento del teléfono (incluidas las carpetas .git que contienen). Concede el permiso de almacenamiento.</string>
+    <string name="perm_body_all_files">VaultSync necesita leer y escribir archivos y carpetas en el almacenamiento del teléfono (incluidas las carpetas .git que contienen). Activa “Acceso a todos los archivos” para VaultSync en los ajustes del sistema.</string>
+    <string name="perm_grant">Conceder permiso</string>
+    <string name="perm_open_settings">Abrir ajustes del sistema</string>
+
+    <!-- Add vault wizard -->
+    <string name="add_title">Nueva bóveda</string>
+    <string name="add_step">Paso %1$d de %2$d</string>
+    <string name="add_step_mode">Elegir método</string>
+    <string name="add_step_folder">Elegir carpeta</string>
+    <string name="add_step_remote">Remoto y autenticación</string>
+    <string name="add_step_identity">Nombre y autor</string>
+    <string name="add_step_confirm">Confirmar</string>
+    <string name="add_step_progress">Ejecutar</string>
+    <string name="add_start_failed">No se pudo guardar el token</string>
+
+    <string name="mode_clone_title">Clonar desde el remoto</string>
+    <string name="mode_clone_body">Tus notas están en el repositorio remoto, pero aún no en este teléfono. El repositorio se descargará en una carpeta vacía.</string>
+    <string name="mode_init_title">Subir una bóveda de este teléfono</string>
+    <string name="mode_init_body">Hay una carpeta para sincronizar en este teléfono (sin .git) y el remoto es un repositorio vacío. Se creará un repositorio Git en la carpeta y se enviará por primera vez.</string>
+    <string name="mode_adopt_title">Usar un repositorio Git existente</string>
+    <string name="mode_adopt_body">La carpeta de la bóveda ya contiene .git (por ejemplo, creada con otra herramienta). Se usará tal cual, sin cambiar su historial.</string>
+
+    <string name="folder_hint_clone">Elige o crea una carpeta vacía. El repositorio se clonará en ella.</string>
+    <string name="folder_hint_init">Elige la carpeta que quieres sincronizar (sin .git).</string>
+    <string name="folder_hint_adopt">Elige la carpeta del repositorio Git existente (contiene .git).</string>
+    <string name="folder_path_label">Ruta</string>
+    <string name="folder_up">Subir</string>
+    <string name="folder_go">Ir</string>
+    <string name="folder_new">Nueva carpeta</string>
+    <string name="folder_new_name">Nombre de la carpeta</string>
+    <string name="folder_badge_vault">Bóveda Obsidian</string>
+    <string name="folder_badge_repo">Repositorio Git</string>
+    <string name="folder_empty">(Sin subcarpetas)</string>
+    <string name="folder_use_this">Usar esta carpeta</string>
+    <string name="folder_err_not_dir">Esta ruta no es una carpeta.</string>
+    <string name="folder_err_not_empty">La carpeta no está vacía. Para clonar se necesita una carpeta vacía.</string>
+    <string name="folder_err_has_git">Esta carpeta ya contiene .git. Vuelve atrás y elige “Usar un repositorio Git existente”.</string>
+    <string name="folder_err_no_git">Esta carpeta no contiene .git. Vuelve atrás y elige otro método.</string>
+    <string name="folder_err_name">Nombre no válido.</string>
+    <string name="folder_err_create">No se pudo crear la carpeta.</string>
+    <string name="folder_err_exists">Ya existe una carpeta con este nombre.</string>
+    <string name="folder_warn_no_obsidian">Esta carpeta no tiene .obsidian, así que puede que no sea una bóveda de Obsidian.</string>
+
+    <string name="remote_url_label">URL del repositorio remoto</string>
+    <string name="remote_url_examples">HTTPS: https://github.com/usuario/repo.git
+SSH: git@github.com:usuario/repo.git</string>
+    <string name="remote_url_adopt_hint">Déjalo vacío para usar el remoto ya configurado en el repositorio (origin).</string>
+    <string name="remote_kind_https">Dirección HTTPS. Se autentica con un token de acceso personal.</string>
+    <string name="remote_kind_ssh">Dirección SSH. Se autentica con una clave SSH.</string>
+    <string name="remote_kind_unsupported">Dirección no reconocida. Se admiten direcciones https://… y SSH; no se admiten http:// ni rutas locales.</string>
+    <string name="remote_username_label">Nombre de usuario</string>
+    <string name="remote_token_label">Token de acceso personal</string>
+    <string name="remote_token_replace_label">Nuevo token (déjalo vacío para conservar el actual)</string>
+    <string name="remote_token_hint">Créalo en GitHub en Settings → Developer settings → Personal access tokens, con acceso de lectura y escritura al contenido de este repositorio. El token se guarda cifrado en este dispositivo.</string>
+    <string name="remote_token_saved_hint">Hay un token guardado. Rellena esto solo para sustituirlo.</string>
+    <string name="remote_token_unreadable_hint">No se puede descifrar el token guardado (cambió el almacén de claves del sistema). Vuelve a introducirlo.</string>
+    <string name="remote_ssh_port_label">Puerto SSH</string>
+    <string name="remote_ssh_github_443">Usar el puerto 443</string>
+    <string name="remote_ssh_github_22">Usar el puerto 22</string>
+    <string name="remote_branch_label">Rama</string>
+    <string name="remote_test">Probar conexión</string>
+    <string name="remote_test_ok_empty">Conectado. El remoto es un repositorio vacío.</string>
+    <string name="remote_test_ok">Conectado. Ramas del remoto: %1$s</string>
+    <string name="remote_test_fail_title">Error de conexión: %1$s</string>
+    <string name="remote_reason_url">Introduce una URL válida del repositorio remoto</string>
+    <string name="remote_reason_username">Introduce un nombre de usuario</string>
+    <string name="remote_reason_token">Introduce un token de acceso personal</string>
+    <string name="remote_reason_port">Introduce un puerto SSH válido</string>
+    <string name="remote_reason_key">Elige una clave SSH que se pueda usar</string>
+
+    <string name="repo_name_label">Nombre visible</string>
+    <string name="identity_title">Autor</string>
+    <string name="identity_body">El nombre y el correo que se guardan en cada commit de esta bóveda. Déjalos vacíos para usar los predeterminados de Ajustes.</string>
+    <string name="identity_name_label">Nombre</string>
+    <string name="identity_email_label">Correo electrónico</string>
+    <string name="identity_missing">No hay un autor predeterminado en Ajustes, así que debes rellenarlo aquí.</string>
+    <string name="commit_template_label">Plantilla del mensaje de commit</string>
+    <string name="commit_template_hint">Marcadores: {{date}} {{hostname}} {{numFiles}} {{files}}</string>
+    <string name="date_format_label">Formato de fecha</string>
+    <string name="date_format_hint">Por ejemplo, YYYY-MM-DD HH:mm:ss</string>
+
+    <string name="confirm_mode">Método</string>
+    <string name="confirm_folder">Carpeta</string>
+    <string name="confirm_remote">Remoto</string>
+    <string name="confirm_remote_existing">Usar el remoto ya configurado en el repositorio (origin)</string>
+    <string name="confirm_branch">Rama</string>
+    <string name="confirm_auth">Autenticación</string>
+    <string name="confirm_auth_https">Token de acceso personal (usuario %1$s)</string>
+    <string name="confirm_auth_ssh">Clave SSH “%1$s”</string>
+    <string name="confirm_auth_none">Ninguna</string>
+    <string name="confirm_identity">Autor</string>
+    <string name="confirm_identity_default">Usar los valores predeterminados de Ajustes</string>
+    <string name="confirm_actions_clone">Pasos: conectar con el remoto → clonar en la carpeta elegida → guardar la configuración del repositorio.</string>
+    <string name="confirm_actions_init">Pasos: comprobar que el remoto está vacío → crear un repositorio Git → escribir el .gitignore recomendado → hacer commit de todos los archivos → enviar.</string>
+    <string name="confirm_actions_adopt">Pasos: abrir el repositorio → comprobar la rama y el remoto → guardar la configuración del repositorio. El historial existente no se modifica.</string>
+    <string name="confirm_start">Empezar</string>
+
+    <string name="progress_running">%1$s…</string>
+    <string name="progress_success">Listo</string>
+    <string name="progress_cancelled">Cancelado</string>
+    <string name="progress_failed">Falló el paso “%1$s”: %2$s</string>
+    <string name="progress_back_to_edit">Volver y editar</string>
+    <string name="progress_open_repo">Abrir bóveda</string>
+    <string name="note_remote_empty">El remoto es un repositorio vacío. El contenido local se enviará en la primera sincronización.</string>
+    <string name="note_gitignore_created">Se creó .gitignore a partir de la plantilla recomendada.</string>
+    <string name="note_branch_adjusted">El repositorio está en la rama %1$s (no en %2$s, como indicaste), así que se sincronizará %1$s.</string>
+    <string name="note_remote_changed">La URL del remoto se cambió a %1$s.</string>
+    <string name="note_unfinished_merge">Este repositorio tiene una fusión sin terminar que aún tiene conflictos. Resuélvelos en los detalles de la bóveda.</string>
+    <string name="note_resolved_merge">Este repositorio tiene una fusión con los conflictos resueltos, pero sin commit todavía. Se completará en la próxima sincronización.</string>
+
+    <!-- SSH keys (settings, wizard, vault settings) -->
+    <string name="settings_ssh">Claves SSH</string>
+    <string name="ssh_list_intro">Las bóvedas con direcciones SSH se autentican con estas claves. Cada bóveda puede usar una clave distinta; las bóvedas nuevas usan la clave predeterminada. Las claves privadas se guardan cifradas en este dispositivo y nunca salen del teléfono.</string>
+    <string name="ssh_list_empty">Aún no hay claves.</string>
+    <string name="ssh_key_title_default">%1$s (predeterminada)</string>
+    <string name="ssh_key_unused">Ninguna bóveda la usa</string>
+    <plurals name="ssh_key_used_by">
+        <item quantity="one">La usa %1$d bóveda</item>
+        <item quantity="many">La usan %1$d bóvedas</item>
+        <item quantity="other">La usan %1$d bóvedas</item>
+    </plurals>
+    <string name="ssh_key_generate">Generar clave</string>
+    <string name="ssh_key_import">Importar clave</string>
+    <string name="ssh_key_copy_public">Copiar clave pública</string>
+    <string name="ssh_key_copy_public_short">Copiar pública</string>
+    <string name="ssh_key_view_public">Ver detalles</string>
+    <string name="ssh_key_set_default">Usar como predeterminada</string>
+    <string name="ssh_key_rename">Cambiar nombre</string>
+    <string name="ssh_key_delete">Eliminar</string>
+    <string name="ssh_key_delete_title">¿Eliminar la clave “%1$s”?</string>
+    <string name="ssh_key_delete_unused">Ninguna bóveda usa esta clave. Después de eliminarla, quita también su clave pública del remoto (por ejemplo, en SSH keys de GitHub).</string>
+    <plurals name="ssh_key_delete_used">
+        <item quantity="one">%1$d bóveda usa esta clave: %2$s. Después de eliminarla, esa bóveda tendrá que elegir otra clave para poder sincronizar. Quita también la clave pública del remoto.</item>
+        <item quantity="many">%1$d bóvedas usan esta clave: %2$s. Después de eliminarla, esas bóvedas tendrán que elegir otra clave para poder sincronizar. Quita también la clave pública del remoto.</item>
+        <item quantity="other">%1$d bóvedas usan esta clave: %2$s. Después de eliminarla, esas bóvedas tendrán que elegir otra clave para poder sincronizar. Quita también la clave pública del remoto.</item>
+    </plurals>
+    <string name="ssh_key_name_label">Nombre</string>
+    <string name="ssh_key_name_suggestion">Clave %1$d</string>
+    <string name="ssh_key_name_migrated">Clave predeterminada</string>
+    <string name="ssh_key_name_recovered">Clave recuperada</string>
+    <string name="ssh_key_source_generated">Generada el %1$s</string>
+    <string name="ssh_key_source_imported">Importada el %1$s</string>
+    <string name="ssh_key_unreadable">No se puede descifrar la clave privada (cambió el almacén de claves del sistema). Elimínala y vuelve a generar o importar una clave.</string>
+    <string name="ssh_key_public_hint">Añade la siguiente clave pública a tu cuenta del remoto; por ejemplo, en GitHub en Settings → SSH and GPG keys → New SSH key.</string>
+    <string name="ssh_key_done_generated">Clave generada. Añade su clave pública a tu cuenta del remoto.</string>
+    <string name="ssh_key_done_imported">Clave importada.</string>
+    <string name="ssh_key_done_deleted">Clave eliminada.</string>
+    <string name="ssh_generate_title">Generar clave SSH</string>
+    <string name="ssh_generate_body">Genera una nueva clave ed25519. El nombre solo se muestra en esta app, para ayudarte a distinguir las claves.</string>
+    <string name="ssh_import_title">Importar clave privada</string>
+    <string name="ssh_import_key_label">Clave privada</string>
+    <string name="ssh_import_key_hint">Pega el archivo completo de la clave privada (desde -----BEGIN … PRIVATE KEY----- hasta -----END … -----). Se admiten los formatos OpenSSH, PEM, PKCS#8 y PuTTY.</string>
+    <string name="ssh_import_passphrase_label">Frase de contraseña de la clave (déjala vacía si no tiene)</string>
+    <string name="ssh_import_action">Importar</string>
+    <string name="ssh_import_err_invalid">Formato de clave privada no reconocido. Comprueba que pegaste la clave privada y no la pública (.pub), y que las líneas BEGIN / END están completas.</string>
+    <string name="ssh_import_err_passphrase_required">Esta clave privada está protegida con una frase de contraseña. Introdúcela.</string>
+    <string name="ssh_import_err_wrong_passphrase">Frase de contraseña incorrecta.</string>
+    <string name="ssh_import_err_unsupported">Esta clave no es compatible: %1$s</string>
+    <string name="ssh_picker_title">Clave SSH</string>
+    <string name="ssh_picker_empty">Aún no hay claves SSH. Genera una clave nueva o importa una clave privada existente.</string>
+    <string name="ssh_picker_choose">Elige una clave</string>
+    <string name="ssh_picker_deleted">Se eliminó la clave que usaba esta bóveda. Elige otra.</string>
+    <string name="ssh_picker_open">Elegir clave</string>
+    <string name="ssh_picker_new_generate">Generar clave nueva…</string>
+    <string name="ssh_picker_new_import">Importar clave privada…</string>
+    <string name="ssh_picker_add_public_key">Comprueba que la clave pública de esta clave se añadió a tu cuenta del remoto y luego prueba la conexión.</string>
+    <string name="ssh_picker_manage">Gestionar claves</string>
+
+    <!-- Known hosts -->
+    <string name="known_hosts_title">Hosts conocidos</string>
+    <string name="known_hosts_body">La primera vez que te conectas a un host, se guarda su clave. Si la clave cambia más adelante, la conexión se rechaza para protegerte de interceptaciones. Si estás seguro de que el servidor cambió su clave, “olvida” el host y vuelve a conectarte. Las claves de GitHub vienen incluidas.</string>
+    <string name="known_hosts_empty">Aún no hay nada guardado.</string>
+    <string name="known_hosts_forget">Olvidar</string>
+    <string name="known_hosts_forget_confirm">¿Olvidar la clave del host “%1$s”? Se volverá a guardar en la próxima conexión.</string>
+
+    <!-- Vault details -->
+    <string name="detail_open_repo_settings">Ajustes de la bóveda</string>
+    <string name="detail_history">Historial</string>
+    <string name="detail_logs">Registros</string>
+    <string name="detail_branch_remote">Rama %1$s · Remoto %2$s</string>
+    <string name="detail_auth_https">Autenticación: token de acceso personal (%1$s)</string>
+    <string name="detail_auth_ssh">Autenticación: clave SSH “%1$s”</string>
+    <string name="detail_auth_none">Autenticación: ninguna</string>
+    <string name="detail_local_changes" tools:ignore="PluralsCandidate">Cambios locales sin sincronizar: modificados %1$d · nuevos %2$d · eliminados %3$d</string>
+    <string name="detail_no_local_changes">No hay cambios locales sin sincronizar</string>
+    <string name="detail_path_copy">Copiar ruta</string>
+    <string name="detail_queued_body">Otras bóvedas se están sincronizando antes. Esta empezará automáticamente cuando le toque.</string>
+    <string name="detail_failed_title">Falló el paso “%1$s”: %2$s</string>
+    <string name="detail_last_failed_title">La última sincronización falló (%1$s): %2$s</string>
+    <string name="detail_last_result">Última sincronización: %1$s</string>
+    <string name="detail_inspect_failed">No se pudo leer el estado de la bóveda</string>
+    <string name="detail_not_repo">Esta carpeta no es un repositorio Git. Puede que se haya movido o que se haya eliminado su .git.</string>
+    <string name="detail_dir_missing">No se encuentra la carpeta de la bóveda. Puede que se haya movido o eliminado.</string>
+    <string name="detail_reclone_body">Puedes volver a clonar esta bóveda desde su remoto en la misma ubicación: %1$s\nSu remoto, rama, token o clave SSH y demás ajustes se mantienen.</string>
+    <string name="detail_reclone_action">Clonar de nuevo</string>
+    <string name="detail_action_failed">La acción falló</string>
+    <plurals name="detail_conflicts_title">
+        <item quantity="one">%1$d archivo tiene conflictos</item>
+        <item quantity="many">%1$d archivos tienen conflictos</item>
+        <item quantity="other">%1$d archivos tienen conflictos</item>
+    </plurals>
+    <string name="detail_conflicts_body">Este teléfono y el remoto cambiaron el mismo contenido. Revisa los archivos y elige qué versión usar (también puedes usar ambas o editar a mano). Cuando todo esté resuelto, completa la fusión y envíala.\nTambién puedes anular esta fusión: tus commits locales no se ven afectados, los cambios remotos se quedan en el remoto y se volverán a fusionar en la próxima sincronización.</string>
+    <string name="detail_open_conflicts">Resolver conflictos</string>
+    <string name="detail_abort_merge">Anular fusión</string>
+    <string name="detail_abort_confirm">Los archivos volverán a tu último commit local y se perderán los conflictos que hayas resuelto. Los cambios remotos no se ven afectados y se volverán a fusionar en la próxima sincronización.</string>
+    <string name="detail_merge_resolved_title">Todos los conflictos resueltos</string>
+    <string name="detail_merge_resolved_body">Falta hacer el commit de la fusión. Toca “Completar fusión y enviar” para crear el commit de fusión y sincronizarlo con el remoto.</string>
+    <string name="detail_complete_merge_sync">Completar fusión y enviar</string>
+    <string name="detail_residue_title">Ten en cuenta</string>
+    <string name="residue_index_lock">Una operación anterior se interrumpió y dejó un archivo de bloqueo (index.lock). Se eliminará automáticamente al sincronizar.</string>
+    <string name="residue_index_lock_fix">Eliminar ahora</string>
+    <string name="residue_merge_conflicts">Hay una fusión sin terminar que aún tiene conflictos.</string>
+    <string name="residue_merge_resolved">Los conflictos están resueltos, pero falta hacer el commit de la fusión.</string>
+    <string name="residue_unsupported">El repositorio está en medio de una operación que esta app no admite (como un rebase o un cherry-pick). Termínala o anúlala primero en tu computadora.</string>
+    <string name="residue_detached">El repositorio no tiene ninguna rama activa (detached HEAD). Cambia primero a una rama en tu computadora.</string>
+    <string name="residue_missing_remote">El repositorio no tiene remoto (origin). Al sincronizar se escribirá la URL de los ajustes de la bóveda.</string>
+    <string name="residue_unborn">La rama aún no tiene commits. Se enviará en la primera sincronización.</string>
+    <string name="detail_auth_problem_title">Autenticación incompleta</string>
+    <string name="detail_auth_token_missing">Esta bóveda usa una dirección HTTPS, pero no hay ningún token de acceso personal guardado, así que la sincronización fallará.</string>
+    <string name="detail_auth_token_unreadable">No se puede descifrar el token guardado (cambió el almacén de claves del sistema). Vuelve a introducirlo.</string>
+    <string name="detail_auth_key_missing">Se eliminó la clave SSH que usaba esta bóveda. Elige otra clave en los ajustes de la bóveda.</string>
+    <string name="detail_auth_key_unreadable">No se puede descifrar la clave SSH que usa esta bóveda (cambió el almacén de claves del sistema). Vuelve a generar o importar una clave y elígela en los ajustes de la bóveda.</string>
+    <string name="detail_auth_key_not_selected">Esta bóveda usa una dirección SSH, pero no tiene ninguna clave SSH elegida.</string>
+
+    <string name="result_success">Correcto</string>
+    <string name="result_conflicts">Conflictos</string>
+    <plurals name="result_conflicts_n">
+        <item quantity="one">%1$d archivo tiene conflictos</item>
+        <item quantity="many">%1$d archivos tienen conflictos</item>
+        <item quantity="other">%1$d archivos tienen conflictos</item>
+    </plurals>
+    <string name="result_cancelled">Cancelado</string>
+    <string name="result_failed_reason">Error: %1$s</string>
+    <plurals name="summary_committed">
+        <item quantity="one">Commit de %1$d archivo</item>
+        <item quantity="many">Commit de %1$d archivos</item>
+        <item quantity="other">Commit de %1$d archivos</item>
+    </plurals>
+    <string name="summary_no_local_changes">No hay cambios locales</string>
+    <string name="summary_merge_none">El remoto aún no tiene esta rama</string>
+    <string name="summary_merge_ff">Cambios remotos descargados</string>
+    <string name="summary_merge_merged">Cambios remotos fusionados</string>
+    <string name="summary_merge_up_to_date">No hay novedades en el remoto</string>
+    <string name="summary_push_ok">Enviado</string>
+    <string name="summary_push_nothing">Nada que enviar</string>
+    <string name="summary_no_changes">Sin cambios</string>
+    <string name="summary_duration">Duración: %1$s</string>
+
+    <!-- Failure reasons: title (short) and explanation (likely cause + what to do) -->
+    <string name="fail_auth_token">Token no válido o caducado</string>
+    <string name="fail_auth_token_hint">El remoto rechazó el token de acceso personal. Comprueba que no haya caducado ni se haya revocado y que tenga acceso de lectura y escritura al contenido de este repositorio; luego actualízalo en los ajustes de la bóveda.</string>
+    <string name="fail_auth_ssh">Clave SSH no aceptada</string>
+    <string name="fail_auth_ssh_hint">El remoto no aceptó esta clave SSH. Comprueba que su clave pública esté añadida a tu cuenta del remoto (por ejemplo, en SSH keys de GitHub) y que esta clave esté elegida en los ajustes de la bóveda.</string>
+    <string name="fail_permission">Permiso denegado</string>
+    <string name="fail_permission_hint">La autenticación fue correcta, pero esta cuenta o clave no tiene permiso de escritura (por ejemplo, una deploy key de solo lectura, un token sin acceso de escritura o una rama protegida). Ajusta los permisos en el remoto.</string>
+    <string name="fail_repo_not_found">No se encontró el repositorio remoto</string>
+    <string name="fail_repo_not_found_hint">Comprueba que la URL del repositorio sea correcta. Un repositorio privado también aparece como “no encontrado” cuando las credenciales no tienen acceso, así que comprueba también que el token o la clave pertenezcan a una cuenta con acceso.</string>
+    <string name="fail_host_key">La clave del servidor no coincide con la guardada</string>
+    <string name="fail_host_key_hint">Se detuvo la conexión para protegerte de interceptaciones. Si estás seguro de que el servidor cambió su clave (compárala con las huellas digitales que publica tu servicio de alojamiento), olvida el host en “Hosts conocidos” de Ajustes y vuelve a intentarlo.</string>
+    <string name="fail_network">No se puede conectar con el servidor</string>
+    <string name="fail_network_hint">Comprueba tu conexión de red y que el servidor remoto sea accesible. Si necesitas un proxy para llegar a él, activa el proxy en tu teléfono o configura un proxy HTTP en Ajustes.</string>
+    <string name="fail_timeout">Se agotó el tiempo de conexión</string>
+    <string name="fail_timeout_hint">El servidor tardó demasiado en responder. Comprueba que tu red o tu proxy funcionen y vuelve a intentarlo más tarde.</string>
+    <string name="fail_proxy">No se puede conectar a través del proxy</string>
+    <string name="fail_proxy_hint">No se pudo conectar con el proxy HTTP configurado en Ajustes, o el proxy se negó a reenviar la conexión. Comprueba que el host y el puerto del proxy sean correctos y que la app de proxy esté en marcha y acepte conexiones de este dispositivo. Si no necesitas un proxy, desactívalo en Ajustes.</string>
+    <string name="fail_check_proxy_hint">El proxy de la app está activado, así que comprueba también que la dirección del proxy funcione.</string>
+    <string name="fail_tls">Falló la conexión segura</string>
+    <string name="fail_tls_hint">No se pudo establecer una conexión segura con el servidor (falló la comprobación del certificado). Puede que la red esté interceptando la conexión o que la hora del dispositivo sea incorrecta. Compruébalo y vuelve a intentarlo.</string>
+    <string name="fail_push_rejected">El remoto rechazó el envío</string>
+    <string name="fail_push_rejected_hint">El remoto se negó a aceptar este envío, normalmente por reglas de protección de ramas o comprobaciones del servidor. Tus commits locales están guardados y no se perderán. Revisa los detalles técnicos, ajusta la configuración en el remoto y vuelve a sincronizar.</string>
+    <string name="fail_push_race">El remoto sigue recibiendo commits nuevos</string>
+    <string name="fail_push_race_hint">Seguían apareciendo commits nuevos en el remoto durante el envío (puede que tu computadora esté sincronizando al mismo tiempo). Tus commits locales están guardados; vuelve a sincronizar más tarde.</string>
+    <string name="fail_local_files">Se sobrescribirían archivos locales</string>
+    <string name="fail_local_files_hint">Hay archivos nuevos en el remoto con el mismo nombre que archivos sin seguimiento (o ignorados por .gitignore) en este teléfono. La fusión los sobrescribiría, así que la sincronización se detuvo. Busca los nombres de archivo en los detalles técnicos, cambia el nombre de esos archivos o muévelos y vuelve a sincronizar.</string>
+    <string name="fail_vault_missing">No se encontró la carpeta de la bóveda</string>
+    <string name="fail_vault_missing_hint">Puede que la carpeta de la bóveda se haya movido, renombrado o eliminado. Comprueba dónde está la carpeta; si hace falta, quita la bóveda y vuelve a añadirla.</string>
+    <string name="fail_not_repo">No hay repositorio Git en la carpeta</string>
+    <string name="fail_not_repo_hint">No hay carpeta .git en la carpeta de la bóveda; puede que se haya eliminado. Quita la bóveda y vuelve a añadirla (puedes clonarla desde el remoto).</string>
+    <string name="fail_already_repo">La carpeta ya tiene un repositorio Git</string>
+    <string name="fail_already_repo_hint">Esta carpeta ya contiene .git. Vuelve atrás y elige “Usar un repositorio Git existente”.</string>
+    <string name="fail_credential_missing">Falta el token o la clave</string>
+    <string name="fail_credential_missing_hint">Esta bóveda no tiene ningún token válido guardado, o no tiene ninguna clave SSH elegida (o se eliminó la clave elegida). Añádelo en los ajustes de la bóveda.</string>
+    <string name="fail_credential_unreadable">No se puede descifrar el token o la clave</string>
+    <string name="fail_credential_unreadable_hint">Cambió el almacén de claves del sistema, así que ya no se puede descifrar el token o la clave privada guardados. Vuelve a introducir el token en los ajustes de la bóveda, o vuelve a generar o importar una clave SSH.</string>
+    <string name="fail_repo_state">El estado del repositorio no permite sincronizar</string>
+    <string name="fail_repo_state_hint">El repositorio está en medio de una operación como un rebase o un cherry-pick, no tiene ninguna rama activa o tiene activa una rama distinta de la de los ajustes de la bóveda. Resuélvelo primero en tu computadora y luego sincroniza.</string>
+    <string name="fail_identity">Autor sin configurar</string>
+    <string name="fail_identity_hint">Los commits necesitan un nombre y un correo. Configura el autor predeterminado en Ajustes o uno propio para esta bóveda en sus ajustes.</string>
+    <string name="fail_dir_not_empty">La carpeta no está vacía</string>
+    <string name="fail_dir_not_empty_hint">Para clonar se necesita una carpeta vacía. Crea una carpeta nueva; si la carpeta ya tiene notas, usa “Subir una bóveda de este teléfono” o “Usar un repositorio Git existente”.</string>
+    <string name="fail_remote_not_empty">El repositorio remoto no está vacío</string>
+    <string name="fail_remote_not_empty_hint">El remoto ya tiene contenido, así que no se puede subir la bóveda encima. Primero clona el remoto en una carpeta vacía, luego mueve a ella las notas de este teléfono y sincroniza.</string>
+    <string name="fail_branch_not_found">El remoto no tiene esta rama</string>
+    <string name="fail_branch_not_found_hint">Vuelve atrás y cambia el nombre de la rama. Los detalles técnicos muestran las ramas del remoto.</string>
+    <string name="fail_remote_missing">No hay URL del remoto</string>
+    <string name="fail_remote_missing_hint">El repositorio no tiene ningún remoto (origin) configurado. Introduce la URL del repositorio remoto.</string>
+    <string name="fail_vault_empty">No hay nada para hacer commit en la bóveda</string>
+    <string name="fail_vault_empty_hint">La carpeta elegida no tiene archivos (o .gitignore los ignora todos). Comprueba que elegiste la carpeta correcta de la bóveda.</string>
+    <string name="fail_storage">No se pueden leer ni escribir archivos en este dispositivo</string>
+    <string name="fail_storage_hint">Puede que el almacenamiento esté lleno o que se haya desactivado el permiso de acceso a archivos. Comprueba el espacio de almacenamiento y los permisos y vuelve a intentarlo.</string>
+    <string name="fail_unknown">Error inesperado</string>
+    <string name="fail_unknown_hint">No se pudo identificar la causa. Revisa los detalles técnicos y el registro de sincronización. Si necesitas ayuda, puedes exportar los registros en Ajustes y enviárselos al desarrollador.</string>
+
+    <!-- Vault settings -->
+    <string name="repo_settings_title">Ajustes de bóveda</string>
+    <string name="repo_settings_busy_title">Sincronizando</string>
+    <string name="repo_settings_busy_body">Hasta que termine la sincronización, no puedes guardar cambios, hacer el mantenimiento del repositorio ni quitar la bóveda de la lista.</string>
+    <string name="repo_settings_general">General</string>
+    <string name="repo_settings_folder">Carpeta: %1$s</string>
+    <string name="repo_settings_branch">Rama: %1$s</string>
+    <string name="repo_settings_remote">Remoto y autenticación</string>
+    <string name="repo_settings_identity">Autor y mensaje de commit</string>
+    <string name="repo_settings_identity_body">Solo se aplica a esta bóveda. Deja vacíos el nombre y el correo para usar los predeterminados de Ajustes.</string>
+    <string name="repo_settings_identity_incomplete">Rellena el nombre y el correo, o deja ambos vacíos.</string>
+    <string name="repo_settings_reason_name">Introduce un nombre visible</string>
+    <string name="repo_settings_saved">Guardado</string>
+    <string name="repo_settings_save_failed">No se pudo guardar</string>
+    <string name="repo_settings_remove">Quitar de la lista</string>
+    <string name="repo_settings_remove_hint">Solo quita el registro, el token y los registros de esta app. No se eliminan la carpeta de la bóveda ni su .git.</string>
+    <string name="repo_settings_remove_title">¿Quitar “%1$s”?</string>
+    <string name="repo_settings_remove_confirm">La carpeta de la bóveda y su .git se quedan en el teléfono. Puedes volver a añadirla más tarde con “Usar un repositorio Git existente”.</string>
+
+    <string name="maintenance_title">Mantenimiento del repositorio</string>
+    <string name="maintenance_body">Empaqueta y comprime los archivos de datos dispersos para reducir su número y el espacio que ocupan, y para acelerar las operaciones posteriores. Tus notas y el historial no cambian.</string>
+    <string name="maintenance_stats">Datos del repositorio: %1$s · Objetos sueltos: %2$d · Paquetes: %3$d</string>
+    <string name="maintenance_recommended">Se recomienda hacer mantenimiento.</string>
+    <string name="maintenance_not_needed">Por ahora no hace falta mantenimiento.</string>
+    <string name="maintenance_last_done">Último mantenimiento (%1$s): %2$s → %3$s, duración: %4$s</string>
+    <string name="maintenance_last_failed">El último mantenimiento (%1$s) falló: %2$s</string>
+    <string name="maintenance_run">Iniciar mantenimiento</string>
+
+    <string name="gitignore_title">Reglas de exclusión recomendadas</string>
+    <string name="gitignore_complete">.gitignore ya contiene todas las reglas recomendadas.</string>
+    <plurals name="gitignore_missing">
+        <item quantity="one">A .gitignore le falta %1$d regla recomendada:</item>
+        <item quantity="many">A .gitignore le faltan %1$d reglas recomendadas:</item>
+        <item quantity="other">A .gitignore le faltan %1$d reglas recomendadas:</item>
+    </plurals>
+    <string name="gitignore_note">Estas reglas dejan fuera de la sincronización los archivos propios de cada dispositivo, como la disposición del espacio de trabajo, las cachés y la papelera. Los archivos que ya se sincronizan se siguen sincronizando.</string>
+    <string name="gitignore_append">Añadir reglas recomendadas</string>
+    <string name="gitignore_append_confirm">¿Añadir las reglas recomendadas que faltan al final del .gitignore de la bóveda? El cambio se incluirá en un commit en la próxima sincronización.</string>
+    <plurals name="gitignore_appended">
+        <item quantity="one">Se añadió %1$d regla. Se incluirá en un commit en la próxima sincronización.</item>
+        <item quantity="many">Se añadieron %1$d reglas. Se incluirán en un commit en la próxima sincronización.</item>
+        <item quantity="other">Se añadieron %1$d reglas. Se incluirán en un commit en la próxima sincronización.</item>
+    </plurals>
+
+    <!-- Commit history -->
+    <string name="history_title">Historial de commits</string>
+    <string name="history_intro">Commits recientes de la rama actual. “No enviado” significa que el remoto aún no tiene ese commit (según la última sincronización).</string>
+    <string name="history_empty">Aún no hay commits.</string>
+    <string name="history_load_failed">No se pudo leer el historial de commits</string>
+    <string name="history_end">No hay commits anteriores</string>
+    <string name="history_not_pushed">No enviado</string>
+    <string name="history_merge">Fusión</string>
+    <string name="history_no_message">(Sin mensaje de commit)</string>
+    <string name="commit_title">Commit %1$s</string>
+    <string name="commit_author">%1$s &lt;%2$s&gt; · %3$s</string>
+    <string name="commit_pushed">Enviado al remoto</string>
+    <string name="commit_not_pushed">Aún no enviado al remoto</string>
+    <plurals name="commit_changes">
+        <item quantity="one">%1$d archivo cambiado</item>
+        <item quantity="many">%1$d archivos cambiados</item>
+        <item quantity="other">%1$d archivos cambiados</item>
+    </plurals>
+    <plurals name="commit_changes_merge">
+        <item quantity="one">%1$d archivo cambiado respecto a la versión local anterior a la fusión</item>
+        <item quantity="many">%1$d archivos cambiados respecto a la versión local anterior a la fusión</item>
+        <item quantity="other">%1$d archivos cambiados respecto a la versión local anterior a la fusión</item>
+    </plurals>
+    <string name="commit_renamed_from">Nombre anterior: %1$s</string>
+    <plurals name="commit_more_changes">
+        <item quantity="one">%1$d archivo más sin mostrar</item>
+        <item quantity="many">%1$d archivos más sin mostrar</item>
+        <item quantity="other">%1$d archivos más sin mostrar</item>
+    </plurals>
+    <string name="change_added">Nuevo</string>
+    <string name="change_modified">Cambiado</string>
+    <string name="change_deleted">Eliminado</string>
+    <string name="change_renamed">Renombrado</string>
+    <string name="change_copied">Copiado</string>
+    <string name="commit_copied_from">Copiado de: %1$s</string>
+    <string name="diff_expand">Mostrar cambios</string>
+    <string name="diff_collapse">Ocultar cambios</string>
+    <plurals name="diff_folded">
+        <item quantity="one">⋯ %1$d línea sin cambios, plegada ⋯</item>
+        <item quantity="many">⋯ %1$d líneas sin cambios, plegadas ⋯</item>
+        <item quantity="other">⋯ %1$d líneas sin cambios, plegadas ⋯</item>
+    </plurals>
+    <string name="diff_fold">Plegar líneas sin cambios</string>
+    <string name="diff_binary">Archivo binario, no se muestra el contenido (%1$s)</string>
+    <string name="diff_too_large">Archivo demasiado grande, no se muestran los cambios (%1$s)</string>
+    <string name="diff_unchanged">Contenido sin cambios</string>
+    <string name="diff_unchanged_newline">Contenido sin cambios; solo cambia el salto de línea al final del archivo</string>
+    <string name="diff_newline_at_end">También cambió el salto de línea al final del archivo (no se marca arriba)</string>
+    <string name="diff_truncated" tools:ignore="PluralsCandidate">Demasiados cambios; solo se muestran las primeras %1$d líneas</string>
+    <string name="diff_load_failed">No se pudieron leer los cambios: %1$s</string>
+
+    <!-- Conflict list -->
+    <string name="conflicts_title">Conflictos</string>
+    <string name="conflicts_menu">Más opciones</string>
+    <string name="conflicts_loading">Leyendo conflictos…</string>
+    <string name="conflicts_load_failed">No se pudieron leer los conflictos</string>
+    <plurals name="conflicts_intro">
+        <item quantity="one">Falta resolver %1$d archivo. Tócalo para revisar sus conflictos, o usa el menú de arriba a la derecha para resolver todo de una vez.</item>
+        <item quantity="many">Falta resolver %1$d archivos. Toca un archivo para revisar sus conflictos, o usa el menú de arriba a la derecha para resolver todo de una vez.</item>
+        <item quantity="other">Falta resolver %1$d archivos. Toca un archivo para revisar sus conflictos, o usa el menú de arriba a la derecha para resolver todo de una vez.</item>
+    </plurals>
+    <string name="conflicts_all_ours">Usar todas las versiones locales</string>
+    <string name="conflicts_all_theirs">Usar todas las versiones remotas</string>
+    <plurals name="conflicts_all_ours_confirm">
+        <item quantity="one">¿Usar la versión local en el archivo restante (%1$d)? Sus cambios remotos no estarán en el resultado (se quedan en el historial remoto). Si el remoto lo eliminó, se conserva la versión local; si se eliminó en local, sigue eliminado.</item>
+        <item quantity="many">¿Usar las versiones locales de los %1$d archivos restantes? Los cambios remotos de estos archivos no estarán en el resultado (se quedan en el historial remoto). Los archivos eliminados en el remoto conservan su versión local; los eliminados en local siguen eliminados.</item>
+        <item quantity="other">¿Usar las versiones locales de los %1$d archivos restantes? Los cambios remotos de estos archivos no estarán en el resultado (se quedan en el historial remoto). Los archivos eliminados en el remoto conservan su versión local; los eliminados en local siguen eliminados.</item>
+    </plurals>
+    <plurals name="conflicts_all_theirs_confirm">
+        <item quantity="one">¿Usar la versión remota en el archivo restante (%1$d)? Sus cambios locales no estarán en el resultado (se quedan en tu historial de commits local). Si se eliminó en local, se restaura la versión remota; si el remoto lo eliminó, se eliminará.</item>
+        <item quantity="many">¿Usar las versiones remotas de los %1$d archivos restantes? Los cambios locales de estos archivos no estarán en el resultado (se quedan en tu historial de commits local). Los archivos eliminados en local se restauran a su versión remota; los eliminados en el remoto se eliminarán.</item>
+        <item quantity="other">¿Usar las versiones remotas de los %1$d archivos restantes? Los cambios locales de estos archivos no estarán en el resultado (se quedan en tu historial de commits local). Los archivos eliminados en local se restauran a su versión remota; los eliminados en el remoto se eliminarán.</item>
+    </plurals>
+    <string name="conflicts_all_resolved_hint">Todos los conflictos están resueltos, pero falta hacer el commit de la fusión.</string>
+    <string name="conflicts_complete_merge">Completar fusión y enviar</string>
+    <string name="conflicts_action_failed">La acción falló</string>
+    <string name="conflicts_syncing_hint">Sincronizando. Podrás resolver los conflictos cuando termine.</string>
+    <string name="conflicts_none_title">No hay conflictos que resolver</string>
+    <string name="conflicts_none_body">Esta bóveda no tiene ninguna fusión en curso.</string>
+    <string name="conflicts_kind_both_modified">Cambiado en ambos lados</string>
+    <string name="conflicts_kind_both_added">Creado en ambos lados</string>
+    <string name="conflicts_kind_deleted_by_us">Eliminado en local</string>
+    <string name="conflicts_kind_deleted_by_them">Eliminado en el remoto</string>
+    <string name="conflicts_kind_added_by_us">Solo existe en local</string>
+    <string name="conflicts_kind_added_by_them">Solo existe en el remoto</string>
+    <string name="conflicts_kind_both_deleted">Eliminado en ambos lados</string>
+    <string name="conflicts_kind_binary">Archivo binario</string>
+    <string name="conflicts_kind_resolved">Resuelto</string>
+
+    <!-- Conflict file -->
+    <string name="conflict_ours">Versión local</string>
+    <string name="conflict_theirs">Versión remota</string>
+    <string name="conflict_marker_ours">Versión local</string>
+    <string name="conflict_marker_theirs">Versión remota</string>
+    <plurals name="conflict_blocks_intro">
+        <item quantity="one">%1$d conflicto, mostrado en su lugar dentro del texto y marcado con una barra de color a la izquierda. Elige qué versión usar.</item>
+        <item quantity="many">%1$d conflictos, mostrados en su lugar dentro del texto, en su orden original, y marcados con barras de color a la izquierda. Elige qué versión usar en cada uno.</item>
+        <item quantity="other">%1$d conflictos, mostrados en su lugar dentro del texto, en su orden original, y marcados con barras de color a la izquierda. Elige qué versión usar en cada uno.</item>
+    </plurals>
+    <string name="conflict_line_numbers_intro">" Las dos columnas de números de la izquierda son los números de línea en el archivo local y en el remoto."</string>
+    <string name="conflict_block_title">Conflicto %1$d / %2$d</string>
+    <string name="conflict_block_editing">Editando el conflicto %1$d / %2$d</string>
+    <plurals name="conflict_line_count">
+        <item quantity="one">%1$d línea</item>
+        <item quantity="many">%1$d líneas</item>
+        <item quantity="other">%1$d líneas</item>
+    </plurals>
+    <string name="conflict_side_empty">(Esta versión no tiene contenido aquí)</string>
+    <plurals name="conflict_side_truncated">
+        <item quantity="one">%1$d línea más sin mostrar. Puedes verla en el editor del archivo completo.</item>
+        <item quantity="many">%1$d líneas más sin mostrar. Puedes verlas en el editor del archivo completo.</item>
+        <item quantity="other">%1$d líneas más sin mostrar. Puedes verlas en el editor del archivo completo.</item>
+    </plurals>
+    <string name="conflict_keep_ours">Usar local</string>
+    <string name="conflict_keep_theirs">Usar remota</string>
+    <string name="conflict_keep_both">Usar ambas</string>
+    <string name="conflict_both_ours_first">Usar ambas, local primero</string>
+    <string name="conflict_both_theirs_first">Usar ambas, remota primero</string>
+    <string name="conflict_edit_block">Editar a mano</string>
+    <string name="conflict_edit_block_label">Texto final de este conflicto</string>
+    <string name="conflict_use_edited">Usar edición</string>
+    <string name="conflict_clear_choice">Quitar elección</string>
+    <string name="conflict_edit_again">Volver a editar</string>
+    <string name="conflict_empty_result">(El resultado de este conflicto está vacío)</string>
+    <plurals name="conflict_common_collapsed">
+        <item quantity="one">⋯ %1$d línea sin conflictos, plegada ⋯</item>
+        <item quantity="many">⋯ %1$d líneas sin conflictos, plegadas ⋯</item>
+        <item quantity="other">⋯ %1$d líneas sin conflictos, plegadas ⋯</item>
+    </plurals>
+    <string name="conflict_common_collapse">Plegar líneas sin conflictos</string>
+    <string name="conflict_choice_undecided">Sin elegir</string>
+    <string name="conflict_choice_ours">Se usa la local</string>
+    <string name="conflict_choice_theirs">Se usa la remota</string>
+    <string name="conflict_choice_both_ours_first">Se usan ambas (local primero)</string>
+    <string name="conflict_choice_both_theirs_first">Se usan ambas (remota primero)</string>
+    <string name="conflict_choice_custom">Editado a mano</string>
+    <string name="conflict_progress" tools:ignore="PluralsCandidate">%1$d / %2$d resueltos</string>
+    <string name="conflict_locate_undecided">Siguiente</string>
+    <string name="conflict_preview_edit">Ver y editar</string>
+    <string name="conflict_mark_resolved">Marcar resuelto</string>
+    <string name="conflict_all_blocks_ours">Usar todo lo local</string>
+    <string name="conflict_all_blocks_theirs">Usar todo lo remoto</string>
+    <string name="conflict_reset_choices">Quitar todas las elecciones</string>
+    <string name="conflict_open_editor">Editar archivo completo</string>
+    <string name="conflict_leave_title">¿Descartar tus elecciones?</string>
+    <string name="conflict_leave_body">Las elecciones de este archivo aún no están guardadas. Si vuelves ahora, tendrás que elegir de nuevo la próxima vez. Para guardarlas, toca “Marcar resuelto” después de elegir en todos los conflictos.</string>
+    <string name="conflict_leave_discard">Descartar y volver</string>
+    <string name="conflict_editor_mode_title">¿Desde dónde quieres empezar a editar?</string>
+    <string name="conflict_editor_mode_body">Puedes continuar desde las elecciones que ya hiciste (los conflictos sin elegir siguen mostrando marcadores de conflicto) o empezar desde los conflictos originales, con marcadores en cada conflicto. Tus elecciones en la vista por bloques no cambiarán.</string>
+    <string name="conflict_editor_mode_keep">Incluir mis elecciones</string>
+    <string name="conflict_editor_mode_original">Empezar desde los conflictos originales</string>
+    <string name="view_wrap">Ajustar líneas</string>
+    <string name="view_line_numbers">Números de línea</string>
+    <string name="conflict_missing_title">Este archivo ya no tiene conflictos</string>
+    <string name="conflict_missing_body">Puede que se haya resuelto en otro lugar o que haya cambiado su ruta. Vuelve a la lista para ver el estado actual.</string>
+    <string name="conflict_whole_binary_body">Los archivos binarios (como imágenes y PDF) no se pueden fusionar conflicto por conflicto. Elige qué versión usar para el archivo completo.</string>
+    <string name="conflict_whole_deleted_by_them_body">El remoto eliminó este archivo, pero se modificó en local. Conserva la versión local o acepta la eliminación.</string>
+    <string name="conflict_whole_deleted_by_us_body">Este archivo se eliminó en local, pero el remoto lo modificó. Restaura la versión remota o mantenlo eliminado.</string>
+    <string name="conflict_whole_both_deleted_body">Ambos lados eliminaron este archivo.</string>
+    <string name="conflict_whole_one_side_body">Solo un lado tiene este archivo. Elige si quieres conservarlo o eliminarlo.</string>
+    <string name="conflict_whole_too_large_body">El archivo es demasiado grande para fusionarlo conflicto por conflicto. Elige qué versión usar para el archivo completo.</string>
+    <string name="conflict_side_info">%1$s: %2$s · %3$s</string>
+    <string name="conflict_use_ours_file">Usar la versión local</string>
+    <string name="conflict_use_theirs_file">Usar la versión remota</string>
+    <string name="conflict_keep_ours_file">Conservar la versión local</string>
+    <string name="conflict_keep_theirs_file">Restaurar la versión remota</string>
+    <string name="conflict_edit_ours_then_keep">Editar la versión local y conservarla</string>
+    <string name="conflict_edit_theirs_then_keep">Editar la versión remota y conservarla</string>
+    <string name="conflict_cannot_edit_side">Esta versión no se puede editar como texto (archivo binario o demasiado grande).</string>
+    <string name="conflict_delete_file">Eliminar archivo</string>
+    <string name="conflict_delete_title">¿Eliminar el archivo?</string>
+    <string name="conflict_delete_confirm">Se resolverá eliminando “%1$s”. Cuando la fusión se complete y se sincronice, ni este teléfono ni el remoto tendrán este archivo (aún se podrá recuperar desde el historial).</string>
+    <string name="conflict_editor_title">Editar %1$s</string>
+    <string name="conflict_editor_search">Buscar</string>
+    <string name="conflict_editor_find_next">Siguiente</string>
+    <string name="conflict_editor_not_found">Sin resultados</string>
+    <string name="conflict_editor_save">Guardar y marcar resuelto</string>
+    <plurals name="conflict_editor_markers_warning">
+        <item quantity="one">Atención: la línea %1$s del archivo es un marcador de conflicto generado por la app. Si no la eliminas, se guardará y se incluirá en el commit que se envía al remoto al sincronizar.</item>
+        <item quantity="many">Atención: las líneas %1$s del archivo son marcadores de conflicto generados por la app. Si no las eliminas, se guardarán y se incluirán en el commit que se envía al remoto al sincronizar.</item>
+        <item quantity="other">Atención: las líneas %1$s del archivo son marcadores de conflicto generados por la app. Si no las eliminas, se guardarán y se incluirán en el commit que se envía al remoto al sincronizar.</item>
+    </plurals>
+    <string name="conflict_editor_next_marker">Ir a</string>
+    <string name="conflict_lines_more">%1$s, … (%2$d en total)</string>
+    <string name="conflict_editor_save_markers_title">Quedan marcadores de conflicto</string>
+    <plurals name="conflict_editor_save_markers_confirm">
+        <item quantity="one">La línea %1$s sigue siendo un marcador de conflicto generado por la app. Si guardas, esta línea se escribirá en el archivo y se incluirá en el commit que se envía al remoto al sincronizar. ¿Guardar de todos modos?</item>
+        <item quantity="many">Las líneas %1$s siguen siendo marcadores de conflicto generados por la app. Si guardas, estas líneas se escribirán en el archivo y se incluirán en el commit que se envía al remoto al sincronizar. ¿Guardar de todos modos?</item>
+        <item quantity="other">Las líneas %1$s siguen siendo marcadores de conflicto generados por la app. Si guardas, estas líneas se escribirán en el archivo y se incluirán en el commit que se envía al remoto al sincronizar. ¿Guardar de todos modos?</item>
+    </plurals>
+    <string name="conflict_editor_save_anyway">Guardar de todos modos</string>
+    <string name="conflict_editor_discard_confirm">¿Descartar los cambios que hiciste en el editor?</string>
+    <string name="conflict_editor_discard">Descartar cambios</string>
+
+    <!-- Logs and crash reports -->
+    <string name="logs_title">Registros</string>
+    <string name="logs_empty">Aún no hay registros.</string>
+    <string name="log_result_success">Correcto</string>
+    <string name="log_result_conflicts">Conflictos</string>
+    <string name="log_result_failed">Falló</string>
+    <string name="log_result_cancelled">Cancelado</string>
+    <string name="log_result_unknown">Sin terminar</string>
+    <string name="log_op_sync">Sincronización</string>
+    <string name="log_op_clone">Clonación</string>
+    <string name="log_op_init">Inicializar y subir</string>
+    <string name="log_op_adopt">Usar repositorio existente</string>
+    <string name="log_op_maintain">Mantenimiento del repositorio</string>
+    <string name="log_op_unknown">Otra operación</string>
+    <string name="log_share_title">Compartir registro</string>
+    <string name="crash_report_title">Informe de error</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Ajustes</string>
+    <string name="settings_identity">Autor predeterminado</string>
+    <string name="settings_identity_body">El nombre y el correo que se guardan en cada commit. Lo mejor es usar los mismos que en Git en tu computadora. Cada bóveda también puede tener los suyos en sus ajustes.</string>
+    <string name="settings_commit">Mensaje de commit</string>
+    <string name="settings_network">Red</string>
+    <string name="settings_proxy_enabled">Usar proxy HTTP</string>
+    <string name="settings_proxy_host">Host del proxy</string>
+    <string name="settings_proxy_port">Puerto del proxy</string>
+    <string name="settings_proxy_hint">Los remotos HTTPS y SSH se conectan a través de este proxy. Las apps de proxy en el teléfono suelen escuchar en un puerto de 127.0.0.1. Si el propio proxy no responde en 15 segundos, la conexión falla.</string>
+    <string name="settings_reason_proxy">Introduce un host y un puerto de proxy válidos</string>
+    <string name="settings_logs">Registros</string>
+    <string name="settings_log_keep">Registros guardados por bóveda</string>
+    <string name="settings_debug_logs">Registros detallados</string>
+    <string name="settings_debug_logs_hint">Escribe también en el registro la información de depuración de Git y SSH, para diagnosticar problemas.</string>
+    <string name="settings_saved">Guardado</string>
+    <string name="settings_language">Idioma</string>
+    <string name="settings_language_system">Idioma del sistema</string>
+    <string name="settings_language_hint">Con el idioma del sistema, la app usa el primer idioma de la lista de idiomas del sistema que admita, y el inglés si no admite ninguno.</string>
+    <string name="settings_notifications">Notificaciones</string>
+    <string name="settings_notifications_on">Las notificaciones están activadas</string>
+    <string name="settings_notifications_off">Las notificaciones están desactivadas</string>
+    <string name="settings_notifications_enable">Activar</string>
+    <string name="settings_notifications_manage">Gestionar</string>
+    <string name="settings_notifications_body">Las notificaciones muestran el progreso y el resultado de la sincronización. Si están desactivadas, la sincronización sigue funcionando, pero no verás el progreso ni recibirás avisos de conflictos o errores. En los ajustes del sistema puedes gestionar por separado los tres tipos: “Progreso de sincronización”, “Sincronización completada” y “Requiere atención”.</string>
+    <string name="settings_backup">Copia de seguridad y restauración</string>
+    <string name="settings_backup_body">Exporta a un archivo la lista de bóvedas, los ajustes, las claves SSH y los hosts conocidos, para restaurarlos en un teléfono nuevo o tras reinstalar la app. Los tokens y las claves privadas se cifran con una frase de contraseña que tú eliges. La configuración se guarda normalmente en el almacenamiento privado de la app y se conserva al actualizarla.</string>
+    <string name="backup_export">Exportar</string>
+    <string name="backup_import">Restaurar</string>
+    <string name="backup_failed">Falló la copia de seguridad</string>
+    <string name="backup_exported">Configuración exportada y comprobada</string>
+    <string name="backup_exported_partial">Exportada, pero no se pudieron incluir algunos tokens o claves privadas (consulta la tarjeta de copia de seguridad)</string>
+    <string name="backup_err_verify">El archivo no se guardó correctamente: lo que se leyó de vuelta no coincide con lo que se escribió. Prueba otra ubicación.</string>
+    <string name="backup_restore_busy">No se puede restaurar mientras se sincroniza una bóveda</string>
+    <string name="backup_last_export_with_secrets">Última exportación: %1$s · con tokens y claves privadas</string>
+    <string name="backup_last_export_without_secrets">Última exportación: %1$s · sin tokens ni claves privadas</string>
+    <string name="backup_missing_token">token de “%1$s”</string>
+    <string name="backup_missing_key">clave SSH “%1$s”</string>
+    <string name="backup_last_export_missing">No incluidos porque este dispositivo ya no puede descifrarlos (vuelve a introducirlos o crearlos): %1$s</string>
+    <string name="backup_never_exported">Aún no has exportado la configuración. Expórtala antes de cambiar de teléfono o reinstalar la app.</string>
+    <string name="backup_export_title">Exportar configuración</string>
+    <string name="backup_export_body">La exportación contiene la lista de bóvedas, los ajustes, la lista de claves SSH y los hosts conocidos.</string>
+    <string name="backup_include_secrets">Incluir tokens y claves privadas</string>
+    <string name="backup_passphrase">Frase de contraseña</string>
+    <string name="backup_passphrase_hint" tools:ignore="PluralsCandidate">Al menos %1$d caracteres. La necesitarás para restaurar y no se puede recuperar si la olvidas.</string>
+    <string name="backup_passphrase_confirm">Vuelve a introducir la frase de contraseña</string>
+    <string name="backup_without_secrets_hint">No se exportarán los tokens ni las claves privadas. Después de restaurar, tendrás que volver a introducir los tokens y volver a generar o importar las claves SSH (y volver a añadir sus claves públicas al remoto).</string>
+    <string name="backup_choose_location">Elegir dónde guardar</string>
+    <string name="backup_import_title">Restaurar desde copia de seguridad</string>
+    <string name="backup_import_source">Copia del %1$s · Dispositivo %2$s · Versión %3$s</string>
+    <plurals name="backup_import_repos">
+        <item quantity="one">%1$d bóveda</item>
+        <item quantity="many">%1$d bóvedas</item>
+        <item quantity="other">%1$d bóvedas</item>
+    </plurals>
+    <plurals name="backup_import_keys">
+        <item quantity="one">%1$d clave SSH</item>
+        <item quantity="many">%1$d claves SSH</item>
+        <item quantity="other">%1$d claves SSH</item>
+    </plurals>
+    <string name="backup_repo_folder_used">“%1$s” ya usa esta carpeta en este dispositivo</string>
+    <string name="backup_repo_folder_missing">Esta carpeta no existe en este dispositivo. Después de restaurar, puedes volver a clonarla desde la página de la bóveda.</string>
+    <string name="backup_repo_replaces">Sustituye a la misma bóveda en este dispositivo</string>
+    <string name="backup_key_replaces">Sustituye a la misma clave en este dispositivo</string>
+    <string name="backup_import_settings_title">Ajustes</string>
+    <string name="backup_import_settings">Restaurar los ajustes de la app</string>
+    <string name="backup_import_settings_hint">Autor predeterminado, mensaje de commit, proxy, registros, idioma y opciones de visualización. Sustituye todos los ajustes de este dispositivo.</string>
+    <string name="backup_import_known_hosts">Los hosts conocidos de la copia se añaden si este dispositivo aún no los tiene; los hosts en los que ya confía se mantienen.</string>
+    <string name="backup_import_no_secrets">Esta copia de seguridad no contiene tokens ni claves privadas.</string>
+    <string name="backup_import_without_secrets">No restaurar tokens ni claves privadas</string>
+    <string name="backup_import_action">Restaurar</string>
+    <string name="backup_restored">Restaurado. Bóvedas: %1$d · Claves SSH: %2$d · Tokens: %3$d</string>
+    <string name="backup_restored_secrets_skipped">No se restauraron los tokens ni las claves privadas. Añádelos en los ajustes de la bóveda.</string>
+    <plurals name="backup_restored_missing_folders">
+        <item quantity="one">%1$d bóveda restaurada no tiene carpeta en este dispositivo. Ábrela para volver a clonarla.</item>
+        <item quantity="many">%1$d bóvedas restauradas no tienen carpeta en este dispositivo. Ábrelas para volver a clonarlas.</item>
+        <item quantity="other">%1$d bóvedas restauradas no tienen carpeta en este dispositivo. Ábrelas para volver a clonarlas.</item>
+    </plurals>
+    <string name="backup_err_not_backup">Este no es un archivo de copia de seguridad de VaultSync.</string>
+    <string name="backup_err_too_new">Esta copia se exportó con una versión más reciente de VaultSync. Actualiza primero la app.</string>
+    <string name="backup_err_wrong_passphrase">Frase de contraseña incorrecta.</string>
+    <string name="backup_err_corrupt">El archivo de copia de seguridad está dañado y no se puede leer.</string>
+    <string name="settings_diagnostics">Solución de problemas</string>
+    <string name="settings_diagnostics_body">Empaqueta en un archivo los registros de sincronización de todas las bóvedas y los informes de error, para que puedas informar de un problema. Los registros no contienen tokens, claves privadas ni frases de contraseña.</string>
+    <string name="diagnostics_export">Exportar registros</string>
+    <string name="diagnostics_export_failed">No se pudieron exportar los registros</string>
+    <string name="diagnostics_exported">Registros guardados</string>
+    <plurals name="diagnostics_crash_count">
+        <item quantity="one">%1$d informe de error guardado</item>
+        <item quantity="many">%1$d informes de error guardados</item>
+        <item quantity="other">%1$d informes de error guardados</item>
+    </plurals>
+    <string name="diagnostics_view_latest_crash">Ver el último</string>
+    <string name="settings_help">Ayuda</string>
+    <string name="settings_help_background">Durante la sincronización, la app muestra el progreso en la barra de notificaciones y se ejecuta como servicio en primer plano, así que la sincronización continúa cuando cambias a otras apps. Si aun así se detiene al salir de la app, permite que VaultSync se ejecute en segundo plano en los ajustes del sistema o exclúyela de la optimización de batería.</string>
+    <string name="settings_help_vault_location">Las bóvedas de Obsidian suelen estar en Almacenamiento interno/Documents/&lt;nombre de la bóveda&gt;. Puedes ver la ubicación exacta en Obsidian, en “Administrar bóvedas”.</string>
+    <string name="settings_about">Acerca de</string>
+    <string name="settings_about_body">VaultSync %1$s · JGit %2$s · Android %3$s</string>
+</resources>

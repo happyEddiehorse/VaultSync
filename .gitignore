@@ -1,0 +1,29 @@
+# Gradle
+.gradle/
+build/
+**/build/
+!gradle/wrapper/gradle-wrapper.jar
+.kotlin/
+
+# Android / IDE
+local.properties
+*.apk
+*.aab
+*.ap_
+*.dex
+captures/
+.externalNativeBuild/
+.cxx/
+*.iml
+.idea/
+*.hprof
+.DS_Store
+Thumbs.db
+
+# Secrets / keys
+*.jks
+*.keystore
+*.p12
+*.pem
+id_ed25519*
+!**/src/test/resources/**

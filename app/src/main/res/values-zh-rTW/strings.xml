@@ -1,0 +1,761 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  介面文字：繁體中文（台灣，D-040）。以 values-zh-rCN 為底稿、對照 values/strings.xml 的英文；兩份的 key 一一對應。
+  原則見 docs/UI.md §10：寫給不熟悉 Git 的使用者；錯誤提示寫清「哪一步、什麼原因、怎麼做」；不出現任何手機品牌或機型。
+  用詞（vault 跟 Obsidian 繁中介面一致，2026-11-01）：儲存庫 = vault，存放庫 = Git repository，遠端 = remote，本機版本 / 遠端版本，權杖 = token，金鑰 = key，記錄檔 = log。
+  書寫約定：全形標點；引號用「」；不寫英文撇號。帶數量的文字是 plurals，中文只寫 other。
+-->
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">VaultSync</string>
+
+    <!-- 通用 -->
+    <string name="action_cancel">取消</string>
+    <string name="action_ok">確定</string>
+    <string name="action_back">返回</string>
+    <string name="action_close">關閉</string>
+    <string name="action_dismiss">知道了</string>
+    <string name="action_next">下一步</string>
+    <string name="action_save">儲存</string>
+    <string name="action_copy">複製全文</string>
+    <string name="action_share">分享</string>
+    <string name="action_retry">重試</string>
+    <string name="action_more">更多選項</string>
+    <string name="action_view_logs">查看記錄檔</string>
+    <string name="action_sync">同步</string>
+    <string name="action_sync_now">立即同步</string>
+    <string name="action_go_settings">前往設定</string>
+    <string name="action_show_technical">技術資訊</string>
+    <string name="action_hide_technical">收合技術資訊</string>
+    <string name="copied">已複製到剪貼簿</string>
+    <string name="duration_seconds">%1$s 秒</string>
+    <string name="duration_minutes">%1$d 分 %2$d 秒</string>
+    <string name="size_bytes">%1$s B</string>
+    <string name="size_kb">%1$s KB</string>
+    <string name="size_mb">%1$s MB</string>
+    <string name="size_gb">%1$s GB</string>
+    <string name="percent">%1$d%%</string>
+
+    <!-- 未儲存變更列（應用程式設定頁與儲存庫設定頁共用，docs/UI.md §9.1） -->
+    <string name="unsaved_changes">有未儲存的變更</string>
+    <string name="unsaved_discard">捨棄變更</string>
+    <string name="unsaved_reason_busy">正在同步，暫時無法儲存</string>
+    <string name="unsaved_leave_title">要捨棄未儲存的變更嗎？</string>
+    <string name="unsaved_leave_discard">捨棄</string>
+    <string name="unsaved_keep_editing">繼續編輯</string>
+
+    <!-- 同步階段與進度 -->
+    <string name="stage_preparing">準備中</string>
+    <string name="stage_precheck">檢查儲存庫狀態</string>
+    <string name="stage_commit">提交本機變更</string>
+    <string name="stage_fetch">取得遠端更新</string>
+    <string name="stage_merge">合併遠端更新</string>
+    <string name="stage_conflicts">等待處理衝突</string>
+    <string name="stage_push">推送到遠端</string>
+    <string name="stage_done">已完成</string>
+    <string name="stage_maintain">整理存放庫</string>
+    <string name="task_receiving">接收資料</string>
+    <string name="task_resolving">處理資料</string>
+    <string name="task_counting">統計物件</string>
+    <string name="task_compressing">壓縮物件</string>
+    <string name="task_writing">寫入資料</string>
+    <string name="task_finding_sources">尋找可重複使用的資料</string>
+    <string name="task_sizes">計算大小</string>
+    <string name="task_indexing">建立索引</string>
+    <string name="task_updating_refs">更新分支</string>
+    <string name="task_checkout">寫出檔案</string>
+    <string name="task_verifying">核對檔案</string>
+    <string name="progress_cancelling">正在取消…</string>
+    <string name="task_opening">連線到遠端</string>
+    <string name="task_staging">讀取變更的檔案</string>
+    <string name="meter_downloaded">已下載 %1$s</string>
+    <string name="meter_uploaded">已上傳 %1$s</string>
+    <string name="meter_rate">%1$s/s</string>
+    <string name="meter_elapsed">耗時 %1$s</string>
+    <string name="task_pack_refs">整理分支記錄</string>
+    <string name="task_prune">清理已封裝的資料</string>
+    <string name="job_syncing">正在同步</string>
+    <string name="job_cloning">正在複製</string>
+    <string name="job_initializing">正在初始化</string>
+    <string name="job_adopting">正在接管</string>
+    <string name="job_maintaining">正在整理</string>
+
+    <!-- 通知 -->
+    <string name="notification_channel_sync">同步進度</string>
+    <string name="notification_channel_sync_desc">同步時顯示目前進度，並讓同步在背景持續執行。</string>
+    <string name="notification_channel_done">同步完成</string>
+    <string name="notification_channel_done_desc">所有儲存庫都同步成功時的提示，預設為靜音。</string>
+    <string name="notification_channel_attention">需要處理</string>
+    <string name="notification_channel_attention_desc">同步發生衝突或失敗時提醒你。</string>
+    <string name="notif_progress_preparing">準備同步…</string>
+    <string name="notif_progress_title">%1$s「%2$s」</string>
+    <string name="notif_progress_position">第 %1$d 個，共 %2$d 個</string>
+    <string name="notif_progress_queued">排隊中：%1$s</string>
+    <string name="notif_action_cancel">取消這個儲存庫</string>
+    <string name="notif_action_cancel_all">全部停止</string>
+    <plurals name="notif_summary_all_ok">
+        <item quantity="other">%1$d 個儲存庫已同步</item>
+    </plurals>
+    <plurals name="notif_summary_all_problems">
+        <item quantity="other">%1$d 個儲存庫需要處理</item>
+    </plurals>
+    <plurals name="notif_summary_mixed">
+        <item quantity="other">%1$d 個儲存庫已同步，%2$d 個需要處理</item>
+    </plurals>
+    <plurals name="notif_summary_tasks_all_ok">
+        <item quantity="other">%1$d 項已完成</item>
+    </plurals>
+    <plurals name="notif_summary_tasks_all_problems">
+        <item quantity="other">%1$d 項需要處理</item>
+    </plurals>
+    <plurals name="notif_summary_tasks_mixed">
+        <item quantity="other">%1$d 項已完成，%2$d 項需要處理</item>
+    </plurals>
+    <string name="notif_summary_line">%1$s：%2$s</string>
+    <string name="notif_result_added">已新增</string>
+    <string name="notif_result_recloned">已重新複製</string>
+    <string name="notif_result_maintained">整理完成</string>
+    <string name="notif_result_maintained_freed">整理完成，釋放 %1$s</string>
+    <plurals name="notif_result_conflicts">
+        <item quantity="other">%1$d 個檔案有衝突，請開啟應用程式處理</item>
+    </plurals>
+    <string name="notif_result_failed">失敗：%1$s</string>
+    <string name="list_separator">、</string>
+
+    <!-- 首頁 -->
+    <string name="home_title">VaultSync</string>
+    <string name="home_settings">設定</string>
+    <string name="home_add_repo">新增儲存庫</string>
+    <string name="home_empty_title">還沒有新增任何儲存庫</string>
+    <string name="home_empty_body">新增一個 Git 存放庫，並與遠端保持同步。</string>
+    <string name="home_config_error_title">無法讀取設定檔</string>
+    <string name="home_config_error_body">以下設定檔已損毀，已另存為備份，這次以空白設定啟動：\n%1$s\n你可以在設定頁從備份檔還原設定。</string>
+    <string name="home_identity_missing">尚未設定提交者姓名和電子郵件。每次提交都會記錄它們，請先在設定中填寫。</string>
+    <string name="home_go_settings">前往設定</string>
+    <string name="home_crash_title">應用程式上次意外關閉</string>
+    <string name="home_crash_body">已儲存當機報告。如果問題一再發生，可以把報告傳給開發者。</string>
+    <string name="home_crash_view">查看報告</string>
+    <string name="env_info">VaultSync %1$s · Android %2$s</string>
+
+    <string name="status_synced">已同步</string>
+    <string name="status_conflicts">有衝突</string>
+    <string name="status_syncing">同步中</string>
+    <string name="status_maintaining">整理中</string>
+    <string name="status_cloning">複製中</string>
+    <string name="status_queued">排隊中</string>
+    <string name="status_error">同步失敗</string>
+    <string name="status_cancelled">已取消</string>
+    <string name="status_never">尚未同步</string>
+    <string name="last_sync_at">上次同步：%1$s</string>
+
+    <!-- 儲存權限 -->
+    <string name="perm_title">需要檔案存取權限</string>
+    <string name="perm_body_legacy">VaultSync 需要讀寫手機儲存空間中的檔案和資料夾（包括其中的 .git 資料夾）。請授予儲存權限。</string>
+    <string name="perm_body_all_files">VaultSync 需要讀寫手機儲存空間中的檔案和資料夾（包括其中的 .git 資料夾）。請在系統設定中為 VaultSync 開啟「所有檔案存取權」。</string>
+    <string name="perm_grant">授予權限</string>
+    <string name="perm_open_settings">開啟系統設定</string>
+
+    <!-- 新增儲存庫精靈 -->
+    <string name="add_title">新增儲存庫</string>
+    <string name="add_step">第 %1$d 步，共 %2$d 步</string>
+    <string name="add_step_mode">選擇方式</string>
+    <string name="add_step_folder">選擇資料夾</string>
+    <string name="add_step_remote">遠端存放庫與驗證</string>
+    <string name="add_step_identity">名稱與提交者</string>
+    <string name="add_step_confirm">確認</string>
+    <string name="add_step_progress">執行</string>
+    <string name="add_start_failed">無法儲存權杖</string>
+
+    <string name="mode_clone_title">從遠端複製</string>
+    <string name="mode_clone_body">你的筆記在遠端存放庫中，這支手機上還沒有。會把存放庫下載到一個空資料夾。</string>
+    <string name="mode_init_title">上傳這支手機上的儲存庫</string>
+    <string name="mode_init_body">這支手機上已有要同步的資料夾（沒有 .git），遠端是空的存放庫。會在該資料夾中建立 Git 存放庫並完成第一次推送。</string>
+    <string name="mode_adopt_title">接管現有的 Git 存放庫</string>
+    <string name="mode_adopt_body">儲存庫資料夾中已有 .git（例如由其他工具建立）。直接接管，不變更既有的歷史記錄。</string>
+
+    <string name="folder_hint_clone">選擇或建立一個空資料夾，存放庫會複製到這裡。</string>
+    <string name="folder_hint_init">選擇要同步的資料夾（不含 .git）。</string>
+    <string name="folder_hint_adopt">選擇現有的 Git 存放庫資料夾（含有 .git）。</string>
+    <string name="folder_path_label">路徑</string>
+    <string name="folder_up">上一層</string>
+    <string name="folder_go">前往</string>
+    <string name="folder_new">新增資料夾</string>
+    <string name="folder_new_name">資料夾名稱</string>
+    <string name="folder_badge_vault">Obsidian 儲存庫</string>
+    <string name="folder_badge_repo">Git 存放庫</string>
+    <string name="folder_empty">（沒有子資料夾）</string>
+    <string name="folder_use_this">使用這個資料夾</string>
+    <string name="folder_err_not_dir">這個路徑不是資料夾。</string>
+    <string name="folder_err_not_empty">資料夾不是空的。複製需要一個空資料夾。</string>
+    <string name="folder_err_has_git">這個資料夾中已有 .git，請返回並選擇「接管現有的 Git 存放庫」。</string>
+    <string name="folder_err_no_git">這個資料夾中沒有 .git，請返回並選擇其他方式。</string>
+    <string name="folder_err_name">名稱無效。</string>
+    <string name="folder_err_create">無法建立資料夾。</string>
+    <string name="folder_err_exists">已有同名的資料夾。</string>
+    <string name="folder_warn_no_obsidian">這個資料夾中沒有 .obsidian，可能不是 Obsidian 儲存庫。</string>
+
+    <string name="remote_url_label">遠端存放庫網址</string>
+    <string name="remote_url_examples">HTTPS：https://github.com/使用者名稱/存放庫.git
+SSH：git@github.com:使用者名稱/存放庫.git</string>
+    <string name="remote_url_adopt_hint">留空則使用存放庫中已設定的遠端網址（origin）。</string>
+    <string name="remote_kind_https">HTTPS 網址，使用個人存取權杖驗證。</string>
+    <string name="remote_kind_ssh">SSH 網址，使用 SSH 金鑰驗證。</string>
+    <string name="remote_kind_unsupported">無法辨識的網址。支援 https://… 與 SSH 網址；不支援 http:// 與本機路徑。</string>
+    <string name="remote_username_label">使用者名稱</string>
+    <string name="remote_token_label">個人存取權杖</string>
+    <string name="remote_token_replace_label">新權杖（留空則保持不變）</string>
+    <string name="remote_token_hint">在 GitHub 的 Settings → Developer settings → Personal access tokens 中建立，需要這個存放庫內容的讀寫權限。權杖會加密儲存在這台裝置上。</string>
+    <string name="remote_token_saved_hint">已儲存權杖。只有需要更換時才填寫。</string>
+    <string name="remote_token_unreadable_hint">已儲存的權杖無法解密（系統金鑰儲存區有變動），請重新填寫。</string>
+    <string name="remote_ssh_port_label">SSH 連接埠</string>
+    <string name="remote_ssh_github_443">改用 443 連接埠</string>
+    <string name="remote_ssh_github_22">改回 22 連接埠</string>
+    <string name="remote_branch_label">分支</string>
+    <string name="remote_test">測試連線</string>
+    <string name="remote_test_ok_empty">連線成功。遠端是空的存放庫。</string>
+    <string name="remote_test_ok">連線成功。遠端分支：%1$s</string>
+    <string name="remote_test_fail_title">連線失敗：%1$s</string>
+    <string name="remote_reason_url">請填寫有效的遠端存放庫網址</string>
+    <string name="remote_reason_username">請填寫使用者名稱</string>
+    <string name="remote_reason_token">請填寫個人存取權杖</string>
+    <string name="remote_reason_port">請填寫正確的 SSH 連接埠</string>
+    <string name="remote_reason_key">請選擇可用的 SSH 金鑰</string>
+
+    <string name="repo_name_label">顯示名稱</string>
+    <string name="identity_title">提交者</string>
+    <string name="identity_body">記錄在這個儲存庫每次提交中的姓名和電子郵件。留空則使用設定中的預設值。</string>
+    <string name="identity_name_label">姓名</string>
+    <string name="identity_email_label">電子郵件</string>
+    <string name="identity_missing">設定中還沒有預設的提交者，這裡必須填寫。</string>
+    <string name="commit_template_label">提交訊息範本</string>
+    <string name="commit_template_hint">可用的預留位置：{{date}} {{hostname}} {{numFiles}} {{files}}</string>
+    <string name="date_format_label">日期格式</string>
+    <string name="date_format_hint">例如 YYYY-MM-DD HH:mm:ss</string>
+
+    <string name="confirm_mode">方式</string>
+    <string name="confirm_folder">資料夾</string>
+    <string name="confirm_remote">遠端</string>
+    <string name="confirm_remote_existing">沿用存放庫中已設定的遠端網址（origin）</string>
+    <string name="confirm_branch">分支</string>
+    <string name="confirm_auth">驗證</string>
+    <string name="confirm_auth_https">個人存取權杖（使用者名稱 %1$s）</string>
+    <string name="confirm_auth_ssh">SSH 金鑰「%1$s」</string>
+    <string name="confirm_auth_none">無</string>
+    <string name="confirm_identity">提交者</string>
+    <string name="confirm_identity_default">使用設定中的預設值</string>
+    <string name="confirm_actions_clone">將執行：連線到遠端 → 複製到所選資料夾 → 寫入存放庫設定。</string>
+    <string name="confirm_actions_init">將執行：確認遠端是空的 → 建立 Git 存放庫 → 寫入建議的 .gitignore → 提交所有檔案 → 推送。</string>
+    <string name="confirm_actions_adopt">將執行：開啟存放庫 → 核對分支與遠端 → 寫入存放庫設定。不會變更既有的歷史記錄。</string>
+    <string name="confirm_start">開始</string>
+
+    <string name="progress_running">%1$s…</string>
+    <string name="progress_success">完成</string>
+    <string name="progress_cancelled">已取消</string>
+    <string name="progress_failed">%1$s時失敗：%2$s</string>
+    <string name="progress_back_to_edit">返回修改</string>
+    <string name="progress_open_repo">開啟儲存庫</string>
+    <string name="note_remote_empty">遠端是空的存放庫，第一次同步時會推送本機內容。</string>
+    <string name="note_gitignore_created">已依建議範本建立 .gitignore。</string>
+    <string name="note_branch_adjusted">存放庫目前的分支是 %1$s（而不是填寫的 %2$s），將依 %1$s 同步。</string>
+    <string name="note_remote_changed">遠端網址已改為 %1$s。</string>
+    <string name="note_unfinished_merge">這個存放庫有一次未完成的合併，仍有衝突，請在儲存庫詳細資料中處理。</string>
+    <string name="note_resolved_merge">這個存放庫有一次衝突已解決但尚未提交的合併，下次同步時會完成它。</string>
+
+    <!-- SSH 金鑰（設定頁、精靈、儲存庫設定共用） -->
+    <string name="settings_ssh">SSH 金鑰</string>
+    <string name="ssh_list_intro">使用 SSH 網址的儲存庫透過這裡的金鑰驗證。每個儲存庫可以選擇不同的金鑰，新的儲存庫預設使用「預設」金鑰。私鑰會加密儲存在這台裝置上，不會離開手機。</string>
+    <string name="ssh_list_empty">還沒有金鑰。</string>
+    <string name="ssh_key_title_default">%1$s（預設）</string>
+    <string name="ssh_key_unused">沒有任何儲存庫使用</string>
+    <plurals name="ssh_key_used_by">
+        <item quantity="other">%1$d 個儲存庫正在使用</item>
+    </plurals>
+    <string name="ssh_key_generate">產生金鑰</string>
+    <string name="ssh_key_import">匯入私鑰</string>
+    <string name="ssh_key_copy_public">複製公鑰</string>
+    <string name="ssh_key_copy_public_short">複製公鑰</string>
+    <string name="ssh_key_view_public">查看詳細資料</string>
+    <string name="ssh_key_set_default">設為預設</string>
+    <string name="ssh_key_rename">重新命名</string>
+    <string name="ssh_key_delete">刪除</string>
+    <string name="ssh_key_delete_title">要刪除金鑰「%1$s」嗎？</string>
+    <string name="ssh_key_delete_unused">沒有儲存庫在使用這把金鑰。刪除後，請到遠端（例如 GitHub 的 SSH keys）一併移除對應的公鑰。</string>
+    <plurals name="ssh_key_delete_used">
+        <item quantity="other">有 %1$d 個儲存庫在使用這把金鑰：%2$s。刪除後，這些儲存庫需要改選其他金鑰才能同步。請到遠端一併移除對應的公鑰。</item>
+    </plurals>
+    <string name="ssh_key_name_label">名稱</string>
+    <string name="ssh_key_name_suggestion">金鑰 %1$d</string>
+    <string name="ssh_key_name_migrated">預設金鑰</string>
+    <string name="ssh_key_name_recovered">復原的金鑰</string>
+    <string name="ssh_key_source_generated">%1$s 產生</string>
+    <string name="ssh_key_source_imported">%1$s 匯入</string>
+    <string name="ssh_key_unreadable">私鑰無法解密（系統金鑰儲存區有變動），請刪除後重新產生或匯入。</string>
+    <string name="ssh_key_public_hint">把下面這行公鑰新增到你的遠端帳戶，例如 GitHub 的 Settings → SSH and GPG keys → New SSH key。</string>
+    <string name="ssh_key_done_generated">已產生金鑰。請把公鑰新增到你的遠端帳戶。</string>
+    <string name="ssh_key_done_imported">已匯入金鑰。</string>
+    <string name="ssh_key_done_deleted">已刪除金鑰。</string>
+    <string name="ssh_generate_title">產生 SSH 金鑰</string>
+    <string name="ssh_generate_body">產生一把新的 ed25519 金鑰。名稱只在這個應用程式中顯示，方便你區分。</string>
+    <string name="ssh_import_title">匯入私鑰</string>
+    <string name="ssh_import_key_label">私鑰內容</string>
+    <string name="ssh_import_key_hint">貼上完整的私鑰檔案內容（從 -----BEGIN … PRIVATE KEY----- 到 -----END … -----）。支援 OpenSSH、PEM、PKCS#8 與 PuTTY 格式。</string>
+    <string name="ssh_import_passphrase_label">私鑰密碼（沒有則留空）</string>
+    <string name="ssh_import_action">匯入</string>
+    <string name="ssh_import_err_invalid">無法辨識私鑰格式。請確認貼上的是私鑰而不是公鑰（.pub），且開頭與結尾的 BEGIN / END 行完整。</string>
+    <string name="ssh_import_err_passphrase_required">這把私鑰受密碼保護，請填寫密碼。</string>
+    <string name="ssh_import_err_wrong_passphrase">密碼不正確。</string>
+    <string name="ssh_import_err_unsupported">不支援這把金鑰：%1$s</string>
+    <string name="ssh_picker_title">SSH 金鑰</string>
+    <string name="ssh_picker_empty">還沒有 SSH 金鑰。產生一把新金鑰，或匯入現有的私鑰。</string>
+    <string name="ssh_picker_choose">請選擇金鑰</string>
+    <string name="ssh_picker_deleted">原本使用的金鑰已被刪除，請重新選擇</string>
+    <string name="ssh_picker_open">選擇金鑰</string>
+    <string name="ssh_picker_new_generate">產生新金鑰…</string>
+    <string name="ssh_picker_new_import">匯入私鑰…</string>
+    <string name="ssh_picker_add_public_key">請確認這把金鑰的公鑰已新增到你的遠端帳戶，然後測試連線。</string>
+    <string name="ssh_picker_manage">管理金鑰</string>
+
+    <!-- 已知主機 -->
+    <string name="known_hosts_title">已知主機</string>
+    <string name="known_hosts_body">第一次連線到某台主機時會記錄它的金鑰；之後若金鑰改變就會拒絕連線，以防連線遭到挾持。如果確定是伺服器更換了金鑰，可以「忘記」該主機後重新連線。GitHub 的金鑰已內建。</string>
+    <string name="known_hosts_empty">還沒有記錄。</string>
+    <string name="known_hosts_forget">忘記</string>
+    <string name="known_hosts_forget_confirm">要忘記「%1$s」的主機金鑰嗎？下次連線時會重新記錄。</string>
+
+    <!-- 儲存庫詳細資料 -->
+    <string name="detail_open_repo_settings">儲存庫設定</string>
+    <string name="detail_history">提交歷史</string>
+    <string name="detail_logs">同步記錄檔</string>
+    <string name="detail_branch_remote">分支 %1$s · 遠端 %2$s</string>
+    <string name="detail_auth_https">驗證：個人存取權杖（%1$s）</string>
+    <string name="detail_auth_ssh">驗證：SSH 金鑰「%1$s」</string>
+    <string name="detail_auth_none">驗證：無</string>
+    <string name="detail_local_changes" tools:ignore="PluralsCandidate">本機尚未同步的變更：修改 %1$d · 新增 %2$d · 刪除 %3$d</string>
+    <string name="detail_no_local_changes">沒有尚未同步的本機變更</string>
+    <string name="detail_path_copy">複製路徑</string>
+    <string name="detail_queued_body">前面還有其他儲存庫正在同步，輪到時會自動開始。</string>
+    <string name="detail_failed_title">%1$s時失敗：%2$s</string>
+    <string name="detail_last_failed_title">上次同步失敗（%1$s）：%2$s</string>
+    <string name="detail_last_result">上次同步：%1$s</string>
+    <string name="detail_inspect_failed">無法讀取儲存庫的狀態</string>
+    <string name="detail_not_repo">這個資料夾不是 Git 存放庫，可能已被移動，或 .git 已被刪除。</string>
+    <string name="detail_dir_missing">找不到儲存庫資料夾，可能已被移動或刪除。</string>
+    <string name="detail_reclone_body">可以依這個儲存庫既有的遠端、分支和權杖 / 金鑰，把它重新複製到原來的位置：%1$s\n儲存庫的名稱與設定保持不變。</string>
+    <string name="detail_reclone_action">重新複製到原位置</string>
+    <string name="detail_action_failed">操作失敗</string>
+    <plurals name="detail_conflicts_title">
+        <item quantity="other">%1$d 個檔案有衝突</item>
+    </plurals>
+    <string name="detail_conflicts_body">手機和遠端修改了同一處內容。請逐一檔案選擇保留哪個版本（也可以兩者都保留或手動編輯），全部處理完後完成合併並推送。\n也可以放棄這次合併：本機的提交不受影響，遠端的變更仍保存在遠端，下次同步時會再次合併。</string>
+    <string name="detail_open_conflicts">處理衝突</string>
+    <string name="detail_abort_merge">放棄合併</string>
+    <string name="detail_abort_confirm">檔案會回到本機最後一次提交時的內容，已做的衝突處理會遺失。遠端的變更不受影響，下次同步時會再次合併。</string>
+    <string name="detail_merge_resolved_title">衝突已全部處理</string>
+    <string name="detail_merge_resolved_body">合併尚未提交。點選「完成合併並推送」以建立合併提交並同步到遠端。</string>
+    <string name="detail_complete_merge_sync">完成合併並推送</string>
+    <string name="detail_residue_title">請注意</string>
+    <string name="residue_index_lock">上次操作被中斷，留下了鎖定檔（index.lock）。同步時會自動清除。</string>
+    <string name="residue_index_lock_fix">立即清除</string>
+    <string name="residue_merge_conflicts">有一次未完成的合併，仍有衝突。</string>
+    <string name="residue_merge_resolved">衝突已處理，但合併尚未提交。</string>
+    <string name="residue_unsupported">存放庫正處於這個應用程式不支援的操作中（例如 rebase 或 cherry-pick），請先在電腦上完成或中止該操作。</string>
+    <string name="residue_detached">存放庫目前沒有簽出任何分支（detached HEAD），請先在電腦上切換到某個分支。</string>
+    <string name="residue_missing_remote">存放庫沒有設定遠端（origin），同步時會寫入儲存庫設定中的網址。</string>
+    <string name="residue_unborn">分支還沒有任何提交，第一次同步時會推送。</string>
+    <string name="detail_auth_problem_title">驗證資訊不完整</string>
+    <string name="detail_auth_token_missing">這個儲存庫使用 HTTPS 網址，但還沒有儲存個人存取權杖，同步會失敗。</string>
+    <string name="detail_auth_token_unreadable">已儲存的權杖無法解密（系統金鑰儲存區有變動），請重新填寫。</string>
+    <string name="detail_auth_key_missing">這個儲存庫原本使用的 SSH 金鑰已被刪除，請在儲存庫設定中改選其他金鑰。</string>
+    <string name="detail_auth_key_unreadable">這個儲存庫使用的 SSH 金鑰無法解密（系統金鑰儲存區有變動），請重新產生或匯入金鑰，再到儲存庫設定中改選。</string>
+    <string name="detail_auth_key_not_selected">這個儲存庫使用 SSH 網址，但還沒有選擇 SSH 金鑰。</string>
+
+    <string name="result_success">成功</string>
+    <string name="result_conflicts">有衝突</string>
+    <plurals name="result_conflicts_n">
+        <item quantity="other">%1$d 個檔案有衝突</item>
+    </plurals>
+    <string name="result_cancelled">已取消</string>
+    <string name="result_failed_reason">失敗：%1$s</string>
+    <plurals name="summary_committed">
+        <item quantity="other">提交了 %1$d 個檔案</item>
+    </plurals>
+    <string name="summary_no_local_changes">本機沒有變更</string>
+    <string name="summary_merge_none">遠端還沒有這個分支</string>
+    <string name="summary_merge_ff">已拉取遠端更新</string>
+    <string name="summary_merge_merged">已合併遠端更新</string>
+    <string name="summary_merge_up_to_date">遠端沒有新內容</string>
+    <string name="summary_push_ok">已推送</string>
+    <string name="summary_push_nothing">不需要推送</string>
+    <string name="summary_no_changes">沒有變化</string>
+    <string name="summary_duration">耗時 %1$s</string>
+
+    <!-- 失敗原因：標題（短）與說明（可能原因 + 建議動作） -->
+    <string name="fail_auth_token">權杖無效或已過期</string>
+    <string name="fail_auth_token_hint">遠端拒絕了個人存取權杖。請確認權杖沒有過期、沒有被撤銷，並且有這個存放庫內容的讀寫權限，然後在儲存庫設定中更新權杖。</string>
+    <string name="fail_auth_ssh">SSH 金鑰未被接受</string>
+    <string name="fail_auth_ssh_hint">遠端不接受這把 SSH 金鑰。請確認這把金鑰的公鑰已新增到你的遠端帳戶（例如 GitHub 的 SSH keys），而且儲存庫設定中選擇的是這把金鑰。</string>
+    <string name="fail_permission">沒有權限</string>
+    <string name="fail_permission_hint">驗證成功，但目前的帳戶或金鑰沒有寫入權限（例如唯讀的部署金鑰、權杖缺少寫入權限，或分支受到保護）。請在遠端調整權限。</string>
+    <string name="fail_repo_not_found">找不到遠端存放庫</string>
+    <string name="fail_repo_not_found_hint">請檢查存放庫網址是否正確。私人存放庫在憑證沒有存取權時也會顯示為「找不到」，請同時確認權杖或金鑰屬於有存取權的帳戶。</string>
+    <string name="fail_host_key">伺服器金鑰與記錄不符</string>
+    <string name="fail_host_key_hint">為了防止連線遭到挾持，已停止連線。如果確定是伺服器更換了金鑰（可對照代管服務公布的指紋），請在設定的「已知主機」中忘記該主機後重試。</string>
+    <string name="fail_network">無法連線到伺服器</string>
+    <string name="fail_network_hint">請檢查網路連線，確認能連上遠端伺服器；如果需要透過代理伺服器才能連上，請開啟手機上的代理，或在設定中設定 HTTP 代理伺服器。</string>
+    <string name="fail_timeout">連線逾時</string>
+    <string name="fail_timeout_hint">伺服器長時間沒有回應。請檢查網路或代理伺服器是否正常，稍後再試。</string>
+    <string name="fail_proxy">無法透過代理伺服器連線</string>
+    <string name="fail_proxy_hint">無法連線到設定中的 HTTP 代理伺服器，或代理伺服器拒絕轉送連線。請確認代理伺服器位址與連接埠正確，且代理程式正在執行並允許來自這台裝置的連線；不需要代理伺服器時，請在設定中關閉。</string>
+    <string name="fail_check_proxy_hint">目前已開啟應用程式內的代理伺服器，也請確認代理伺服器位址可用。</string>
+    <string name="fail_tls">安全連線失敗</string>
+    <string name="fail_tls_hint">無法與伺服器建立安全連線（憑證驗證失敗）。可能是網路遭到攔截，或裝置時間不正確，請檢查後再試。</string>
+    <string name="fail_push_rejected">遠端拒絕了推送</string>
+    <string name="fail_push_rejected_hint">遠端拒絕接收這次推送，常見原因是分支保護規則或伺服器端的檢查。本機的提交已儲存，不會遺失。請查看技術資訊，在遠端調整設定後重新同步。</string>
+    <string name="fail_push_race">遠端一直有新的提交</string>
+    <string name="fail_push_race_hint">推送期間遠端多次出現新的提交（可能電腦正在同時同步）。本機的提交已儲存，稍後再同步即可。</string>
+    <string name="fail_local_files">本機檔案會被覆寫</string>
+    <string name="fail_local_files_hint">遠端新增的檔案與這支手機上未追蹤（或被 .gitignore 忽略）的檔案同名，合併會覆寫它們，因此已停止同步。請在技術資訊中查看檔名，將這些檔案重新命名或移走後再同步。</string>
+    <string name="fail_vault_missing">找不到儲存庫資料夾</string>
+    <string name="fail_vault_missing_hint">儲存庫資料夾可能已被移動、重新命名或刪除。請確認資料夾位置，必要時移除這個儲存庫後重新新增。</string>
+    <string name="fail_not_repo">資料夾中沒有 Git 存放庫</string>
+    <string name="fail_not_repo_hint">儲存庫資料夾中找不到 .git 資料夾，可能已被刪除。請移除這個儲存庫後重新新增（可以選擇從遠端複製）。</string>
+    <string name="fail_already_repo">資料夾中已有 Git 存放庫</string>
+    <string name="fail_already_repo_hint">這個資料夾中已經有 .git。請返回並選擇「接管現有的 Git 存放庫」。</string>
+    <string name="fail_credential_missing">缺少權杖或金鑰</string>
+    <string name="fail_credential_missing_hint">這個儲存庫還沒有儲存可用的權杖，或沒有選擇 SSH 金鑰（也可能所選的金鑰已被刪除）。請在儲存庫設定中補上。</string>
+    <string name="fail_credential_unreadable">權杖或金鑰無法解密</string>
+    <string name="fail_credential_unreadable_hint">系統金鑰儲存區有變動，已儲存的權杖或私鑰無法再解密。請在儲存庫設定中重新填寫權杖，或重新產生、匯入 SSH 金鑰。</string>
+    <string name="fail_repo_state">存放庫狀態無法同步</string>
+    <string name="fail_repo_state_hint">存放庫正處於 rebase、cherry-pick 等操作中、沒有簽出分支，或簽出的分支與儲存庫設定不一致。請先在電腦上處理，完成後再同步。</string>
+    <string name="fail_identity">未設定提交者</string>
+    <string name="fail_identity_hint">提交需要姓名和電子郵件。請在設定中填寫預設提交者，或在儲存庫設定中為這個儲存庫另外填寫。</string>
+    <string name="fail_dir_not_empty">資料夾不是空的</string>
+    <string name="fail_dir_not_empty_hint">複製需要一個空資料夾。請建立新的資料夾；如果資料夾中已有筆記，請改用「上傳這支手機上的儲存庫」或「接管現有的 Git 存放庫」。</string>
+    <string name="fail_remote_not_empty">遠端存放庫不是空的</string>
+    <string name="fail_remote_not_empty_hint">遠端已有內容，無法直接上傳覆蓋。請先把遠端複製到一個空資料夾，再把手機上的筆記移進去並同步。</string>
+    <string name="fail_branch_not_found">遠端沒有這個分支</string>
+    <string name="fail_branch_not_found_hint">請返回修改分支名稱。技術資訊中列出了遠端現有的分支。</string>
+    <string name="fail_remote_missing">沒有遠端網址</string>
+    <string name="fail_remote_missing_hint">存放庫中沒有設定遠端（origin），請填寫遠端存放庫網址。</string>
+    <string name="fail_vault_empty">儲存庫裡沒有可提交的檔案</string>
+    <string name="fail_vault_empty_hint">所選的資料夾中沒有檔案（或全都被 .gitignore 忽略）。請確認選擇的是正確的儲存庫資料夾。</string>
+    <string name="fail_storage">無法讀寫這台裝置上的檔案</string>
+    <string name="fail_storage_hint">可能是儲存空間不足，或檔案存取權限已被關閉。請檢查儲存空間和權限後再試。</string>
+    <string name="fail_unknown">發生非預期的錯誤</string>
+    <string name="fail_unknown_hint">無法判斷原因。請查看技術資訊和同步記錄檔；如需協助，可以在設定中匯出記錄檔並傳給開發者。</string>
+
+    <!-- 儲存庫設定 -->
+    <string name="repo_settings_title">儲存庫設定</string>
+    <string name="repo_settings_busy_title">正在同步</string>
+    <string name="repo_settings_busy_body">同步結束前，無法儲存變更、整理存放庫，或從清單中移除這個儲存庫。</string>
+    <string name="repo_settings_general">基本資訊</string>
+    <string name="repo_settings_folder">資料夾：%1$s</string>
+    <string name="repo_settings_branch">分支：%1$s</string>
+    <string name="repo_settings_remote">遠端存放庫與驗證</string>
+    <string name="repo_settings_identity">提交者與提交訊息</string>
+    <string name="repo_settings_identity_body">只對這個儲存庫生效。姓名和電子郵件留空則使用設定中的預設值。</string>
+    <string name="repo_settings_identity_incomplete">姓名和電子郵件需要同時填寫，或同時留空。</string>
+    <string name="repo_settings_reason_name">請填寫顯示名稱</string>
+    <string name="repo_settings_saved">已儲存</string>
+    <string name="repo_settings_save_failed">儲存失敗</string>
+    <string name="repo_settings_remove">從清單中移除</string>
+    <string name="repo_settings_remove_hint">只會移除這個應用程式中的記錄、權杖和記錄檔，不會刪除儲存庫資料夾及其中的 .git。</string>
+    <string name="repo_settings_remove_title">要移除「%1$s」嗎？</string>
+    <string name="repo_settings_remove_confirm">儲存庫資料夾和其中的 .git 會保留在手機上，之後可以用「接管現有的 Git 存放庫」重新新增。</string>
+
+    <string name="maintenance_title">存放庫整理</string>
+    <string name="maintenance_body">把零散的資料檔案封裝壓縮，減少檔案數量和佔用空間，加快後續操作。不會變更筆記內容與歷史記錄。</string>
+    <string name="maintenance_stats">存放庫資料 %1$s · 零散物件 %2$d 個 · 封裝檔 %3$d 個</string>
+    <string name="maintenance_recommended">建議整理。</string>
+    <string name="maintenance_not_needed">目前不需要整理。</string>
+    <string name="maintenance_last_done">上次整理（%1$s）：%2$s → %3$s，耗時 %4$s</string>
+    <string name="maintenance_last_failed">上次整理（%1$s）失敗：%2$s</string>
+    <string name="maintenance_run">開始整理</string>
+
+    <string name="gitignore_title">建議的忽略規則</string>
+    <string name="gitignore_complete">.gitignore 已包含所有建議規則。</string>
+    <plurals name="gitignore_missing">
+        <item quantity="other">.gitignore 缺少 %1$d 條建議規則：</item>
+    </plurals>
+    <string name="gitignore_note">這些規則讓工作區版面配置、快取和垃圾桶等與裝置相關的檔案不參與同步。已經同步的檔案不會因此停止同步。</string>
+    <string name="gitignore_append">新增建議規則</string>
+    <string name="gitignore_append_confirm">要把缺少的建議規則附加到儲存庫的 .gitignore 結尾嗎？這項變更會在下次同步時提交。</string>
+    <plurals name="gitignore_appended">
+        <item quantity="other">已新增 %1$d 條規則，將在下次同步時提交。</item>
+    </plurals>
+
+    <!-- 提交歷史 -->
+    <string name="history_title">提交歷史</string>
+    <string name="history_intro">目前分支最近的提交。「未推送」表示遠端還沒有這次提交（以上次同步時為準）。</string>
+    <string name="history_empty">還沒有任何提交。</string>
+    <string name="history_load_failed">無法讀取提交歷史</string>
+    <string name="history_end">沒有更早的提交了</string>
+    <string name="history_not_pushed">未推送</string>
+    <string name="history_merge">合併</string>
+    <string name="history_no_message">（沒有提交訊息）</string>
+    <string name="commit_title">提交 %1$s</string>
+    <string name="commit_author">%1$s &lt;%2$s&gt; · %3$s</string>
+    <string name="commit_pushed">已推送到遠端</string>
+    <string name="commit_not_pushed">尚未推送到遠端</string>
+    <plurals name="commit_changes">
+        <item quantity="other">變更了 %1$d 個檔案</item>
+    </plurals>
+    <plurals name="commit_changes_merge">
+        <item quantity="other">相較於合併前的本機版本，變更了 %1$d 個檔案</item>
+    </plurals>
+    <string name="commit_renamed_from">原名稱：%1$s</string>
+    <plurals name="commit_more_changes">
+        <item quantity="other">另有 %1$d 個檔案未列出</item>
+    </plurals>
+    <string name="change_added">新增</string>
+    <string name="change_modified">修改</string>
+    <string name="change_deleted">刪除</string>
+    <string name="change_renamed">改名</string>
+    <string name="change_copied">複製</string>
+    <string name="commit_copied_from">複製自：%1$s</string>
+    <string name="diff_expand">展開變更</string>
+    <string name="diff_collapse">收合變更</string>
+    <plurals name="diff_folded">
+        <item quantity="other">⋯ %1$d 行未變更，已摺疊 ⋯</item>
+    </plurals>
+    <string name="diff_fold">摺疊未變更的行</string>
+    <string name="diff_binary">二進位檔案，不顯示內容（%1$s）</string>
+    <string name="diff_too_large">檔案太大，不顯示變更（%1$s）</string>
+    <string name="diff_unchanged">內容沒有變化</string>
+    <string name="diff_unchanged_newline">內容沒有變化，只是檔案結尾的換行不同</string>
+    <string name="diff_newline_at_end">另外，檔案結尾的換行也改變了（上方沒有標出）</string>
+    <string name="diff_truncated" tools:ignore="PluralsCandidate">變更太多，只顯示前 %1$d 行</string>
+    <string name="diff_load_failed">無法讀取變更：%1$s</string>
+
+    <!-- 衝突清單 -->
+    <string name="conflicts_title">衝突</string>
+    <string name="conflicts_menu">更多選項</string>
+    <string name="conflicts_loading">正在讀取衝突…</string>
+    <string name="conflicts_load_failed">無法讀取衝突</string>
+    <plurals name="conflicts_intro">
+        <item quantity="other">還有 %1$d 個檔案需要處理。點選檔案逐處選擇，或透過右上角選單批次處理。</item>
+    </plurals>
+    <string name="conflicts_all_ours">全部保留本機版本</string>
+    <string name="conflicts_all_theirs">全部保留遠端版本</string>
+    <plurals name="conflicts_all_ours_confirm">
+        <item quantity="other">剩下的 %1$d 個檔案全部保留本機版本嗎？遠端對這些檔案的變更不會進入結果（仍保存在遠端的歷史記錄中）。遠端刪除的檔案將保留本機版本；本機刪除的檔案將維持刪除。</item>
+    </plurals>
+    <plurals name="conflicts_all_theirs_confirm">
+        <item quantity="other">剩下的 %1$d 個檔案全部保留遠端版本嗎？本機對這些檔案的變更不會進入結果（仍保存在本機的提交歷史中）。本機刪除的檔案將還原為遠端版本；遠端刪除的檔案將被刪除。</item>
+    </plurals>
+    <string name="conflicts_all_resolved_hint">所有衝突都已處理，合併尚未提交。</string>
+    <string name="conflicts_complete_merge">完成合併並推送</string>
+    <string name="conflicts_action_failed">操作失敗</string>
+    <string name="conflicts_syncing_hint">正在同步，結束後才能處理衝突。</string>
+    <string name="conflicts_none_title">沒有待處理的衝突</string>
+    <string name="conflicts_none_body">這個儲存庫目前沒有進行中的合併。</string>
+    <string name="conflicts_kind_both_modified">雙方都修改了</string>
+    <string name="conflicts_kind_both_added">雙方都新增了</string>
+    <string name="conflicts_kind_deleted_by_us">本機已刪除</string>
+    <string name="conflicts_kind_deleted_by_them">遠端已刪除</string>
+    <string name="conflicts_kind_added_by_us">只存在於本機</string>
+    <string name="conflicts_kind_added_by_them">只存在於遠端</string>
+    <string name="conflicts_kind_both_deleted">雙方都刪除了</string>
+    <string name="conflicts_kind_binary">二進位檔案</string>
+    <string name="conflicts_kind_resolved">已處理</string>
+
+    <!-- 衝突檔案 -->
+    <string name="conflict_ours">本機版本</string>
+    <string name="conflict_theirs">遠端版本</string>
+    <string name="conflict_marker_ours">本機版本</string>
+    <string name="conflict_marker_theirs">遠端版本</string>
+    <plurals name="conflict_blocks_intro">
+        <item quantity="other">共 %1$d 處衝突，已依原文順序嵌在內文中，左側色條標出範圍。請為每一處選擇保留哪個版本。</item>
+    </plurals>
+    <string name="conflict_line_numbers_intro">左邊兩欄行號分別是本機檔案、遠端檔案中的行號。</string>
+    <string name="conflict_block_title">衝突 %1$d / %2$d</string>
+    <string name="conflict_block_editing">編輯衝突 %1$d / %2$d</string>
+    <plurals name="conflict_line_count">
+        <item quantity="other">%1$d 行</item>
+    </plurals>
+    <string name="conflict_side_empty">（這個版本在這裡沒有內容）</string>
+    <plurals name="conflict_side_truncated">
+        <item quantity="other">還有 %1$d 行未顯示，可在整份檔案編輯中查看。</item>
+    </plurals>
+    <string name="conflict_keep_ours">保留本機</string>
+    <string name="conflict_keep_theirs">保留遠端</string>
+    <string name="conflict_keep_both">兩者都保留</string>
+    <string name="conflict_both_ours_first">兩者都保留，本機在前</string>
+    <string name="conflict_both_theirs_first">兩者都保留，遠端在前</string>
+    <string name="conflict_edit_block">手動編輯</string>
+    <string name="conflict_edit_block_label">這一處的最終內容</string>
+    <string name="conflict_use_edited">使用編輯結果</string>
+    <string name="conflict_clear_choice">清除選擇</string>
+    <string name="conflict_edit_again">重新編輯</string>
+    <string name="conflict_empty_result">（這一處的結果是空的）</string>
+    <plurals name="conflict_common_collapsed">
+        <item quantity="other">⋯ %1$d 行沒有衝突，已摺疊 ⋯</item>
+    </plurals>
+    <string name="conflict_common_collapse">摺疊沒有衝突的內容</string>
+    <string name="conflict_choice_undecided">未選擇</string>
+    <string name="conflict_choice_ours">已保留本機</string>
+    <string name="conflict_choice_theirs">已保留遠端</string>
+    <string name="conflict_choice_both_ours_first">已保留兩者（本機在前）</string>
+    <string name="conflict_choice_both_theirs_first">已保留兩者（遠端在前）</string>
+    <string name="conflict_choice_custom">已手動編輯</string>
+    <string name="conflict_progress" tools:ignore="PluralsCandidate">已處理 %1$d / %2$d 處</string>
+    <string name="conflict_locate_undecided">下一處</string>
+    <string name="conflict_preview_edit">整份預覽與編輯</string>
+    <string name="conflict_mark_resolved">完成此檔案</string>
+    <string name="conflict_all_blocks_ours">全部保留本機</string>
+    <string name="conflict_all_blocks_theirs">全部保留遠端</string>
+    <string name="conflict_reset_choices">清除所有選擇</string>
+    <string name="conflict_open_editor">編輯整份檔案</string>
+    <string name="conflict_leave_title">要捨棄已做的選擇嗎？</string>
+    <string name="conflict_leave_body">這個檔案裡的選擇還沒有儲存。現在返回的話，下次進來要重新選擇。要儲存，請在全部選完後點選「完成此檔案」。</string>
+    <string name="conflict_leave_discard">捨棄並返回</string>
+    <string name="conflict_editor_mode_title">要從哪裡開始編輯整份檔案？</string>
+    <string name="conflict_editor_mode_body">可以帶著你已經做的選擇繼續編輯（還沒選的地方仍是衝突標記），也可以從原始衝突開始，所有衝突處都顯示為標記。區塊檢視中的選擇不會因此改變。</string>
+    <string name="conflict_editor_mode_keep">帶入已做的選擇</string>
+    <string name="conflict_editor_mode_original">從原始衝突開始</string>
+    <string name="view_wrap">自動換行</string>
+    <string name="view_line_numbers">顯示行號</string>
+    <string name="conflict_missing_title">這個檔案已經沒有衝突</string>
+    <string name="conflict_missing_body">它可能已在別處處理，或路徑已改變。請返回清單查看最新狀態。</string>
+    <string name="conflict_whole_binary_body">二進位檔案（例如圖片、PDF）無法逐處合併，只能整份選擇保留哪個版本。</string>
+    <string name="conflict_whole_deleted_by_them_body">遠端刪除了這個檔案，而本機修改了它。可以保留本機版本，或同意刪除。</string>
+    <string name="conflict_whole_deleted_by_us_body">本機刪除了這個檔案，而遠端修改了它。可以還原遠端版本，或維持刪除。</string>
+    <string name="conflict_whole_both_deleted_body">雙方都刪除了這個檔案。</string>
+    <string name="conflict_whole_one_side_body">只有一方有這個檔案。請選擇保留或刪除。</string>
+    <string name="conflict_whole_too_large_body">檔案太大，無法逐處合併，只能整份選擇保留哪個版本。</string>
+    <string name="conflict_side_info">%1$s：%2$s · %3$s</string>
+    <string name="conflict_use_ours_file">保留本機版本</string>
+    <string name="conflict_use_theirs_file">保留遠端版本</string>
+    <string name="conflict_keep_ours_file">保留本機版本</string>
+    <string name="conflict_keep_theirs_file">還原遠端版本</string>
+    <string name="conflict_edit_ours_then_keep">編輯本機版本後保留</string>
+    <string name="conflict_edit_theirs_then_keep">編輯遠端版本後保留</string>
+    <string name="conflict_cannot_edit_side">這個版本無法當作文字編輯（二進位檔案或檔案太大）。</string>
+    <string name="conflict_delete_file">刪除檔案</string>
+    <string name="conflict_delete_title">要刪除檔案嗎？</string>
+    <string name="conflict_delete_confirm">以刪除「%1$s」作為處理結果。完成合併並同步後，手機和遠端都不會再有這個檔案（仍可從歷史記錄中找回）。</string>
+    <string name="conflict_editor_title">編輯 %1$s</string>
+    <string name="conflict_editor_search">尋找</string>
+    <string name="conflict_editor_find_next">下一個</string>
+    <string name="conflict_editor_not_found">找不到</string>
+    <string name="conflict_editor_save">儲存並完成此檔案</string>
+    <plurals name="conflict_editor_markers_warning">
+        <item quantity="other">請注意，檔案中的第 %1$s 行是應用程式自動產生的衝突標記，若不刪除，將會被儲存並在同步時提交到遠端。</item>
+    </plurals>
+    <string name="conflict_editor_next_marker">定位</string>
+    <string name="conflict_lines_more">%1$s 等共 %2$d</string>
+    <string name="conflict_editor_save_markers_title">仍有衝突標記</string>
+    <plurals name="conflict_editor_save_markers_confirm">
+        <item quantity="other">第 %1$s 行仍是應用程式自動產生的衝突標記。儲存後這些行會寫入檔案，並在同步時提交到遠端。確定要儲存嗎？</item>
+    </plurals>
+    <string name="conflict_editor_save_anyway">仍要儲存</string>
+    <string name="conflict_editor_discard_confirm">要捨棄在編輯器中所做的變更嗎？</string>
+    <string name="conflict_editor_discard">捨棄變更</string>
+
+    <!-- 記錄檔與當機報告 -->
+    <string name="logs_title">同步記錄檔</string>
+    <string name="logs_empty">還沒有記錄檔。</string>
+    <string name="log_result_success">成功</string>
+    <string name="log_result_conflicts">有衝突</string>
+    <string name="log_result_failed">失敗</string>
+    <string name="log_result_cancelled">已取消</string>
+    <string name="log_result_unknown">未完成</string>
+    <string name="log_op_sync">同步</string>
+    <string name="log_op_clone">複製</string>
+    <string name="log_op_init">初始化並上傳</string>
+    <string name="log_op_adopt">接管</string>
+    <string name="log_op_maintain">存放庫整理</string>
+    <string name="log_op_unknown">其他操作</string>
+    <string name="log_share_title">分享記錄檔</string>
+    <string name="crash_report_title">當機報告</string>
+
+    <!-- 設定 -->
+    <string name="settings_title">設定</string>
+    <string name="settings_identity">預設提交者</string>
+    <string name="settings_identity_body">記錄在每次提交中的姓名和電子郵件，建議與電腦上 Git 的設定一致。每個儲存庫也可以在儲存庫設定中另外指定。</string>
+    <string name="settings_commit">提交訊息</string>
+    <string name="settings_network">網路</string>
+    <string name="settings_proxy_enabled">使用 HTTP 代理</string>
+    <string name="settings_proxy_host">代理伺服器位址</string>
+    <string name="settings_proxy_port">代理伺服器連接埠</string>
+    <string name="settings_proxy_hint">HTTPS 與 SSH 遠端都會透過這個代理伺服器連線。手機上的代理程式通常監聽 127.0.0.1 的某個連接埠。連線到代理伺服器本身超過 15 秒沒有回應，就判定為失敗。</string>
+    <string name="settings_reason_proxy">請填寫正確的代理伺服器位址和連接埠</string>
+    <string name="settings_logs">記錄檔</string>
+    <string name="settings_log_keep">每個儲存庫保留的記錄檔數量</string>
+    <string name="settings_debug_logs">詳細記錄檔</string>
+    <string name="settings_debug_logs_hint">把 Git 與 SSH 的偵錯資訊也寫入記錄檔，用於排解問題。</string>
+    <string name="settings_saved">已儲存</string>
+    <string name="settings_language">語言</string>
+    <string name="settings_language_system">跟隨系統</string>
+    <string name="settings_language_hint">跟隨系統時，會依系統語言清單由上往下選擇第一個本應用程式支援的語言；都不支援時顯示英文。</string>
+    <string name="settings_notifications">通知</string>
+    <string name="settings_notifications_on">通知已開啟</string>
+    <string name="settings_notifications_off">通知已關閉</string>
+    <string name="settings_notifications_enable">開啟</string>
+    <string name="settings_notifications_manage">管理</string>
+    <string name="settings_notifications_body">通知用於顯示同步進度和結果。關閉後同步仍會照常進行，但看不到進度，也不會收到衝突或失敗的提醒。你可以在系統設定中分別管理「同步進度」「同步完成」「需要處理」三類通知。</string>
+    <string name="settings_backup">備份與還原</string>
+    <string name="settings_backup_body">把儲存庫清單、設定、SSH 金鑰和已知主機匯出為一個檔案，用於換手機或重新安裝後還原。權杖和私鑰會用你設定的密碼加密。設定平時保存在應用程式的私人儲存空間中，更新應用程式不會遺失。</string>
+    <string name="backup_export">匯出</string>
+    <string name="backup_import">還原</string>
+    <string name="backup_failed">備份操作失敗</string>
+    <string name="backup_exported">設定已匯出，並已確認檔案可以還原</string>
+    <string name="backup_exported_partial">已匯出，但有權杖或私鑰未能匯出（請見備份卡片）</string>
+    <string name="backup_err_verify">檔案沒有正確儲存：讀回的內容與寫入的不一致。請換一個位置再試。</string>
+    <string name="backup_restore_busy">正在同步，暫時無法還原</string>
+    <string name="backup_last_export_with_secrets">上次匯出：%1$s · 含權杖與私鑰</string>
+    <string name="backup_last_export_without_secrets">上次匯出：%1$s · 不含權杖與私鑰</string>
+    <string name="backup_missing_token">「%1$s」的權杖</string>
+    <string name="backup_missing_key">金鑰「%1$s」</string>
+    <string name="backup_last_export_missing">這台裝置已無法解密，因此未能匯出（需要重新填寫或產生）：%1$s</string>
+    <string name="backup_never_exported">還沒有匯出過設定。換手機或重新安裝前，請先匯出一份。</string>
+    <string name="backup_export_title">匯出設定</string>
+    <string name="backup_export_body">匯出的檔案包含儲存庫清單、設定、SSH 金鑰清單與已知主機。</string>
+    <string name="backup_include_secrets">一併匯出權杖與私鑰</string>
+    <string name="backup_passphrase">密碼</string>
+    <string name="backup_passphrase_hint" tools:ignore="PluralsCandidate">至少 %1$d 個字元。還原時需要輸入，忘記後無法找回。</string>
+    <string name="backup_passphrase_confirm">再次輸入密碼</string>
+    <string name="backup_without_secrets_hint">不匯出權杖與私鑰：還原後需要重新填寫權杖，並重新產生或匯入 SSH 金鑰（公鑰也要重新新增到遠端）。</string>
+    <string name="backup_choose_location">選擇儲存位置</string>
+    <string name="backup_import_title">從備份還原</string>
+    <string name="backup_import_source">備份時間 %1$s · 裝置 %2$s · 版本 %3$s</string>
+    <plurals name="backup_import_repos">
+        <item quantity="other">%1$d 個儲存庫</item>
+    </plurals>
+    <plurals name="backup_import_keys">
+        <item quantity="other">%1$d 把 SSH 金鑰</item>
+    </plurals>
+    <string name="backup_repo_folder_used">這台裝置上的「%1$s」已在使用這個資料夾</string>
+    <string name="backup_repo_folder_missing">這台裝置上沒有這個資料夾，還原後可在儲存庫詳細資料頁重新複製</string>
+    <string name="backup_repo_replaces">將覆蓋這台裝置上的同一個儲存庫</string>
+    <string name="backup_key_replaces">將覆蓋這台裝置上的同一把金鑰</string>
+    <string name="backup_import_settings_title">應用程式設定</string>
+    <string name="backup_import_settings">還原應用程式設定</string>
+    <string name="backup_import_settings_hint">預設提交者、提交訊息、代理伺服器、記錄檔、語言、顯示選項。會整個取代這台裝置上的設定。</string>
+    <string name="backup_import_known_hosts">備份中的已知主機會加入這台裝置，這台裝置已信任的主機保持不變。</string>
+    <string name="backup_import_no_secrets">這份備份不含權杖與私鑰。</string>
+    <string name="backup_import_without_secrets">不還原權杖與私鑰</string>
+    <string name="backup_import_action">還原</string>
+    <string name="backup_restored">已還原 %1$d 個儲存庫、%2$d 把金鑰、%3$d 個權杖。</string>
+    <string name="backup_restored_secrets_skipped">未還原權杖與私鑰，請在儲存庫設定中補上。</string>
+    <plurals name="backup_restored_missing_folders">
+        <item quantity="other">其中 %1$d 個儲存庫在這台裝置上沒有資料夾，可開啟儲存庫詳細資料頁重新複製。</item>
+    </plurals>
+    <string name="backup_err_not_backup">這不是 VaultSync 的備份檔案。</string>
+    <string name="backup_err_too_new">這份備份由較新版本的 VaultSync 匯出，請先更新應用程式。</string>
+    <string name="backup_err_wrong_passphrase">密碼不正確。</string>
+    <string name="backup_err_corrupt">備份檔案已損毀，無法讀取。</string>
+    <string name="settings_diagnostics">問題診斷</string>
+    <string name="settings_diagnostics_body">把所有儲存庫的同步記錄檔和當機報告打包成一個檔案，方便回報問題。記錄檔中不含權杖、私鑰和密碼。</string>
+    <string name="diagnostics_export">匯出記錄檔</string>
+    <string name="diagnostics_export_failed">匯出記錄檔失敗</string>
+    <string name="diagnostics_exported">記錄檔已儲存</string>
+    <plurals name="diagnostics_crash_count">
+        <item quantity="other">已儲存 %1$d 份當機報告</item>
+    </plurals>
+    <string name="diagnostics_view_latest_crash">查看最近一份</string>
+    <string name="settings_help">說明</string>
+    <string name="settings_help_background">同步期間，應用程式會在通知列顯示進度，並以前景服務執行，切換到其他應用程式也會繼續。如果切換後同步仍被中斷，請在系統設定中允許 VaultSync 在背景執行，或將它排除在電池最佳化之外。</string>
+    <string name="settings_help_vault_location">Obsidian 的儲存庫通常位於 內部儲存空間/Documents/&lt;儲存庫名稱&gt;，可以在 Obsidian 的「管理儲存庫」中查看確切位置。</string>
+    <string name="settings_about">關於</string>
+    <string name="settings_about_body">VaultSync %1$s · JGit %2$s · Android %3$s</string>
+</resources>

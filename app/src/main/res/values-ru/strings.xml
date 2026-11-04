@@ -1,0 +1,855 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  UI strings: Russian (D-040). Keys match values/strings.xml one to one; translatable="false" entries exist only there.
+  Principles: docs/UI.md §10. Address the user with «вы» (lowercase); quotes « »; ellipsis …; no ASCII double quotes inside text.
+  Plurals: one / few / many / other, each with the number placeholder.
+  Terms: vault = хранилище, repository = репозиторий, remote = удалённый репозиторий, commit = коммит (verb: зафиксировать),
+  author = автор, personal access token = личный токен доступа, passphrase = парольная фраза, maintenance = обслуживание репозитория.
+-->
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">VaultSync</string>
+
+    <!-- Common -->
+    <string name="action_cancel">Отмена</string>
+    <string name="action_ok">ОК</string>
+    <string name="action_back">Назад</string>
+    <string name="action_close">Закрыть</string>
+    <string name="action_dismiss">Понятно</string>
+    <string name="action_next">Далее</string>
+    <string name="action_save">Сохранить</string>
+    <string name="action_copy">Копировать всё</string>
+    <string name="action_share">Поделиться</string>
+    <string name="action_retry">Повторить</string>
+    <string name="action_more">Другие действия</string>
+    <string name="action_view_logs">Открыть журнал</string>
+    <string name="action_sync">Синхронизировать</string>
+    <string name="action_sync_now">Синхронизировать сейчас</string>
+    <string name="action_go_settings">Открыть настройки</string>
+    <string name="action_show_technical">Технические сведения</string>
+    <string name="action_hide_technical">Скрыть технические сведения</string>
+    <string name="copied">Скопировано в буфер обмена</string>
+    <string name="duration_seconds">%1$s\u00A0с</string>
+    <string name="duration_minutes">%1$d\u00A0мин %2$d\u00A0с</string>
+    <string name="size_bytes">%1$s\u00A0Б</string>
+    <string name="size_kb">%1$s\u00A0КБ</string>
+    <string name="size_mb">%1$s\u00A0МБ</string>
+    <string name="size_gb">%1$s\u00A0ГБ</string>
+    <string name="percent">%1$d\u00A0%%</string>
+
+    <!-- Unsaved changes bar (app settings and vault settings, docs/UI.md §9.1) -->
+    <string name="unsaved_changes">Есть несохранённые изменения</string>
+    <string name="unsaved_discard">Сбросить</string>
+    <string name="unsaved_reason_busy">Нельзя сохранить во время синхронизации</string>
+    <string name="unsaved_leave_title">Сбросить несохранённые изменения?</string>
+    <string name="unsaved_leave_discard">Сбросить</string>
+    <string name="unsaved_keep_editing">Продолжить</string>
+
+    <!-- Sync stages and progress -->
+    <string name="stage_preparing">Подготовка</string>
+    <string name="stage_precheck">Проверка хранилища</string>
+    <string name="stage_commit">Фиксация локальных изменений</string>
+    <string name="stage_fetch">Получение удалённых изменений</string>
+    <string name="stage_merge">Слияние удалённых изменений</string>
+    <string name="stage_conflicts">Ожидание разрешения конфликтов</string>
+    <string name="stage_push">Отправка в удалённый репозиторий</string>
+    <string name="stage_done">Готово</string>
+    <string name="stage_maintain">Обслуживание репозитория</string>
+    <string name="task_receiving">Приём данных</string>
+    <string name="task_resolving">Обработка данных</string>
+    <string name="task_counting">Подсчёт объектов</string>
+    <string name="task_compressing">Сжатие объектов</string>
+    <string name="task_writing">Запись данных</string>
+    <string name="task_finding_sources">Поиск повторно используемых данных</string>
+    <string name="task_sizes">Подсчёт размеров</string>
+    <string name="task_indexing">Построение индекса</string>
+    <string name="task_updating_refs">Обновление веток</string>
+    <string name="task_checkout">Запись файлов</string>
+    <string name="task_verifying">Проверка файлов</string>
+    <string name="progress_cancelling">Отмена…</string>
+    <string name="task_opening">Подключение</string>
+    <string name="task_staging">Чтение изменённых файлов</string>
+    <string name="meter_downloaded">Загружено %1$s</string>
+    <string name="meter_uploaded">Отправлено %1$s</string>
+    <string name="meter_rate">%1$s/с</string>
+    <string name="meter_elapsed">Прошло %1$s</string>
+    <string name="task_pack_refs">Упорядочивание записей веток</string>
+    <string name="task_prune">Очистка упакованных данных</string>
+    <string name="job_syncing">Синхронизация</string>
+    <string name="job_cloning">Клонирование</string>
+    <string name="job_initializing">Инициализация</string>
+    <string name="job_adopting">Настройка</string>
+    <string name="job_maintaining">Обслуживание</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_sync">Ход синхронизации</string>
+    <string name="notification_channel_sync_desc">Показывает ход синхронизации и не даёт ей прерваться в фоне.</string>
+    <string name="notification_channel_done">Синхронизация завершена</string>
+    <string name="notification_channel_done_desc">Появляется, когда все хранилища успешно синхронизированы. По умолчанию без звука.</string>
+    <string name="notification_channel_attention">Требует внимания</string>
+    <string name="notification_channel_attention_desc">Сообщает о конфликтах и ошибках синхронизации.</string>
+    <string name="notif_progress_preparing">Подготовка к синхронизации…</string>
+    <string name="notif_progress_title">%1$s «%2$s»</string>
+    <string name="notif_progress_position">%1$d из %2$d</string>
+    <string name="notif_progress_queued">В очереди: %1$s</string>
+    <string name="notif_action_cancel">Отменить это хранилище</string>
+    <string name="notif_action_cancel_all">Остановить все</string>
+    <plurals name="notif_summary_all_ok">
+        <item quantity="one">%1$d хранилище синхронизировано</item>
+        <item quantity="few">%1$d хранилища синхронизированы</item>
+        <item quantity="many">%1$d хранилищ синхронизировано</item>
+        <item quantity="other">%1$d хранилища синхронизировано</item>
+    </plurals>
+    <plurals name="notif_summary_all_problems">
+        <item quantity="one">%1$d хранилище требует внимания</item>
+        <item quantity="few">%1$d хранилища требуют внимания</item>
+        <item quantity="many">%1$d хранилищ требуют внимания</item>
+        <item quantity="other">%1$d хранилища требуют внимания</item>
+    </plurals>
+    <plurals name="notif_summary_mixed">
+        <item quantity="one">Синхронизировано: %1$d, требует внимания: %2$d</item>
+        <item quantity="few">Синхронизировано: %1$d, требуют внимания: %2$d</item>
+        <item quantity="many">Синхронизировано: %1$d, требуют внимания: %2$d</item>
+        <item quantity="other">Синхронизировано: %1$d, требуют внимания: %2$d</item>
+    </plurals>
+    <plurals name="notif_summary_tasks_all_ok">
+        <item quantity="one">%1$d задача выполнена</item>
+        <item quantity="few">%1$d задачи выполнены</item>
+        <item quantity="many">%1$d задач выполнено</item>
+        <item quantity="other">%1$d задачи выполнено</item>
+    </plurals>
+    <plurals name="notif_summary_tasks_all_problems">
+        <item quantity="one">%1$d задача требует внимания</item>
+        <item quantity="few">%1$d задачи требуют внимания</item>
+        <item quantity="many">%1$d задач требуют внимания</item>
+        <item quantity="other">%1$d задачи требуют внимания</item>
+    </plurals>
+    <plurals name="notif_summary_tasks_mixed">
+        <item quantity="one">Выполнено: %1$d, требует внимания: %2$d</item>
+        <item quantity="few">Выполнено: %1$d, требуют внимания: %2$d</item>
+        <item quantity="many">Выполнено: %1$d, требуют внимания: %2$d</item>
+        <item quantity="other">Выполнено: %1$d, требуют внимания: %2$d</item>
+    </plurals>
+    <string name="notif_summary_line">%1$s: %2$s</string>
+    <string name="notif_result_added">Добавлено</string>
+    <string name="notif_result_recloned">Клонировано заново</string>
+    <string name="notif_result_maintained">Обслуживание завершено</string>
+    <string name="notif_result_maintained_freed">Обслуживание завершено, освобождено %1$s</string>
+    <plurals name="notif_result_conflicts">
+        <item quantity="one">Конфликты в %1$d файле. Откройте приложение, чтобы их разрешить.</item>
+        <item quantity="few">Конфликты в %1$d файлах. Откройте приложение, чтобы их разрешить.</item>
+        <item quantity="many">Конфликты в %1$d файлах. Откройте приложение, чтобы их разрешить.</item>
+        <item quantity="other">Конфликты в %1$d файла. Откройте приложение, чтобы их разрешить.</item>
+    </plurals>
+    <string name="notif_result_failed">Ошибка: %1$s</string>
+    <string name="list_separator">", "</string>
+
+    <!-- Home -->
+    <string name="home_title">VaultSync</string>
+    <string name="home_settings">Настройки</string>
+    <string name="home_add_repo">Добавить хранилище</string>
+    <string name="home_empty_title">Хранилищ пока нет</string>
+    <string name="home_empty_body">Добавьте Git-репозиторий и синхронизируйте его с удалённым репозиторием.</string>
+    <string name="home_config_error_title">Не удалось прочитать конфигурацию</string>
+    <string name="home_config_error_body">Эти файлы конфигурации повреждены. Они сохранены в сторону как резервные копии, а приложение запущено с пустой конфигурацией:\n%1$s\nКонфигурацию можно восстановить из файла резервной копии в настройках.</string>
+    <string name="home_identity_missing">Имя и email автора коммитов ещё не заданы. Они записываются в каждый коммит, поэтому сначала укажите их в настройках.</string>
+    <string name="home_go_settings">Открыть настройки</string>
+    <string name="home_crash_title">В прошлый раз приложение неожиданно закрылось</string>
+    <string name="home_crash_body">Отчёт о сбое сохранён. Если это повторяется, можно отправить отчёт разработчику.</string>
+    <string name="home_crash_view">Открыть отчёт</string>
+    <string name="env_info">VaultSync %1$s · Android %2$s</string>
+
+    <string name="status_synced">Актуально</string>
+    <string name="status_conflicts">Конфликты</string>
+    <string name="status_syncing">Синхронизация</string>
+    <string name="status_maintaining">Обслуживание</string>
+    <string name="status_cloning">Клонирование</string>
+    <string name="status_queued">В очереди</string>
+    <string name="status_error">Ошибка синхр.</string>
+    <string name="status_cancelled">Отменено</string>
+    <string name="status_never">Ещё не синхр.</string>
+    <string name="last_sync_at">Последняя синхр.: %1$s</string>
+
+    <!-- Storage permission -->
+    <string name="perm_title">Нужен доступ к файлам</string>
+    <string name="perm_body_legacy">VaultSync нужно читать и записывать файлы и папки в памяти телефона (включая папки .git внутри них). Предоставьте доступ к памяти.</string>
+    <string name="perm_body_all_files">VaultSync нужно читать и записывать файлы и папки в памяти телефона (включая папки .git внутри них). Включите для VaultSync «Доступ ко всем файлам» в системных настройках.</string>
+    <string name="perm_grant">Предоставить доступ</string>
+    <string name="perm_open_settings">Открыть системные настройки</string>
+
+    <!-- Add vault wizard -->
+    <string name="add_title">Новое хранилище</string>
+    <string name="add_step">Шаг %1$d из %2$d</string>
+    <string name="add_step_mode">Выбор способа</string>
+    <string name="add_step_folder">Выбор папки</string>
+    <string name="add_step_remote">Удалённый репозиторий и аутентификация</string>
+    <string name="add_step_identity">Название и автор</string>
+    <string name="add_step_confirm">Подтверждение</string>
+    <string name="add_step_progress">Выполнение</string>
+    <string name="add_start_failed">Не удалось сохранить токен</string>
+
+    <string name="mode_clone_title">Клонировать из удалённого репозитория</string>
+    <string name="mode_clone_body">Ваши заметки есть в удалённом репозитории, но их ещё нет на этом телефоне. Репозиторий будет загружен в пустую папку.</string>
+    <string name="mode_init_title">Загрузить хранилище с этого телефона</string>
+    <string name="mode_init_body">На телефоне есть папка для синхронизации (без .git), а удалённый репозиторий пуст. В папке будет создан Git-репозиторий и выполнена первая отправка.</string>
+    <string name="mode_adopt_title">Использовать существующий Git-репозиторий</string>
+    <string name="mode_adopt_body">В папке хранилища уже есть .git (например, созданный другим инструментом). Он будет использован как есть, без изменения истории.</string>
+
+    <string name="folder_hint_clone">Выберите или создайте пустую папку. В неё будет клонирован репозиторий.</string>
+    <string name="folder_hint_init">Выберите папку для синхронизации (без .git).</string>
+    <string name="folder_hint_adopt">Выберите папку существующего Git-репозитория (в ней есть .git).</string>
+    <string name="folder_path_label">Путь</string>
+    <string name="folder_up">Вверх</string>
+    <string name="folder_go">Перейти</string>
+    <string name="folder_new">Новая папка</string>
+    <string name="folder_new_name">Имя папки</string>
+    <string name="folder_badge_vault">Obsidian</string>
+    <string name="folder_badge_repo">Git-репозиторий</string>
+    <string name="folder_empty">(Нет вложенных папок)</string>
+    <string name="folder_use_this">Выбрать эту папку</string>
+    <string name="folder_err_not_dir">Этот путь не является папкой.</string>
+    <string name="folder_err_not_empty">Папка не пуста. Для клонирования нужна пустая папка.</string>
+    <string name="folder_err_has_git">В этой папке уже есть .git. Вернитесь и выберите «Использовать существующий Git-репозиторий».</string>
+    <string name="folder_err_no_git">В этой папке нет .git. Вернитесь и выберите другой способ.</string>
+    <string name="folder_err_name">Недопустимое имя.</string>
+    <string name="folder_err_create">Не удалось создать папку.</string>
+    <string name="folder_err_exists">Папка с таким именем уже существует.</string>
+    <string name="folder_warn_no_obsidian">В этой папке нет .obsidian, поэтому, возможно, это не хранилище Obsidian.</string>
+
+    <string name="remote_url_label">URL удалённого репозитория</string>
+    <string name="remote_url_examples">HTTPS: https://github.com/user/repo.git
+SSH: git@github.com:user/repo.git</string>
+    <string name="remote_url_adopt_hint">Оставьте пустым, чтобы использовать удалённый репозиторий, который уже указан в настройках репозитория (origin).</string>
+    <string name="remote_kind_https">Адрес HTTPS. Аутентификация по личному токену доступа.</string>
+    <string name="remote_kind_ssh">Адрес SSH. Аутентификация по SSH-ключу.</string>
+    <string name="remote_kind_unsupported">Адрес не распознан. Поддерживаются адреса https://… и SSH; http:// и локальные пути не поддерживаются.</string>
+    <string name="remote_username_label">Имя пользователя</string>
+    <string name="remote_token_label">Личный токен доступа</string>
+    <string name="remote_token_replace_label">Новый токен (оставьте пустым, чтобы сохранить текущий)</string>
+    <string name="remote_token_hint">Создайте его на GitHub в разделе Settings → Developer settings → Personal access tokens с правом чтения и записи содержимого этого репозитория. Токен хранится на этом устройстве в зашифрованном виде.</string>
+    <string name="remote_token_saved_hint">Токен сохранён. Заполняйте поле, только чтобы заменить его.</string>
+    <string name="remote_token_unreadable_hint">Сохранённый токен не удаётся расшифровать (изменилось системное хранилище ключей). Введите его заново.</string>
+    <string name="remote_ssh_port_label">Порт SSH</string>
+    <string name="remote_ssh_github_443">Использовать порт 443</string>
+    <string name="remote_ssh_github_22">Использовать порт 22</string>
+    <string name="remote_branch_label">Ветка</string>
+    <string name="remote_test">Проверить подключение</string>
+    <string name="remote_test_ok_empty">Подключено. Удалённый репозиторий пуст.</string>
+    <string name="remote_test_ok">Подключено. Ветки удалённого репозитория: %1$s</string>
+    <string name="remote_test_fail_title">Не удалось подключиться: %1$s</string>
+    <string name="remote_reason_url">Введите правильный URL удалённого репозитория</string>
+    <string name="remote_reason_username">Введите имя пользователя</string>
+    <string name="remote_reason_token">Введите личный токен доступа</string>
+    <string name="remote_reason_port">Введите правильный порт SSH</string>
+    <string name="remote_reason_key">Выберите рабочий SSH-ключ</string>
+
+    <string name="repo_name_label">Отображаемое название</string>
+    <string name="identity_title">Автор</string>
+    <string name="identity_body">Имя и email, которые записываются в каждый коммит этого хранилища. Оставьте пустыми, чтобы использовать значения по умолчанию из настроек.</string>
+    <string name="identity_name_label">Имя</string>
+    <string name="identity_email_label">Email</string>
+    <string name="identity_missing">В настройках не задан автор по умолчанию, поэтому эти поля обязательны.</string>
+    <string name="commit_template_label">Шаблон сообщения коммита</string>
+    <string name="commit_template_hint">Подстановки: {{date}} {{hostname}} {{numFiles}} {{files}}</string>
+    <string name="date_format_label">Формат даты</string>
+    <string name="date_format_hint">Например, YYYY-MM-DD HH:mm:ss</string>
+
+    <string name="confirm_mode">Способ</string>
+    <string name="confirm_folder">Папка</string>
+    <string name="confirm_remote">Удалённый</string>
+    <string name="confirm_remote_existing">Удалённый репозиторий, который уже указан в настройках репозитория (origin)</string>
+    <string name="confirm_branch">Ветка</string>
+    <string name="confirm_auth">Аутентификация</string>
+    <string name="confirm_auth_https">Личный токен доступа (пользователь %1$s)</string>
+    <string name="confirm_auth_ssh">SSH-ключ «%1$s»</string>
+    <string name="confirm_auth_none">Нет</string>
+    <string name="confirm_identity">Автор</string>
+    <string name="confirm_identity_default">Значения по умолчанию из настроек</string>
+    <string name="confirm_actions_clone">Шаги: подключение к удалённому репозиторию → клонирование в выбранную папку → запись настроек репозитория.</string>
+    <string name="confirm_actions_init">Шаги: проверка, что удалённый репозиторий пуст → создание Git-репозитория → запись рекомендуемого .gitignore → фиксация всех файлов → отправка.</string>
+    <string name="confirm_actions_adopt">Шаги: открытие репозитория → проверка ветки и удалённого репозитория → запись настроек репозитория. Существующая история не меняется.</string>
+    <string name="confirm_start">Начать</string>
+
+    <string name="progress_running">%1$s…</string>
+    <string name="progress_success">Готово</string>
+    <string name="progress_cancelled">Отменено</string>
+    <string name="progress_failed">Ошибка на этапе «%1$s»: %2$s</string>
+    <string name="progress_back_to_edit">Вернуться и исправить</string>
+    <string name="progress_open_repo">Открыть хранилище</string>
+    <string name="note_remote_empty">Удалённый репозиторий пуст. Локальное содержимое будет отправлено при первой синхронизации.</string>
+    <string name="note_gitignore_created">Файл .gitignore создан по рекомендуемому шаблону.</string>
+    <string name="note_branch_adjusted">Репозиторий находится на ветке %1$s (а не %2$s, как было указано), поэтому будет синхронизироваться %1$s.</string>
+    <string name="note_remote_changed">URL удалённого репозитория изменён на %1$s.</string>
+    <string name="note_unfinished_merge">В этом репозитории есть незавершённое слияние с неразрешёнными конфликтами. Разрешите их на странице хранилища.</string>
+    <string name="note_resolved_merge">В этом репозитории есть слияние, конфликты которого разрешены, но ещё не зафиксированы. Оно будет завершено при следующей синхронизации.</string>
+
+    <!-- SSH keys (settings, wizard, vault settings) -->
+    <string name="settings_ssh">SSH-ключи</string>
+    <string name="ssh_list_intro">Хранилища с адресами SSH проходят аутентификацию с помощью этих ключей. Каждое хранилище может использовать свой ключ; новые хранилища используют ключ по умолчанию. Закрытые ключи хранятся на этом устройстве в зашифрованном виде и никогда не покидают телефон.</string>
+    <string name="ssh_list_empty">Ключей пока нет.</string>
+    <string name="ssh_key_title_default">%1$s (по умолчанию)</string>
+    <string name="ssh_key_unused">Не используется ни в одном хранилище</string>
+    <plurals name="ssh_key_used_by">
+        <item quantity="one">Используется в %1$d хранилище</item>
+        <item quantity="few">Используется в %1$d хранилищах</item>
+        <item quantity="many">Используется в %1$d хранилищах</item>
+        <item quantity="other">Используется в %1$d хранилища</item>
+    </plurals>
+    <string name="ssh_key_generate">Создать</string>
+    <string name="ssh_key_import">Импорт</string>
+    <string name="ssh_key_copy_public">Копировать открытый ключ</string>
+    <string name="ssh_key_copy_public_short">Копировать</string>
+    <string name="ssh_key_view_public">Подробнее</string>
+    <string name="ssh_key_set_default">Сделать ключом по умолчанию</string>
+    <string name="ssh_key_rename">Переименовать</string>
+    <string name="ssh_key_delete">Удалить</string>
+    <string name="ssh_key_delete_title">Удалить ключ «%1$s»?</string>
+    <string name="ssh_key_delete_unused">Этот ключ не используется ни одним хранилищем. После удаления уберите и его открытый ключ на сервере (например, в SSH keys на GitHub).</string>
+    <plurals name="ssh_key_delete_used">
+        <item quantity="one">Хранилищ с этим ключом: %1$d (%2$s). После удаления там нужно будет выбрать другой ключ, чтобы синхронизировать. Уберите также открытый ключ на сервере.</item>
+        <item quantity="few">Хранилищ с этим ключом: %1$d (%2$s). После удаления там нужно будет выбрать другой ключ, чтобы синхронизировать. Уберите также открытый ключ на сервере.</item>
+        <item quantity="many">Хранилищ с этим ключом: %1$d (%2$s). После удаления там нужно будет выбрать другой ключ, чтобы синхронизировать. Уберите также открытый ключ на сервере.</item>
+        <item quantity="other">Хранилищ с этим ключом: %1$d (%2$s). После удаления там нужно будет выбрать другой ключ, чтобы синхронизировать. Уберите также открытый ключ на сервере.</item>
+    </plurals>
+    <string name="ssh_key_name_label">Название</string>
+    <string name="ssh_key_name_suggestion">Ключ %1$d</string>
+    <string name="ssh_key_name_migrated">Ключ по умолчанию</string>
+    <string name="ssh_key_name_recovered">Восстановленный ключ</string>
+    <string name="ssh_key_source_generated">Создан %1$s</string>
+    <string name="ssh_key_source_imported">Импортирован %1$s</string>
+    <string name="ssh_key_unreadable">Закрытый ключ не удаётся расшифровать (изменилось системное хранилище ключей). Удалите его, затем снова создайте или импортируйте ключ.</string>
+    <string name="ssh_key_public_hint">Добавьте открытый ключ ниже в свой аккаунт на сервере, например на GitHub в Settings → SSH and GPG keys → New SSH key.</string>
+    <string name="ssh_key_done_generated">Ключ создан. Добавьте его открытый ключ в свой аккаунт на сервере.</string>
+    <string name="ssh_key_done_imported">Ключ импортирован.</string>
+    <string name="ssh_key_done_deleted">Ключ удалён.</string>
+    <string name="ssh_generate_title">Создать SSH-ключ</string>
+    <string name="ssh_generate_body">Будет создан новый ключ ed25519. Название видно только в этом приложении и помогает различать ключи.</string>
+    <string name="ssh_import_title">Импорт закрытого ключа</string>
+    <string name="ssh_import_key_label">Закрытый ключ</string>
+    <string name="ssh_import_key_hint">Вставьте весь файл закрытого ключа (от -----BEGIN … PRIVATE KEY----- до -----END … -----). Поддерживаются форматы OpenSSH, PEM, PKCS#8 и PuTTY.</string>
+    <string name="ssh_import_passphrase_label">Парольная фраза ключа (оставьте пустой, если её нет)</string>
+    <string name="ssh_import_action">Импортировать</string>
+    <string name="ssh_import_err_invalid">Формат закрытого ключа не распознан. Убедитесь, что вставлен закрытый ключ, а не открытый (.pub), и что строки BEGIN / END целые.</string>
+    <string name="ssh_import_err_passphrase_required">Этот закрытый ключ защищён парольной фразой. Введите её.</string>
+    <string name="ssh_import_err_wrong_passphrase">Неверная парольная фраза.</string>
+    <string name="ssh_import_err_unsupported">Этот ключ не поддерживается: %1$s</string>
+    <string name="ssh_picker_title">SSH-ключ</string>
+    <string name="ssh_picker_empty">SSH-ключей пока нет. Создайте новый ключ или импортируйте существующий закрытый ключ.</string>
+    <string name="ssh_picker_choose">Выберите ключ</string>
+    <string name="ssh_picker_deleted">Ключ этого хранилища был удалён. Выберите другой.</string>
+    <string name="ssh_picker_open">Выбрать ключ</string>
+    <string name="ssh_picker_new_generate">Создать новый ключ…</string>
+    <string name="ssh_picker_new_import">Импорт закрытого ключа…</string>
+    <string name="ssh_picker_add_public_key">Убедитесь, что открытый ключ этого ключа добавлен в ваш аккаунт на сервере, затем проверьте подключение.</string>
+    <string name="ssh_picker_manage">Управление ключами</string>
+
+    <!-- Known hosts -->
+    <string name="known_hosts_title">Известные хосты</string>
+    <string name="known_hosts_body">При первом подключении к хосту его ключ запоминается. Если ключ потом изменится, подключение будет отклонено, чтобы защитить от перехвата. Если вы уверены, что сервер сменил ключ, «забудьте» хост и подключитесь снова. Ключи GitHub встроены в приложение.</string>
+    <string name="known_hosts_empty">Пока ничего не записано.</string>
+    <string name="known_hosts_forget">Забыть</string>
+    <string name="known_hosts_forget_confirm">Забыть ключ хоста «%1$s»? Он будет записан снова при следующем подключении.</string>
+
+    <!-- Vault details -->
+    <string name="detail_open_repo_settings">Настройки хранилища</string>
+    <string name="detail_history">История</string>
+    <string name="detail_logs">Журнал</string>
+    <string name="detail_branch_remote">Ветка %1$s · Удалённый: %2$s</string>
+    <string name="detail_auth_https">Аутентификация: личный токен доступа (%1$s)</string>
+    <string name="detail_auth_ssh">Аутентификация: SSH-ключ «%1$s»</string>
+    <string name="detail_auth_none">Аутентификация: нет</string>
+    <string name="detail_local_changes" tools:ignore="PluralsCandidate">Несинхронизированные локальные изменения: изменено %1$d · добавлено %2$d · удалено %3$d</string>
+    <string name="detail_no_local_changes">Нет несинхронизированных локальных изменений</string>
+    <string name="detail_path_copy">Копировать путь</string>
+    <string name="detail_queued_body">Сначала синхронизируются другие хранилища. Это начнётся автоматически, когда подойдёт его очередь.</string>
+    <string name="detail_failed_title">Ошибка на этапе «%1$s»: %2$s</string>
+    <string name="detail_last_failed_title">Последняя синхронизация не удалась (%1$s): %2$s</string>
+    <string name="detail_last_result">Последняя синхронизация: %1$s</string>
+    <string name="detail_inspect_failed">Не удалось прочитать состояние хранилища</string>
+    <string name="detail_not_repo">Эта папка не является Git-репозиторием. Возможно, её переместили или удалили её .git.</string>
+    <string name="detail_dir_missing">Папка хранилища не найдена. Возможно, её переместили или удалили.</string>
+    <string name="detail_reclone_body">Это хранилище можно заново клонировать из удалённого репозитория в то же место: %1$s\nУдалённый репозиторий, ветка, токен или SSH-ключ и другие настройки останутся прежними.</string>
+    <string name="detail_reclone_action">Клонировать заново</string>
+    <string name="detail_action_failed">Действие не выполнено</string>
+    <plurals name="detail_conflicts_title">
+        <item quantity="one">Конфликты в %1$d файле</item>
+        <item quantity="few">Конфликты в %1$d файлах</item>
+        <item quantity="many">Конфликты в %1$d файлах</item>
+        <item quantity="other">Конфликты в %1$d файла</item>
+    </plurals>
+    <string name="detail_conflicts_body">Этот телефон и удалённый репозиторий изменили одно и то же место. Просмотрите файлы и выберите, какую версию оставить (можно оставить обе или исправить вручную). Когда всё будет разрешено, завершите слияние и отправьте его.\nСлияние можно и прервать: ваши локальные коммиты не пострадают, удалённые изменения останутся в удалённом репозитории и будут снова слиты при следующей синхронизации.</string>
+    <string name="detail_open_conflicts">Разрешить конфликты</string>
+    <string name="detail_abort_merge">Прервать слияние</string>
+    <string name="detail_abort_confirm">Файлы вернутся к состоянию вашего последнего локального коммита, а сделанный выбор при разрешении конфликтов будет потерян. Удалённые изменения не пострадают и будут снова слиты при следующей синхронизации.</string>
+    <string name="detail_merge_resolved_title">Все конфликты разрешены</string>
+    <string name="detail_merge_resolved_body">Слияние ещё не зафиксировано. Нажмите «Завершить слияние и отправить», чтобы создать коммит слияния и синхронизировать его с удалённым репозиторием.</string>
+    <string name="detail_complete_merge_sync">Завершить слияние и отправить</string>
+    <string name="detail_residue_title">Обратите внимание</string>
+    <string name="residue_index_lock">Предыдущая операция была прервана и оставила файл блокировки (index.lock). Он будет удалён автоматически при синхронизации.</string>
+    <string name="residue_index_lock_fix">Удалить сейчас</string>
+    <string name="residue_merge_conflicts">Есть незавершённое слияние с неразрешёнными конфликтами.</string>
+    <string name="residue_merge_resolved">Конфликты разрешены, но слияние ещё не зафиксировано.</string>
+    <string name="residue_unsupported">Репозиторий находится посреди операции, которую это приложение не поддерживает (например, rebase или cherry-pick). Сначала завершите или прервите её на компьютере.</string>
+    <string name="residue_detached">В репозитории не выбрана ни одна ветка (detached HEAD). Сначала переключитесь на ветку на компьютере.</string>
+    <string name="residue_missing_remote">В репозитории не настроен удалённый репозиторий (origin). При синхронизации будет записан URL из настроек хранилища.</string>
+    <string name="residue_unborn">В ветке ещё нет коммитов. Она будет отправлена при первой синхронизации.</string>
+    <string name="detail_auth_problem_title">Аутентификация не настроена до конца</string>
+    <string name="detail_auth_token_missing">Это хранилище использует адрес HTTPS, но личный токен доступа не сохранён, поэтому синхронизация не удастся.</string>
+    <string name="detail_auth_token_unreadable">Сохранённый токен не удаётся расшифровать (изменилось системное хранилище ключей). Введите его заново.</string>
+    <string name="detail_auth_key_missing">SSH-ключ этого хранилища был удалён. Выберите другой ключ в настройках хранилища.</string>
+    <string name="detail_auth_key_unreadable">SSH-ключ этого хранилища не удаётся расшифровать (изменилось системное хранилище ключей). Снова создайте или импортируйте ключ, затем выберите его в настройках хранилища.</string>
+    <string name="detail_auth_key_not_selected">Это хранилище использует адрес SSH, но SSH-ключ не выбран.</string>
+
+    <string name="result_success">Успешно</string>
+    <string name="result_conflicts">Конфликты</string>
+    <plurals name="result_conflicts_n">
+        <item quantity="one">Конфликты в %1$d файле</item>
+        <item quantity="few">Конфликты в %1$d файлах</item>
+        <item quantity="many">Конфликты в %1$d файлах</item>
+        <item quantity="other">Конфликты в %1$d файла</item>
+    </plurals>
+    <string name="result_cancelled">Отменено</string>
+    <string name="result_failed_reason">Ошибка: %1$s</string>
+    <plurals name="summary_committed">
+        <item quantity="one">Зафиксирован %1$d файл</item>
+        <item quantity="few">Зафиксировано %1$d файла</item>
+        <item quantity="many">Зафиксировано %1$d файлов</item>
+        <item quantity="other">Зафиксировано %1$d файла</item>
+    </plurals>
+    <string name="summary_no_local_changes">Нет локальных изменений</string>
+    <string name="summary_merge_none">В удалённом репозитории ещё нет этой ветки</string>
+    <string name="summary_merge_ff">Удалённые изменения получены</string>
+    <string name="summary_merge_merged">Удалённые изменения слиты</string>
+    <string name="summary_merge_up_to_date">В удалённом репозитории нет нового</string>
+    <string name="summary_push_ok">Отправлено</string>
+    <string name="summary_push_nothing">Нечего отправлять</string>
+    <string name="summary_no_changes">Без изменений</string>
+    <string name="summary_duration">Заняло %1$s</string>
+
+    <!-- Failure reasons: title (short) and explanation (likely cause + what to do) -->
+    <string name="fail_auth_token">Токен недействителен или истёк</string>
+    <string name="fail_auth_token_hint">Удалённый репозиторий отклонил личный токен доступа. Убедитесь, что срок его действия не истёк, что он не отозван и что у него есть право чтения и записи содержимого этого репозитория, затем обновите его в настройках хранилища.</string>
+    <string name="fail_auth_ssh">SSH-ключ не принят</string>
+    <string name="fail_auth_ssh_hint">Удалённый репозиторий не принял этот SSH-ключ. Убедитесь, что его открытый ключ добавлен в ваш аккаунт на сервере (например, в SSH keys на GitHub) и что этот ключ выбран в настройках хранилища.</string>
+    <string name="fail_permission">Доступ запрещён</string>
+    <string name="fail_permission_hint">Аутентификация прошла, но у этого аккаунта или ключа нет права записи (например, это ключ развёртывания только для чтения, токен без права записи или защищённая ветка). Измените права на сервере.</string>
+    <string name="fail_repo_not_found">Удалённый репозиторий не найден</string>
+    <string name="fail_repo_not_found_hint">Проверьте, что URL репозитория указан правильно. Приватный репозиторий тоже выглядит как «не найден», если у учётных данных нет к нему доступа, поэтому убедитесь также, что токен или ключ принадлежит аккаунту с доступом.</string>
+    <string name="fail_host_key">Ключ сервера не совпадает с записанным</string>
+    <string name="fail_host_key_hint">Подключение остановлено, чтобы защитить от перехвата. Если вы уверены, что сервер сменил ключ (сравните его с отпечатками, опубликованными вашим хостингом), забудьте хост в разделе «Известные хосты» в настройках и повторите попытку.</string>
+    <string name="fail_network">Не удаётся подключиться к серверу</string>
+    <string name="fail_network_hint">Проверьте подключение к сети и доступность удалённого сервера. Если для доступа к нему нужен прокси, включите прокси на телефоне или настройте HTTP-прокси в настройках.</string>
+    <string name="fail_timeout">Время ожидания истекло</string>
+    <string name="fail_timeout_hint">Сервер долго не отвечал. Проверьте, работает ли сеть или прокси, и повторите попытку позже.</string>
+    <string name="fail_proxy">Не удаётся подключиться через прокси</string>
+    <string name="fail_proxy_hint">Не удалось подключиться к HTTP-прокси, заданному в настройках, или прокси отказался передать соединение. Проверьте адрес и порт прокси, а также что приложение-прокси запущено и принимает подключения с этого устройства. Если прокси не нужен, отключите его в настройках.</string>
+    <string name="fail_check_proxy_hint">Прокси в приложении включён, поэтому проверьте также, что его адрес работает.</string>
+    <string name="fail_tls">Не удалось установить защищённое соединение</string>
+    <string name="fail_tls_hint">Не удалось установить защищённое соединение с сервером (сертификат не прошёл проверку). Возможно, сеть перехватывает соединение или на устройстве неверное время. Проверьте и повторите попытку.</string>
+    <string name="fail_push_rejected">Удалённый репозиторий отклонил отправку</string>
+    <string name="fail_push_rejected_hint">Удалённый репозиторий отказался принять эту отправку, обычно из-за правил защиты ветки или проверок на сервере. Ваши локальные коммиты сохранены и не потеряются. Посмотрите технические сведения, измените настройки на сервере и синхронизируйте снова.</string>
+    <string name="fail_push_race">В удалённом репозитории всё время появляются новые коммиты</string>
+    <string name="fail_push_race_hint">Во время отправки в удалённом репозитории снова и снова появлялись новые коммиты (возможно, одновременно синхронизируется ваш компьютер). Ваши локальные коммиты сохранены; просто синхронизируйте снова чуть позже.</string>
+    <string name="fail_local_files">Локальные файлы были бы перезаписаны</string>
+    <string name="fail_local_files_hint">Новые файлы из удалённого репозитория называются так же, как неотслеживаемые (или игнорируемые через .gitignore) файлы на этом телефоне. Слияние перезаписало бы их, поэтому синхронизация остановлена. Найдите имена файлов в технических сведениях, переименуйте или переместите эти файлы и синхронизируйте снова.</string>
+    <string name="fail_vault_missing">Папка хранилища не найдена</string>
+    <string name="fail_vault_missing_hint">Возможно, папку хранилища переместили, переименовали или удалили. Проверьте, где находится папка; при необходимости уберите хранилище и добавьте его снова.</string>
+    <string name="fail_not_repo">В папке нет Git-репозитория</string>
+    <string name="fail_not_repo_hint">В папке хранилища нет папки .git; возможно, её удалили. Уберите хранилище и добавьте его снова (его можно клонировать из удалённого репозитория).</string>
+    <string name="fail_already_repo">В папке уже есть Git-репозиторий</string>
+    <string name="fail_already_repo_hint">В этой папке уже есть .git. Вернитесь и выберите «Использовать существующий Git-репозиторий».</string>
+    <string name="fail_credential_missing">Нет токена или ключа</string>
+    <string name="fail_credential_missing_hint">Для этого хранилища не сохранён рабочий токен или не выбран SSH-ключ (или выбранный ключ удалён). Добавьте его в настройках хранилища.</string>
+    <string name="fail_credential_unreadable">Токен или ключ не удаётся расшифровать</string>
+    <string name="fail_credential_unreadable_hint">Изменилось системное хранилище ключей, поэтому сохранённый токен или закрытый ключ больше не удаётся расшифровать. Введите токен заново в настройках хранилища или снова создайте либо импортируйте SSH-ключ.</string>
+    <string name="fail_repo_state">Состояние репозитория не позволяет синхронизировать</string>
+    <string name="fail_repo_state_hint">Репозиторий находится посреди операции, например rebase или cherry-pick, в нём не выбрана ветка или выбрана не та ветка, что в настройках хранилища. Сначала разберитесь с этим на компьютере, затем синхронизируйте.</string>
+    <string name="fail_identity">Автор не задан</string>
+    <string name="fail_identity_hint">Для коммитов нужны имя и email. Задайте автора по умолчанию в настройках или укажите автора для этого хранилища в его настройках.</string>
+    <string name="fail_dir_not_empty">Папка не пуста</string>
+    <string name="fail_dir_not_empty_hint">Для клонирования нужна пустая папка. Создайте новую папку; если в папке уже есть заметки, выберите вместо этого «Загрузить хранилище с этого телефона» или «Использовать существующий Git-репозиторий».</string>
+    <string name="fail_remote_not_empty">Удалённый репозиторий не пуст</string>
+    <string name="fail_remote_not_empty_hint">В удалённом репозитории уже есть содержимое, поэтому загрузить хранилище поверх него нельзя. Сначала клонируйте удалённый репозиторий в пустую папку, затем перенесите в неё заметки с этого телефона и синхронизируйте.</string>
+    <string name="fail_branch_not_found">В удалённом репозитории нет этой ветки</string>
+    <string name="fail_branch_not_found_hint">Вернитесь и измените имя ветки. Ветки удалённого репозитория перечислены в технических сведениях.</string>
+    <string name="fail_remote_missing">Нет URL удалённого репозитория</string>
+    <string name="fail_remote_missing_hint">В репозитории не настроен удалённый репозиторий (origin). Введите URL удалённого репозитория.</string>
+    <string name="fail_vault_empty">В хранилище нечего фиксировать</string>
+    <string name="fail_vault_empty_hint">В выбранной папке нет файлов (или все они игнорируются через .gitignore). Убедитесь, что выбрана правильная папка хранилища.</string>
+    <string name="fail_storage">Не удаётся читать или записывать файлы на устройстве</string>
+    <string name="fail_storage_hint">Возможно, память заполнена или отключён доступ к файлам. Проверьте свободное место и разрешения, затем повторите попытку.</string>
+    <string name="fail_unknown">Непредвиденная ошибка</string>
+    <string name="fail_unknown_hint">Причину определить не удалось. Посмотрите технические сведения и журнал синхронизации. Если нужна помощь, экспортируйте журналы в настройках и отправьте их разработчику.</string>
+
+    <!-- Vault settings -->
+    <string name="repo_settings_title">Настройки хранилища</string>
+    <string name="repo_settings_busy_title">Идёт синхронизация</string>
+    <string name="repo_settings_busy_body">Пока синхронизация не закончится, нельзя сохранить изменения, обслужить репозиторий или убрать хранилище из списка.</string>
+    <string name="repo_settings_general">Общие</string>
+    <string name="repo_settings_folder">Папка: %1$s</string>
+    <string name="repo_settings_branch">Ветка: %1$s</string>
+    <string name="repo_settings_remote">Удалённый репозиторий и аутентификация</string>
+    <string name="repo_settings_identity">Автор и сообщение коммита</string>
+    <string name="repo_settings_identity_body">Действует только для этого хранилища. Оставьте имя и email пустыми, чтобы использовать значения по умолчанию из настроек.</string>
+    <string name="repo_settings_identity_incomplete">Заполните и имя, и email или оставьте оба поля пустыми.</string>
+    <string name="repo_settings_reason_name">Введите отображаемое название</string>
+    <string name="repo_settings_saved">Сохранено</string>
+    <string name="repo_settings_save_failed">Не удалось сохранить</string>
+    <string name="repo_settings_remove">Убрать из списка</string>
+    <string name="repo_settings_remove_hint">Удаляются только запись в этом приложении, токен и журналы. Папка хранилища и её .git не удаляются.</string>
+    <string name="repo_settings_remove_title">Убрать «%1$s»?</string>
+    <string name="repo_settings_remove_confirm">Папка хранилища и её .git останутся на телефоне. Позже его можно добавить снова через «Использовать существующий Git-репозиторий».</string>
+
+    <string name="maintenance_title">Обслуживание репозитория</string>
+    <string name="maintenance_body">Упаковывает и сжимает разрозненные файлы данных, чтобы уменьшить их число и занимаемое место и ускорить дальнейшие операции. Ваши заметки и история не меняются.</string>
+    <string name="maintenance_stats">Данные репозитория: %1$s · Отдельные объекты: %2$d · Пакеты: %3$d</string>
+    <string name="maintenance_recommended">Рекомендуется обслуживание.</string>
+    <string name="maintenance_not_needed">Сейчас обслуживание не требуется.</string>
+    <string name="maintenance_last_done">Последнее обслуживание (%1$s): %2$s → %3$s, заняло %4$s</string>
+    <string name="maintenance_last_failed">Последнее обслуживание (%1$s) не удалось: %2$s</string>
+    <string name="maintenance_run">Начать обслуживание</string>
+
+    <string name="gitignore_title">Рекомендуемые правила игнорирования</string>
+    <string name="gitignore_complete">В .gitignore уже есть все рекомендуемые правила.</string>
+    <plurals name="gitignore_missing">
+        <item quantity="one">В .gitignore не хватает %1$d рекомендуемого правила:</item>
+        <item quantity="few">В .gitignore не хватает %1$d рекомендуемых правил:</item>
+        <item quantity="many">В .gitignore не хватает %1$d рекомендуемых правил:</item>
+        <item quantity="other">В .gitignore не хватает %1$d рекомендуемого правила:</item>
+    </plurals>
+    <string name="gitignore_note">Эти правила исключают из синхронизации файлы, привязанные к устройству: раскладку рабочей области, кэши и корзину. Файлы, которые уже синхронизируются, продолжат синхронизироваться.</string>
+    <string name="gitignore_append">Добавить рекомендуемые правила</string>
+    <string name="gitignore_append_confirm">Дописать недостающие рекомендуемые правила в конец файла .gitignore хранилища? Изменение будет зафиксировано при следующей синхронизации.</string>
+    <plurals name="gitignore_appended">
+        <item quantity="one">Добавлено %1$d правило. Изменение будет зафиксировано при следующей синхронизации.</item>
+        <item quantity="few">Добавлено %1$d правила. Изменение будет зафиксировано при следующей синхронизации.</item>
+        <item quantity="many">Добавлено %1$d правил. Изменение будет зафиксировано при следующей синхронизации.</item>
+        <item quantity="other">Добавлено %1$d правила. Изменение будет зафиксировано при следующей синхронизации.</item>
+    </plurals>
+
+    <!-- Commit history -->
+    <string name="history_title">История коммитов</string>
+    <string name="history_intro">Последние коммиты текущей ветки. «Не отправлен» означает, что в удалённом репозитории этого коммита ещё нет (на момент последней синхронизации).</string>
+    <string name="history_empty">Коммитов пока нет.</string>
+    <string name="history_load_failed">Не удалось прочитать историю коммитов</string>
+    <string name="history_end">Более ранних коммитов нет</string>
+    <string name="history_not_pushed">Не отправлен</string>
+    <string name="history_merge">Слияние</string>
+    <string name="history_no_message">(Нет сообщения коммита)</string>
+    <string name="commit_title">Коммит %1$s</string>
+    <string name="commit_author">%1$s &lt;%2$s&gt; · %3$s</string>
+    <string name="commit_pushed">Отправлен в удалённый репозиторий</string>
+    <string name="commit_not_pushed">Ещё не отправлен в удалённый репозиторий</string>
+    <plurals name="commit_changes">
+        <item quantity="one">Изменён %1$d файл</item>
+        <item quantity="few">Изменено %1$d файла</item>
+        <item quantity="many">Изменено %1$d файлов</item>
+        <item quantity="other">Изменено %1$d файла</item>
+    </plurals>
+    <plurals name="commit_changes_merge">
+        <item quantity="one">Изменён %1$d файл по сравнению с локальной версией до слияния</item>
+        <item quantity="few">Изменено %1$d файла по сравнению с локальной версией до слияния</item>
+        <item quantity="many">Изменено %1$d файлов по сравнению с локальной версией до слияния</item>
+        <item quantity="other">Изменено %1$d файла по сравнению с локальной версией до слияния</item>
+    </plurals>
+    <string name="commit_renamed_from">Прежнее имя: %1$s</string>
+    <plurals name="commit_more_changes">
+        <item quantity="one">И ещё %1$d файл не показан</item>
+        <item quantity="few">И ещё %1$d файла не показаны</item>
+        <item quantity="many">И ещё %1$d файлов не показано</item>
+        <item quantity="other">И ещё %1$d файла не показано</item>
+    </plurals>
+    <string name="change_added">Добавлен</string>
+    <string name="change_modified">Изменён</string>
+    <string name="change_deleted">Удалён</string>
+    <string name="change_renamed">Переименован</string>
+    <string name="change_copied">Скопирован</string>
+    <string name="commit_copied_from">Скопирован из: %1$s</string>
+    <string name="diff_expand">Показать изменения</string>
+    <string name="diff_collapse">Скрыть изменения</string>
+    <plurals name="diff_folded">
+        <item quantity="one">⋯ %1$d строка без изменений свёрнута ⋯</item>
+        <item quantity="few">⋯ %1$d строки без изменений свёрнуты ⋯</item>
+        <item quantity="many">⋯ %1$d строк без изменений свёрнуто ⋯</item>
+        <item quantity="other">⋯ %1$d строки без изменений свёрнуто ⋯</item>
+    </plurals>
+    <string name="diff_fold">Свернуть строки без изменений</string>
+    <string name="diff_binary">Двоичный файл, содержимое не показано (%1$s)</string>
+    <string name="diff_too_large">Файл слишком большой, изменения не показаны (%1$s)</string>
+    <string name="diff_unchanged">Содержимое не изменилось</string>
+    <string name="diff_unchanged_newline">Содержимое не изменилось; отличается только перевод строки в конце файла</string>
+    <string name="diff_newline_at_end">Перевод строки в конце файла тоже изменился (выше не отмечено)</string>
+    <string name="diff_truncated" tools:ignore="PluralsCandidate">Слишком много изменений; показаны только первые строки (%1$d)</string>
+    <string name="diff_load_failed">Не удалось прочитать изменения: %1$s</string>
+
+    <!-- Conflict list -->
+    <string name="conflicts_title">Конфликты</string>
+    <string name="conflicts_menu">Другие действия</string>
+    <string name="conflicts_loading">Чтение конфликтов…</string>
+    <string name="conflicts_load_failed">Не удалось прочитать конфликты</string>
+    <plurals name="conflicts_intro">
+        <item quantity="one">Осталось разрешить: %1$d файл. Нажмите на файл, чтобы пройти по его конфликтам, или разрешите всё сразу через меню справа вверху.</item>
+        <item quantity="few">Осталось разрешить: %1$d файла. Нажмите на файл, чтобы пройти по его конфликтам, или разрешите всё сразу через меню справа вверху.</item>
+        <item quantity="many">Осталось разрешить: %1$d файлов. Нажмите на файл, чтобы пройти по его конфликтам, или разрешите всё сразу через меню справа вверху.</item>
+        <item quantity="other">Осталось разрешить: %1$d файла. Нажмите на файл, чтобы пройти по его конфликтам, или разрешите всё сразу через меню справа вверху.</item>
+    </plurals>
+    <string name="conflicts_all_ours">Оставить все локальные версии</string>
+    <string name="conflicts_all_theirs">Оставить все удалённые версии</string>
+    <plurals name="conflicts_all_ours_confirm">
+        <item quantity="one">Оставить локальную версию для %1$d оставшегося файла? Удалённые изменения в нём не попадут в результат (они останутся в удалённой истории). Если файл удалён в удалённом репозитории, сохранится локальная версия; если он удалён локально, он останется удалённым.</item>
+        <item quantity="few">Оставить локальные версии для %1$d оставшихся файлов? Удалённые изменения в этих файлах не попадут в результат (они останутся в удалённой истории). Файлы, удалённые в удалённом репозитории, сохранят локальные версии; файлы, удалённые локально, останутся удалёнными.</item>
+        <item quantity="many">Оставить локальные версии для %1$d оставшихся файлов? Удалённые изменения в этих файлах не попадут в результат (они останутся в удалённой истории). Файлы, удалённые в удалённом репозитории, сохранят локальные версии; файлы, удалённые локально, останутся удалёнными.</item>
+        <item quantity="other">Оставить локальные версии для %1$d оставшегося файла? Удалённые изменения в этих файлах не попадут в результат (они останутся в удалённой истории). Файлы, удалённые в удалённом репозитории, сохранят локальные версии; файлы, удалённые локально, останутся удалёнными.</item>
+    </plurals>
+    <plurals name="conflicts_all_theirs_confirm">
+        <item quantity="one">Оставить удалённую версию для %1$d оставшегося файла? Локальные изменения в нём не попадут в результат (они останутся в истории ваших локальных коммитов). Если файл удалён локально, он будет восстановлен до удалённой версии; если он удалён в удалённом репозитории, он будет удалён.</item>
+        <item quantity="few">Оставить удалённые версии для %1$d оставшихся файлов? Локальные изменения в этих файлах не попадут в результат (они останутся в истории ваших локальных коммитов). Файлы, удалённые локально, будут восстановлены до удалённых версий; файлы, удалённые в удалённом репозитории, будут удалены.</item>
+        <item quantity="many">Оставить удалённые версии для %1$d оставшихся файлов? Локальные изменения в этих файлах не попадут в результат (они останутся в истории ваших локальных коммитов). Файлы, удалённые локально, будут восстановлены до удалённых версий; файлы, удалённые в удалённом репозитории, будут удалены.</item>
+        <item quantity="other">Оставить удалённые версии для %1$d оставшегося файла? Локальные изменения в этих файлах не попадут в результат (они останутся в истории ваших локальных коммитов). Файлы, удалённые локально, будут восстановлены до удалённых версий; файлы, удалённые в удалённом репозитории, будут удалены.</item>
+    </plurals>
+    <string name="conflicts_all_resolved_hint">Все конфликты разрешены, но слияние ещё не зафиксировано.</string>
+    <string name="conflicts_complete_merge">Завершить слияние и отправить</string>
+    <string name="conflicts_action_failed">Действие не выполнено</string>
+    <string name="conflicts_syncing_hint">Идёт синхронизация. Разрешить конфликты можно после её завершения.</string>
+    <string name="conflicts_none_title">Нет конфликтов для разрешения</string>
+    <string name="conflicts_none_body">В этом хранилище не идёт слияние.</string>
+    <string name="conflicts_kind_both_modified">Изменён с обеих сторон</string>
+    <string name="conflicts_kind_both_added">Создан с обеих сторон</string>
+    <string name="conflicts_kind_deleted_by_us">Удалён локально</string>
+    <string name="conflicts_kind_deleted_by_them">Удалён в удалённом репозитории</string>
+    <string name="conflicts_kind_added_by_us">Есть только локально</string>
+    <string name="conflicts_kind_added_by_them">Есть только в удалённом репозитории</string>
+    <string name="conflicts_kind_both_deleted">Удалён с обеих сторон</string>
+    <string name="conflicts_kind_binary">Двоичный файл</string>
+    <string name="conflicts_kind_resolved">Разрешён</string>
+
+    <!-- Conflict file -->
+    <string name="conflict_ours">Локальная версия</string>
+    <string name="conflict_theirs">Удалённая версия</string>
+    <string name="conflict_marker_ours">Локальная версия</string>
+    <string name="conflict_marker_theirs">Удалённая версия</string>
+    <plurals name="conflict_blocks_intro">
+        <item quantity="one">Конфликтов: %1$d. Они показаны прямо в тексте и отмечены цветной полосой слева. Выберите, какую версию оставить.</item>
+        <item quantity="few">Конфликтов: %1$d. Они показаны прямо в тексте в исходном порядке и отмечены цветными полосами слева. Для каждого выберите, какую версию оставить.</item>
+        <item quantity="many">Конфликтов: %1$d. Они показаны прямо в тексте в исходном порядке и отмечены цветными полосами слева. Для каждого выберите, какую версию оставить.</item>
+        <item quantity="other">Конфликтов: %1$d. Они показаны прямо в тексте в исходном порядке и отмечены цветными полосами слева. Для каждого выберите, какую версию оставить.</item>
+    </plurals>
+    <string name="conflict_line_numbers_intro">" Два столбца номеров строк слева — это номера строк в локальном и удалённом файлах."</string>
+    <string name="conflict_block_title">Конфликт %1$d / %2$d</string>
+    <string name="conflict_block_editing">Правка конфликта %1$d / %2$d</string>
+    <plurals name="conflict_line_count">
+        <item quantity="one">%1$d строка</item>
+        <item quantity="few">%1$d строки</item>
+        <item quantity="many">%1$d строк</item>
+        <item quantity="other">%1$d строки</item>
+    </plurals>
+    <string name="conflict_side_empty">(В этой версии здесь ничего нет)</string>
+    <plurals name="conflict_side_truncated">
+        <item quantity="one">Ещё %1$d строка не показана. Её можно увидеть в редакторе всего файла.</item>
+        <item quantity="few">Ещё %1$d строки не показаны. Их можно увидеть в редакторе всего файла.</item>
+        <item quantity="many">Ещё %1$d строк не показано. Их можно увидеть в редакторе всего файла.</item>
+        <item quantity="other">Ещё %1$d строки не показано. Их можно увидеть в редакторе всего файла.</item>
+    </plurals>
+    <string name="conflict_keep_ours">Оставить</string>
+    <string name="conflict_keep_theirs">Оставить</string>
+    <string name="conflict_keep_both">Оставить обе</string>
+    <string name="conflict_both_ours_first">Оставить обе, сначала локальную</string>
+    <string name="conflict_both_theirs_first">Оставить обе, сначала удалённую</string>
+    <string name="conflict_edit_block">Изменить</string>
+    <string name="conflict_edit_block_label">Итоговый текст этого конфликта</string>
+    <string name="conflict_use_edited">Применить</string>
+    <string name="conflict_clear_choice">Сбросить</string>
+    <string name="conflict_edit_again">Изменить</string>
+    <string name="conflict_empty_result">(Результат этого конфликта пуст)</string>
+    <plurals name="conflict_common_collapsed">
+        <item quantity="one">⋯ %1$d строка без конфликтов свёрнута ⋯</item>
+        <item quantity="few">⋯ %1$d строки без конфликтов свёрнуты ⋯</item>
+        <item quantity="many">⋯ %1$d строк без конфликтов свёрнуто ⋯</item>
+        <item quantity="other">⋯ %1$d строки без конфликтов свёрнуто ⋯</item>
+    </plurals>
+    <string name="conflict_common_collapse">Свернуть строки без конфликтов</string>
+    <string name="conflict_choice_undecided">Не выбрано</string>
+    <string name="conflict_choice_ours">Оставлена локальная</string>
+    <string name="conflict_choice_theirs">Оставлена удалённая</string>
+    <string name="conflict_choice_both_ours_first">Оставлены обе (сначала локальная)</string>
+    <string name="conflict_choice_both_theirs_first">Оставлены обе (сначала удалённая)</string>
+    <string name="conflict_choice_custom">Изменено вручную</string>
+    <string name="conflict_progress" tools:ignore="PluralsCandidate">Разрешено %1$d из %2$d</string>
+    <string name="conflict_locate_undecided">Далее</string>
+    <string name="conflict_preview_edit">Весь файл</string>
+    <string name="conflict_mark_resolved">Завершить</string>
+    <string name="conflict_all_blocks_ours">Оставить все локальные</string>
+    <string name="conflict_all_blocks_theirs">Оставить все удалённые</string>
+    <string name="conflict_reset_choices">Сбросить весь выбор</string>
+    <string name="conflict_open_editor">Изменить весь файл</string>
+    <string name="conflict_leave_title">Отменить сделанный выбор?</string>
+    <string name="conflict_leave_body">Выбор в этом файле ещё не сохранён. Если вернуться сейчас, в следующий раз придётся выбирать заново. Чтобы сохранить его, выберите версию для каждого конфликта и нажмите «Завершить».</string>
+    <string name="conflict_leave_discard">Отменить и вернуться</string>
+    <string name="conflict_editor_mode_title">С чего начать правку?</string>
+    <string name="conflict_editor_mode_body">Можно продолжить с уже сделанного выбора (в конфликтах без выбора останутся маркеры конфликта) или начать с исходных конфликтов, где маркеры стоят у каждого конфликта. Ваш выбор в блочном режиме не изменится.</string>
+    <string name="conflict_editor_mode_keep">С моим выбором</string>
+    <string name="conflict_editor_mode_original">С исходных конфликтов</string>
+    <string name="view_wrap">Перенос строк</string>
+    <string name="view_line_numbers">Номера строк</string>
+    <string name="conflict_missing_title">В этом файле больше нет конфликтов</string>
+    <string name="conflict_missing_body">Возможно, их разрешили в другом месте или путь к файлу изменился. Вернитесь к списку, чтобы увидеть текущее состояние.</string>
+    <string name="conflict_whole_binary_body">Двоичные файлы (например, изображения и PDF) нельзя сливать по отдельным конфликтам. Выберите, какую версию оставить целиком.</string>
+    <string name="conflict_whole_deleted_by_them_body">Удалённый репозиторий удалил этот файл, а локально он был изменён. Оставьте локальную версию или примите удаление.</string>
+    <string name="conflict_whole_deleted_by_us_body">Этот файл был удалён локально, а в удалённом репозитории он изменён. Восстановите удалённую версию или оставьте файл удалённым.</string>
+    <string name="conflict_whole_both_deleted_body">Обе стороны удалили этот файл.</string>
+    <string name="conflict_whole_one_side_body">Этот файл есть только у одной стороны. Выберите, оставить его или удалить.</string>
+    <string name="conflict_whole_too_large_body">Файл слишком большой для слияния по отдельным конфликтам. Выберите, какую версию оставить целиком.</string>
+    <string name="conflict_side_info">%1$s: %2$s · %3$s</string>
+    <string name="conflict_use_ours_file">Оставить локальную версию</string>
+    <string name="conflict_use_theirs_file">Оставить удалённую версию</string>
+    <string name="conflict_keep_ours_file">Оставить локальную версию</string>
+    <string name="conflict_keep_theirs_file">Восстановить удалённую версию</string>
+    <string name="conflict_edit_ours_then_keep">Изменить локальную версию и оставить</string>
+    <string name="conflict_edit_theirs_then_keep">Изменить удалённую версию и оставить</string>
+    <string name="conflict_cannot_edit_side">Эту версию нельзя изменить как текст (двоичный или слишком большой файл).</string>
+    <string name="conflict_delete_file">Удалить файл</string>
+    <string name="conflict_delete_title">Удалить файл?</string>
+    <string name="conflict_delete_confirm">Конфликт будет разрешён удалением «%1$s». Когда слияние будет завершено и синхронизировано, этого файла не будет ни на телефоне, ни в удалённом репозитории (его всё равно можно восстановить из истории).</string>
+    <string name="conflict_editor_title">Правка: %1$s</string>
+    <string name="conflict_editor_search">Найти</string>
+    <string name="conflict_editor_find_next">Далее</string>
+    <string name="conflict_editor_not_found">Не найдено</string>
+    <string name="conflict_editor_save">Сохранить и завершить</string>
+    <plurals name="conflict_editor_markers_warning">
+        <item quantity="one">Внимание: строка %1$s файла — маркер конфликта, созданный приложением. Если его не удалить, он будет сохранён и при синхронизации зафиксирован в удалённом репозитории.</item>
+        <item quantity="few">Внимание: строки %1$s файла — маркеры конфликта, созданные приложением. Если их не удалить, они будут сохранены и при синхронизации зафиксированы в удалённом репозитории.</item>
+        <item quantity="many">Внимание: строки %1$s файла — маркеры конфликта, созданные приложением. Если их не удалить, они будут сохранены и при синхронизации зафиксированы в удалённом репозитории.</item>
+        <item quantity="other">Внимание: строки %1$s файла — маркеры конфликта, созданные приложением. Если их не удалить, они будут сохранены и при синхронизации зафиксированы в удалённом репозитории.</item>
+    </plurals>
+    <string name="conflict_editor_next_marker">Перейти</string>
+    <string name="conflict_lines_more">%1$s, … (всего %2$d)</string>
+    <string name="conflict_editor_save_markers_title">Остались маркеры конфликта</string>
+    <plurals name="conflict_editor_save_markers_confirm">
+        <item quantity="one">Строка %1$s всё ещё маркер конфликта, созданный приложением. Если сохранить, эта строка будет записана в файл и при синхронизации зафиксирована в удалённом репозитории. Всё равно сохранить?</item>
+        <item quantity="few">Строки %1$s всё ещё маркеры конфликта, созданные приложением. Если сохранить, эти строки будут записаны в файл и при синхронизации зафиксированы в удалённом репозитории. Всё равно сохранить?</item>
+        <item quantity="many">Строки %1$s всё ещё маркеры конфликта, созданные приложением. Если сохранить, эти строки будут записаны в файл и при синхронизации зафиксированы в удалённом репозитории. Всё равно сохранить?</item>
+        <item quantity="other">Строки %1$s всё ещё маркеры конфликта, созданные приложением. Если сохранить, эти строки будут записаны в файл и при синхронизации зафиксированы в удалённом репозитории. Всё равно сохранить?</item>
+    </plurals>
+    <string name="conflict_editor_save_anyway">Всё равно сохранить</string>
+    <string name="conflict_editor_discard_confirm">Отменить изменения, сделанные в редакторе?</string>
+    <string name="conflict_editor_discard">Отменить изменения</string>
+
+    <!-- Logs and crash reports -->
+    <string name="logs_title">Журнал</string>
+    <string name="logs_empty">Записей пока нет.</string>
+    <string name="log_result_success">Успешно</string>
+    <string name="log_result_conflicts">Конфликты</string>
+    <string name="log_result_failed">Ошибка</string>
+    <string name="log_result_cancelled">Отменено</string>
+    <string name="log_result_unknown">Не завершено</string>
+    <string name="log_op_sync">Синхронизация</string>
+    <string name="log_op_clone">Клонирование</string>
+    <string name="log_op_init">Инициализация и загрузка</string>
+    <string name="log_op_adopt">Использование существующего репозитория</string>
+    <string name="log_op_maintain">Обслуживание репозитория</string>
+    <string name="log_op_unknown">Другая операция</string>
+    <string name="log_share_title">Поделиться журналом</string>
+    <string name="crash_report_title">Отчёт о сбое</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Настройки</string>
+    <string name="settings_identity">Автор по умолчанию</string>
+    <string name="settings_identity_body">Имя и email, которые записываются в каждый коммит. Лучше использовать те же, что в Git на вашем компьютере. Для каждого хранилища можно задать свои в его настройках.</string>
+    <string name="settings_commit">Сообщение коммита</string>
+    <string name="settings_network">Сеть</string>
+    <string name="settings_proxy_enabled">HTTP-прокси</string>
+    <string name="settings_proxy_host">Хост прокси</string>
+    <string name="settings_proxy_port">Порт прокси</string>
+    <string name="settings_proxy_hint">Через этот прокси подключаются удалённые репозитории и по HTTPS, и по SSH. Приложения-прокси на телефонах обычно слушают порт на 127.0.0.1. Если сам прокси не ответит за 15 секунд, подключение не удастся.</string>
+    <string name="settings_reason_proxy">Введите правильные хост и порт прокси</string>
+    <string name="settings_logs">Журналы</string>
+    <string name="settings_log_keep">Записей журнала на хранилище</string>
+    <string name="settings_debug_logs">Подробный журнал</string>
+    <string name="settings_debug_logs_hint">Записывать в журнал также отладочные сведения Git и SSH для поиска неполадок.</string>
+    <string name="settings_saved">Сохранено</string>
+    <string name="settings_language">Язык</string>
+    <string name="settings_language_system">Как в системе</string>
+    <string name="settings_language_hint">В режиме «Как в системе» приложение использует первый поддерживаемый язык из списка языков системы, а если ни один не поддерживается — английский.</string>
+    <string name="settings_notifications">Уведомления</string>
+    <string name="settings_notifications_on">Уведомления включены</string>
+    <string name="settings_notifications_off">Уведомления выключены</string>
+    <string name="settings_notifications_enable">Включить</string>
+    <string name="settings_notifications_manage">Настроить</string>
+    <string name="settings_notifications_body">Уведомления показывают ход и результаты синхронизации. Без них синхронизация работает, но вы не увидите ход и не получите оповещения о конфликтах и ошибках. В системных настройках можно отдельно управлять тремя видами: «Ход синхронизации», «Синхронизация завершена» и «Требует внимания».</string>
+    <string name="settings_backup">Резервное копирование и восстановление</string>
+    <string name="settings_backup_body">Экспортируйте список хранилищ, настройки, SSH-ключи и известные хосты в файл, чтобы восстановить их на новом телефоне или после переустановки. Токены и закрытые ключи шифруются выбранной вами парольной фразой. Обычно конфигурация хранится в личной памяти приложения и сохраняется при обновлениях.</string>
+    <string name="backup_export">Экспорт</string>
+    <string name="backup_import">Импорт</string>
+    <string name="backup_failed">Ошибка резервного копирования</string>
+    <string name="backup_exported">Конфигурация экспортирована и проверена</string>
+    <string name="backup_exported_partial">Экспортировано, но некоторые токены или закрытые ключи не удалось включить (см. карточку резервной копии)</string>
+    <string name="backup_err_verify">Файл сохранился неправильно: прочитанное обратно не совпадает с записанным. Выберите другое место.</string>
+    <string name="backup_restore_busy">Нельзя восстановить, пока идёт синхронизация хранилища</string>
+    <string name="backup_last_export_with_secrets">Последний экспорт: %1$s · с токенами и закрытыми ключами</string>
+    <string name="backup_last_export_without_secrets">Последний экспорт: %1$s · без токенов и закрытых ключей</string>
+    <string name="backup_missing_token">токен хранилища «%1$s»</string>
+    <string name="backup_missing_key">SSH-ключ «%1$s»</string>
+    <string name="backup_last_export_missing">Не включены, потому что это устройство больше не может их расшифровать (введите или создайте их заново): %1$s</string>
+    <string name="backup_never_exported">Конфигурация ещё не экспортировалась. Экспортируйте её перед сменой телефона или переустановкой.</string>
+    <string name="backup_export_title">Экспорт конфигурации</string>
+    <string name="backup_export_body">В экспорт входят список хранилищ, настройки, список SSH-ключей и известные хосты.</string>
+    <string name="backup_include_secrets">Экспортировать токены и закрытые ключи</string>
+    <string name="backup_passphrase">Парольная фраза</string>
+    <string name="backup_passphrase_hint" tools:ignore="PluralsCandidate">Не короче %1$d символов. Она понадобится при восстановлении, а если её забыть, вернуть её не получится.</string>
+    <string name="backup_passphrase_confirm">Введите парольную фразу ещё раз</string>
+    <string name="backup_without_secrets_hint">Токены и закрытые ключи не будут экспортированы. После восстановления нужно будет снова ввести токены и снова создать или импортировать SSH-ключи (и снова добавить их открытые ключи на сервер).</string>
+    <string name="backup_choose_location">Выбрать место сохранения</string>
+    <string name="backup_import_title">Восстановление из резервной копии</string>
+    <string name="backup_import_source">Создана %1$s · Устройство %2$s · Версия %3$s</string>
+    <plurals name="backup_import_repos">
+        <item quantity="one">%1$d хранилище</item>
+        <item quantity="few">%1$d хранилища</item>
+        <item quantity="many">%1$d хранилищ</item>
+        <item quantity="other">%1$d хранилища</item>
+    </plurals>
+    <plurals name="backup_import_keys">
+        <item quantity="one">%1$d SSH-ключ</item>
+        <item quantity="few">%1$d SSH-ключа</item>
+        <item quantity="many">%1$d SSH-ключей</item>
+        <item quantity="other">%1$d SSH-ключа</item>
+    </plurals>
+    <string name="backup_repo_folder_used">Эту папку уже использует «%1$s» на этом устройстве</string>
+    <string name="backup_repo_folder_missing">На этом устройстве нет такой папки. После восстановления хранилище можно снова клонировать с его страницы.</string>
+    <string name="backup_repo_replaces">Заменит такое же хранилище на этом устройстве</string>
+    <string name="backup_key_replaces">Заменит такой же ключ на этом устройстве</string>
+    <string name="backup_import_settings_title">Настройки</string>
+    <string name="backup_import_settings">Восстановить настройки приложения</string>
+    <string name="backup_import_settings_hint">Автор по умолчанию, сообщение коммита, прокси, журналы, язык и параметры отображения. Все настройки на этом устройстве будут заменены.</string>
+    <string name="backup_import_known_hosts">Известные хосты из резервной копии добавляются, если их ещё нет на этом устройстве; хосты, которым здесь уже доверяют, не меняются.</string>
+    <string name="backup_import_no_secrets">В этой резервной копии нет токенов и закрытых ключей.</string>
+    <string name="backup_import_without_secrets">Не восстанавливать токены и закрытые ключи</string>
+    <string name="backup_import_action">Восстановить</string>
+    <string name="backup_restored">Восстановлено. Хранилища: %1$d · SSH-ключи: %2$d · Токены: %3$d</string>
+    <string name="backup_restored_secrets_skipped">Токены и закрытые ключи не восстановлены. Добавьте их в настройках хранилищ.</string>
+    <plurals name="backup_restored_missing_folders">
+        <item quantity="one">Восстановленных хранилищ без папки на этом устройстве: %1$d. Откройте хранилище, чтобы клонировать его заново.</item>
+        <item quantity="few">Восстановленных хранилищ без папки на этом устройстве: %1$d. Откройте их, чтобы клонировать заново.</item>
+        <item quantity="many">Восстановленных хранилищ без папки на этом устройстве: %1$d. Откройте их, чтобы клонировать заново.</item>
+        <item quantity="other">Восстановленных хранилищ без папки на этом устройстве: %1$d. Откройте их, чтобы клонировать заново.</item>
+    </plurals>
+    <string name="backup_err_not_backup">Это не файл резервной копии VaultSync.</string>
+    <string name="backup_err_too_new">Эта резервная копия создана более новой версией VaultSync. Сначала обновите приложение.</string>
+    <string name="backup_err_wrong_passphrase">Неверная парольная фраза.</string>
+    <string name="backup_err_corrupt">Файл резервной копии повреждён и не читается.</string>
+    <string name="settings_diagnostics">Диагностика</string>
+    <string name="settings_diagnostics_body">Упаковывает журналы синхронизации всех хранилищ и отчёты о сбоях в один файл, чтобы вы могли сообщить о проблеме. В журналах нет токенов, закрытых ключей и парольных фраз.</string>
+    <string name="diagnostics_export">Экспорт журналов</string>
+    <string name="diagnostics_export_failed">Не удалось экспортировать журналы</string>
+    <string name="diagnostics_exported">Журналы сохранены</string>
+    <plurals name="diagnostics_crash_count">
+        <item quantity="one">Сохранён %1$d отчёт о сбое</item>
+        <item quantity="few">Сохранено %1$d отчёта о сбоях</item>
+        <item quantity="many">Сохранено %1$d отчётов о сбоях</item>
+        <item quantity="other">Сохранено %1$d отчёта о сбоях</item>
+    </plurals>
+    <string name="diagnostics_view_latest_crash">Открыть последний</string>
+    <string name="settings_help">Справка</string>
+    <string name="settings_help_background">Во время синхронизации приложение показывает ход в панели уведомлений и работает как активный сервис, поэтому синхронизация продолжается, когда вы переключаетесь на другие приложения. Если синхронизация всё же останавливается после переключения, разрешите VaultSync работать в фоне в системных настройках или исключите его из оптимизации батареи.</string>
+    <string name="settings_help_vault_location">Хранилища Obsidian обычно находятся по пути Внутренняя память/Documents/&lt;имя хранилища&gt;. Точное расположение можно посмотреть в Obsidian в разделе «Управление хранилищами».</string>
+    <string name="settings_about">О приложении</string>
+    <string name="settings_about_body">VaultSync %1$s · JGit %2$s · Android %3$s</string>
+</resources>

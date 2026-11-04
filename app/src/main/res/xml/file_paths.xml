@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 分享日志文件用：单个日志（filesDir/logs/**）与打包导出的 zip（cacheDir/export/） -->
+<paths>
+    <files-path name="logs" path="logs/" />
+    <files-path name="crash" path="crash/" />
+    <cache-path name="export" path="export/" />
+</paths>

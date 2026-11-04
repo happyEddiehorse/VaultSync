@@ -1,0 +1,761 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  界面文案：简体中文（D-030）。英文在 values/strings.xml（其它语言都显示英文），两份的 key 一一对应。
+  原则见 docs/UI.md §10：面向 Obsidian 用户而不是 Git 用户；
+  错误提示写清"哪一步、什么原因、怎么办"；不出现任何手机品牌或特定机型的说法（应用是通用的，将来可能开源）。
+  书写约定：中文标点；引号用「」（英文双引号会被 aapt 吞掉）；不写英文撇号。带数量的文案是 plurals，中文只写 other。
+-->
+<resources>
+    <string name="app_name">VaultSync</string>
+
+    <!-- 通用 -->
+    <string name="action_cancel">取消</string>
+    <string name="action_ok">确定</string>
+    <string name="action_back">返回</string>
+    <string name="action_close">关闭</string>
+    <string name="action_dismiss">知道了</string>
+    <string name="action_next">下一步</string>
+    <string name="action_save">保存</string>
+    <string name="action_copy">复制全文</string>
+    <string name="action_share">分享</string>
+    <string name="action_retry">重试</string>
+    <string name="action_more">更多操作</string>
+    <string name="action_view_logs">查看日志</string>
+    <string name="action_sync">同步</string>
+    <string name="action_sync_now">立即同步</string>
+    <string name="action_go_settings">前往设置</string>
+    <string name="action_show_technical">技术信息</string>
+    <string name="action_hide_technical">收起技术信息</string>
+    <string name="copied">已复制到剪贴板</string>
+    <string name="duration_seconds">%1$s 秒</string>
+    <string name="duration_minutes">%1$d 分 %2$d 秒</string>
+    <string name="size_bytes">%1$s B</string>
+    <string name="size_kb">%1$s KB</string>
+    <string name="size_mb">%1$s MB</string>
+    <string name="size_gb">%1$s GB</string>
+    <string name="percent">%1$d%%</string>
+
+    <!-- 未保存修改栏（软件设置页与库设置页共用，docs/UI.md §9.1） -->
+    <string name="unsaved_changes">有未保存的修改</string>
+    <string name="unsaved_discard">放弃修改</string>
+    <string name="unsaved_reason_busy">同步进行中，暂时不能保存</string>
+    <string name="unsaved_leave_title">放弃未保存的修改？</string>
+    <string name="unsaved_leave_discard">放弃</string>
+    <string name="unsaved_keep_editing">继续编辑</string>
+
+    <!-- 同步阶段与进度 -->
+    <string name="stage_preparing">准备中</string>
+    <string name="stage_precheck">检查库状态</string>
+    <string name="stage_commit">提交本地修改</string>
+    <string name="stage_fetch">获取远端更新</string>
+    <string name="stage_merge">合并远端更新</string>
+    <string name="stage_conflicts">等待处理冲突</string>
+    <string name="stage_push">推送到远端</string>
+    <string name="stage_done">已完成</string>
+    <string name="stage_maintain">整理仓库</string>
+    <string name="task_receiving">接收数据</string>
+    <string name="task_resolving">解析数据</string>
+    <string name="task_counting">统计对象</string>
+    <string name="task_compressing">压缩对象</string>
+    <string name="task_writing">写入数据</string>
+    <string name="task_finding_sources">查找可复用数据</string>
+    <string name="task_sizes">计算大小</string>
+    <string name="task_indexing">建立索引</string>
+    <string name="task_updating_refs">更新分支</string>
+    <string name="task_checkout">写出文件</string>
+    <string name="task_verifying">核对文件</string>
+    <string name="progress_cancelling">正在取消…</string>
+    <string name="task_opening">连接远端</string>
+    <string name="task_staging">读取改动的文件</string>
+    <string name="meter_downloaded">已下载 %1$s</string>
+    <string name="meter_uploaded">已上传 %1$s</string>
+    <string name="meter_rate">%1$s/s</string>
+    <string name="meter_elapsed">用时 %1$s</string>
+    <string name="task_pack_refs">整理分支记录</string>
+    <string name="task_prune">清理已打包的数据</string>
+    <string name="job_syncing">正在同步</string>
+    <string name="job_cloning">正在克隆</string>
+    <string name="job_initializing">正在初始化</string>
+    <string name="job_adopting">正在接管</string>
+    <string name="job_maintaining">正在整理</string>
+
+    <!-- 通知 -->
+    <string name="notification_channel_sync">同步进度</string>
+    <string name="notification_channel_sync_desc">同步进行时显示当前进度，并保持同步在后台运行。</string>
+    <string name="notification_channel_done">同步完成</string>
+    <string name="notification_channel_done_desc">所有库都同步成功时的提示，默认静音。</string>
+    <string name="notification_channel_attention">需要处理</string>
+    <string name="notification_channel_attention_desc">同步出现冲突或失败时提醒。</string>
+    <string name="notif_progress_preparing">准备同步…</string>
+    <string name="notif_progress_title">%1$s「%2$s」</string>
+    <string name="notif_progress_position">第 %1$d 个，共 %2$d 个</string>
+    <string name="notif_progress_queued">排队中：%1$s</string>
+    <string name="notif_action_cancel">取消此库</string>
+    <string name="notif_action_cancel_all">全部停止</string>
+    <plurals name="notif_summary_all_ok">
+        <item quantity="other">%1$d 个库已同步</item>
+    </plurals>
+    <plurals name="notif_summary_all_problems">
+        <item quantity="other">%1$d 个库需要处理</item>
+    </plurals>
+    <plurals name="notif_summary_mixed">
+        <item quantity="other">%1$d 个库已同步，%2$d 个需要处理</item>
+    </plurals>
+    <plurals name="notif_summary_tasks_all_ok">
+        <item quantity="other">%1$d 项已完成</item>
+    </plurals>
+    <plurals name="notif_summary_tasks_all_problems">
+        <item quantity="other">%1$d 项需要处理</item>
+    </plurals>
+    <plurals name="notif_summary_tasks_mixed">
+        <item quantity="other">%1$d 项已完成，%2$d 项需要处理</item>
+    </plurals>
+    <string name="notif_summary_line">%1$s：%2$s</string>
+    <string name="notif_result_added">已添加</string>
+    <string name="notif_result_recloned">已重新克隆</string>
+    <string name="notif_result_maintained">整理完成</string>
+    <string name="notif_result_maintained_freed">整理完成，释放 %1$s</string>
+    <plurals name="notif_result_conflicts">
+        <item quantity="other">%1$d 个文件有冲突，请打开应用处理</item>
+    </plurals>
+    <string name="notif_result_failed">失败：%1$s</string>
+    <string name="list_separator">、</string>
+
+    <!-- 首页 -->
+    <string name="home_title">VaultSync</string>
+    <string name="home_settings">设置</string>
+    <string name="home_add_repo">添加库</string>
+    <string name="home_empty_title">还没有添加库</string>
+    <string name="home_empty_body">添加一个 Git 仓库，并与远端保持同步。</string>
+    <string name="home_config_error_title">配置文件读取失败</string>
+    <string name="home_config_error_body">以下配置文件已损坏，已另存为备份，本次按空配置启动：\n%1$s\n可以在设置页从备份文件恢复配置。</string>
+    <string name="home_identity_missing">尚未设置提交者姓名和邮箱。每次提交都会记录它们，请先在设置中填写。</string>
+    <string name="home_go_settings">前往设置</string>
+    <string name="home_crash_title">应用上次意外退出</string>
+    <string name="home_crash_body">已保存崩溃报告。如果问题反复出现，可以把报告发给开发者。</string>
+    <string name="home_crash_view">查看报告</string>
+    <string name="env_info">VaultSync %1$s · Android %2$s</string>
+
+    <string name="status_synced">已同步</string>
+    <string name="status_conflicts">有冲突</string>
+    <string name="status_syncing">同步中</string>
+    <string name="status_maintaining">整理中</string>
+    <string name="status_cloning">克隆中</string>
+    <string name="status_queued">排队中</string>
+    <string name="status_error">同步失败</string>
+    <string name="status_cancelled">已取消</string>
+    <string name="status_never">尚未同步</string>
+    <string name="last_sync_at">上次同步：%1$s</string>
+
+    <!-- 存储权限 -->
+    <string name="perm_title">需要文件访问权限</string>
+    <string name="perm_body_legacy">VaultSync 需要读写手机存储中的文件或文件夹（包括其中的 .git 目录）。请授予存储权限。</string>
+    <string name="perm_body_all_files">VaultSync 需要读写手机存储中的文件或文件夹（包括其中的 .git 目录）。请在系统设置中为 VaultSync 开启「所有文件访问权限」。</string>
+    <string name="perm_grant">授予权限</string>
+    <string name="perm_open_settings">打开系统设置</string>
+
+    <!-- 添加库向导 -->
+    <string name="add_title">添加库</string>
+    <string name="add_step">第 %1$d 步，共 %2$d 步</string>
+    <string name="add_step_mode">选择方式</string>
+    <string name="add_step_folder">选择文件夹</string>
+    <string name="add_step_remote">远端仓库与认证</string>
+    <string name="add_step_identity">名称与提交者</string>
+    <string name="add_step_confirm">确认</string>
+    <string name="add_step_progress">执行</string>
+    <string name="add_start_failed">无法保存令牌</string>
+
+    <string name="mode_clone_title">从远端克隆</string>
+    <string name="mode_clone_body">远端仓库已有笔记，手机上还没有。会把仓库下载到一个空文件夹。</string>
+    <string name="mode_init_title">上传手机上的库</string>
+    <string name="mode_init_body">手机上已有待同步文件夹（没有 .git），远端是一个空仓库。会在该文件夹中创建 Git 仓库并完成首次推送。</string>
+    <string name="mode_adopt_title">接管已有 Git 仓库</string>
+    <string name="mode_adopt_body">库文件夹中已有 .git（例如由其它工具创建）。直接接管，不改动已有历史。</string>
+
+    <string name="folder_hint_clone">选择或新建一个空文件夹，仓库会克隆到这里。</string>
+    <string name="folder_hint_init">选择待同步文件夹（不含 .git）。</string>
+    <string name="folder_hint_adopt">选择已有的 Git 仓库文件夹（包含 .git）。</string>
+    <string name="folder_path_label">路径</string>
+    <string name="folder_up">上一级</string>
+    <string name="folder_go">前往</string>
+    <string name="folder_new">新建文件夹</string>
+    <string name="folder_new_name">文件夹名称</string>
+    <string name="folder_badge_vault">Obsidian 库</string>
+    <string name="folder_badge_repo">Git 仓库</string>
+    <string name="folder_empty">（没有子文件夹）</string>
+    <string name="folder_use_this">使用当前文件夹</string>
+    <string name="folder_err_not_dir">该路径不是文件夹。</string>
+    <string name="folder_err_not_empty">文件夹不是空的。克隆需要一个空文件夹。</string>
+    <string name="folder_err_has_git">该文件夹中已有 .git，请返回选择「接管已有 Git 仓库」。</string>
+    <string name="folder_err_no_git">该文件夹中没有 .git，请返回选择其它方式。</string>
+    <string name="folder_err_name">名称不合法。</string>
+    <string name="folder_err_create">无法创建文件夹。</string>
+    <string name="folder_err_exists">已有同名文件夹。</string>
+    <string name="folder_warn_no_obsidian">该文件夹中没有 .obsidian，可能不是 Obsidian 库。</string>
+
+    <string name="remote_url_label">远端仓库地址</string>
+    <string name="remote_url_examples">HTTPS：https://github.com/用户名/仓库.git
+SSH：git@github.com:用户名/仓库.git</string>
+    <string name="remote_url_adopt_hint">留空则使用仓库中已配置的远端地址（origin）。</string>
+    <string name="remote_kind_https">HTTPS 地址，使用个人访问令牌认证。</string>
+    <string name="remote_kind_ssh">SSH 地址，使用 SSH 密钥认证。</string>
+    <string name="remote_kind_unsupported">无法识别的地址。支持 https://… 与 SSH 地址；不支持 http:// 与本地路径。</string>
+    <string name="remote_username_label">用户名</string>
+    <string name="remote_token_label">个人访问令牌</string>
+    <string name="remote_token_replace_label">新令牌（留空则保持不变）</string>
+    <string name="remote_token_hint">在 GitHub 的 Settings → Developer settings → Personal access tokens 中创建，需要该仓库的内容读写权限。令牌加密保存在本机。</string>
+    <string name="remote_token_saved_hint">已保存令牌。只有需要更换时才填写。</string>
+    <string name="remote_token_unreadable_hint">已保存的令牌无法解密（系统密钥库发生变化），请重新填写。</string>
+    <string name="remote_ssh_port_label">SSH 端口</string>
+    <string name="remote_ssh_github_443">改用 443 端口</string>
+    <string name="remote_ssh_github_22">改回 22 端口</string>
+    <string name="remote_branch_label">分支</string>
+    <string name="remote_test">测试连接</string>
+    <string name="remote_test_ok_empty">连接成功。远端是空仓库。</string>
+    <string name="remote_test_ok">连接成功。远端分支：%1$s</string>
+    <string name="remote_test_fail_title">连接失败：%1$s</string>
+    <string name="remote_reason_url">请填写可识别的远端仓库地址</string>
+    <string name="remote_reason_username">请填写用户名</string>
+    <string name="remote_reason_token">请填写个人访问令牌</string>
+    <string name="remote_reason_port">请填写正确的 SSH 端口</string>
+    <string name="remote_reason_key">请选择可用的 SSH 密钥</string>
+
+    <string name="repo_name_label">显示名称</string>
+    <string name="identity_title">提交者</string>
+    <string name="identity_body">记录在本库每次提交中的姓名和邮箱。留空则使用设置中的默认值。</string>
+    <string name="identity_name_label">姓名</string>
+    <string name="identity_email_label">邮箱</string>
+    <string name="identity_missing">设置中还没有默认的提交者，这里必须填写。</string>
+    <string name="commit_template_label">提交信息模板</string>
+    <string name="commit_template_hint">可用占位符：{{date}} {{hostname}} {{numFiles}} {{files}}</string>
+    <string name="date_format_label">日期格式</string>
+    <string name="date_format_hint">例如 YYYY-MM-DD HH:mm:ss</string>
+
+    <string name="confirm_mode">方式</string>
+    <string name="confirm_folder">文件夹</string>
+    <string name="confirm_remote">远端</string>
+    <string name="confirm_remote_existing">沿用仓库中已配置的远端地址（origin）</string>
+    <string name="confirm_branch">分支</string>
+    <string name="confirm_auth">认证</string>
+    <string name="confirm_auth_https">个人访问令牌（用户名 %1$s）</string>
+    <string name="confirm_auth_ssh">SSH 密钥「%1$s」</string>
+    <string name="confirm_auth_none">无</string>
+    <string name="confirm_identity">提交者</string>
+    <string name="confirm_identity_default">使用设置中的默认值</string>
+    <string name="confirm_actions_clone">将执行：连接远端 → 克隆到所选文件夹 → 写入仓库配置。</string>
+    <string name="confirm_actions_init">将执行：确认远端为空 → 创建 Git 仓库 → 写入推荐的 .gitignore → 提交全部文件 → 推送。</string>
+    <string name="confirm_actions_adopt">将执行：打开仓库 → 核对分支与远端 → 写入仓库配置。不会改动已有历史。</string>
+    <string name="confirm_start">开始</string>
+
+    <string name="progress_running">%1$s…</string>
+    <string name="progress_success">完成</string>
+    <string name="progress_cancelled">已取消</string>
+    <string name="progress_failed">%1$s时失败：%2$s</string>
+    <string name="progress_back_to_edit">返回修改</string>
+    <string name="progress_open_repo">打开库</string>
+    <string name="note_remote_empty">远端是空仓库，首次同步时会推送本地内容。</string>
+    <string name="note_gitignore_created">已按推荐模板创建 .gitignore。</string>
+    <string name="note_branch_adjusted">仓库当前的分支是 %1$s（而不是填写的 %2$s），已按 %1$s 同步。</string>
+    <string name="note_remote_changed">远端地址已改为 %1$s。</string>
+    <string name="note_unfinished_merge">该仓库有一次未完成的合并，仍有冲突，请在库详情中处理。</string>
+    <string name="note_resolved_merge">该仓库有一次冲突已解决但尚未提交的合并，下次同步时会完成它。</string>
+
+    <!-- SSH 密钥（设置页、向导、仓库设置共用） -->
+    <string name="settings_ssh">SSH 密钥</string>
+    <string name="ssh_list_intro">使用 SSH 地址的库通过这里的密钥认证。每个库可以选择不同的密钥，新库默认使用「默认」密钥。私钥加密保存在本机，不会离开手机。</string>
+    <string name="ssh_list_empty">还没有密钥。</string>
+    <string name="ssh_key_title_default">%1$s（默认）</string>
+    <string name="ssh_key_unused">未被任何库使用</string>
+    <plurals name="ssh_key_used_by">
+        <item quantity="other">%1$d 个库在使用</item>
+    </plurals>
+    <string name="ssh_key_generate">生成密钥</string>
+    <string name="ssh_key_import">导入私钥</string>
+    <string name="ssh_key_copy_public">复制公钥</string>
+    <string name="ssh_key_copy_public_short">复制公钥</string>
+    <string name="ssh_key_view_public">查看详情</string>
+    <string name="ssh_key_set_default">设为默认</string>
+    <string name="ssh_key_rename">重命名</string>
+    <string name="ssh_key_delete">删除</string>
+    <string name="ssh_key_delete_title">删除密钥「%1$s」？</string>
+    <string name="ssh_key_delete_unused">没有库在使用这把密钥。删除后请到远端（例如 GitHub 的 SSH keys）一并移除对应的公钥。</string>
+    <plurals name="ssh_key_delete_used">
+        <item quantity="other">有 %1$d 个库在使用这把密钥：%2$s。删除后这些库需要改选其它密钥才能同步。请到远端一并移除对应的公钥。</item>
+    </plurals>
+    <string name="ssh_key_name_label">名称</string>
+    <string name="ssh_key_name_suggestion">密钥 %1$d</string>
+    <string name="ssh_key_name_migrated">默认密钥</string>
+    <string name="ssh_key_name_recovered">恢复的密钥</string>
+    <string name="ssh_key_source_generated">%1$s 生成</string>
+    <string name="ssh_key_source_imported">%1$s 导入</string>
+    <string name="ssh_key_unreadable">私钥无法解密（系统密钥库发生变化），请删除后重新生成或导入。</string>
+    <string name="ssh_key_public_hint">把下面这行公钥添加到远端账户，例如 GitHub 的 Settings → SSH and GPG keys → New SSH key。</string>
+    <string name="ssh_key_done_generated">已生成密钥。请把公钥添加到远端账户。</string>
+    <string name="ssh_key_done_imported">已导入密钥。</string>
+    <string name="ssh_key_done_deleted">已删除密钥。</string>
+    <string name="ssh_generate_title">生成 SSH 密钥</string>
+    <string name="ssh_generate_body">生成一把新的 ed25519 密钥。名称只在本应用中显示，便于区分。</string>
+    <string name="ssh_import_title">导入私钥</string>
+    <string name="ssh_import_key_label">私钥内容</string>
+    <string name="ssh_import_key_hint">粘贴完整的私钥文件内容（从 -----BEGIN … PRIVATE KEY----- 到 -----END … -----）。支持 OpenSSH、PEM、PKCS#8 与 PuTTY 格式。</string>
+    <string name="ssh_import_passphrase_label">私钥口令（没有则留空）</string>
+    <string name="ssh_import_action">导入</string>
+    <string name="ssh_import_err_invalid">无法识别私钥格式。请确认粘贴的是私钥而不是公钥（.pub），且首尾的 BEGIN / END 行完整。</string>
+    <string name="ssh_import_err_passphrase_required">该私钥有口令保护，请填写口令。</string>
+    <string name="ssh_import_err_wrong_passphrase">口令不正确。</string>
+    <string name="ssh_import_err_unsupported">不支持该密钥：%1$s</string>
+    <string name="ssh_picker_title">SSH 密钥</string>
+    <string name="ssh_picker_empty">还没有 SSH 密钥。生成一把新密钥，或导入已有的私钥。</string>
+    <string name="ssh_picker_choose">请选择密钥</string>
+    <string name="ssh_picker_deleted">原来使用的密钥已被删除，请重新选择</string>
+    <string name="ssh_picker_open">选择密钥</string>
+    <string name="ssh_picker_new_generate">生成新密钥…</string>
+    <string name="ssh_picker_new_import">导入私钥…</string>
+    <string name="ssh_picker_add_public_key">请确认这把密钥的公钥已添加到远端账户，然后测试连接。</string>
+    <string name="ssh_picker_manage">管理密钥</string>
+
+    <!-- 已知主机 -->
+    <string name="known_hosts_title">已知主机</string>
+    <string name="known_hosts_body">首次连接某台主机时会记录它的密钥；以后密钥发生变化会拒绝连接，以防连接被劫持。如果确认是服务器更换了密钥，可以「忘记」该主机后重新连接。GitHub 的密钥已预置。</string>
+    <string name="known_hosts_empty">还没有记录。</string>
+    <string name="known_hosts_forget">忘记</string>
+    <string name="known_hosts_forget_confirm">忘记「%1$s」的主机密钥？下次连接时会重新记录。</string>
+
+    <!-- 库详情 -->
+    <string name="detail_open_repo_settings">库设置</string>
+    <string name="detail_history">提交历史</string>
+    <string name="detail_logs">同步日志</string>
+    <string name="detail_branch_remote">分支 %1$s · 远端 %2$s</string>
+    <string name="detail_auth_https">认证：个人访问令牌（%1$s）</string>
+    <string name="detail_auth_ssh">认证：SSH 密钥「%1$s」</string>
+    <string name="detail_auth_none">认证：无</string>
+    <string name="detail_local_changes">本地未同步的修改：修改 %1$d · 新增 %2$d · 删除 %3$d</string>
+    <string name="detail_no_local_changes">没有未同步的本地修改</string>
+    <string name="detail_path_copy">复制路径</string>
+    <string name="detail_queued_body">前面还有其它库正在同步，轮到后会自动开始。</string>
+    <string name="detail_failed_title">%1$s时失败：%2$s</string>
+    <string name="detail_last_failed_title">上次同步失败（%1$s）：%2$s</string>
+    <string name="detail_last_result">上次同步：%1$s</string>
+    <string name="detail_inspect_failed">无法读取库的状态</string>
+    <string name="detail_not_repo">这个文件夹不是 Git 仓库，可能已被移动或删除 .git。</string>
+    <string name="detail_dir_missing">找不到库文件夹，可能已被移动或删除。</string>
+    <string name="detail_reclone_body">可以按这个库已有的远端、分支和令牌 / 密钥，把它重新克隆到原来的位置：%1$s\n库的名称与设置不变。</string>
+    <string name="detail_reclone_action">重新克隆到原位置</string>
+    <string name="detail_action_failed">操作失败</string>
+    <plurals name="detail_conflicts_title">
+        <item quantity="other">%1$d 个文件有冲突</item>
+    </plurals>
+    <string name="detail_conflicts_body">手机和远端修改了同一处内容。请逐个文件选择保留哪一方（也可以都保留或手动编辑），全部处理后完成合并并推送。\n也可以放弃本次合并：本地的提交不受影响，远端的修改仍保存在远端，下次同步时会再次合并。</string>
+    <string name="detail_open_conflicts">处理冲突</string>
+    <string name="detail_abort_merge">放弃合并</string>
+    <string name="detail_abort_confirm">文件会回到本地最后一次提交时的内容，已做的冲突处理会丢失。远端的修改不受影响，下次同步时会再次合并。</string>
+    <string name="detail_merge_resolved_title">冲突已全部处理</string>
+    <string name="detail_merge_resolved_body">合并尚未提交。点击「完成合并并推送」创建合并提交并同步到远端。</string>
+    <string name="detail_complete_merge_sync">完成合并并推送</string>
+    <string name="detail_residue_title">需要注意</string>
+    <string name="residue_index_lock">上次操作被中断，留下了锁文件（index.lock）。同步时会自动清除。</string>
+    <string name="residue_index_lock_fix">立即清除</string>
+    <string name="residue_merge_conflicts">有一次未完成的合并，仍有冲突。</string>
+    <string name="residue_merge_resolved">冲突已处理，但合并尚未提交。</string>
+    <string name="residue_unsupported">仓库处于本应用不支持的操作中（例如 rebase 或 cherry-pick），请先在电脑上完成或中止该操作。</string>
+    <string name="residue_detached">仓库当前没有检出任何分支（detached HEAD），请先在电脑上切换到分支。</string>
+    <string name="residue_missing_remote">仓库没有配置远端（origin），同步时会写入库设置中的地址。</string>
+    <string name="residue_unborn">分支还没有任何提交，首次同步时会推送。</string>
+    <string name="detail_auth_problem_title">认证信息不完整</string>
+    <string name="detail_auth_token_missing">这个库使用 HTTPS 地址，但还没有保存个人访问令牌，同步会失败。</string>
+    <string name="detail_auth_token_unreadable">保存的令牌无法解密（系统密钥库发生变化），请重新填写。</string>
+    <string name="detail_auth_key_missing">这个库使用的 SSH 密钥已被删除，请在库设置中改选其它密钥。</string>
+    <string name="detail_auth_key_unreadable">这个库使用的 SSH 密钥无法解密（系统密钥库发生变化），请重新生成或导入后在库设置中改选。</string>
+    <string name="detail_auth_key_not_selected">这个库使用 SSH 地址，但还没有选择 SSH 密钥。</string>
+
+    <string name="result_success">成功</string>
+    <string name="result_conflicts">有冲突</string>
+    <plurals name="result_conflicts_n">
+        <item quantity="other">%1$d 个文件有冲突</item>
+    </plurals>
+    <string name="result_cancelled">已取消</string>
+    <string name="result_failed_reason">失败：%1$s</string>
+    <plurals name="summary_committed">
+        <item quantity="other">提交了 %1$d 个文件</item>
+    </plurals>
+    <string name="summary_no_local_changes">本地没有修改</string>
+    <string name="summary_merge_none">远端尚无此分支</string>
+    <string name="summary_merge_ff">已拉取远端更新</string>
+    <string name="summary_merge_merged">已合并远端更新</string>
+    <string name="summary_merge_up_to_date">远端没有新内容</string>
+    <string name="summary_push_ok">已推送</string>
+    <string name="summary_push_nothing">无需推送</string>
+    <string name="summary_no_changes">没有变化</string>
+    <string name="summary_duration">用时 %1$s</string>
+
+    <!-- 失败原因：标题（短）与说明（可能原因 + 建议操作） -->
+    <string name="fail_auth_token">令牌无效或已过期</string>
+    <string name="fail_auth_token_hint">远端拒绝了个人访问令牌。请确认令牌没有过期、没有被撤销，并且有该仓库的内容读写权限，然后在库设置中更新令牌。</string>
+    <string name="fail_auth_ssh">SSH 密钥未被接受</string>
+    <string name="fail_auth_ssh_hint">远端不认可这把 SSH 密钥。请确认该密钥的公钥已添加到远端账户（例如 GitHub 的 SSH keys），并且库设置中选择的是这把密钥。</string>
+    <string name="fail_permission">没有权限</string>
+    <string name="fail_permission_hint">认证成功，但当前账户或密钥没有写入权限（例如只读的部署密钥、令牌缺少写权限，或分支受保护）。请在远端调整权限。</string>
+    <string name="fail_repo_not_found">找不到远端仓库</string>
+    <string name="fail_repo_not_found_hint">请检查仓库地址是否正确。私有仓库在凭据无权访问时也会显示为「找不到」，请同时确认令牌或密钥属于有权访问的账户。</string>
+    <string name="fail_host_key">服务器密钥与记录不一致</string>
+    <string name="fail_host_key_hint">为防止连接被劫持，已停止连接。如果确认是服务器更换了密钥（可查看托管平台公布的指纹），请在设置的「已知主机」中忘记该主机后重试。</string>
+    <string name="fail_network">无法连接到服务器</string>
+    <string name="fail_network_hint">请检查网络连接，确认能访问远端服务器；如果需要代理才能访问，请开启手机上的代理，或在设置中配置 HTTP 代理。</string>
+    <string name="fail_timeout">连接超时</string>
+    <string name="fail_timeout_hint">服务器长时间没有响应。请检查网络或代理是否可用，稍后重试。</string>
+    <string name="fail_proxy">无法通过代理连接</string>
+    <string name="fail_proxy_hint">无法连接设置中的 HTTP 代理，或代理拒绝了转发。请确认代理地址与端口正确、代理程序正在运行并允许来自本机的连接；不需要代理时请在设置中关闭。</string>
+    <string name="fail_check_proxy_hint">当前已开启应用内代理，也请确认代理地址可用。</string>
+    <string name="fail_tls">安全连接失败</string>
+    <string name="fail_tls_hint">无法与服务器建立安全连接（证书校验失败）。可能是网络被拦截或设备时间不正确，请检查后重试。</string>
+    <string name="fail_push_rejected">远端拒绝了推送</string>
+    <string name="fail_push_rejected_hint">远端拒绝接收这次推送，常见原因是分支保护规则或服务器端检查。本地提交已保存，不会丢失。请查看技术信息，在远端调整设置后重新同步。</string>
+    <string name="fail_push_race">远端一直有新的提交</string>
+    <string name="fail_push_race_hint">推送期间远端多次出现新的提交（可能电脑端正在同步）。本地提交已保存，稍后再同步即可。</string>
+    <string name="fail_local_files">本地文件会被覆盖</string>
+    <string name="fail_local_files_hint">远端新增的文件与手机上未被跟踪（或被 .gitignore 忽略）的文件同名，合并会覆盖它们，因此已停止。请查看技术信息中的文件名，将这些文件改名或移走后重新同步。</string>
+    <string name="fail_vault_missing">找不到库文件夹</string>
+    <string name="fail_vault_missing_hint">库文件夹可能已被移动、改名或删除。请确认文件夹位置，必要时移除该库后重新添加。</string>
+    <string name="fail_not_repo">文件夹中没有 Git 仓库</string>
+    <string name="fail_not_repo_hint">库文件夹中找不到 .git 目录，可能已被删除。请移除该库后重新添加（可选择从远端克隆）。</string>
+    <string name="fail_already_repo">文件夹中已有 Git 仓库</string>
+    <string name="fail_already_repo_hint">该文件夹中已经有 .git。请返回并选择「接管已有 Git 仓库」。</string>
+    <string name="fail_credential_missing">缺少令牌或密钥</string>
+    <string name="fail_credential_missing_hint">这个库还没有保存可用的令牌，或没有选择 SSH 密钥（也可能所选密钥已被删除）。请在库设置中补充。</string>
+    <string name="fail_credential_unreadable">令牌或密钥无法解密</string>
+    <string name="fail_credential_unreadable_hint">系统密钥库发生了变化，已保存的令牌或私钥无法再解密。请在库设置中重新填写令牌，或重新生成、导入 SSH 密钥。</string>
+    <string name="fail_repo_state">仓库状态不支持同步</string>
+    <string name="fail_repo_state_hint">仓库正处于 rebase、cherry-pick 等操作中，没有检出分支，或检出的分支与库设置不一致。请先在电脑上处理，完成后再同步。</string>
+    <string name="fail_identity">未设置提交者</string>
+    <string name="fail_identity_hint">提交需要姓名和邮箱。请在设置中填写默认提交者，或在库设置中为这个库单独填写。</string>
+    <string name="fail_dir_not_empty">文件夹不是空的</string>
+    <string name="fail_dir_not_empty_hint">克隆需要一个空文件夹。请新建一个文件夹；如果文件夹中已有笔记，请改用「上传手机上的库」或「接管已有 Git 仓库」。</string>
+    <string name="fail_remote_not_empty">远端仓库不是空的</string>
+    <string name="fail_remote_not_empty_hint">远端已有内容，不能直接上传覆盖。请先把远端克隆到一个空文件夹，再把手机上的笔记移进去同步。</string>
+    <string name="fail_branch_not_found">远端没有这个分支</string>
+    <string name="fail_branch_not_found_hint">请返回修改分支名称。技术信息中列出了远端现有的分支。</string>
+    <string name="fail_remote_missing">没有远端地址</string>
+    <string name="fail_remote_missing_hint">仓库中没有配置远端（origin），请填写远端仓库地址。</string>
+    <string name="fail_vault_empty">库里没有可提交的文件</string>
+    <string name="fail_vault_empty_hint">所选文件夹中没有文件（或全部被 .gitignore 忽略）。请确认选择的是正确的库文件夹。</string>
+    <string name="fail_storage">无法读写本机文件</string>
+    <string name="fail_storage_hint">可能是存储空间不足，或文件访问权限被关闭。请检查存储空间和权限后重试。</string>
+    <string name="fail_unknown">发生意外错误</string>
+    <string name="fail_unknown_hint">未能识别原因。请查看技术信息和同步日志；如需帮助，可以在设置中导出日志发给开发者。</string>
+
+    <!-- 库设置 -->
+    <string name="repo_settings_title">库设置</string>
+    <string name="repo_settings_busy_title">正在同步</string>
+    <string name="repo_settings_busy_body">同步结束前不能保存修改、整理仓库或从列表中移除。</string>
+    <string name="repo_settings_general">基本信息</string>
+    <string name="repo_settings_folder">文件夹：%1$s</string>
+    <string name="repo_settings_branch">分支：%1$s</string>
+    <string name="repo_settings_remote">远端仓库与认证</string>
+    <string name="repo_settings_identity">提交者与提交信息</string>
+    <string name="repo_settings_identity_body">只对这个库生效。姓名和邮箱留空则使用设置中的默认值。</string>
+    <string name="repo_settings_identity_incomplete">姓名和邮箱需要同时填写，或同时留空。</string>
+    <string name="repo_settings_reason_name">请填写显示名称</string>
+    <string name="repo_settings_saved">已保存</string>
+    <string name="repo_settings_save_failed">保存失败</string>
+    <string name="repo_settings_remove">从列表中移除</string>
+    <string name="repo_settings_remove_hint">只移除本应用中的记录、令牌和日志，不会删除库文件夹及其中的 .git。</string>
+    <string name="repo_settings_remove_title">移除「%1$s」？</string>
+    <string name="repo_settings_remove_confirm">库文件夹和其中的 .git 会保留在手机上，之后可以用「接管已有 Git 仓库」重新添加。</string>
+
+    <string name="maintenance_title">仓库整理</string>
+    <string name="maintenance_body">把零散的数据文件打包压缩，减少文件数量和占用空间，加快后续操作。不会改动笔记内容与历史。</string>
+    <string name="maintenance_stats">仓库数据 %1$s · 零散对象 %2$d 个 · 数据包 %3$d 个</string>
+    <string name="maintenance_recommended">建议整理。</string>
+    <string name="maintenance_not_needed">目前不需要整理。</string>
+    <string name="maintenance_last_done">上次整理（%1$s）：%2$s → %3$s，用时 %4$s</string>
+    <string name="maintenance_last_failed">上次整理（%1$s）失败：%2$s</string>
+    <string name="maintenance_run">开始整理</string>
+
+    <string name="gitignore_title">推荐的忽略规则</string>
+    <string name="gitignore_complete">.gitignore 已包含全部推荐规则。</string>
+    <plurals name="gitignore_missing">
+        <item quantity="other">.gitignore 缺少 %1$d 条推荐规则：</item>
+    </plurals>
+    <string name="gitignore_note">这些规则让工作区布局、缓存和回收站等设备相关的文件不参与同步。已被同步的文件不会因此停止同步。</string>
+    <string name="gitignore_append">添加推荐规则</string>
+    <string name="gitignore_append_confirm">把缺少的推荐规则追加到库的 .gitignore 末尾？修改会在下次同步时提交。</string>
+    <plurals name="gitignore_appended">
+        <item quantity="other">已添加 %1$d 条规则，将在下次同步时提交。</item>
+    </plurals>
+
+    <!-- 提交历史 -->
+    <string name="history_title">提交历史</string>
+    <string name="history_intro">当前分支最近的提交。「未推送」表示远端还没有这次提交（以上次同步时为准）。</string>
+    <string name="history_empty">还没有任何提交。</string>
+    <string name="history_load_failed">无法读取提交历史</string>
+    <string name="history_end">没有更早的提交了</string>
+    <string name="history_not_pushed">未推送</string>
+    <string name="history_merge">合并</string>
+    <string name="history_no_message">（无提交信息）</string>
+    <string name="commit_title">提交 %1$s</string>
+    <string name="commit_author">%1$s &lt;%2$s&gt; · %3$s</string>
+    <string name="commit_pushed">已推送到远端</string>
+    <string name="commit_not_pushed">尚未推送到远端</string>
+    <plurals name="commit_changes">
+        <item quantity="other">改动了 %1$d 个文件</item>
+    </plurals>
+    <plurals name="commit_changes_merge">
+        <item quantity="other">相对合并前的本地版本，改动了 %1$d 个文件</item>
+    </plurals>
+    <string name="commit_renamed_from">原名：%1$s</string>
+    <plurals name="commit_more_changes">
+        <item quantity="other">另有 %1$d 个文件未列出</item>
+    </plurals>
+    <string name="change_added">新增</string>
+    <string name="change_modified">修改</string>
+    <string name="change_deleted">删除</string>
+    <string name="change_renamed">改名</string>
+    <string name="change_copied">复制</string>
+    <string name="commit_copied_from">复制自：%1$s</string>
+    <string name="diff_expand">展开改动</string>
+    <string name="diff_collapse">收起改动</string>
+    <plurals name="diff_folded">
+        <item quantity="other">⋯ %1$d 行未改动，已折叠 ⋯</item>
+    </plurals>
+    <string name="diff_fold">收起未改动的行</string>
+    <string name="diff_binary">二进制文件，不显示内容（%1$s）</string>
+    <string name="diff_too_large">文件太大，不显示改动（%1$s）</string>
+    <string name="diff_unchanged">内容没有变化</string>
+    <string name="diff_unchanged_newline">内容没有变化，只是文件末尾的换行不同</string>
+    <string name="diff_newline_at_end">另外，文件末尾的换行也变了（上面没有标出）</string>
+    <string name="diff_truncated">改动太多，只显示了前 %1$d 行</string>
+    <string name="diff_load_failed">无法读取改动：%1$s</string>
+
+    <!-- 冲突列表 -->
+    <string name="conflicts_title">冲突</string>
+    <string name="conflicts_menu">更多操作</string>
+    <string name="conflicts_loading">正在读取冲突…</string>
+    <string name="conflicts_load_failed">无法读取冲突</string>
+    <plurals name="conflicts_intro">
+        <item quantity="other">还有 %1$d 个文件需要处理。点击文件逐处选择，或通过右上角菜单批量处理。</item>
+    </plurals>
+    <string name="conflicts_all_ours">全部保留本地版本</string>
+    <string name="conflicts_all_theirs">全部保留远端版本</string>
+    <plurals name="conflicts_all_ours_confirm">
+        <item quantity="other">剩余 %1$d 个文件全部保留本地版本？远端对这些文件的修改不会进入结果（仍保存在远端历史中）。远端删除的文件将保留本地版本；本地删除的文件将保持删除。</item>
+    </plurals>
+    <plurals name="conflicts_all_theirs_confirm">
+        <item quantity="other">剩余 %1$d 个文件全部保留远端版本？本地对这些文件的修改不会进入结果（仍保存在本地提交历史中）。本地删除的文件将恢复为远端版本；远端删除的文件将被删除。</item>
+    </plurals>
+    <string name="conflicts_all_resolved_hint">所有冲突都已处理，合并尚未提交。</string>
+    <string name="conflicts_complete_merge">完成合并并推送</string>
+    <string name="conflicts_action_failed">操作失败</string>
+    <string name="conflicts_syncing_hint">正在同步，结束后才能处理冲突。</string>
+    <string name="conflicts_none_title">没有待处理的冲突</string>
+    <string name="conflicts_none_body">这个库当前没有进行中的合并。</string>
+    <string name="conflicts_kind_both_modified">双方都修改了</string>
+    <string name="conflicts_kind_both_added">双方都新建了</string>
+    <string name="conflicts_kind_deleted_by_us">本地已删除</string>
+    <string name="conflicts_kind_deleted_by_them">远端已删除</string>
+    <string name="conflicts_kind_added_by_us">仅本地存在</string>
+    <string name="conflicts_kind_added_by_them">仅远端存在</string>
+    <string name="conflicts_kind_both_deleted">双方都删除了</string>
+    <string name="conflicts_kind_binary">二进制文件</string>
+    <string name="conflicts_kind_resolved">已处理</string>
+
+    <!-- 冲突文件 -->
+    <string name="conflict_ours">本地版本</string>
+    <string name="conflict_theirs">远端版本</string>
+    <string name="conflict_marker_ours">本地版本</string>
+    <string name="conflict_marker_theirs">远端版本</string>
+    <plurals name="conflict_blocks_intro">
+        <item quantity="other">共 %1$d 处冲突，已按原文顺序嵌在正文中，左侧色条标出范围。请为每一处选择保留哪个版本。</item>
+    </plurals>
+    <string name="conflict_line_numbers_intro">左边两栏行号分别是本地文件、远端文件中的行号。</string>
+    <string name="conflict_block_title">冲突 %1$d / %2$d</string>
+    <string name="conflict_block_editing">编辑冲突 %1$d / %2$d</string>
+    <plurals name="conflict_line_count">
+        <item quantity="other">%1$d 行</item>
+    </plurals>
+    <string name="conflict_side_empty">（此版本在这里没有内容）</string>
+    <plurals name="conflict_side_truncated">
+        <item quantity="other">还有 %1$d 行未显示，可在整篇编辑中查看。</item>
+    </plurals>
+    <string name="conflict_keep_ours">保留本地</string>
+    <string name="conflict_keep_theirs">保留远端</string>
+    <string name="conflict_keep_both">两者都保留</string>
+    <string name="conflict_both_ours_first">两者都保留，本地在前</string>
+    <string name="conflict_both_theirs_first">两者都保留，远端在前</string>
+    <string name="conflict_edit_block">手动编辑</string>
+    <string name="conflict_edit_block_label">这一处的最终内容</string>
+    <string name="conflict_use_edited">使用编辑结果</string>
+    <string name="conflict_clear_choice">清除选择</string>
+    <string name="conflict_edit_again">重新编辑</string>
+    <string name="conflict_empty_result">（这一处的结果为空）</string>
+    <plurals name="conflict_common_collapsed">
+        <item quantity="other">⋯ %1$d 行无冲突，已折叠 ⋯</item>
+    </plurals>
+    <string name="conflict_common_collapse">收起无冲突内容</string>
+    <string name="conflict_choice_undecided">未选择</string>
+    <string name="conflict_choice_ours">已保留本地</string>
+    <string name="conflict_choice_theirs">已保留远端</string>
+    <string name="conflict_choice_both_ours_first">已保留两者（本地在前）</string>
+    <string name="conflict_choice_both_theirs_first">已保留两者（远端在前）</string>
+    <string name="conflict_choice_custom">已手动编辑</string>
+    <string name="conflict_progress">已处理 %1$d / %2$d 处</string>
+    <string name="conflict_locate_undecided">下一处</string>
+    <string name="conflict_preview_edit">整篇预览与编辑</string>
+    <string name="conflict_mark_resolved">完成此文件</string>
+    <string name="conflict_all_blocks_ours">全部保留本地</string>
+    <string name="conflict_all_blocks_theirs">全部保留远端</string>
+    <string name="conflict_reset_choices">清除所有选择</string>
+    <string name="conflict_open_editor">整篇编辑</string>
+    <string name="conflict_leave_title">放弃已做的选择？</string>
+    <string name="conflict_leave_body">这个文件里的选择还没有保存。现在返回，下次进来要重新选择。要保存，请在全部选完后点“完成此文件”。</string>
+    <string name="conflict_leave_discard">放弃并返回</string>
+    <string name="conflict_editor_mode_title">整篇编辑从哪里开始？</string>
+    <string name="conflict_editor_mode_body">可以带上你已经做的选择继续编辑（没选的地方仍是冲突标记），也可以从原始冲突开始、所有冲突处都显示为标记。块视图里的选择不会因此改变。</string>
+    <string name="conflict_editor_mode_keep">带上已做的选择</string>
+    <string name="conflict_editor_mode_original">从原始冲突开始</string>
+    <string name="view_wrap">自动换行</string>
+    <string name="view_line_numbers">显示行号</string>
+    <string name="conflict_missing_title">此文件已没有冲突</string>
+    <string name="conflict_missing_body">它可能已在别处处理，或路径已变化。请返回列表查看最新状态。</string>
+    <string name="conflict_whole_binary_body">二进制文件（例如图片、PDF）无法逐处合并，只能整体选择保留哪个版本。</string>
+    <string name="conflict_whole_deleted_by_them_body">远端删除了此文件，而本地修改了它。可以保留本地版本，或同意删除。</string>
+    <string name="conflict_whole_deleted_by_us_body">本地删除了此文件，而远端修改了它。可以恢复远端版本，或保持删除。</string>
+    <string name="conflict_whole_both_deleted_body">双方都删除了此文件。</string>
+    <string name="conflict_whole_one_side_body">只有一方有此文件。请选择保留或删除。</string>
+    <string name="conflict_whole_too_large_body">文件过大，无法逐处合并，只能整体选择保留哪个版本。</string>
+    <string name="conflict_side_info">%1$s：%2$s · %3$s</string>
+    <string name="conflict_use_ours_file">保留本地版本</string>
+    <string name="conflict_use_theirs_file">保留远端版本</string>
+    <string name="conflict_keep_ours_file">保留本地版本</string>
+    <string name="conflict_keep_theirs_file">恢复远端版本</string>
+    <string name="conflict_edit_ours_then_keep">编辑本地版本后保留</string>
+    <string name="conflict_edit_theirs_then_keep">编辑远端版本后保留</string>
+    <string name="conflict_cannot_edit_side">此版本无法作为文本编辑（二进制文件或文件过大）。</string>
+    <string name="conflict_delete_file">删除文件</string>
+    <string name="conflict_delete_title">删除文件？</string>
+    <string name="conflict_delete_confirm">以删除「%1$s」作为处理结果。合并完成并同步后，手机和远端都将没有此文件（仍可在历史记录中找回）。</string>
+    <string name="conflict_editor_title">编辑 %1$s</string>
+    <string name="conflict_editor_search">查找</string>
+    <string name="conflict_editor_find_next">下一个</string>
+    <string name="conflict_editor_not_found">未找到</string>
+    <string name="conflict_editor_save">保存并完成此文件</string>
+    <plurals name="conflict_editor_markers_warning">
+        <item quantity="other">请注意，文件中的第 %1$s 行是软件自动生成的冲突标记，若不删除，将会保存并在同步时提交到远端。</item>
+    </plurals>
+    <string name="conflict_editor_next_marker">定位</string>
+    <string name="conflict_lines_more">%1$s 等共 %2$d</string>
+    <string name="conflict_editor_save_markers_title">仍有冲突标记</string>
+    <plurals name="conflict_editor_save_markers_confirm">
+        <item quantity="other">第 %1$s 行仍是软件自动生成的冲突标记。保存后这些行会写入文件，并在同步时提交到远端。确定保存吗？</item>
+    </plurals>
+    <string name="conflict_editor_save_anyway">仍然保存</string>
+    <string name="conflict_editor_discard_confirm">放弃在编辑器中所做的修改？</string>
+    <string name="conflict_editor_discard">放弃修改</string>
+
+    <!-- 日志与崩溃报告 -->
+    <string name="logs_title">同步日志</string>
+    <string name="logs_empty">还没有日志。</string>
+    <string name="log_result_success">成功</string>
+    <string name="log_result_conflicts">有冲突</string>
+    <string name="log_result_failed">失败</string>
+    <string name="log_result_cancelled">已取消</string>
+    <string name="log_result_unknown">未完成</string>
+    <string name="log_op_sync">同步</string>
+    <string name="log_op_clone">克隆</string>
+    <string name="log_op_init">初始化并上传</string>
+    <string name="log_op_adopt">接管</string>
+    <string name="log_op_maintain">仓库整理</string>
+    <string name="log_op_unknown">其它操作</string>
+    <string name="log_share_title">分享日志</string>
+    <string name="crash_report_title">崩溃报告</string>
+
+    <!-- 设置 -->
+    <string name="settings_title">设置</string>
+    <string name="settings_identity">默认提交者</string>
+    <string name="settings_identity_body">记录在每次提交中的姓名和邮箱，建议与电脑端 Git 的设置一致。每个库也可以在库设置中单独指定。</string>
+    <string name="settings_commit">提交信息</string>
+    <string name="settings_network">网络</string>
+    <string name="settings_proxy_enabled">使用 HTTP 代理</string>
+    <string name="settings_proxy_host">代理地址</string>
+    <string name="settings_proxy_port">代理端口</string>
+    <string name="settings_proxy_hint">HTTPS 与 SSH 远端都会经这个代理连接。手机上的代理软件通常监听 127.0.0.1 的某个端口。连接代理本身超过 15 秒没有响应即判定失败。</string>
+    <string name="settings_reason_proxy">请填写正确的代理地址和端口</string>
+    <string name="settings_logs">日志</string>
+    <string name="settings_log_keep">每个库保留的日志数</string>
+    <string name="settings_debug_logs">记录详细日志</string>
+    <string name="settings_debug_logs_hint">把 Git 与 SSH 的调试信息也写入日志，用于排查问题。</string>
+    <string name="settings_saved">已保存</string>
+    <string name="settings_language">语言</string>
+    <string name="settings_language_system">跟随系统</string>
+    <string name="settings_language_hint">跟随系统时，按系统语言列表从上往下选第一个本软件支持的语言，都不支持时显示英文。</string>
+    <string name="settings_notifications">通知</string>
+    <string name="settings_notifications_on">通知已开启</string>
+    <string name="settings_notifications_off">通知已关闭</string>
+    <string name="settings_notifications_enable">去开启</string>
+    <string name="settings_notifications_manage">管理</string>
+    <string name="settings_notifications_body">通知用于显示同步进度和结果。关闭后同步照常进行，但看不到进度，也不会收到冲突或失败的提醒。可以在系统设置中分别管理「同步进度」「同步完成」「需要处理」三类通知。</string>
+    <string name="settings_backup">备份与恢复</string>
+    <string name="settings_backup_body">把库列表、设置、SSH 密钥和已知主机导出为一个文件，用于换机或重装后恢复。令牌和私钥会用你设置的口令加密。配置平时保存在应用私有目录中，覆盖安装不会丢失。</string>
+    <string name="backup_export">导出配置</string>
+    <string name="backup_import">从文件恢复</string>
+    <string name="backup_failed">备份操作失败</string>
+    <string name="backup_exported">配置已导出，并已核对文件可以恢复</string>
+    <string name="backup_exported_partial">已导出，但有令牌或私钥没能导出（见备份卡片）</string>
+    <string name="backup_err_verify">文件没有正确保存：读回来的内容与写入的不一致。请换一个位置再试。</string>
+    <string name="backup_restore_busy">同步进行中，暂时不能恢复</string>
+    <string name="backup_last_export_with_secrets">上次导出：%1$s · 含令牌与私钥</string>
+    <string name="backup_last_export_without_secrets">上次导出：%1$s · 不含令牌与私钥</string>
+    <string name="backup_missing_token">「%1$s」的令牌</string>
+    <string name="backup_missing_key">密钥「%1$s」</string>
+    <string name="backup_last_export_missing">本机已无法解密、因此没能导出（需要重新填写或生成）：%1$s</string>
+    <string name="backup_never_exported">还没有导出过配置。换手机或重装前请先导出一份。</string>
+    <string name="backup_export_title">导出配置</string>
+    <string name="backup_export_body">导出文件包含库列表、设置、SSH 密钥清单与已知主机。</string>
+    <string name="backup_include_secrets">同时导出令牌与私钥</string>
+    <string name="backup_passphrase">口令</string>
+    <string name="backup_passphrase_hint">至少 %1$d 个字符。恢复时需要输入，忘记后无法找回。</string>
+    <string name="backup_passphrase_confirm">再次输入口令</string>
+    <string name="backup_without_secrets_hint">不导出令牌与私钥：恢复后需要重新填写令牌，并重新生成或导入 SSH 密钥（公钥也要重新添加到远端）。</string>
+    <string name="backup_choose_location">选择保存位置</string>
+    <string name="backup_import_title">从备份恢复</string>
+    <string name="backup_import_source">备份时间 %1$s · 设备 %2$s · 版本 %3$s</string>
+    <plurals name="backup_import_repos">
+        <item quantity="other">库 %1$d 个</item>
+    </plurals>
+    <plurals name="backup_import_keys">
+        <item quantity="other">SSH 密钥 %1$d 把</item>
+    </plurals>
+    <string name="backup_repo_folder_used">本机的「%1$s」已在使用这个文件夹</string>
+    <string name="backup_repo_folder_missing">本机没有这个文件夹，恢复后可在库详情页重新克隆</string>
+    <string name="backup_repo_replaces">将覆盖本机的同一个库</string>
+    <string name="backup_key_replaces">将覆盖本机的同一把密钥</string>
+    <string name="backup_import_settings_title">软件设置</string>
+    <string name="backup_import_settings">恢复软件设置</string>
+    <string name="backup_import_settings_hint">默认提交者、提交信息、代理、日志、语言、显示选项。会整体替换本机的设置。</string>
+    <string name="backup_import_known_hosts">备份里的已知主机会加到本机，本机已信任的主机不变。</string>
+    <string name="backup_import_no_secrets">此备份不含令牌与私钥。</string>
+    <string name="backup_import_without_secrets">不恢复令牌与私钥</string>
+    <string name="backup_import_action">恢复</string>
+    <string name="backup_restored">已恢复 %1$d 个库、%2$d 把密钥、%3$d 个令牌。</string>
+    <string name="backup_restored_secrets_skipped">未恢复令牌与私钥，请在库设置中补充。</string>
+    <plurals name="backup_restored_missing_folders">
+        <item quantity="other">其中 %1$d 个库在本机没有文件夹，可打开库详情页重新克隆。</item>
+    </plurals>
+    <string name="backup_err_not_backup">这不是 VaultSync 的备份文件。</string>
+    <string name="backup_err_too_new">这个备份由更新版本的 VaultSync 导出，请先升级应用。</string>
+    <string name="backup_err_wrong_passphrase">口令不正确。</string>
+    <string name="backup_err_corrupt">备份文件已损坏，无法读取。</string>
+    <string name="settings_diagnostics">问题诊断</string>
+    <string name="settings_diagnostics_body">把所有库的同步日志和崩溃报告打包成一个文件，方便反馈问题。日志中不包含令牌、私钥和口令。</string>
+    <string name="diagnostics_export">导出日志</string>
+    <string name="diagnostics_export_failed">导出日志失败</string>
+    <string name="diagnostics_exported">日志已保存</string>
+    <plurals name="diagnostics_crash_count">
+        <item quantity="other">已保存 %1$d 份崩溃报告</item>
+    </plurals>
+    <string name="diagnostics_view_latest_crash">查看最近一份</string>
+    <string name="settings_help">帮助</string>
+    <string name="settings_help_background">同步期间应用会在通知栏显示进度，并以前台服务运行，切换到其它应用也会继续。如果切换后同步仍被中断，请在系统设置中允许 VaultSync 在后台运行，或将其从电池优化中排除。</string>
+    <string name="settings_help_vault_location">Obsidian 的库通常位于 内部存储/Documents/&lt;库名&gt;，可以在 Obsidian 的「管理仓库」中查看确切位置。</string>
+    <string name="settings_about">关于</string>
+    <string name="settings_about_body">VaultSync %1$s · JGit %2$s · Android %3$s</string>
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 进度通知的小图标：同步符号逆时针转（箭头方向），D-044。原生状态栏（StatusBarIconView）会自己播放 AnimationDrawable，
+     不会播放 AnimatedVectorDrawable；不转的厂商系统（vivo）只显示第一帧，与静态的 ic_stat_sync 相同。
+     符号转 180° 与原图重合，所以 12 帧 × 15° 走半圈就循环；每帧 80 ms，约 2 秒一整圈。
+     第一帧必须直接是矢量图：系统判断"单色图标、可以跟着状态栏变黑白"只看第一帧是不是 VectorDrawable / 灰度位图（ContrastColorUtil.isGrayscaleIcon），
+     第一帧包了 rotate 会被当成彩色图标，华为状态栏就一直是白色（L-044）。 -->
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+    <item android:duration="80" android:drawable="@drawable/ic_stat_sync" />
+    <item android:duration="80"><rotate android:drawable="@drawable/ic_stat_sync" android:fromDegrees="-15" android:toDegrees="-15" android:pivotX="50%" android:pivotY="50%" /></item>
+    <item android:duration="80"><rotate android:drawable="@drawable/ic_stat_sync" android:fromDegrees="-30" android:toDegrees="-30" android:pivotX="50%" android:pivotY="50%" /></item>
+    <item android:duration="80"><rotate android:drawable="@drawable/ic_stat_sync" android:fromDegrees="-45" android:toDegrees="-45" android:pivotX="50%" android:pivotY="50%" /></item>
+    <item android:duration="80"><rotate android:drawable="@drawable/ic_stat_sync" android:fromDegrees="-60" android:toDegrees="-60" android:pivotX="50%" android:pivotY="50%" /></item>
+    <item android:duration="80"><rotate android:drawable="@drawable/ic_stat_sync" android:fromDegrees="-75" android:toDegrees="-75" android:pivotX="50%" android:pivotY="50%" /></item>
+    <item android:duration="80"><rotate android:drawable="@drawable/ic_stat_sync" android:fromDegrees="-90" android:toDegrees="-90" android:pivotX="50%" android:pivotY="50%" /></item>
+    <item android:duration="80"><rotate android:drawable="@drawable/ic_stat_sync" android:fromDegrees="-105" android:toDegrees="-105" android:pivotX="50%" android:pivotY="50%" /></item>
+    <item android:duration="80"><rotate android:drawable="@drawable/ic_stat_sync" android:fromDegrees="-120" android:toDegrees="-120" android:pivotX="50%" android:pivotY="50%" /></item>
+    <item android:duration="80"><rotate android:drawable="@drawable/ic_stat_sync" android:fromDegrees="-135" android:toDegrees="-135" android:pivotX="50%" android:pivotY="50%" /></item>
+    <item android:duration="80"><rotate android:drawable="@drawable/ic_stat_sync" android:fromDegrees="-150" android:toDegrees="-150" android:pivotX="50%" android:pivotY="50%" /></item>
+    <item android:duration="80"><rotate android:drawable="@drawable/ic_stat_sync" android:fromDegrees="-165" android:toDegrees="-165" android:pivotX="50%" android:pivotY="50%" /></item>
+</animation-list>
