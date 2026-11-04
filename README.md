@@ -58,7 +58,7 @@ any folder of files with a Git remote will do. In the app, each synced folder is
 
 - No automatic sync. Nothing runs on a schedule, and it does not watch other apps in the background; it syncs only when you tap.
 - It works on the branch that is checked out. Branch switching, rebase, cherry-pick, submodules and Git LFS are not supported yet; they may be considered later.
-- The folders must be ordinary folders in shared storage (for example `Documents/`). Folders from other apps' storage providers are not supported.
+- The folders must be ordinary folders in shared storage (for example `Documents/`). Virtual folders that other apps provide through the Storage Access Framework (SAF), such as cloud drive mounts or some apps' private document folders, are not supported.
 - It has only been tested on Android 10 and later; older versions are not planned.
 
 ## Getting started
@@ -70,7 +70,7 @@ any folder of files with a Git remote will do. In the app, each synced folder is
    - HTTPS, e.g. `https://github.com/user/repo.git`, with your username and a personal access token.
      On GitHub, a fine-grained token with *Contents: read and write* on the repository is enough.
    - SSH, e.g. `git@github.com:user/repo.git`: generate a key in the app, copy the public key and add it to your Git host
-     (on GitHub, as a deploy key with write access or in your account's SSH keys).
+     (on GitHub, as a deploy key of the repository with "Allow write access" checked, or in your account's SSH keys).
 5. Check the author name and email, confirm, and wait for the first clone or push.
 6. From then on, tap **Sync** whenever you want the phone and the remote to match.
 
@@ -100,4 +100,4 @@ VaultSync is free software under the [GNU General Public License v3.0](LICENSE).
 The name "VaultSync" and the app icon are not licensed under the GPL (GPL-3.0 section 7(e)).
 If you distribute a modified version, please give it a different name, icon and application ID, so that it is not mistaken for this app (section 7(c)).
 
-VaultSync is not affiliated with Obsidian.
+Obsidian is a trademark of Dynalist Inc. VaultSync is an independent project and is not affiliated with, endorsed by, or sponsored by Dynalist Inc.
