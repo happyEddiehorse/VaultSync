@@ -8,6 +8,41 @@ VaultSync 是一个 Android 应用，用于同步手机上的文件夹与远端 
 它最初是为了同步 [Obsidian](https://obsidian.md) 笔记而写的，用在这上面很合适，但它不依赖 Obsidian——
 任何有 Git 远端的文件夹都可以同步。
 
+## 截图
+
+<table>
+  <tr>
+    <td><img src="screenshots/zh-CN/01-home-light.png" width="250" alt="首页"></td>
+    <td><img src="screenshots/zh-CN/02-home-dark.png" width="250" alt="首页，深色模式"></td>
+    <td><img src="screenshots/zh-CN/09-notification.png" width="250" alt="同步进度通知"></td>
+  </tr>
+  <tr>
+    <td align="center">各个库的状态，一个正在同步</td>
+    <td align="center">深色模式</td>
+    <td align="center">进度通知</td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/zh-CN/03-detail.png" width="250" alt="库详情"></td>
+    <td><img src="screenshots/zh-CN/05-conflict.png" width="250" alt="冲突文件"></td>
+    <td><img src="screenshots/zh-CN/04-diff.png" width="250" alt="提交里的改动"></td>
+  </tr>
+  <tr>
+    <td align="center">上次同步的结果</td>
+    <td align="center">在正文里逐处解决冲突</td>
+    <td align="center">提交里的改动</td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/zh-CN/06-failure.png" width="250" alt="同步失败"></td>
+    <td><img src="screenshots/zh-CN/07-add-remote.png" width="250" alt="添加库：远端与认证"></td>
+    <td><img src="screenshots/zh-CN/08-ssh-keys.png" width="250" alt="SSH 密钥"></td>
+  </tr>
+  <tr>
+    <td align="center">失败时说明原因和怎么办</td>
+    <td align="center">添加库：远端与认证</td>
+    <td align="center">SSH 密钥</td>
+  </tr>
+</table>
+
 ## 功能
 
 **添加仓库**

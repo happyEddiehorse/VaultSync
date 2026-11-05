@@ -9,6 +9,41 @@ A simple conflict resolver is built in.
 It started as a way to sync [Obsidian](https://obsidian.md) notes, and it works well for that, but nothing in it is tied to Obsidian:
 any folder of files with a Git remote will do. In the app, each synced folder is called a *vault*.
 
+## Screenshots
+
+<table>
+  <tr>
+    <td><img src="screenshots/en/01-home-light.png" width="250" alt="Home screen"></td>
+    <td><img src="screenshots/en/02-home-dark.png" width="250" alt="Home screen, dark theme"></td>
+    <td><img src="screenshots/en/09-notification.png" width="250" alt="Sync progress notification"></td>
+  </tr>
+  <tr>
+    <td align="center">Vaults and their status, one syncing</td>
+    <td align="center">Dark theme</td>
+    <td align="center">Progress notification</td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/en/03-detail.png" width="250" alt="Vault details"></td>
+    <td><img src="screenshots/en/05-conflict.png" width="250" alt="Conflicting file"></td>
+    <td><img src="screenshots/en/04-diff.png" width="250" alt="Changes in a commit"></td>
+  </tr>
+  <tr>
+    <td align="center">Result of the last sync</td>
+    <td align="center">Resolving conflicts in place</td>
+    <td align="center">Changes in a commit</td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/en/06-failure.png" width="250" alt="Sync failed"></td>
+    <td><img src="screenshots/en/07-add-remote.png" width="250" alt="Adding a vault: remote and authentication"></td>
+    <td><img src="screenshots/en/08-ssh-keys.png" width="250" alt="SSH keys"></td>
+  </tr>
+  <tr>
+    <td align="center">What failed and what to do</td>
+    <td align="center">Adding a vault: remote and authentication</td>
+    <td align="center">SSH keys</td>
+  </tr>
+</table>
+
 ## Features
 
 **Adding a repository**
